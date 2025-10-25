@@ -1,6 +1,7 @@
-name: Translation Agent (with PR Creation)
+name: Translation Agent (Fixed PR Creation)
 
 # This workflow runs the translation agent and creates a PR with translations
+# Fixed: Properly handles branch creation and PR
 
 on:
   repository_dispatch:
@@ -27,7 +28,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
-          fetch-depth: 0
       
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -53,11 +53,6 @@ jobs:
           fi
           
           echo "✅ Skill files found"
-      
-      - name: Configure Git
-        run: |
-          git config user.name "Translation Bot"
-          git config user.email "translation-bot@kobotoolbox.org"
       
       - name: Parse input files (Manual)
         if: github.event_name == 'workflow_dispatch'
@@ -96,7 +91,7 @@ jobs:
             echo "languages=${{ steps.auto_files.outputs.languages }}" >> $GITHUB_OUTPUT
           fi
       
-      - name: Create translation branch
+      - name: Generate branch name
         id: branch
         run: |
           TIMESTAMP=$(date +%Y%m%d-%H%M%S)
@@ -105,8 +100,7 @@ jobs:
           echo "branch=$BRANCH" >> $GITHUB_OUTPUT
           echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
           
-          git checkout -b "$BRANCH"
-          echo "Created branch: $BRANCH"
+          echo "Will create branch: $BRANCH"
       
       - name: Translate documents
         env:
@@ -198,46 +192,23 @@ jobs:
           echo "success_count=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
           echo "fail_count=$FAIL_COUNT" >> $GITHUB_OUTPUT
           echo "total_cost=$TOTAL_COST" >> $GITHUB_OUTPUT
-      
-      - name: Check for changes
-        id: check_changes
-        run: |
-          git add docs/
-          
-          if git diff --staged --quiet; then
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-            echo "⚠️ No translation changes to commit"
-          else
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "✅ Translation changes detected"
-          fi
-      
-      - name: Commit translations
-        if: steps.check_changes.outputs.has_changes == 'true'
-        run: |
-          git add docs/
-          git commit -m "🌐 Auto-translate: ${{ steps.files.outputs.files }}
-
-          Automated translation by Translation Bot
-          
-          Files translated:
-          ${{ steps.files.outputs.files }}
-          
-          Languages: ${{ steps.files.outputs.languages }}
-          Timestamp: ${{ steps.branch.outputs.timestamp }}"
-      
-      - name: Push branch
-        if: steps.check_changes.outputs.has_changes == 'true'
-        run: |
-          git push origin ${{ steps.branch.outputs.branch }}
+        id: translate
       
       - name: Create Pull Request
-        if: steps.check_changes.outputs.has_changes == 'true'
         uses: peter-evans/create-pull-request@v6
         id: create_pr
         with:
           token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
+          commit-message: |
+            🌐 Auto-translate: ${{ steps.files.outputs.files }}
+            
+            Automated translation by Translation Bot
+            
+            Files: ${{ steps.files.outputs.files }}
+            Languages: ${{ steps.files.outputs.languages }}
+            Timestamp: ${{ steps.branch.outputs.timestamp }}
           branch: ${{ steps.branch.outputs.branch }}
+          delete-branch: true
           title: "🌐 Auto-translate: ${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Auto' }} (${{ steps.branch.outputs.timestamp }})"
           body: |
             ## 🤖 Automated Translation
@@ -246,15 +217,23 @@ jobs:
             
             ### 📝 Source Files
             
+            ```
             ${{ steps.files.outputs.files }}
+            ```
             
             ### 🌐 Target Languages
             
+            ```
             ${{ steps.files.outputs.languages }}
+            ```
+            
+            ### 📊 Quick Stats
+            
+            - ✅ Successful: ${{ steps.translate.outputs.success_count }}
+            - ❌ Failed: ${{ steps.translate.outputs.fail_count }}
+            - 💰 Cost: ~$$${{ steps.translate.outputs.total_cost }}
             
             ---
-            
-            ${{ steps.check_changes.outputs.has_changes == 'true' && format('Translation summary will be in the next comment') || 'No changes detected' }}
             
             ### ✅ Translation Quality Checklist
             
@@ -298,15 +277,15 @@ jobs:
             
             **Triggered by:** ${{ github.event_name == 'workflow_dispatch' && 'Manual workflow' || 'Automatic detection' }}
             **Branch:** `${{ steps.branch.outputs.branch }}`
-            **Commit:** ${{ github.sha }}
+            **Commit SHA:** ${{ github.sha }}
           labels: |
             translation
             automated
             needs-review
           draft: false
       
-      - name: Comment with summary
-        if: steps.check_changes.outputs.has_changes == 'true' && steps.create_pr.outputs.pull-request-number
+      - name: Comment with detailed summary
+        if: steps.create_pr.outputs.pull-request-number
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
@@ -327,28 +306,34 @@ jobs:
           echo "## 🌐 Translation Job Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           
-          if [ "${{ steps.check_changes.outputs.has_changes }}" == "true" ]; then
-            echo "✅ **Status:** Translations created successfully" >> $GITHUB_STEP_SUMMARY
+          if [ -n "${{ steps.create_pr.outputs.pull-request-number }}" ]; then
+            echo "✅ **Status:** Pull request created successfully" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "🔗 **Pull Request:** #${{ steps.create_pr.outputs.pull-request-number }}" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "**URL:** ${{ steps.create_pr.outputs.pull-request-url }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "📊 **Statistics:**" >> $GITHUB_STEP_SUMMARY
+            echo "- Successful: ${{ steps.translate.outputs.success_count }}" >> $GITHUB_STEP_SUMMARY
+            echo "- Failed: ${{ steps.translate.outputs.fail_count }}" >> $GITHUB_STEP_SUMMARY
+            echo "- Cost: \$${{ steps.translate.outputs.total_cost }}" >> $GITHUB_STEP_SUMMARY
           else
-            echo "⚠️ **Status:** No changes to commit" >> $GITHUB_STEP_SUMMARY
+            echo "⚠️ **Status:** No pull request created" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Possible reasons:" >> $GITHUB_STEP_SUMMARY
+            echo "- No changes to commit" >> $GITHUB_STEP_SUMMARY
+            echo "- Translations already up to date" >> $GITHUB_STEP_SUMMARY
           fi
           
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Files Translated" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           echo "${{ steps.files.outputs.files }}" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Languages" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           echo "${{ steps.files.outputs.languages }}" >> $GITHUB_STEP_SUMMARY
-      
-      - name: Notify on failure
-        if: failure()
-        run: |
-          echo "❌ Translation workflow failed"
-          echo "Check the logs above for details"
-          exit 1
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
