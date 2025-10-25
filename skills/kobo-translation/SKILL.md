@@ -9,6 +9,12 @@ description: "Translation and localization guidelines for KoboToolbox content in
 
 Translate KoboToolbox content in French, Spanish, and Arabic with consistent terminology, appropriate tone, and cultural adaptation.
 
+**🚨 CRITICAL: When translating updates to existing articles:**
+- **ONLY translate new or modified content** from the source article
+- **DO NOT re-translate or modify existing translations** that are already correct
+- Compare the source changes carefully and apply only those specific changes to the target language
+- Preserve all existing translated content that corresponds to unchanged source material
+
 ## 🚨 CRITICAL: Pre-Translation Checklist
 
 **BEFORE starting translation, read these reference files:**
@@ -79,12 +85,64 @@ Translate KoboToolbox content in French, Spanish, and Arabic with consistent ter
 
 **🔴 STOP! Before translating anything:**
 
-1. Identify all brand terms in the source text (KoboToolbox, servers, Question Library, Formbuilder, etc.)
-2. Open **brand-terminology.md** and verify EXACT translations
-3. Check **ui-terminology.md** for any UI elements (buttons, tabs, page names)
-4. Note any terms requiring "English + translation" on first reference
+1. **Determine translation type:**
+   - **New content?** → Proceed with full translation workflow
+   - **Update to existing article?** → Follow "Update Workflow" below
+
+2. Identify all brand terms in the source text (KoboToolbox, servers, Question Library, Formbuilder, etc.)
+3. Open **brand-terminology.md** and verify EXACT translations
+4. Check **ui-terminology.md** for any UI elements (buttons, tabs, page names)
+5. Note any terms requiring "English + translation" on first reference
+
+### Update Workflow (for changes to existing articles)
+
+**When translating updates to an already-translated article:**
+
+1. **Compare source versions:**
+   - Identify exactly what changed in the English (source) version
+   - Note: new paragraphs, modified sentences, deleted sections, updated terms
+
+2. **Review existing translation:**
+   - Open the current translated version
+   - Locate the sections that correspond to the changed source content
+
+3. **Apply ONLY the necessary changes:**
+   - Translate ONLY the new or modified content
+   - Integrate the changes into the existing translation
+   - **DO NOT re-translate unchanged sections**, even if you might phrase them differently today
+
+4. **Preserve existing work:**
+   - Keep all existing translations that correspond to unchanged source material
+   - Maintain consistency with the existing translation's style and terminology choices
+   - Only make changes where the source content has actually changed
+
+5. **Quality check:**
+   - Verify the updated sections flow naturally with existing content
+   - Ensure terminology consistency between old and new sections
+   - Check that nothing was unnecessarily changed
+
+**Example Update Scenario:**
+- Source change: One paragraph updated with new feature name
+- Translation update: ONLY translate that one paragraph
+- Result: The rest of the article remains exactly as it was
+
+---
 
 ### Step 1: Identify Content Type
+
+**⚠️ IMPORTANT: Determine if this is new content or an update:**
+
+**New content (full translation needed):**
+- Translate the entire document from scratch
+- Apply all guidelines and terminology consistently
+
+**Update to existing translation:**
+- **ONLY translate the specific changes made to the source (English) document**
+- **DO NOT modify existing translations that are already correct**
+- Identify what changed in the source and apply ONLY those changes to the target
+- Preserve all unchanged content in the existing translation
+
+---
 
 **Formal communications** (server announcements, formal emails):
 - French: Use "vous", addressee "Cher utilisateur, Chère utilisatrice"
@@ -410,7 +468,13 @@ START: Do I see ANY of these terms in the source text?
 
 Before finalizing translation:
 
-**🚨 CRITICAL - Brand & UI Terms:**
+**� Translation Scope (for updates to existing content):**
+- [ ] Identified what changed in the source document
+- [ ] ONLY translated the new/modified content
+- [ ] Preserved all existing translations that correspond to unchanged source content
+- [ ] Did NOT re-translate or unnecessarily modify existing correct translations
+
+**�🚨 CRITICAL - Brand & UI Terms:**
 - [ ] All server names use EXACT translations from brand-terminology.md (with articles!)
 - [ ] "Question Library" has capital article: "La bibliothèque" / "La biblioteca"
 - [ ] Formbuilder includes English on first reference
