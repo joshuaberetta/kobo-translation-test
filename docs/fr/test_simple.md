@@ -1,6 +1,6 @@
 # Premiers pas avec la collecte de données
 
-La collecte de données est un élément essentiel de tout projet de recherche ou d'enquête. Ce guide vous aidera à comprendre les bases de KoboToolbox.
+La collecte de données est une partie essentielle de tout projet de recherche ou d'enquête. Ce guide vous aidera à comprendre les bases de KoboToolbox.
 
 ## Qu'est-ce que la collecte de données ?
 
@@ -12,16 +12,17 @@ Suivez ces étapes pour collecter des données efficacement :
 
 1. **Définissez vos objectifs** - Que voulez-vous apprendre ?
 2. **Choisissez votre méthode** - Enquêtes, entretiens ou observations ?
-3. **Préparez vos outils** - Créez vos questions et matériels
-4. **Collectez les données** - Rassemblez les informations auprès des participantes et participants
+3. **Préparez vos outils** - Créez vos questions et vos supports
+4. **Collectez les données** - Rassemblez les informations auprès des participant·e·s
 5. **Examinez vos résultats** - Analysez ce que vous avez appris
+6. **Partagez vos conclusions** - Présentez vos données aux parties prenantes
 
 ## Conseils pour réussir
 
 - Gardez les questions claires et simples
 - Testez votre processus avant de commencer
-- Respectez la vie privée des participantes et participants
-- Stockez les données de manière sécurisée
+- Respectez la vie privée des participant·e·s
+- Stockez les données en toute sécurité
 - Examinez et vérifiez vos informations
 
 ## Défis courants
@@ -33,7 +34,7 @@ Suivez ces étapes pour collecter des données efficacement :
 **Solution :** Utilisez des champs obligatoires et fournissez des instructions claires.
 
 ### Défi 3 : Qualité des données
-**Solution :** Validez les réponses et faites un suivi sur les réponses peu claires.
+**Solution :** Validez les réponses et effectuez un suivi sur les réponses peu claires.
 
 ## Prochaines étapes
 
@@ -41,6 +42,6 @@ Une fois que vous comprenez les bases, vous pouvez :
 - Concevoir des enquêtes plus complexes
 - Utiliser des types de questions avancés
 - Analyser vos données
-- Partager vos résultats
+- Partager vos conclusions
 
 Ceci est une nouvelle ligne du document. Bonne collecte de données !
