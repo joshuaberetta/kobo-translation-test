@@ -26,7 +26,7 @@ To begin:
    replacing an existing form in your account.
 
 5. In your project page go to **SETTINGS>MEDIA** and [upload](media.md) your
-   `logo.jpg` file.
+   `logo.jpg` file by dragging the file or selecting from your computer.
 
 ## Tips:
 
