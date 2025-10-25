@@ -44,3 +44,5 @@ Once you understand the basics, you can:
 - Share your findings
 
 For more information, visit our documentation or contact support.
+
+## Testing auto trigger
