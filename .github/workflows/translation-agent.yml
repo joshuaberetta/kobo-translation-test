@@ -1,0 +1,145 @@
+name: Translation Agent
+
+# This workflow runs the translation agent when triggered
+# by the translation-trigger workflow
+
+on:
+  repository_dispatch:
+    types: [translation-needed]
+  
+  workflow_dispatch:  # Allow manual trigger
+    inputs:
+      test_file:
+        description: 'Test file to translate (e.g., docs/en/test_simple.md)'
+        required: false
+        default: 'docs/en/test_simple.md'
+      test_language:
+        description: 'Language to test (es, fr, or ar)'
+        required: false
+        default: 'es'
+
+jobs:
+  translate:
+    name: Translate Documents
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r scripts/requirements.txt
+      
+      - name: Verify skill files
+        run: |
+          echo "📚 Checking for skill files..."
+          if [ ! -d "skills/kobo-translation" ]; then
+            echo "❌ Error: skills/kobo-translation directory not found"
+            exit 1
+          fi
+          
+          if [ ! -f "skills/kobo-translation/SKILL.md" ]; then
+            echo "❌ Error: SKILL.md not found"
+            exit 1
+          fi
+          
+          echo "✅ Skill files found"
+          ls -R skills/kobo-translation/
+      
+      - name: Configure Git
+        run: |
+          git config user.name "Translation Bot"
+          git config user.email "translation-bot@kobotoolbox.org"
+      
+      - name: Run translation agent (Manual)
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.TRANSLATION_BOT_TOKEN }}
+        run: |
+          echo "🧪 Running in manual test mode"
+          python scripts/translation_agent.py \
+            --file "${{ github.event.inputs.test_file }}" \
+            --language "${{ github.event.inputs.test_language }}" \
+            --save \
+            --test \
+            --verbose
+      
+      - name: Run translation agent (Auto)
+        if: github.event_name == 'repository_dispatch'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.TRANSLATION_BOT_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          echo "🤖 Running in automated mode"
+          echo "Changed files: ${{ toJson(github.event.client_payload.changed_files) }}"
+          
+          # TODO: Implement full automation with PR creation
+          # For now, just translate the first file to Spanish as a test
+          FIRST_FILE=$(echo '${{ toJson(github.event.client_payload.changed_files) }}' | jq -r '.[0]')
+          
+          if [ "$FIRST_FILE" != "null" ] && [ ! -z "$FIRST_FILE" ]; then
+            echo "Translating: $FIRST_FILE"
+            python scripts/translation_agent.py \
+              --file "$FIRST_FILE" \
+              --language es \
+              --save \
+              --test
+          fi
+      
+      - name: Show translations
+        if: always()
+        run: |
+          echo "📄 Generated translations:"
+          if [ -d "docs/es" ]; then
+            echo "Spanish:"
+            ls -la docs/es/
+          fi
+          if [ -d "docs/fr" ]; then
+            echo "French:"
+            ls -la docs/fr/
+          fi
+          if [ -d "docs/ar" ]; then
+            echo "Arabic:"
+            ls -la docs/ar/
+          fi
+      
+      - name: Create Pull Request (Placeholder)
+        if: github.event_name == 'repository_dispatch'
+        run: |
+          echo "📝 Creating pull request..."
+          echo "TODO: Implement PR creation with translations"
+          echo "For now, translations are generated but not committed"
+          echo ""
+          echo "Next steps to complete:"
+          echo "1. Create new branch"
+          echo "2. Commit translations"
+          echo "3. Create PR with peter-evans/create-pull-request@v6"
+      
+      - name: Upload translations as artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: translations
+          path: |
+            docs/es/*.md
+            docs/fr/*.md
+            docs/ar/*.md
+          if-no-files-found: ignore
+      
+      - name: Summary
+        if: always()
+        run: |
+          echo "✨ Translation workflow complete"
+          echo "📦 Translations available as workflow artifacts"

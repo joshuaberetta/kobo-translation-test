@@ -1,0 +1,10 @@
+# Python dependencies for KoboToolbox Translation Agent
+
+# Anthropic Claude API
+anthropic>=0.39.0
+
+# GitHub API (for automation)
+PyGithub>=2.1.1
+
+# Optional but recommended
+python-dotenv>=1.0.0  # For loading .env files

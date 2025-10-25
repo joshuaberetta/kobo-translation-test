@@ -1,0 +1,71 @@
+name: Translation Trigger
+
+# This workflow detects changes to English source documents
+# and triggers the translation agent
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/en/**/*.md'  # Only trigger on English markdown changes
+  
+  workflow_dispatch:        # Allow manual trigger for testing
+
+jobs:
+  detect-changes:
+    name: Detect Changed Documents
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Need to compare with previous commit
+      
+      - name: Detect changed files
+        id: changes
+        run: |
+          # Get list of changed .md files in docs/en/
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            # Manual trigger - translate all files
+            CHANGED_FILES=$(find docs/en -name "*.md" | jq -R -s -c 'split("\n")[:-1]')
+          else
+            # Auto trigger - only changed files
+            CHANGED_FILES=$(git diff --name-only HEAD^ HEAD -- 'docs/en/**/*.md' | jq -R -s -c 'split("\n")[:-1]')
+          fi
+          
+          echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+          echo "Changed files: $CHANGED_FILES"
+      
+      - name: Check if translation needed
+        id: check
+        run: |
+          FILES='${{ steps.changes.outputs.files }}'
+          if [ "$FILES" == "[]" ] || [ "$FILES" == '[""]' ]; then
+            echo "needs_translation=false" >> $GITHUB_OUTPUT
+            echo "No files to translate"
+          else
+            echo "needs_translation=true" >> $GITHUB_OUTPUT
+            echo "Translation needed for: $FILES"
+          fi
+      
+      - name: Trigger translation agent
+        if: steps.check.outputs.needs_translation == 'true'
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
+          event-type: translation-needed
+          client-payload: |
+            {
+              "changed_files": ${{ steps.changes.outputs.files }},
+              "commit_sha": "${{ github.sha }}",
+              "commit_message": "${{ github.event.head_commit.message }}",
+              "author": "${{ github.event.head_commit.author.name }}"
+            }
+      
+      - name: Log trigger
+        if: steps.check.outputs.needs_translation == 'true'
+        run: |
+          echo "✅ Translation agent triggered successfully"
+          echo "Files: ${{ steps.changes.outputs.files }}"
