@@ -1,15 +1,13 @@
 name: Auto-Translate Documentation
 
-# Single workflow that detects changes AND translates in one go
-
 on:
   push:
     branches:
       - main
     paths:
-      - 'docs/en/**/*.md'  # Only trigger on English markdown changes
+      - 'docs/en/**/*.md'
   
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:
     inputs:
       files_to_translate:
         description: 'Files to translate (comma-separated, e.g., docs/en/test_simple.md)'
@@ -30,39 +28,84 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
-          fetch-depth: 2  # Need previous commit to detect changes
+          fetch-depth: 0  # Fetch all history for better diff detection
       
       - name: Detect changed files
         id: detect
         run: |
+          echo "Event: ${{ github.event_name }}"
+          
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             # Manual trigger - use input
             FILES="${{ github.event.inputs.files_to_translate }}"
             LANGUAGES="${{ github.event.inputs.languages }}"
+            echo "Manual trigger - using input files"
           else
             # Auto trigger - detect what changed
-            CHANGED=$(git diff --name-only HEAD^ HEAD -- 'docs/en/**/*.md' | tr '\n' ',' | sed 's/,$//')
-            FILES="$CHANGED"
+            echo "Auto trigger - detecting changes..."
+            
+            # Get the list of changed .md files in docs/en/
+            CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'docs/en/**/*.md' || echo "")
+            
+            # If that doesn't work, try HEAD~1
+            if [ -z "$CHANGED_FILES" ]; then
+              echo "Trying HEAD~1..."
+              CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD -- 'docs/en/**/*.md' || echo "")
+            fi
+            
+            # If still nothing, check if this is the first commit
+            if [ -z "$CHANGED_FILES" ]; then
+              echo "Trying to list all docs/en files..."
+              CHANGED_FILES=$(git ls-tree -r HEAD --name-only -- 'docs/en/**/*.md' || echo "")
+            fi
+            
+            echo "Changed files found:"
+            echo "$CHANGED_FILES"
+            
+            # Convert newlines to commas
+            FILES=$(echo "$CHANGED_FILES" | tr '\n' ',' | sed 's/,$//' | sed 's/^,//')
             LANGUAGES="es,fr,ar"
           fi
           
           echo "files=$FILES" >> $GITHUB_OUTPUT
           echo "languages=$LANGUAGES" >> $GITHUB_OUTPUT
           
+          echo "=== Detection Results ==="
           echo "Files to translate: $FILES"
           echo "Languages: $LANGUAGES"
           
-          # Check if we have files to translate
+          # Check if we have files
           if [ -z "$FILES" ] || [ "$FILES" == "" ]; then
             echo "has_files=false" >> $GITHUB_OUTPUT
+            echo "⚠️ No files detected for translation"
           else
             echo "has_files=true" >> $GITHUB_OUTPUT
+            echo "✅ Files detected: $FILES"
           fi
       
-      - name: Skip if no files
+      - name: Debug - Show git info
         if: steps.detect.outputs.has_files == 'false'
         run: |
-          echo "ℹ️ No files to translate, skipping workflow"
+          echo "=== Debug Information ==="
+          echo "Current commit: ${{ github.sha }}"
+          echo "Previous commit: ${{ github.event.before }}"
+          echo ""
+          echo "All files in docs/en/:"
+          find docs/en -name "*.md" -type f || echo "No files found"
+          echo ""
+          echo "Git log (last 3 commits):"
+          git log --oneline -3 --name-only
+          echo ""
+          echo "Git diff HEAD~1:"
+          git diff --name-only HEAD~1 HEAD || echo "No diff available"
+      
+      - name: Stop if no files
+        if: steps.detect.outputs.has_files == 'false'
+        run: |
+          echo "ℹ️ No markdown files in docs/en/ were changed in this commit."
+          echo "This is normal if you only updated workflow files or other non-doc files."
+          echo ""
+          echo "To translate files manually, use the 'Run workflow' button and specify files."
           exit 0
       
       - name: Set up Python
@@ -104,6 +147,9 @@ jobs:
           FILES="${{ steps.detect.outputs.files }}"
           LANGUAGES="${{ steps.detect.outputs.languages }}"
           
+          echo "Files: $FILES"
+          echo "Languages: $LANGUAGES"
+          
           # Convert comma-separated to arrays
           IFS=',' read -ra FILE_ARRAY <<< "$FILES"
           IFS=',' read -ra LANG_ARRAY <<< "$LANGUAGES"
@@ -120,14 +166,20 @@ jobs:
           
           # Translate each file to each language
           for FILE in "${FILE_ARRAY[@]}"; do
-            [ -z "$FILE" ] && continue
+            # Skip empty entries
+            if [ -z "$FILE" ] || [ "$FILE" == " " ]; then
+              continue
+            fi
             
             echo "" >> translation_summary.md
-            echo "## 📄 \`$(basename $FILE)\`" >> translation_summary.md
+            echo "## 📄 \`$(basename "$FILE")\`" >> translation_summary.md
             echo "" >> translation_summary.md
             
             for LANG in "${LANG_ARRAY[@]}"; do
-              [ -z "$LANG" ] && continue
+              # Skip empty entries
+              if [ -z "$LANG" ] || [ "$LANG" == " " ]; then
+                continue
+              fi
               
               echo "  🔄 Translating $FILE to $LANG..."
               
@@ -194,7 +246,7 @@ jobs:
             Automated by Translation Bot
           branch: translations/auto-${{ github.run_number }}
           delete-branch: true
-          title: "🌐 Auto-translate: ${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Auto' }} #${{ github.run_number }}"
+          title: "🌐 Auto-translate #${{ github.run_number }}"
           body: |
             ## 🤖 Automated Translation
             
@@ -217,13 +269,6 @@ jobs:
             - ✅ Successful: ${{ steps.translate.outputs.success_count }}
             - ❌ Failed: ${{ steps.translate.outputs.fail_count }}
             - 💰 Cost: ~$$${{ steps.translate.outputs.total_cost }}
-            
-            <details>
-            <summary>📋 Detailed translation summary (click to expand)</summary>
-            
-            Will be posted as a comment below.
-            
-            </details>
             
             ---
             
@@ -250,8 +295,7 @@ jobs:
             
             ---
             
-            Triggered: ${{ github.event_name }}  
-            Run: #${{ github.run_number }}
+            Run: #${{ github.run_number }} | Commit: ${{ github.sha }}
           labels: |
             translation
             automated
@@ -289,8 +333,17 @@ jobs:
             echo "- Cost: \$${{ steps.translate.outputs.total_cost }}" >> $GITHUB_STEP_SUMMARY
           elif [ "${{ steps.detect.outputs.has_files }}" == "false" ]; then
             echo "ℹ️ **No files to translate**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "No markdown files in docs/en/ were changed in this commit." >> $GITHUB_STEP_SUMMARY
           else
             echo "⚠️ **No PR created**" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "Check logs for errors." >> $GITHUB_STEP_SUMMARY
           fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Detected Files" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.detect.outputs.files }}" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
