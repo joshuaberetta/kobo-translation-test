@@ -20,7 +20,7 @@ To begin:
 | survey|
 
 3. When you're done editing the form, upload the XLSForm to either a new or
-   existing project.
+   an existing project.
 
 4. Deploy or redeploy your form, depending on whether it's a new project or it's
    replacing an existing form.
