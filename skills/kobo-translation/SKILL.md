@@ -9,16 +9,22 @@ description: "Translation and localization guidelines for KoboToolbox content in
 
 Translate KoboToolbox content in French, Spanish, and Arabic with consistent terminology, appropriate tone, and cultural adaptation.
 
-**🚨 CRITICAL: Diff-based translation for updates**
+**Translation approach:**
 
-**For NEW content:**
-- Translate the entire document from scratch
+For **NEW FILES** (full translation):
+- Translate the complete source document provided
+- Use consistent terminology for reliable, repeatable translations
+- Follow all guidelines in this skill document
 
-**For UPDATES to existing translated articles:**
-- **ONLY translate the diff (changed content)** - never the full article
-- Apply the translated diff back to the existing translation
-- This preserves existing translations and prevents unnecessary changes
-- See "Update Workflow" section for detailed process
+For **UPDATES** (diff-based translation):
+- You will receive ONLY the changed content from the source document
+- Translate ONLY what is provided between the markers
+- Do NOT translate anything outside the markers
+- Do NOT add explanations or extra content
+- Output ONLY the translated version of the diff content
+- The system will automatically merge your translation with the existing translated file
+
+**Why diff-based?** LLMs are non-deterministic, so re-translating an entire document produces slightly different results each time, creating "translation noise" in git diffs. By translating only actual changes, we preserve manual reviewer improvements and reduce unnecessary churn.
 
 ## 🚨 CRITICAL: Pre-Translation Checklist
 
@@ -90,70 +96,12 @@ Translate KoboToolbox content in French, Spanish, and Arabic with consistent ter
 
 **🔴 STOP! Before translating anything:**
 
-1. **Determine translation type:**
-   - **New content?** → Proceed with full translation workflow below
-   - **Update to existing article?** → **STOP** - You should receive ONLY the diff (changed content), not the full article. If you receive the full article, request only the changed sections instead.
-
-2. Identify all brand terms in the source text (KoboToolbox, servers, Question Library, Formbuilder, etc.)
-3. Open **brand-terminology.md** and verify EXACT translations
-4. Check **ui-terminology.md** for any UI elements (buttons, tabs, page names)
-5. Note any terms requiring "English + translation" on first reference
-
-### Update Workflow (for changes to existing articles)
-
-**🚨 CRITICAL: Use DIFF-BASED translation workflow for updates**
-
-When translating updates to an already-translated article, **DO NOT translate the entire article**. Instead:
-
-**Step 1: Extract the diff (changes only)**
-- Get ONLY the changed lines/paragraphs from the source (English) document
-- This should be provided as a diff or list of specific changes
-- **NEVER work with the full article** - only the changed sections
-
-**Step 2: Translate ONLY the diff**
-- Translate only the new or modified content that was extracted
-- Do NOT reference or translate any unchanged content
-- Apply all terminology and style guidelines to the new content
-
-**Step 3: Apply the translated diff back**
-- Insert the translated changes into the existing translated document
-- Replace old content with new translations where content changed
-- Add new translations where content was added
-- Remove translations where content was deleted
-- **DO NOT touch any other part of the existing translation**
-
-**Step 4: Minimal verification**
-- Check that the new translations flow naturally with surrounding existing content
-- Verify terminology consistency with existing translations
-- Confirm no unintended changes were made
-
-**❌ WRONG APPROACH:**
-```
-Input: Full English article with minor changes
-Process: Translate entire article
-Output: Completely re-translated article
-Problem: Existing good translations are unnecessarily changed
-```
-
-**✅ CORRECT APPROACH:**
-```
-Input: ONLY the diff (changed lines/paragraphs from English)
-Process: Translate ONLY the diff
-Output: Translated diff applied to existing translation
-Result: Only changed content is updated, rest stays identical
-```
-
-**Example:**
-- English change: "Click the **Deploy** button" → "Click the **DEPLOY** button"
-- Translation task: Translate only "Click the **DEPLOY** button"
-- Apply to French: Replace old sentence with "Cliquez sur le bouton **DÉPLOYER**"
-- Leave everything else in the French document untouched
-
----
+1. Identify all brand terms in the source text (KoboToolbox, servers, Question Library, Formbuilder, etc.)
+2. Open **brand-terminology.md** and verify EXACT translations
+3. Check **ui-terminology.md** for any UI elements (buttons, tabs, page names)
+4. Note any terms requiring "English + translation" on first reference
 
 ### Step 1: Identify Content Type
-
-**Note:** This step applies to **new content** or when translating the **diff for updates**.
 
 **Formal communications** (server announcements, formal emails):
 - French: Use "vous", addressee "Cher utilisateur, Chère utilisatrice"
@@ -479,20 +427,7 @@ START: Do I see ANY of these terms in the source text?
 
 Before finalizing translation:
 
-**📋 Translation Scope:**
-
-**For NEW content:**
-- [ ] Translated entire document consistently
-- [ ] Applied all terminology and style guidelines
-
-**For UPDATES (diff-based translation):**
-- [ ] Received ONLY the diff (changed content), not the full article
-- [ ] Translated ONLY the provided diff
-- [ ] Applied translated diff back to existing translation
-- [ ] Verified NO other parts of the existing translation were modified
-- [ ] Confirmed unchanged content remains byte-for-byte identical
-
-**🚨 CRITICAL - Brand & UI Terms:**
+** CRITICAL - Brand & UI Terms:**
 - [ ] All server names use EXACT translations from brand-terminology.md (with articles!)
 - [ ] "Question Library" has capital article: "La bibliothèque" / "La biblioteca"
 - [ ] Formbuilder includes English on first reference

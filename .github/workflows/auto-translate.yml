@@ -202,96 +202,20 @@ jobs:
               
               TARGET_FILE="docs/$LANG/$FILENAME"
               
-              # Check if translation already exists
-              if [ -f "$TARGET_FILE" ]; then
-                IS_NEW_FILE=false
-                echo "  📝 $FILE → $LANG (UPDATE MODE - existing translation found)"
-                
-                # Extract diff from the English source file
-                if [ -n "${{ github.event.before }}" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
-                  DIFF_CONTENT=$(git diff ${{ github.event.before }} ${{ github.sha }} -- "$FILE" | grep -E '^\+' | grep -v '^\+++' | sed 's/^+//' || echo "")
-                else
-                  DIFF_CONTENT=$(git diff HEAD~1 HEAD -- "$FILE" | grep -E '^\+' | grep -v '^\+++' | sed 's/^+//' || echo "")
-                fi
-                
-                # Get old content for replacement (lines that were removed)
-                if [ -n "${{ github.event.before }}" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
-                  OLD_CONTENT=$(git diff ${{ github.event.before }} ${{ github.sha }} -- "$FILE" | grep -E '^\-' | grep -v '^\---' | sed 's/^-//' | head -n 5 || echo "")
-                else
-                  OLD_CONTENT=$(git diff HEAD~1 HEAD -- "$FILE" | grep -E '^\-' | grep -v '^\---' | sed 's/^-//' | head -n 5 || echo "")
-                fi
-                
-                if [ -n "$DIFF_CONTENT" ]; then
-                  echo "  🔄 Translating diff to $LANG (diff size: ${#DIFF_CONTENT} chars)..."
-                  echo "  📊 Mode: DIFF-BASED UPDATE" >> translation_summary.md
-                  
-                  # Save diff to temporary file
-                  echo "$DIFF_CONTENT" > "/tmp/diff_${LANG}.txt"
-                  
-                  if [ -n "$OLD_CONTENT" ]; then
-                    echo "$OLD_CONTENT" > "/tmp/old_${LANG}.txt"
-                    
-                    if python scripts/translation_agent.py \
-                      --file "$FILE" \
-                      --language "$LANG" \
-                      --update-mode \
-                      --diff "$DIFF_CONTENT" \
-                      --old-content "$OLD_CONTENT" \
-                      --save \
-                      --test > "translation_${LANG}.log" 2>&1; then
-                      echo "  ✅ $LANG: Diff translated and applied"
-                      echo "- ✅ **$LANG**: Diff translated and applied" >> translation_summary.md
-                      SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
-                    else
-                      echo "  ❌ $LANG: Failed"
-                      echo "- ❌ **$LANG**: Failed" >> translation_summary.md
-                      FAIL_COUNT=$((FAIL_COUNT + 1))
-                      cat "translation_${LANG}.log"
-                    fi
-                  else
-                    echo "  ⚠️  No old content to replace - will append diff"
-                    
-                    if python scripts/translation_agent.py \
-                      --file "$FILE" \
-                      --language "$LANG" \
-                      --update-mode \
-                      --diff "$DIFF_CONTENT" \
-                      --save \
-                      --test > "translation_${LANG}.log" 2>&1; then
-                      
-                      # Manually append since no old_content to replace
-                      TRANSLATED_DIFF=$(cat "translation_${LANG}.log" | sed -n '/BEGIN TRANSLATED DIFF/,/END TRANSLATED DIFF/p' | sed '1d;$d')
-                      if [ -n "$TRANSLATED_DIFF" ]; then
-                        echo "$TRANSLATED_DIFF" >> "$TARGET_FILE"
-                        echo "  ✅ $LANG: Diff appended"
-                        echo "- ✅ **$LANG**: Diff appended" >> translation_summary.md
-                        SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
-                      else
-                        echo "  ❌ $LANG: Could not extract translated diff"
-                        echo "- ❌ **$LANG**: Failed to extract diff" >> translation_summary.md
-                        FAIL_COUNT=$((FAIL_COUNT + 1))
-                      fi
-                    else
-                      echo "  ❌ $LANG: Failed"
-                      echo "- ❌ **$LANG**: Failed" >> translation_summary.md
-                      FAIL_COUNT=$((FAIL_COUNT + 1))
-                    fi
-                  fi
-                  
-                  rm -f "/tmp/diff_${LANG}.txt" "/tmp/old_${LANG}.txt"
-                else
-                  echo "  ⚠️  Could not extract diff - falling back to full translation"
-                  IS_NEW_FILE=true
-                fi
-              else
-                IS_NEW_FILE=true
-                echo "  📝 $FILE → $LANG (NEW FILE)"
+              # Check if file has manual edit marker
+              if [ -f "$TARGET_FILE" ] && grep -q "<!-- MANUAL_EDIT: DO NOT AUTO-TRANSLATE -->" "$TARGET_FILE"; then
+                echo "  ⏭️  $LANG: SKIPPED (manual edits detected)"
+                echo "- ⏭️  **$LANG**: Skipped - file contains manual edits marker" >> translation_summary.md
+                echo "  " >> translation_summary.md
+                echo "  To allow auto-translation, remove the \`<!-- MANUAL_EDIT: DO NOT AUTO-TRANSLATE -->\` comment" >> translation_summary.md
+                continue
               fi
               
-              # Full translation for new files
-              if [ "$IS_NEW_FILE" = true ]; then
-                echo "  🔄 Full translation to $LANG..."
-                echo "  📊 Mode: FULL FILE (new)" >> translation_summary.md
+              # Check if this is a new file or update
+              if [ ! -f "$TARGET_FILE" ]; then
+                # NEW FILE - full translation
+                echo "  🆕 NEW FILE: Full translation to $LANG..."
+                echo "- 📊 **$LANG**: Full translation (new file)" >> translation_summary.md
                 
                 if python scripts/translation_agent.py \
                   --file "$FILE" \
@@ -300,18 +224,18 @@ jobs:
                   --test > "translation_${LANG}.log" 2>&1; then
                   
                   echo "  ✅ $LANG: Success"
-                  echo "- ✅ **$LANG**: Translation completed" >> translation_summary.md
+                  echo "  ✅ Translation completed" >> translation_summary.md
                   SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
                   
                   # Extract cost
                   if grep -q "Estimated cost" "translation_${LANG}.log"; then
                     COST=$(grep "Estimated cost" "translation_${LANG}.log" | grep -oP '\$\K[0-9.]+' || echo "0")
                     TOTAL_COST=$(echo "$TOTAL_COST + $COST" | bc -l)
-                    echo "    💰 \$$COST" >> translation_summary.md
+                    echo "  💰 Cost: \$$COST" >> translation_summary.md
                   fi
                 else
                   echo "  ❌ $LANG: Failed"
-                  echo "- ❌ **$LANG**: Failed" >> translation_summary.md
+                  echo "  ❌ Failed" >> translation_summary.md
                   FAIL_COUNT=$((FAIL_COUNT + 1))
                   
                   echo "  <details><summary>Error log</summary>" >> translation_summary.md
@@ -321,16 +245,102 @@ jobs:
                   echo '  ```' >> translation_summary.md
                   echo "  </details>" >> translation_summary.md
                 fi
+                
+                rm -f "translation_${LANG}.log"
+              else
+                # EXISTING FILE - extract and translate only the English diff
+                echo "  � UPDATE: Extracting changes for $LANG..."
+                echo "- 📊 **$LANG**: Diff-based update" >> translation_summary.md
+                
+                # Get the actual changes from English source
+                if [ -n "${{ github.event.before }}" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+                  ENGLISH_DIFF=$(git diff -U0 ${{ github.event.before }} ${{ github.sha }} -- "$FILE" 2>/dev/null || echo "")
+                else
+                  ENGLISH_DIFF=$(git diff -U0 HEAD~1 HEAD -- "$FILE" 2>/dev/null || echo "")
+                fi
+                
+                if [ -z "$ENGLISH_DIFF" ]; then
+                  echo "  ℹ️  No changes detected in English source - skipping"
+                  echo "  ℹ️  No changes in source" >> translation_summary.md
+                  continue
+                fi
+                
+                # Extract only added lines (new content to translate)
+                NEW_CONTENT=$(echo "$ENGLISH_DIFF" | grep -E '^\+[^+]' | sed 's/^+//' || echo "")
+                
+                # Extract removed lines (old content)
+                OLD_CONTENT=$(echo "$ENGLISH_DIFF" | grep -E '^\-[^-]' | sed 's/^-//' || echo "")
+                
+                if [ -z "$NEW_CONTENT" ]; then
+                  echo "  ℹ️  Only deletions detected - skipping"
+                  echo "  ℹ️  Only deletions (no translation needed)" >> translation_summary.md
+                  continue
+                fi
+                
+                echo "  🔍 Found: ${#NEW_CONTENT} chars of new/modified content"
+                echo "  📝 ${#NEW_CONTENT} chars to translate" >> translation_summary.md
+                
+                # Save content to temp files for Python script
+                echo "$NEW_CONTENT" > "/tmp/new_content_${LANG}.txt"
+                echo "$OLD_CONTENT" > "/tmp/old_content_${LANG}.txt"
+                
+                # Translate only the diff using update mode
+                if python scripts/translation_agent.py \
+                  --file "$FILE" \
+                  --language "$LANG" \
+                  --update-mode \
+                  --diff "$NEW_CONTENT" \
+                  --test > "translation_${LANG}.log" 2>&1; then
+                  
+                  # Extract translated content using helper script
+                  TRANSLATED_CONTENT=$(python3 scripts/extract_translation.py "translation_${LANG}.log" 2>/dev/null || echo "")
+                  
+                  if [ -n "$TRANSLATED_CONTENT" ]; then
+                    echo "$TRANSLATED_CONTENT" > "/tmp/translated_${LANG}.txt"
+                    
+                    # Apply the translated diff to existing file using helper script
+                    if python3 scripts/apply_diff_translation.py \
+                      --target "$TARGET_FILE" \
+                      --old "$OLD_CONTENT" \
+                      --new "$TRANSLATED_CONTENT" \
+                      --mode smart; then
+                      
+                      echo "  ✅ $LANG: Diff applied successfully"
+                      echo "  ✅ Diff translated and applied" >> translation_summary.md
+                      SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+                    else
+                      echo "  ❌ $LANG: Failed to apply diff"
+                      echo "  ❌ Failed to apply diff" >> translation_summary.md
+                      FAIL_COUNT=$((FAIL_COUNT + 1))
+                    fi
+                  else
+                    echo "  ❌ $LANG: No translated content extracted"
+                    echo "  ❌ No translation output" >> translation_summary.md
+                    FAIL_COUNT=$((FAIL_COUNT + 1))
+                  fi
+                  
+                  # Extract cost
+                  if grep -q "Estimated cost" "translation_${LANG}.log"; then
+                    COST=$(grep "Estimated cost" "translation_${LANG}.log" | grep -oP '\$\K[0-9.]+' || echo "0")
+                    TOTAL_COST=$(echo "$TOTAL_COST + $COST" | bc -l)
+                    echo "  💰 Cost: \$$COST" >> translation_summary.md
+                  fi
+                else
+                  echo "  ❌ $LANG: Translation failed"
+                  echo "  ❌ Translation failed" >> translation_summary.md
+                  FAIL_COUNT=$((FAIL_COUNT + 1))
+                  
+                  echo "  <details><summary>Error log</summary>" >> translation_summary.md
+                  echo "  " >> translation_summary.md
+                  echo '  ```' >> translation_summary.md
+                  tail -n 20 "translation_${LANG}.log" >> translation_summary.md
+                  echo '  ```' >> translation_summary.md
+                  echo "  </details>" >> translation_summary.md
+                fi
+                
+                # Cleanup temp files
+                rm -f "/tmp/new_content_${LANG}.txt" "/tmp/old_content_${LANG}.txt" "/tmp/translated_${LANG}.txt" "translation_${LANG}.log"
               fi
-              
-              # Extract cost for updates too
-              if grep -q "Estimated cost" "translation_${LANG}.log" 2>/dev/null; then
-                COST=$(grep "Estimated cost" "translation_${LANG}.log" | grep -oP '\$\K[0-9.]+' || echo "0")
-                TOTAL_COST=$(echo "$TOTAL_COST + $COST" | bc -l)
-                echo "    💰 \$$COST" >> translation_summary.md
-              fi
-              
-              rm -f "translation_${LANG}.log"
             done
           done
           
@@ -368,7 +378,31 @@ jobs:
           body: |
             ## 🤖 Automated Translation
             
-            AI-generated translations using the kobo-translation skill.
+            AI-generated translations using the kobo-translation skill with **diff-based updates**.
+            
+            ### 🔄 Translation Mode
+            
+            - **New files**: Full translation
+            - **Existing files**: Only changed content translated and merged
+            
+            This preserves manual reviewer improvements in unchanged sections.
+            
+            **⚠️ IMPORTANT: Protecting Manual Edits**
+            
+            To protect entire files from auto-translation:
+            
+            1. Add this comment at the top of the translation file:
+               ```html
+               <!-- MANUAL_EDIT: DO NOT AUTO-TRANSLATE -->
+               ```
+            
+            2. Files with this marker will be completely skipped
+            
+            3. To update protected files, remove the marker temporarily or update manually
+            
+            **Files are NOT protected by default**. The diff-based system already preserves unchanged sections automatically.
+            
+            ---
             
             ### 📝 Source Files
             
