@@ -29,3 +29,24 @@ Pour commencer :
 -   Sauter l'étape finale signifiera que votre formulaire sera affiché sans les fichiers média. Assurez-vous que les fichiers média sont importés avant de télécharger le formulaire sur vos appareils lors de l'utilisation de l'application Android.
 
 <p class="note">Si vous ouvrez l'interface de création de formulaires après avoir déployé votre XLSForm avec le fichier image de logo, elle donnera automatiquement à la question une étiquette de texte et vous devrez la supprimer pour que le texte automatisé n'apparaisse pas à côté de votre logo dans votre formulaire.</p>
+
+============================================================
+📄 Source: docs/en/add_logo.md
+🌐 Target language: FR
+⚡ Mode: UPDATE (diff-based translation)
+============================================================
+📚 Loading kobo-translation skill...
+✅ Skill loaded successfully
+🔄 Translating diff to FR...
+  🔄 UPDATE MODE: Translating diff only
+  📏 Diff size: 93 characters
+  📊 Translation mode: DIFF-BASED (changes only)
+  🤖 Calling Claude API...
+  📊 Tokens used: 3684 input, 37 output
+============================================================
+TRANSLATED DIFF:
+============================================================
+1. Commencez par créer votre fichier image de logo et enregistrez-le avec un nom de fichier court et descriptif.
+============================================================
+ℹ️  Use --save to apply to existing translation
+✨ Translation test complete!

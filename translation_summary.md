@@ -1,19 +1,25 @@
 # Translation Summary
 
-**Timestamp:** 2025-10-25 14:03:39 UTC
+**Timestamp:** 2025-10-25 14:59:47 UTC
 
 
 ## 📄 `add_logo.md`
 
-- ✅ **es**: Translation completed
-    💰 $0.0207
-- ✅ **fr**: Translation completed
-    💰 $0.0212
-- ✅ **ar**: Translation completed
-    💰 $0.0249
+- 📊 **es**: Diff-based update
+  📝 93 chars to translate
+  ✅ Diff translated and applied
+  💰 Cost: $0.0116
+- 📊 **fr**: Diff-based update
+  📝 93 chars to translate
+  ✅ Diff translated and applied
+  💰 Cost: $0.0116
+- 📊 **ar**: Diff-based update
+  📝 93 chars to translate
+  ✅ Diff translated and applied
+  💰 Cost: $0.0118
 
 ## 📊 Statistics
 
 - ✅ Successful: 3
 - ❌ Failed: 0
-- 💰 Total cost: $0.0668
+- 💰 Total cost: $0.0350

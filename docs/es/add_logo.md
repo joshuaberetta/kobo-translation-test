@@ -38,3 +38,24 @@ Para comenzar:
     el formulario a tus dispositivos cuando uses la aplicación de Android.
 
 <p class="note">Si abres el editor de formularios después de desplegar tu XLSForm con el archivo de imagen del logotipo, automáticamente le dará a la pregunta una etiqueta de texto y necesitarás eliminarla para que el texto automatizado no aparezca junto a tu logotipo en tu formulario.</p>
+
+============================================================
+📄 Source: docs/en/add_logo.md
+🌐 Target language: ES
+⚡ Mode: UPDATE (diff-based translation)
+============================================================
+📚 Loading kobo-translation skill...
+✅ Skill loaded successfully
+🔄 Translating diff to ES...
+  🔄 UPDATE MODE: Translating diff only
+  📏 Diff size: 93 characters
+  📊 Translation mode: DIFF-BASED (changes only)
+  🤖 Calling Claude API...
+  📊 Tokens used: 3684 input, 34 output
+============================================================
+TRANSLATED DIFF:
+============================================================
+1. Comienza creando el archivo de imagen de tu logo y guárdalo con un nombre de archivo corto y descriptivo.
+============================================================
+ℹ️  Use --save to apply to existing translation
+✨ Translation test complete!
