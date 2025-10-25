@@ -43,3 +43,4 @@ Once you understand the basics, you can:
 - Analyze your data
 - Share your findings
 
+This is a new line to the document. Happy data collecting!
