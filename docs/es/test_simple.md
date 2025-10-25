@@ -27,7 +27,7 @@ Sigue estos pasos para recolectar datos de manera efectiva:
 ## Desafíos comunes
 
 ### Desafío 1: Bajas tasas de respuesta
-**Solución:** Facilita la participación y explica claramente los beneficios.
+**Solución:** Facilita la participación y explica los beneficios claramente.
 
 ### Desafío 2: Datos incompletos
 **Solución:** Usa campos obligatorios y proporciona instrucciones claras.
@@ -42,3 +42,5 @@ Una vez que comprendas los conceptos básicos, puedes:
 - Usar tipos de preguntas avanzadas
 - Analizar tus datos
 - Compartir tus hallazgos
+
+Esta es una nueva línea al documento. ¡Feliz recolección de datos!

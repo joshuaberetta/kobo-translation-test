@@ -4,7 +4,7 @@ La collecte de données est un élément essentiel de tout projet de recherche o
 
 ## Qu'est-ce que la collecte de données ?
 
-La collecte de données est le processus de collecte d'informations provenant de diverses sources. Elle aide les organisations à prendre des décisions éclairées basées sur des faits et des preuves.
+La collecte de données est le processus de rassemblement d'informations provenant de diverses sources. Elle aide les organisations à prendre des décisions éclairées basées sur des faits et des preuves.
 
 ## Étapes de base
 
@@ -12,8 +12,8 @@ Suivez ces étapes pour collecter des données efficacement :
 
 1. **Définissez vos objectifs** - Que voulez-vous apprendre ?
 2. **Choisissez votre méthode** - Enquêtes, entretiens ou observations ?
-3. **Préparez vos outils** - Créez vos questions et vos supports
-4. **Collectez les données** - Recueillez des informations auprès des participantes et participants
+3. **Préparez vos outils** - Créez vos questions et matériels
+4. **Collectez les données** - Rassemblez les informations auprès des participantes et participants
 5. **Examinez vos résultats** - Analysez ce que vous avez appris
 
 ## Conseils pour réussir
@@ -21,7 +21,7 @@ Suivez ces étapes pour collecter des données efficacement :
 - Gardez les questions claires et simples
 - Testez votre processus avant de commencer
 - Respectez la vie privée des participantes et participants
-- Stockez les données en toute sécurité
+- Stockez les données de manière sécurisée
 - Examinez et vérifiez vos informations
 
 ## Défis courants
@@ -42,3 +42,5 @@ Une fois que vous comprenez les bases, vous pouvez :
 - Utiliser des types de questions avancés
 - Analyser vos données
 - Partager vos résultats
+
+Ceci est une nouvelle ligne du document. Bonne collecte de données !
