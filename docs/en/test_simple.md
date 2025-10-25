@@ -1,6 +1,6 @@
 # Getting Started with Data Collection
 
-Data collection is an essential part of any research or survey project. This guide will help you understand the basics of KoboToolbox.
+Data collection is an essential part of any research or survey project. This guide will help you understand the basics of KoboToolbox and friends.
 
 ## What is Data Collection?
 
