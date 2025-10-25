@@ -1,0 +1,35 @@
+name: Test Auto Trigger
+
+# Minimal workflow to test if automatic triggering works
+
+on:
+  push:
+    branches:
+      - main
+      - master  # in case you use master instead
+    paths:
+      - 'docs/en/**/*.md'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Show what triggered
+        run: |
+          echo "🎉 Workflow triggered automatically!"
+          echo ""
+          echo "Event: ${{ github.event_name }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Author: ${{ github.actor }}"
+          echo ""
+          echo "Changed files:"
+          git diff --name-only HEAD^ HEAD
+      
+      - name: Success
+        run: |
+          echo "✅ Auto-trigger is working!"
+          echo "You can now replace this with the full translation workflow."
