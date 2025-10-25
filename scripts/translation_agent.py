@@ -13,6 +13,9 @@ from pathlib import Path
 from typing import Dict, Tuple
 from datetime import datetime
 
+from dotenv import load_dotenv
+load_dotenv()  # This loads .env file automatically
+
 try:
     import anthropic
     from github import Github

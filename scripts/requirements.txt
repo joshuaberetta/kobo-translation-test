@@ -8,3 +8,4 @@ PyGithub>=2.1.1
 
 # Optional but recommended
 python-dotenv>=1.0.0  # For loading .env files
+python-dotenv>=1.0.0
