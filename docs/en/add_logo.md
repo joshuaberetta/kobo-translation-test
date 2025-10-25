@@ -6,7 +6,7 @@ follows the same steps as [adding media content to your forms](media.md). Adding
 
 To begin:
 
-1. Start by creating your logo image file and save it with a short file name.
+1. Start by creating your logo image file and save it with a short and descriptive file name.
 
 2. In your XLSForm, make the first question a Note question type, leave the
    label blank, and add a column titled `media::image` with your logo file name
