@@ -173,12 +173,6 @@ jobs:
           SUCCESS_COUNT=0
           FAIL_COUNT=0
           
-          # Create summary
-          echo "# Translation Summary" > translation_summary.md
-          echo "" >> translation_summary.md
-          echo "**Timestamp:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> translation_summary.md
-          echo "" >> translation_summary.md
-          
           # Translate each file to each language
           for FILE in "${FILE_ARRAY[@]}"; do
             # Skip empty entries
@@ -186,9 +180,9 @@ jobs:
               continue
             fi
             
-            echo "" >> translation_summary.md
-            echo "## 📄 \`$(basename "$FILE")\`" >> translation_summary.md
-            echo "" >> translation_summary.md
+            echo ""
+            echo "## 📄 $(basename "$FILE")"
+            echo ""
             
             for LANG in "${LANG_ARRAY[@]}"; do
               # Skip empty entries
@@ -205,41 +199,32 @@ jobs:
                 --test > "translation_${LANG}.log" 2>&1; then
                 
                 echo "  ✅ $LANG: Success"
-                echo "- ✅ **$LANG**: Translation completed" >> translation_summary.md
                 SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
                 
                 # Extract cost
                 if grep -q "Estimated cost" "translation_${LANG}.log"; then
                   COST=$(grep "Estimated cost" "translation_${LANG}.log" | grep -oP '\$\K[0-9.]+' || echo "0")
                   TOTAL_COST=$(echo "$TOTAL_COST + $COST" | bc -l)
-                  echo "    💰 \$$COST" >> translation_summary.md
+                  echo "    💰 \$$COST"
                 fi
               else
                 echo "  ❌ $LANG: Failed"
-                echo "- ❌ **$LANG**: Failed" >> translation_summary.md
                 FAIL_COUNT=$((FAIL_COUNT + 1))
-                
-                echo "  <details><summary>Error log</summary>" >> translation_summary.md
-                echo "  " >> translation_summary.md
-                echo '  ```' >> translation_summary.md
-                tail -n 20 "translation_${LANG}.log" >> translation_summary.md
-                echo '  ```' >> translation_summary.md
-                echo "  </details>" >> translation_summary.md
+                echo "  Error log (last 20 lines):"
+                tail -n 20 "translation_${LANG}.log" | sed 's/^/    /'
               fi
               
               rm -f "translation_${LANG}.log"
             done
           done
           
-          # Add statistics
-          echo "" >> translation_summary.md
-          echo "## 📊 Statistics" >> translation_summary.md
-          echo "" >> translation_summary.md
-          echo "- ✅ Successful: $SUCCESS_COUNT" >> translation_summary.md
-          echo "- ❌ Failed: $FAIL_COUNT" >> translation_summary.md
-          echo "- 💰 Total cost: \$$(printf '%.4f' $TOTAL_COST)" >> translation_summary.md
-          
-          cat translation_summary.md
+          # Print statistics
+          echo ""
+          echo "## 📊 Statistics"
+          echo ""
+          echo "- ✅ Successful: $SUCCESS_COUNT"
+          echo "- ❌ Failed: $FAIL_COUNT"
+          echo "- 💰 Total cost: \$$(printf '%.4f' $TOTAL_COST)"
           
           # Save outputs
           echo "success_count=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
@@ -315,22 +300,6 @@ jobs:
             translation
             automated
             needs-review
-      
-      - name: Comment with summary
-        if: steps.pr.outputs.pull-request-number
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
-          script: |
-            const fs = require('fs');
-            const summary = fs.readFileSync('translation_summary.md', 'utf8');
-            
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: ${{ steps.pr.outputs.pull-request-number }},
-              body: summary
-            });
       
       - name: Job summary
         if: always()
