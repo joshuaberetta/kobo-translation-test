@@ -15,6 +15,7 @@ Follow these steps to collect data effectively:
 3. **Prepare your tools** - Create your questions and materials
 4. **Collect the data** - Gather information from participants
 5. **Review your results** - Analyze what you learned
+6. **Share your findings** - Present your data to stakeholders
 
 ## Tips for Success
 
