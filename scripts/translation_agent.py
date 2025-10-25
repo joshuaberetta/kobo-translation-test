@@ -60,9 +60,9 @@ class TranslationAgent:
         self.languages = ['es', 'fr', 'ar']
         
         # Load skill content
-        print("📚 Loading kobo-translation skill...")
+        print("📚 Loading kobo-translation skill...", file=sys.stderr)
         self.skill_context = self._load_skill_context()
-        print("✅ Skill loaded successfully")
+        print("✅ Skill loaded successfully", file=sys.stderr)
     
     def _load_skill_context(self) -> Dict[str, str]:
         """Load skill files from repository into memory"""
@@ -210,7 +210,7 @@ You are translating KoboToolbox documentation. Follow these rules EXACTLY.
             target_lang: Target language (es, fr, ar)
             context: Optional surrounding context for better translation
         """
-        print(f"  📊 Translation mode: DIFF-BASED (changes only)")
+        print(f"  📊 Translation mode: DIFF-BASED (changes only)", file=sys.stderr)
         
         # Use condensed skill + brand terminology for diffs
         skill_prompt = f"""
@@ -259,7 +259,7 @@ Your job is to translate ONLY this small change.
 
 Now provide ONLY the translated diff content (nothing else):"""
 
-        print(f"  🤖 Calling Claude API...")
+        print(f"  🤖 Calling Claude API...", file=sys.stderr)
         
         try:
             # Call Claude API with system message to reinforce diff-only behavior
@@ -287,14 +287,14 @@ This is critical - translate ONLY what is explicitly marked for translation.""",
             
             # Report token usage
             usage = response.usage
-            print(f"  📊 Tokens used: {usage.input_tokens} input, {usage.output_tokens} output")
+            print(f"  📊 Tokens used: {usage.input_tokens} input, {usage.output_tokens} output", file=sys.stderr)
             cost = (usage.input_tokens / 1_000_000 * 3) + (usage.output_tokens / 1_000_000 * 15)
-            print(f"  💰 Estimated cost: ${cost:.4f}")
+            print(f"  💰 Estimated cost: ${cost:.4f}", file=sys.stderr)
             
             return translation
             
         except Exception as e:
-            print(f"  ❌ Translation failed: {e}")
+            print(f"  ❌ Translation failed: {e}", file=sys.stderr)
             raise
     
     def translate_file(self, source_path: str, target_lang: str,
@@ -315,13 +315,13 @@ This is critical - translate ONLY what is explicitly marked for translation.""",
             if not diff_content:
                 raise ValueError("diff_content must be provided when is_update=True")
             
-            print(f"  🔄 UPDATE MODE: Translating diff only")
-            print(f"  📏 Diff size: {len(diff_content)} characters")
+            print(f"  🔄 UPDATE MODE: Translating diff only", file=sys.stderr)
+            print(f"  📏 Diff size: {len(diff_content)} characters", file=sys.stderr)
             
             # Safety check - if diff is suspiciously large, warn user
             if len(diff_content) > 5000:
-                print(f"  ⚠️  WARNING: Diff is very large ({len(diff_content)} chars)")
-                print(f"  ⚠️  Are you sure this is just a diff and not the full file?")
+                print(f"  ⚠️  WARNING: Diff is very large ({len(diff_content)} chars)", file=sys.stderr)
+                print(f"  ⚠️  Are you sure this is just a diff and not the full file?", file=sys.stderr)
                 response = input("  Continue? (y/n): ")
                 if response.lower() != 'y':
                     raise ValueError("Translation cancelled by user")
@@ -548,18 +548,19 @@ def main():
     
     # Validate update mode arguments
     if args.update_mode and not args.diff:
-        print("❌ --update-mode requires --diff to be provided")
+        print("❌ --update-mode requires --diff to be provided", file=sys.stderr)
         sys.exit(1)
     
-    print("🚀 KoboToolbox Translation Agent - Test Mode")
-    print("=" * 60)
-    print(f"📄 Source: {args.file}")
-    print(f"🌐 Target language: {args.language.upper()}")
+    # Output metadata to stderr so stdout is clean for piping
+    print("🚀 KoboToolbox Translation Agent - Test Mode", file=sys.stderr)
+    print("=" * 60, file=sys.stderr)
+    print(f"📄 Source: {args.file}", file=sys.stderr)
+    print(f"🌐 Target language: {args.language.upper()}", file=sys.stderr)
     if args.update_mode:
-        print(f"⚡ Mode: UPDATE (diff-based translation)")
+        print(f"⚡ Mode: UPDATE (diff-based translation)", file=sys.stderr)
     else:
-        print(f"📝 Mode: NEW (full file translation)")
-    print("=" * 60)
+        print(f"📝 Mode: NEW (full file translation)", file=sys.stderr)
+    print("=" * 60, file=sys.stderr)
     
     try:
         # Initialize agent
@@ -567,7 +568,7 @@ def main():
         
         # Translate
         if args.update_mode:
-            print(f"\n🔄 Translating diff to {args.language.upper()}...")
+            print(f"\n🔄 Translating diff to {args.language.upper()}...", file=sys.stderr)
             translated_diff = agent.translate_file(
                 args.file,
                 args.language,
@@ -580,7 +581,7 @@ def main():
             target_file = target_dir / Path(args.file).name
             
             if target_file.exists() and args.save:
-                print(f"\n📝 Applying translated diff to existing translation...")
+                print(f"\n📝 Applying translated diff to existing translation...", file=sys.stderr)
                 existing = target_file.read_text(encoding='utf-8')
                 
                 if args.old_content:
@@ -591,26 +592,22 @@ def main():
                     )
                 else:
                     # If no old_content specified, append or manual application needed
-                    print("⚠️  No --old-content specified. Showing diff for manual application.")
+                    print("⚠️  No --old-content specified. Showing diff for manual application.", file=sys.stderr)
                     updated = None
                 
                 if updated:
                     target_file.write_text(updated, encoding='utf-8')
-                    print(f"✅ Updated translation saved to: {target_file}")
+                    print(f"✅ Updated translation saved to: {target_file}", file=sys.stderr)
                 else:
-                    print("\n" + "=" * 60)
-                    print("TRANSLATED DIFF (apply manually):")
-                    print("=" * 60)
+                    print("\n" + "=" * 60, file=sys.stderr)
+                    print("TRANSLATED DIFF (apply manually):", file=sys.stderr)
+                    print("=" * 60, file=sys.stderr)
                     print(translated_diff)
-                    print("=" * 60)
+                    print("=" * 60, file=sys.stderr)
             else:
-                print("\n" + "=" * 60)
-                print("TRANSLATED DIFF:")
-                print("=" * 60)
+                # In test mode without save, just output the translation cleanly
+                # This makes it easy to extract in automated workflows
                 print(translated_diff)
-                print("=" * 60)
-                if not args.save:
-                    print("\nℹ️  Use --save to apply to existing translation")
         else:
             # Full file translation
             print(f"\n🔄 Translating complete file to {args.language.upper()}...")
@@ -635,24 +632,24 @@ def main():
             if validation['passed']:
                 print(f"\n✅ All validation checks passed!")
             else:
-                print(f"\n⚠️  Some validation checks failed - review translation carefully")
+                print(f"\n⚠️  Some validation checks failed - review translation carefully", file=sys.stderr)
             
             # Save or display
             if args.save:
                 target_path = agent.save_translation(translation, args.file, args.language)
-                print(f"\n💾 Translation saved to: {target_path}")
+                print(f"\n💾 Translation saved to: {target_path}", file=sys.stderr)
             else:
-                print("\n" + "=" * 60)
-                print("TRANSLATION OUTPUT:")
-                print("=" * 60)
+                print("\n" + "=" * 60, file=sys.stderr)
+                print("TRANSLATION OUTPUT:", file=sys.stderr)
+                print("=" * 60, file=sys.stderr)
                 print(translation)
-                print("=" * 60)
-                print("\nℹ️  Use --save to write translation to file")
+                print("=" * 60, file=sys.stderr)
+                print("\nℹ️  Use --save to write translation to file", file=sys.stderr)
         
-        print("\n✨ Translation test complete!")
+        print("\n✨ Translation test complete!", file=sys.stderr)
         
     except Exception as e:
-        print(f"\n❌ Error: {e}")
+        print(f"\n❌ Error: {e}", file=sys.stderr)
         if args.verbose:
             import traceback
             traceback.print_exc()

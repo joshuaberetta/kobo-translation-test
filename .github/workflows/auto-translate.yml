@@ -290,14 +290,12 @@ jobs:
                   --language "$LANG" \
                   --update-mode \
                   --diff "$NEW_CONTENT" \
-                  --test > "translation_${LANG}.log" 2>&1; then
+                  --test > "translation_${LANG}.txt" 2> "translation_${LANG}.log"; then
                   
-                  # Extract translated content using helper script
-                  TRANSLATED_CONTENT=$(python3 scripts/extract_translation.py "translation_${LANG}.log" 2>/dev/null || echo "")
+                  # Translation output is now clean in the .txt file (stdout)
+                  TRANSLATED_CONTENT=$(cat "translation_${LANG}.txt" 2>/dev/null || echo "")
                   
                   if [ -n "$TRANSLATED_CONTENT" ]; then
-                    echo "$TRANSLATED_CONTENT" > "/tmp/translated_${LANG}.txt"
-                    
                     # Apply the translated diff to existing file using helper script
                     if python3 scripts/apply_diff_translation.py \
                       --target "$TARGET_FILE" \
@@ -319,7 +317,7 @@ jobs:
                     FAIL_COUNT=$((FAIL_COUNT + 1))
                   fi
                   
-                  # Extract cost
+                  # Extract cost from log file (stderr output)
                   if grep -q "Estimated cost" "translation_${LANG}.log"; then
                     COST=$(grep "Estimated cost" "translation_${LANG}.log" | grep -oP '\$\K[0-9.]+' || echo "0")
                     TOTAL_COST=$(echo "$TOTAL_COST + $COST" | bc -l)
@@ -339,7 +337,7 @@ jobs:
                 fi
                 
                 # Cleanup temp files
-                rm -f "/tmp/new_content_${LANG}.txt" "/tmp/old_content_${LANG}.txt" "/tmp/translated_${LANG}.txt" "translation_${LANG}.log"
+                rm -f "/tmp/new_content_${LANG}.txt" "/tmp/old_content_${LANG}.txt" "translation_${LANG}.txt" "translation_${LANG}.log"
               fi
             done
           done

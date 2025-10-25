@@ -10,32 +10,35 @@ def extract_translation(log_file):
     """Extract the actual translation from log output."""
     try:
         with open(log_file, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
+            content = f.read()
         
-        # Strategy 1: Look for explicit translation markers
-        in_translation = False
-        result = []
+        # Since we now output to stdout cleanly, just return the content
+        # But strip any remaining metadata that might have leaked through
+        lines = content.split('\n')
+        clean_lines = []
+        
         for line in lines:
-            if 'Translation:' in line or 'TRANSLATION:' in line or 'translated diff content' in line.lower():
-                in_translation = True
+            # Skip separator lines
+            if '====' in line:
                 continue
-            if in_translation and not line.startswith('[') and not line.startswith('Estimated'):
-                result.append(line)
+            # Skip lines with log emojis
+            if any(emoji in line for emoji in ['📄', '🌐', '⚡', '📚', '✅', '🔄', '📏', '📊', '🤖', '✨', 'ℹ️', '💰', '⚠️']):
+                continue
+            # Skip common log phrases
+            if any(phrase in line for phrase in ['Source:', 'Target language:', 'Mode:', 'Loading', 'Skill loaded', 'Translating', 'Tokens used', 'Estimated cost', 'Translation test complete', 'UPDATE MODE', 'Calling Claude']):
+                continue
+            # Keep actual content
+            if line.strip():
+                clean_lines.append(line)
         
-        output = ''.join(result).strip()
-        if output:
-            print(output)
-            return
+        result = '\n'.join(clean_lines).strip()
         
-        # Strategy 2: Get last non-log lines
-        non_empty = [l for l in lines if l.strip() and not l.startswith('[') and not 'Estimated' in l and not 'INFO' in l]
-        if non_empty:
-            # Take last 20 lines as potential translation
-            print(''.join(non_empty[-20:]).strip())
-            return
-        
-        # Strategy 3: Just return the file content (fallback)
-        print(''.join(lines).strip())
+        if result:
+            print(result)
+        else:
+            # Empty translation
+            print("", file=sys.stderr)
+            sys.exit(1)
         
     except Exception as e:
         print(f"Error extracting translation: {e}", file=sys.stderr)
