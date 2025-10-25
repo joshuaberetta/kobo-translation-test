@@ -34,3 +34,5 @@ Pour commencer :
 
 - Les formats d'image recommandés sont JPEG et PNG. Les images SVG ne sont pas prises en charge.
 - Les dimensions recommandées pour les logos sont une largeur de 400 pixels et une hauteur de 100 pixels.
+
+- Gardez votre image petite.

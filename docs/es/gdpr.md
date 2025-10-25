@@ -33,3 +33,5 @@ libre de instalar tu propia instancia de KoboToolbox en tu propio servidor.
 Si deseas que eliminemos todos los datos de tu proyecto, incluida tu
 cuenta de KoboToolbox, por favor contacta al Equipo de Soporte y menciona 'Solicitud RGPD
 de ser Olvidado/a.'
+
+Cumplimos completamente con el RGPD. Si te encuentras en la Unión Europea,
