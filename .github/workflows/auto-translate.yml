@@ -190,41 +190,144 @@ jobs:
             echo "## 📄 \`$(basename "$FILE")\`" >> translation_summary.md
             echo "" >> translation_summary.md
             
+            # Check if this is a new file or an update
+            FILENAME=$(basename "$FILE")
+            IS_NEW_FILE=true
+            
             for LANG in "${LANG_ARRAY[@]}"; do
               # Skip empty entries
               if [ -z "$LANG" ] || [ "$LANG" == " " ]; then
                 continue
               fi
               
-              echo "  🔄 Translating $FILE to $LANG..."
+              TARGET_FILE="docs/$LANG/$FILENAME"
               
-              if python scripts/translation_agent.py \
-                --file "$FILE" \
-                --language "$LANG" \
-                --save \
-                --test > "translation_${LANG}.log" 2>&1; then
+              # Check if translation already exists
+              if [ -f "$TARGET_FILE" ]; then
+                IS_NEW_FILE=false
+                echo "  📝 $FILE → $LANG (UPDATE MODE - existing translation found)"
                 
-                echo "  ✅ $LANG: Success"
-                echo "- ✅ **$LANG**: Translation completed" >> translation_summary.md
-                SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+                # Extract diff from the English source file
+                if [ -n "${{ github.event.before }}" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+                  DIFF_CONTENT=$(git diff ${{ github.event.before }} ${{ github.sha }} -- "$FILE" | grep -E '^\+' | grep -v '^\+++' | sed 's/^+//' || echo "")
+                else
+                  DIFF_CONTENT=$(git diff HEAD~1 HEAD -- "$FILE" | grep -E '^\+' | grep -v '^\+++' | sed 's/^+//' || echo "")
+                fi
                 
-                # Extract cost
-                if grep -q "Estimated cost" "translation_${LANG}.log"; then
-                  COST=$(grep "Estimated cost" "translation_${LANG}.log" | grep -oP '\$\K[0-9.]+' || echo "0")
-                  TOTAL_COST=$(echo "$TOTAL_COST + $COST" | bc -l)
-                  echo "    💰 \$$COST" >> translation_summary.md
+                # Get old content for replacement (lines that were removed)
+                if [ -n "${{ github.event.before }}" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+                  OLD_CONTENT=$(git diff ${{ github.event.before }} ${{ github.sha }} -- "$FILE" | grep -E '^\-' | grep -v '^\---' | sed 's/^-//' | head -n 5 || echo "")
+                else
+                  OLD_CONTENT=$(git diff HEAD~1 HEAD -- "$FILE" | grep -E '^\-' | grep -v '^\---' | sed 's/^-//' | head -n 5 || echo "")
+                fi
+                
+                if [ -n "$DIFF_CONTENT" ]; then
+                  echo "  🔄 Translating diff to $LANG (diff size: ${#DIFF_CONTENT} chars)..."
+                  echo "  📊 Mode: DIFF-BASED UPDATE" >> translation_summary.md
+                  
+                  # Save diff to temporary file
+                  echo "$DIFF_CONTENT" > "/tmp/diff_${LANG}.txt"
+                  
+                  if [ -n "$OLD_CONTENT" ]; then
+                    echo "$OLD_CONTENT" > "/tmp/old_${LANG}.txt"
+                    
+                    if python scripts/translation_agent.py \
+                      --file "$FILE" \
+                      --language "$LANG" \
+                      --update-mode \
+                      --diff "$DIFF_CONTENT" \
+                      --old-content "$OLD_CONTENT" \
+                      --save \
+                      --test > "translation_${LANG}.log" 2>&1; then
+                      echo "  ✅ $LANG: Diff translated and applied"
+                      echo "- ✅ **$LANG**: Diff translated and applied" >> translation_summary.md
+                      SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+                    else
+                      echo "  ❌ $LANG: Failed"
+                      echo "- ❌ **$LANG**: Failed" >> translation_summary.md
+                      FAIL_COUNT=$((FAIL_COUNT + 1))
+                      cat "translation_${LANG}.log"
+                    fi
+                  else
+                    echo "  ⚠️  No old content to replace - will append diff"
+                    
+                    if python scripts/translation_agent.py \
+                      --file "$FILE" \
+                      --language "$LANG" \
+                      --update-mode \
+                      --diff "$DIFF_CONTENT" \
+                      --save \
+                      --test > "translation_${LANG}.log" 2>&1; then
+                      
+                      # Manually append since no old_content to replace
+                      TRANSLATED_DIFF=$(cat "translation_${LANG}.log" | sed -n '/BEGIN TRANSLATED DIFF/,/END TRANSLATED DIFF/p' | sed '1d;$d')
+                      if [ -n "$TRANSLATED_DIFF" ]; then
+                        echo "$TRANSLATED_DIFF" >> "$TARGET_FILE"
+                        echo "  ✅ $LANG: Diff appended"
+                        echo "- ✅ **$LANG**: Diff appended" >> translation_summary.md
+                        SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+                      else
+                        echo "  ❌ $LANG: Could not extract translated diff"
+                        echo "- ❌ **$LANG**: Failed to extract diff" >> translation_summary.md
+                        FAIL_COUNT=$((FAIL_COUNT + 1))
+                      fi
+                    else
+                      echo "  ❌ $LANG: Failed"
+                      echo "- ❌ **$LANG**: Failed" >> translation_summary.md
+                      FAIL_COUNT=$((FAIL_COUNT + 1))
+                    fi
+                  fi
+                  
+                  rm -f "/tmp/diff_${LANG}.txt" "/tmp/old_${LANG}.txt"
+                else
+                  echo "  ⚠️  Could not extract diff - falling back to full translation"
+                  IS_NEW_FILE=true
                 fi
               else
-                echo "  ❌ $LANG: Failed"
-                echo "- ❌ **$LANG**: Failed" >> translation_summary.md
-                FAIL_COUNT=$((FAIL_COUNT + 1))
+                IS_NEW_FILE=true
+                echo "  📝 $FILE → $LANG (NEW FILE)"
+              fi
+              
+              # Full translation for new files
+              if [ "$IS_NEW_FILE" = true ]; then
+                echo "  🔄 Full translation to $LANG..."
+                echo "  📊 Mode: FULL FILE (new)" >> translation_summary.md
                 
-                echo "  <details><summary>Error log</summary>" >> translation_summary.md
-                echo "  " >> translation_summary.md
-                echo '  ```' >> translation_summary.md
-                tail -n 20 "translation_${LANG}.log" >> translation_summary.md
-                echo '  ```' >> translation_summary.md
-                echo "  </details>" >> translation_summary.md
+                if python scripts/translation_agent.py \
+                  --file "$FILE" \
+                  --language "$LANG" \
+                  --save \
+                  --test > "translation_${LANG}.log" 2>&1; then
+                  
+                  echo "  ✅ $LANG: Success"
+                  echo "- ✅ **$LANG**: Translation completed" >> translation_summary.md
+                  SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+                  
+                  # Extract cost
+                  if grep -q "Estimated cost" "translation_${LANG}.log"; then
+                    COST=$(grep "Estimated cost" "translation_${LANG}.log" | grep -oP '\$\K[0-9.]+' || echo "0")
+                    TOTAL_COST=$(echo "$TOTAL_COST + $COST" | bc -l)
+                    echo "    💰 \$$COST" >> translation_summary.md
+                  fi
+                else
+                  echo "  ❌ $LANG: Failed"
+                  echo "- ❌ **$LANG**: Failed" >> translation_summary.md
+                  FAIL_COUNT=$((FAIL_COUNT + 1))
+                  
+                  echo "  <details><summary>Error log</summary>" >> translation_summary.md
+                  echo "  " >> translation_summary.md
+                  echo '  ```' >> translation_summary.md
+                  tail -n 20 "translation_${LANG}.log" >> translation_summary.md
+                  echo '  ```' >> translation_summary.md
+                  echo "  </details>" >> translation_summary.md
+                fi
+              fi
+              
+              # Extract cost for updates too
+              if grep -q "Estimated cost" "translation_${LANG}.log" 2>/dev/null; then
+                COST=$(grep "Estimated cost" "translation_${LANG}.log" | grep -oP '\$\K[0-9.]+' || echo "0")
+                TOTAL_COST=$(echo "$TOTAL_COST + $COST" | bc -l)
+                echo "    💰 \$$COST" >> translation_summary.md
               fi
               
               rm -f "translation_${LANG}.log"

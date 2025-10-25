@@ -220,7 +220,7 @@ You are translating KoboToolbox documentation. Follow these rules EXACTLY.
 {self.skill_context.get('brand', '[Brand terminology not available]')}
 """
         
-        # Build prompt emphasizing diff-only translation
+        # Build prompt with EXTREME emphasis on diff-only translation
         context_note = ""
         if context:
             context_note = f"""
@@ -234,11 +234,22 @@ SURROUNDING CONTEXT (for reference only - DO NOT translate):
 
 TARGET LANGUAGE: {target_lang.upper()}
 
-🚨 CRITICAL: You are translating ONLY a diff (changed content).
-- Translate ONLY the content provided below
-- Do NOT translate any surrounding context
-- Do NOT add explanations or meta-text
-- Provide ONLY the translated diff content
+🚨🚨🚨 CRITICAL INSTRUCTION 🚨🚨🚨
+
+You are translating ONLY A DIFF - NOT a full document.
+
+RULES:
+1. Translate ONLY the exact content between the markers below
+2. Do NOT translate anything outside the markers
+3. Do NOT translate any context provided for reference
+4. Do NOT add any explanations, comments, or meta-text
+5. Output ONLY the translated version of the diff content
+6. Do NOT translate the markers themselves
+7. Do NOT modify, add to, or expand the content
+8. ONLY translate what is explicitly between the BEGIN and END markers
+
+This is an UPDATE to an existing translation. The rest of the document is already translated correctly.
+Your job is to translate ONLY this small change.
 
 {context_note}
 
@@ -246,16 +257,22 @@ TARGET LANGUAGE: {target_lang.upper()}
 {diff_content}
 ---END DIFF TO TRANSLATE---
 
-Translated diff:"""
+Now provide ONLY the translated diff content (nothing else):"""
 
         print(f"  🤖 Calling Claude API...")
         
         try:
-            # Call Claude API
+            # Call Claude API with system message to reinforce diff-only behavior
             response = self.claude.messages.create(
                 model="claude-sonnet-4-5-20250929",
                 max_tokens=8000,
                 temperature=0.3,  # Lower for consistency
+                system="""You are a precise translation tool. When translating a DIFF (partial content), you MUST:
+1. Translate ONLY the content between the BEGIN and END markers
+2. Output ONLY the translated text with NO additional content
+3. NOT translate anything outside the markers
+4. NOT add explanations, comments, or metadata
+This is critical - translate ONLY what is explicitly marked for translation.""",
                 messages=[{
                     "role": "user",
                     "content": prompt
@@ -299,6 +316,16 @@ Translated diff:"""
                 raise ValueError("diff_content must be provided when is_update=True")
             
             print(f"  🔄 UPDATE MODE: Translating diff only")
+            print(f"  📏 Diff size: {len(diff_content)} characters")
+            
+            # Safety check - if diff is suspiciously large, warn user
+            if len(diff_content) > 5000:
+                print(f"  ⚠️  WARNING: Diff is very large ({len(diff_content)} chars)")
+                print(f"  ⚠️  Are you sure this is just a diff and not the full file?")
+                response = input("  Continue? (y/n): ")
+                if response.lower() != 'y':
+                    raise ValueError("Translation cancelled by user")
+            
             return self.translate_diff(diff_content, target_lang)
         
         # Full file translation (NEW content)
