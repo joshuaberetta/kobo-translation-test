@@ -192,18 +192,91 @@ Always include English + translation approach:
 - Use concise sentences
 - Follow target language punctuation conventions
 - Avoid slang: "gonna" → "going to"
+- Preserve all HTML tags and attributes
+- Keep markdown link syntax intact
+- Don't translate image paths or URLs
 
 **Acronyms:**
 - First use: Full translation followed by acronym in parentheses
 - If no common translated acronym exists, use English acronym
-- Example: "l'Agence des Nations Unies pour les réfugiés (HCNUR)"
+- Example FR: "l'Agence des Nations Unies pour les réfugiés (HCNUR)"
+- Example ES: "Agencia de las Naciones Unidas para los refugiados (ACNUR)"
 
 **Plain language:**
 - Technical content must be beginner-friendly
 - Avoid unnecessary jargon
 - Prioritize clarity
 
+**Natural language flow:**
+- Don't force English sentence structure
+- Adapt word order to target language conventions
+- Use natural expressions, not literal translations
+
 ## Common Translation Patterns
+
+### HTML and Markdown Elements
+
+**Preserve HTML structure:**
+- Keep all HTML tags intact: `<h1>`, `<h2>`, `<h3>`, `<iframe>`, `<section>`, etc.
+- Maintain attributes: `dir="rtl"`, `id`, `class`, `style`, etc.
+- Do NOT translate HTML attributes or parameters
+
+**Metadata and front matter:**
+- Preserve "Last updated" lines with dates and GitHub links
+- Format: `**Last updated:** <a href="[github-url]" class="reference">[date]</a>`
+- Keep the GitHub URL and class unchanged
+- Do NOT translate "Last updated" text - keep in English
+
+**Links and cross-references:**
+- Preserve markdown link syntax: `[Text](url.md)`
+- Translate link text, keep URL unchanged
+- Cross-reference links to other language versions:
+  - English: "Read in English"
+  - French: "Lire en français"
+  - Spanish: "Leer en español"
+  - Arabic: "اقرأ باللغة العربية"
+- Internal links translate the visible text but keep the URL: `[our mission](https://www.kobotoolbox.org/about-us/our-mission/)` → FR: `[notre mission](https://www.kobotoolbox.org/about-us/our-mission/)`
+
+**Images:**
+- Keep image paths unchanged: `![image](images/about_kobotoolbox/usermap.png)`
+- Do NOT translate image file names or paths
+
+**YouTube embeds:**
+- Update language parameters for target language:
+  - `cc_lang_pref=fr` for French
+  - `cc_lang_pref=es` for Spanish
+  - `cc_lang_pref=ar` for Arabic
+  - `hl=fr` / `hl=es` / `hl=ar`
+- Keep all other iframe attributes unchanged
+
+### Language-Specific Formatting
+
+**Title and heading conventions:**
+- English: Title case for main headings ("About KoboToolbox: Accessible Data Collection")
+- French: Capitalize first word and proper nouns only ("À propos de KoboToolbox : Collecte de données accessible à toutes et tous")
+- Spanish: Capitalize first word and proper nouns only ("Acerca de KoboToolbox: Recolección de datos accesible para todas las personas")
+- Note: Some titles may use h1 (`#`), others h2 (`##`) - follow the source document's pattern
+
+**Inclusive language in titles:**
+- French: "à toutes et tous" (to all, everyone - feminine and masculine)
+- Spanish: "para todas las personas" (for all people)
+
+**Section headers:**
+- Use `<h2>` or `<h3>` tags for HTML format, or `##` / `###` for markdown
+- French examples: "Pourquoi KoboToolbox est unique", "Soutenir l'impact à échelle mondiale"
+- Spanish examples: "Por qué KoboToolbox es único", "Apoyamos el impacto global"
+- Note natural language variations: ES "Apoyamos" (we support) vs EN "Supporting" (present participle)
+
+**Arabic (RTL):**
+- Wrap Arabic content in `<section dir="rtl">` tags
+- Keep heading IDs: `<h1 id="ar">`
+- Cross-reference links stay OUTSIDE the RTL section
+- Arabic titles are placed inside RTL section with proper heading markup
+
+**Heading levels:**
+- Maintain heading hierarchy (h1, h2, h3)
+- In Arabic translations, the h1 is inside the RTL section
+- Title may be rendered as h2 (##) in some contexts, h1 in others - follow source
 
 ### French-Specific Rules
 
@@ -230,6 +303,10 @@ Context-dependent, see [data-collection-terms.md](references/data-collection-ter
 - "site web" not "site Internet"
 - "web" lowercase: "formulaire web Enketo"
 
+**Verbs with object pronouns:**
+- French naturally places pronouns before verbs: "les rend" (makes them)
+- Don't force English word order
+
 ### Spanish-Specific Rules
 
 **"Management":**
@@ -242,6 +319,10 @@ Context-dependent, see [data-collection-terms.md](references/data-collection-ter
 **Gender-neutral when possible:**
 - Prefer "Se te dirigirá" over "serás dirigido/a"
 - Use masculine when no neutral option: "los usuarios"
+
+**Natural word order:**
+- Spanish sentence structure may differ from English
+- Example: "makes data accessible" → "permite que los datos sean accesibles" (not literal translation)
 
 ### Cross-Language Rules
 
@@ -256,6 +337,16 @@ Context-dependent, see [data-collection-terms.md](references/data-collection-ter
 **"Case sensitive":**
 - FR: "sensibles à l'utilisation de majuscules et de minuscules" (not "sensible à la casse")
 - ES: "distingue entre mayúsculas y minúsculas"
+
+**Organization and context-specific terms:**
+- "Social impact" → FR: "impact social" / ES: "impacto social"
+- "Practitioners" → FR: "praticiens" (context: data collection practitioners = "mختصين في جمع البيانات" in Arabic)
+- "Challenging settings" → FR: "environnements difficiles" / ES: "entornos desafiantes"
+
+**Adapting metaphors and expressions:**
+- Don't translate idioms literally
+- Example: "accessible to/for" may require restructuring in target language
+- French: "rendre accessible" (make accessible) rather than "être accessible à"
 
 ## Terminology References
 
@@ -326,6 +417,14 @@ Before finalizing translation:
 - [ ] All UI elements (buttons, tabs) match ui-terminology.md exactly
 - [ ] UI terms capitalized correctly (Brouillon, Borrador, etc.)
 
+**Structure & Formatting:**
+- [ ] All HTML tags preserved and unchanged
+- [ ] Markdown links maintained (translated text, unchanged URLs)
+- [ ] Image paths unchanged
+- [ ] YouTube embed language parameters updated (cc_lang_pref, hl)
+- [ ] Arabic content wrapped in `<section dir="rtl">` tags
+- [ ] Heading hierarchy maintained
+
 **Language & Style:**
 - [ ] Correct formality level (vous/tu, usted/tú) for content type
 - [ ] Gender-inclusive language throughout (especially Spanish double forms)
@@ -335,19 +434,58 @@ Before finalizing translation:
 - [ ] Proper acronym handling (full term + acronym first use)
 - [ ] Target language punctuation conventions
 - [ ] No slang or colloquialisms
+- [ ] Natural word order (not forced English structure)
 
 **French-Specific:**
 - [ ] "collecte de données" (not "collecte des données" unless specific data)
 - [ ] "importer" for upload (not "télécharger")
 - [ ] Gender-inclusive forms used: "utilisatrices et utilisateurs"
+- [ ] Natural pronoun placement: "les rend" not forced English order
 
 **Spanish-Specific:**
 - [ ] "recolectar" for collect (not "recopilar")
 - [ ] "manejo" for data/case management, "gestión" for teams/projects
 - [ ] Gender-inclusive: "los/as usuarios/as" throughout
 - [ ] Neutral constructions preferred: "Se te dirigirá"
+- [ ] Natural sentence structure adapted from English
 
 ## Translation Error Examples
+
+### Real-World Translation Patterns
+
+**Example from actual translations:**
+
+**Source English:**
+"KoboToolbox makes high quality data accessible to social impact organizations worldwide."
+
+**✅ CORRECT French (adapted structure):**
+"KoboToolbox rend les données de haute qualité accessibles aux organisations à impact social dans le monde entier."
+
+**✅ CORRECT Spanish (adapted structure):**
+"KoboToolbox permite que los datos de alta calidad sean accesibles para organizaciones de impacto social a nivel mundial."
+
+**Key observations:**
+- French naturally restructures: "makes data accessible" → "rend les données accessibles" (makes the data accessible)
+- Spanish restructures differently: "permite que los datos sean accesibles" (permits that the data be accessible)
+- Both translations adapt to natural target language expressions rather than forcing English structure
+
+**Source English:**
+"Designed by data collection practitioners specifically for challenging settings"
+
+**✅ CORRECT French:**
+"Conçu par des praticiens de la collecte de données spécifiquement pour des environnements difficiles"
+
+**✅ CORRECT Spanish:**
+"Fue diseñado por personas profesionales de la recolección de datos específicamente para entornos desafiantes"
+
+**✅ CORRECT Arabic:**
+"مُصممة من قبل مختصين في جمع البيانات للتعامل مع الظروف الصعبة بشكل خاص"
+
+**Key observations:**
+- Spanish uses gender-inclusive "personas profesionales" instead of literal "practitioners"
+- Spanish adds "Fue" (was) for natural past tense flow
+- Arabic restructures significantly: "designed... for dealing with difficult circumstances especially"
+- All prioritize natural expression over literal translation
 
 ### Example 1: Server Names
 **Source:** "Most users sign up for an account on our Global KoboToolbox Server."
@@ -393,6 +531,22 @@ Before finalizing translation:
 "Créez un nouveau formulaire en utilisant l'interface de création de formulaires KoboToolbox (KoboToolbox Formbuilder)."
 
 **Error fixed:** Added English term in parentheses on first reference
+
+### Example 4: Natural Language Flow
+
+**Source:** "To support our nonprofit users, we provide our tools for free under the Community Plan."
+
+**✅ CORRECT French (natural structure):**
+"Pour soutenir nos utilisateurs sans but lucratif, nous fournissons nos outils gratuitement dans le cadre du plan Community."
+
+**✅ CORRECT Spanish (natural structure):**
+"Para apoyar a nuestros usuarios sin fines de lucro, proporcionamos nuestras herramientas de forma gratuita bajo el plan Community."
+
+**Key observations:**
+- French: "for free" → "gratuitement" (as adverb, not "pour gratuit")
+- French: "under the plan" → "dans le cadre du plan" (in the framework of)
+- Spanish: "for free" → "de forma gratuita" (in free form)
+- Spanish: "nonprofit users" → "usuarios sin fines de lucro" (different word order)
 
 ## Notes
 
