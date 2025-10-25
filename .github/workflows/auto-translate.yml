@@ -1,0 +1,296 @@
+name: Auto-Translate Documentation
+
+# Single workflow that detects changes AND translates in one go
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/en/**/*.md'  # Only trigger on English markdown changes
+  
+  workflow_dispatch:  # Allow manual trigger
+    inputs:
+      files_to_translate:
+        description: 'Files to translate (comma-separated, e.g., docs/en/test_simple.md)'
+        required: false
+        default: 'docs/en/test_simple.md'
+      languages:
+        description: 'Languages (comma-separated: es,fr,ar)'
+        required: false
+        default: 'es,fr,ar'
+
+jobs:
+  translate-and-pr:
+    name: Translate & Create PR
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
+          fetch-depth: 2  # Need previous commit to detect changes
+      
+      - name: Detect changed files
+        id: detect
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            # Manual trigger - use input
+            FILES="${{ github.event.inputs.files_to_translate }}"
+            LANGUAGES="${{ github.event.inputs.languages }}"
+          else
+            # Auto trigger - detect what changed
+            CHANGED=$(git diff --name-only HEAD^ HEAD -- 'docs/en/**/*.md' | tr '\n' ',' | sed 's/,$//')
+            FILES="$CHANGED"
+            LANGUAGES="es,fr,ar"
+          fi
+          
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+          echo "languages=$LANGUAGES" >> $GITHUB_OUTPUT
+          
+          echo "Files to translate: $FILES"
+          echo "Languages: $LANGUAGES"
+          
+          # Check if we have files to translate
+          if [ -z "$FILES" ] || [ "$FILES" == "" ]; then
+            echo "has_files=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_files=true" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Skip if no files
+        if: steps.detect.outputs.has_files == 'false'
+        run: |
+          echo "ℹ️ No files to translate, skipping workflow"
+          exit 0
+      
+      - name: Set up Python
+        if: steps.detect.outputs.has_files == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        if: steps.detect.outputs.has_files == 'true'
+        run: |
+          pip install -r scripts/requirements.txt
+      
+      - name: Verify skill files
+        if: steps.detect.outputs.has_files == 'true'
+        run: |
+          echo "📚 Checking for skill files..."
+          if [ ! -d "skills/kobo-translation" ]; then
+            echo "❌ Error: skills/kobo-translation directory not found"
+            exit 1
+          fi
+          
+          if [ ! -f "skills/kobo-translation/SKILL.md" ]; then
+            echo "❌ Error: SKILL.md not found"
+            exit 1
+          fi
+          
+          echo "✅ Skill files found"
+      
+      - name: Translate documents
+        if: steps.detect.outputs.has_files == 'true'
+        id: translate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          echo "🤖 Starting translation process..."
+          
+          FILES="${{ steps.detect.outputs.files }}"
+          LANGUAGES="${{ steps.detect.outputs.languages }}"
+          
+          # Convert comma-separated to arrays
+          IFS=',' read -ra FILE_ARRAY <<< "$FILES"
+          IFS=',' read -ra LANG_ARRAY <<< "$LANGUAGES"
+          
+          TOTAL_COST=0
+          SUCCESS_COUNT=0
+          FAIL_COUNT=0
+          
+          # Create summary
+          echo "# Translation Summary" > translation_summary.md
+          echo "" >> translation_summary.md
+          echo "**Timestamp:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> translation_summary.md
+          echo "" >> translation_summary.md
+          
+          # Translate each file to each language
+          for FILE in "${FILE_ARRAY[@]}"; do
+            [ -z "$FILE" ] && continue
+            
+            echo "" >> translation_summary.md
+            echo "## 📄 \`$(basename $FILE)\`" >> translation_summary.md
+            echo "" >> translation_summary.md
+            
+            for LANG in "${LANG_ARRAY[@]}"; do
+              [ -z "$LANG" ] && continue
+              
+              echo "  🔄 Translating $FILE to $LANG..."
+              
+              if python scripts/translation_agent.py \
+                --file "$FILE" \
+                --language "$LANG" \
+                --save \
+                --test > "translation_${LANG}.log" 2>&1; then
+                
+                echo "  ✅ $LANG: Success"
+                echo "- ✅ **$LANG**: Translation completed" >> translation_summary.md
+                SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+                
+                # Extract cost
+                if grep -q "Estimated cost" "translation_${LANG}.log"; then
+                  COST=$(grep "Estimated cost" "translation_${LANG}.log" | grep -oP '\$\K[0-9.]+' || echo "0")
+                  TOTAL_COST=$(echo "$TOTAL_COST + $COST" | bc -l)
+                  echo "    💰 \$$COST" >> translation_summary.md
+                fi
+              else
+                echo "  ❌ $LANG: Failed"
+                echo "- ❌ **$LANG**: Failed" >> translation_summary.md
+                FAIL_COUNT=$((FAIL_COUNT + 1))
+                
+                echo "  <details><summary>Error log</summary>" >> translation_summary.md
+                echo "  " >> translation_summary.md
+                echo '  ```' >> translation_summary.md
+                tail -n 20 "translation_${LANG}.log" >> translation_summary.md
+                echo '  ```' >> translation_summary.md
+                echo "  </details>" >> translation_summary.md
+              fi
+              
+              rm -f "translation_${LANG}.log"
+            done
+          done
+          
+          # Add statistics
+          echo "" >> translation_summary.md
+          echo "## 📊 Statistics" >> translation_summary.md
+          echo "" >> translation_summary.md
+          echo "- ✅ Successful: $SUCCESS_COUNT" >> translation_summary.md
+          echo "- ❌ Failed: $FAIL_COUNT" >> translation_summary.md
+          echo "- 💰 Total cost: \$$(printf '%.4f' $TOTAL_COST)" >> translation_summary.md
+          
+          cat translation_summary.md
+          
+          # Save outputs
+          echo "success_count=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
+          echo "fail_count=$FAIL_COUNT" >> $GITHUB_OUTPUT
+          echo "total_cost=$(printf '%.4f' $TOTAL_COST)" >> $GITHUB_OUTPUT
+      
+      - name: Create Pull Request
+        if: steps.detect.outputs.has_files == 'true'
+        uses: peter-evans/create-pull-request@v6
+        id: pr
+        with:
+          token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
+          commit-message: |
+            🌐 Auto-translate: Update translations
+            
+            Files: ${{ steps.detect.outputs.files }}
+            Languages: ${{ steps.detect.outputs.languages }}
+            
+            Automated by Translation Bot
+          branch: translations/auto-${{ github.run_number }}
+          delete-branch: true
+          title: "🌐 Auto-translate: ${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Auto' }} #${{ github.run_number }}"
+          body: |
+            ## 🤖 Automated Translation
+            
+            AI-generated translations using the kobo-translation skill.
+            
+            ### 📝 Source Files
+            
+            ```
+            ${{ steps.detect.outputs.files }}
+            ```
+            
+            ### 🌐 Languages
+            
+            ```
+            ${{ steps.detect.outputs.languages }}
+            ```
+            
+            ### 📊 Results
+            
+            - ✅ Successful: ${{ steps.translate.outputs.success_count }}
+            - ❌ Failed: ${{ steps.translate.outputs.fail_count }}
+            - 💰 Cost: ~$$${{ steps.translate.outputs.total_cost }}
+            
+            <details>
+            <summary>📋 Detailed translation summary (click to expand)</summary>
+            
+            Will be posted as a comment below.
+            
+            </details>
+            
+            ---
+            
+            ### ✅ Review Checklist
+            
+            **Brand Terms:**
+            - [ ] Spanish: "Servidor Global" (NOT "de KoboToolbox")
+            - [ ] French: "Le serveur KoboToolbox mondial" (WITH "Le")
+            - [ ] Spanish: "La biblioteca de preguntas" (capital L)
+            - [ ] French: "La bibliothèque de questions" (capital L)
+            - [ ] Formbuilder: English in parentheses on first reference
+            
+            **UI Elements:**
+            - [ ] Draft → Brouillon (FR) / Borrador (ES) - capitalized
+            - [ ] Tabs: FORMULAIRE / FORMULARIO (all caps)
+            - [ ] Buttons match UI translations
+            
+            **Language Quality:**
+            - [ ] Spanish: informal "tú" + gender-inclusive "los/as"
+            - [ ] French: formal "vous" + "utilisatrices et utilisateurs"
+            - [ ] Links and formatting preserved
+            
+            **Reviewers:** @es-reviewer @fr-reviewer @ar-reviewer
+            
+            ---
+            
+            Triggered: ${{ github.event_name }}  
+            Run: #${{ github.run_number }}
+          labels: |
+            translation
+            automated
+            needs-review
+      
+      - name: Comment with summary
+        if: steps.pr.outputs.pull-request-number
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const summary = fs.readFileSync('translation_summary.md', 'utf8');
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ steps.pr.outputs.pull-request-number }},
+              body: summary
+            });
+      
+      - name: Job summary
+        if: always()
+        run: |
+          echo "## 🌐 Translation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -n "${{ steps.pr.outputs.pull-request-number }}" ]; then
+            echo "✅ **Pull Request Created**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "- PR #${{ steps.pr.outputs.pull-request-number }}" >> $GITHUB_STEP_SUMMARY
+            echo "- URL: ${{ steps.pr.outputs.pull-request-url }}" >> $GITHUB_STEP_SUMMARY
+            echo "- Successful: ${{ steps.translate.outputs.success_count }}" >> $GITHUB_STEP_SUMMARY
+            echo "- Failed: ${{ steps.translate.outputs.fail_count }}" >> $GITHUB_STEP_SUMMARY
+            echo "- Cost: \$${{ steps.translate.outputs.total_cost }}" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ steps.detect.outputs.has_files }}" == "false" ]; then
+            echo "ℹ️ **No files to translate**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **No PR created**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Check logs for errors." >> $GITHUB_STEP_SUMMARY
+          fi
