@@ -1,7 +1,6 @@
-name: Translation Agent
+name: Translation Agent (with PR Creation)
 
-# This workflow runs the translation agent when triggered
-# by the translation-trigger workflow
+# This workflow runs the translation agent and creates a PR with translations
 
 on:
   repository_dispatch:
@@ -9,14 +8,14 @@ on:
   
   workflow_dispatch:  # Allow manual trigger
     inputs:
-      test_file:
-        description: 'Test file to translate (e.g., docs/en/test_simple.md)'
+      files_to_translate:
+        description: 'Files to translate (comma-separated, e.g., docs/en/test_simple.md,docs/en/test_complex.md)'
         required: false
         default: 'docs/en/test_simple.md'
-      test_language:
-        description: 'Language to test (es, fr, or ar)'
+      languages:
+        description: 'Languages to translate to (comma-separated: es,fr,ar)'
         required: false
-        default: 'es'
+        default: 'es,fr,ar'
 
 jobs:
   translate:
@@ -54,92 +53,302 @@ jobs:
           fi
           
           echo "✅ Skill files found"
-          ls -R skills/kobo-translation/
       
       - name: Configure Git
         run: |
           git config user.name "Translation Bot"
           git config user.email "translation-bot@kobotoolbox.org"
       
-      - name: Run translation agent (Manual)
+      - name: Parse input files (Manual)
         if: github.event_name == 'workflow_dispatch'
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.TRANSLATION_BOT_TOKEN }}
+        id: manual_files
         run: |
-          echo "🧪 Running in manual test mode"
-          python scripts/translation_agent.py \
-            --file "${{ github.event.inputs.test_file }}" \
-            --language "${{ github.event.inputs.test_language }}" \
-            --save \
-            --test \
-            --verbose
+          FILES="${{ github.event.inputs.files_to_translate }}"
+          LANGUAGES="${{ github.event.inputs.languages }}"
+          
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+          echo "languages=$LANGUAGES" >> $GITHUB_OUTPUT
+          
+          echo "Files to translate: $FILES"
+          echo "Target languages: $LANGUAGES"
       
-      - name: Run translation agent (Auto)
+      - name: Parse input files (Auto)
         if: github.event_name == 'repository_dispatch'
+        id: auto_files
+        run: |
+          FILES=$(echo '${{ toJson(github.event.client_payload.changed_files) }}' | jq -r 'join(",")')
+          LANGUAGES="es,fr,ar"
+          
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+          echo "languages=$LANGUAGES" >> $GITHUB_OUTPUT
+          
+          echo "Files to translate: $FILES"
+          echo "Target languages: $LANGUAGES"
+      
+      - name: Set files variable
+        id: files
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "files=${{ steps.manual_files.outputs.files }}" >> $GITHUB_OUTPUT
+            echo "languages=${{ steps.manual_files.outputs.languages }}" >> $GITHUB_OUTPUT
+          else
+            echo "files=${{ steps.auto_files.outputs.files }}" >> $GITHUB_OUTPUT
+            echo "languages=${{ steps.auto_files.outputs.languages }}" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Create translation branch
+        id: branch
+        run: |
+          TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+          BRANCH="translations/auto-$TIMESTAMP"
+          
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+          echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
+          
+          git checkout -b "$BRANCH"
+          echo "Created branch: $BRANCH"
+      
+      - name: Translate documents
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.TRANSLATION_BOT_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          echo "🤖 Running in automated mode"
-          echo "Changed files: ${{ toJson(github.event.client_payload.changed_files) }}"
+          echo "🤖 Starting translation process..."
           
-          # TODO: Implement full automation with PR creation
-          # For now, just translate the first file to Spanish as a test
-          FIRST_FILE=$(echo '${{ toJson(github.event.client_payload.changed_files) }}' | jq -r '.[0]')
+          # Get files and languages
+          FILES="${{ steps.files.outputs.files }}"
+          LANGUAGES="${{ steps.files.outputs.languages }}"
           
-          if [ "$FIRST_FILE" != "null" ] && [ ! -z "$FIRST_FILE" ]; then
-            echo "Translating: $FIRST_FILE"
-            python scripts/translation_agent.py \
-              --file "$FIRST_FILE" \
-              --language es \
-              --save \
-              --test
-          fi
+          # Convert comma-separated to arrays
+          IFS=',' read -ra FILE_ARRAY <<< "$FILES"
+          IFS=',' read -ra LANG_ARRAY <<< "$LANGUAGES"
+          
+          TOTAL_COST=0
+          SUCCESS_COUNT=0
+          FAIL_COUNT=0
+          
+          # Create summary file
+          echo "# Translation Summary" > translation_summary.md
+          echo "" >> translation_summary.md
+          echo "**Timestamp:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> translation_summary.md
+          echo "" >> translation_summary.md
+          
+          # Translate each file to each language
+          for FILE in "${FILE_ARRAY[@]}"; do
+            # Skip empty entries
+            [ -z "$FILE" ] && continue
+            
+            echo "" >> translation_summary.md
+            echo "## 📄 $(basename $FILE)" >> translation_summary.md
+            echo "" >> translation_summary.md
+            
+            for LANG in "${LANG_ARRAY[@]}"; do
+              # Skip empty entries
+              [ -z "$LANG" ] && continue
+              
+              echo "  🔄 Translating $FILE to $LANG..."
+              
+              # Run translation
+              if python scripts/translation_agent.py \
+                --file "$FILE" \
+                --language "$LANG" \
+                --save \
+                --test > "translation_${LANG}_output.txt" 2>&1; then
+                
+                echo "  ✅ $LANG: Success"
+                echo "- ✅ **$LANG**: Translation successful" >> translation_summary.md
+                SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+                
+                # Extract cost from output if available
+                if grep -q "Estimated cost" "translation_${LANG}_output.txt"; then
+                  COST=$(grep "Estimated cost" "translation_${LANG}_output.txt" | grep -oP '\$\K[0-9.]+' || echo "0")
+                  TOTAL_COST=$(echo "$TOTAL_COST + $COST" | bc)
+                  echo "  💰 Cost: \$$COST"
+                fi
+                
+              else
+                echo "  ❌ $LANG: Failed"
+                echo "- ❌ **$LANG**: Translation failed" >> translation_summary.md
+                FAIL_COUNT=$((FAIL_COUNT + 1))
+                
+                # Append error to summary
+                echo "  \`\`\`" >> translation_summary.md
+                tail -n 10 "translation_${LANG}_output.txt" >> translation_summary.md
+                echo "  \`\`\`" >> translation_summary.md
+              fi
+              
+              # Clean up output file
+              rm -f "translation_${LANG}_output.txt"
+            done
+          done
+          
+          # Add summary statistics
+          echo "" >> translation_summary.md
+          echo "## 📊 Statistics" >> translation_summary.md
+          echo "" >> translation_summary.md
+          echo "- **Successful translations:** $SUCCESS_COUNT" >> translation_summary.md
+          echo "- **Failed translations:** $FAIL_COUNT" >> translation_summary.md
+          echo "- **Total estimated cost:** \$$(printf '%.4f' $TOTAL_COST)" >> translation_summary.md
+          
+          # Save for PR body
+          cat translation_summary.md
+          
+          # Save outputs for next step
+          echo "success_count=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
+          echo "fail_count=$FAIL_COUNT" >> $GITHUB_OUTPUT
+          echo "total_cost=$TOTAL_COST" >> $GITHUB_OUTPUT
       
-      - name: Show translations
-        if: always()
+      - name: Check for changes
+        id: check_changes
         run: |
-          echo "📄 Generated translations:"
-          if [ -d "docs/es" ]; then
-            echo "Spanish:"
-            ls -la docs/es/
-          fi
-          if [ -d "docs/fr" ]; then
-            echo "French:"
-            ls -la docs/fr/
-          fi
-          if [ -d "docs/ar" ]; then
-            echo "Arabic:"
-            ls -la docs/ar/
+          git add docs/
+          
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "⚠️ No translation changes to commit"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "✅ Translation changes detected"
           fi
       
-      - name: Create Pull Request (Placeholder)
-        if: github.event_name == 'repository_dispatch'
+      - name: Commit translations
+        if: steps.check_changes.outputs.has_changes == 'true'
         run: |
-          echo "📝 Creating pull request..."
-          echo "TODO: Implement PR creation with translations"
-          echo "For now, translations are generated but not committed"
-          echo ""
-          echo "Next steps to complete:"
-          echo "1. Create new branch"
-          echo "2. Commit translations"
-          echo "3. Create PR with peter-evans/create-pull-request@v6"
+          git add docs/
+          git commit -m "🌐 Auto-translate: ${{ steps.files.outputs.files }}
+
+          Automated translation by Translation Bot
+          
+          Files translated:
+          ${{ steps.files.outputs.files }}
+          
+          Languages: ${{ steps.files.outputs.languages }}
+          Timestamp: ${{ steps.branch.outputs.timestamp }}"
       
-      - name: Upload translations as artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
+      - name: Push branch
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git push origin ${{ steps.branch.outputs.branch }}
+      
+      - name: Create Pull Request
+        if: steps.check_changes.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        id: create_pr
         with:
-          name: translations
-          path: |
-            docs/es/*.md
-            docs/fr/*.md
-            docs/ar/*.md
-          if-no-files-found: ignore
+          token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
+          branch: ${{ steps.branch.outputs.branch }}
+          title: "🌐 Auto-translate: ${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Auto' }} (${{ steps.branch.outputs.timestamp }})"
+          body: |
+            ## 🤖 Automated Translation
+            
+            This PR contains AI-generated translations using the kobo-translation skill.
+            
+            ### 📝 Source Files
+            
+            ${{ steps.files.outputs.files }}
+            
+            ### 🌐 Target Languages
+            
+            ${{ steps.files.outputs.languages }}
+            
+            ---
+            
+            ${{ steps.check_changes.outputs.has_changes == 'true' && format('Translation summary will be in the next comment') || 'No changes detected' }}
+            
+            ### ✅ Translation Quality Checklist
+            
+            Please verify the following before merging:
+            
+            **Brand Terminology:**
+            - [ ] Server names correct
+              - Spanish: "Servidor Global" (NOT "Servidor Global de KoboToolbox")
+              - French: "Le serveur KoboToolbox mondial" (WITH "Le")
+            - [ ] Question Library has capital article
+              - Spanish: "La biblioteca de preguntas"
+              - French: "La bibliothèque de questions"
+            - [ ] Formbuilder includes English on first reference
+              - Spanish: "editor de formularios de KoboToolbox (Formbuilder)"
+              - French: "l'interface de création de formulaires KoboToolbox (KoboToolbox Formbuilder)"
+            
+            **UI Elements:**
+            - [ ] UI terms capitalized correctly (Brouillon/Borrador for Draft)
+            - [ ] Button names match UI (DEPLOY → DÉPLOYER/DESPLEGAR)
+            - [ ] Tab names in ALL CAPS (FORM → FORMULAIRE/FORMULARIO)
+            
+            **Language Quality:**
+            - [ ] Spanish uses informal "tú"
+            - [ ] Spanish is gender-inclusive: "los/as usuarios/as"
+            - [ ] French uses formal "vous"
+            - [ ] French is gender-inclusive: "utilisatrices et utilisateurs"
+            
+            **Formatting:**
+            - [ ] All links preserved and functional
+            - [ ] Headers maintained (same level and structure)
+            - [ ] Code blocks and formatting intact
+            
+            ### 👥 Reviewers
+            
+            Please assign appropriate language reviewers:
+            - 🇪🇸 Spanish: @es-reviewer
+            - 🇫🇷 French: @fr-reviewer
+            - 🇸🇦 Arabic: @ar-reviewer
+            
+            ---
+            
+            **Triggered by:** ${{ github.event_name == 'workflow_dispatch' && 'Manual workflow' || 'Automatic detection' }}
+            **Branch:** `${{ steps.branch.outputs.branch }}`
+            **Commit:** ${{ github.sha }}
+          labels: |
+            translation
+            automated
+            needs-review
+          draft: false
       
-      - name: Summary
+      - name: Comment with summary
+        if: steps.check_changes.outputs.has_changes == 'true' && steps.create_pr.outputs.pull-request-number
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const summary = fs.readFileSync('translation_summary.md', 'utf8');
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ steps.create_pr.outputs.pull-request-number }},
+              body: summary
+            });
+      
+      - name: Job Summary
         if: always()
         run: |
-          echo "✨ Translation workflow complete"
-          echo "📦 Translations available as workflow artifacts"
+          echo "## 🌐 Translation Job Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.check_changes.outputs.has_changes }}" == "true" ]; then
+            echo "✅ **Status:** Translations created successfully" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "🔗 **Pull Request:** #${{ steps.create_pr.outputs.pull-request-number }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**URL:** ${{ steps.create_pr.outputs.pull-request-url }}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **Status:** No changes to commit" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Files Translated" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.files.outputs.files }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Languages" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.files.outputs.languages }}" >> $GITHUB_STEP_SUMMARY
+      
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ Translation workflow failed"
+          echo "Check the logs above for details"
+          exit 1
