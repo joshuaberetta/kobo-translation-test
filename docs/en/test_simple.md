@@ -43,6 +43,3 @@ Once you understand the basics, you can:
 - Analyze your data
 - Share your findings
 
-For more information, visit our documentation or contact support.
-Test change
-
