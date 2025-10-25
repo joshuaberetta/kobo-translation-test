@@ -40,3 +40,5 @@ Para comenzar:
 <p class="note">Si abres el editor de formularios después de desplegar tu XLSForm con el archivo de imagen del logotipo, automáticamente le dará a la pregunta una etiqueta de texto y necesitarás eliminarla para que el texto automatizado no aparezca junto a tu logotipo en tu formulario.</p>
 
 archivo `logo.jpg` arrastrando el archivo o seleccionándolo desde tu computadora.
+
+Puedes añadir un logo a tu formulario siguiendo estos pasos:
