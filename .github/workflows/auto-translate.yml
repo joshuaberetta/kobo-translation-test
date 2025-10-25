@@ -79,7 +79,7 @@ jobs:
             
             # Convert newlines to commas
             FILES=$(echo "$CHANGED_FILES" | tr '\n' ',' | sed 's/,$//' | sed 's/^,//')
-            LANGUAGES="es,fr,ar"
+            LANGUAGES="es,fr"
           fi
           
           echo "files=$FILES" >> $GITHUB_OUTPUT
