@@ -31,3 +31,6 @@ Pour commencer :
 <p class="note">Si vous ouvrez l'interface de création de formulaires après avoir déployé votre XLSForm avec le fichier image de logo, elle donnera automatiquement à la question une étiquette de texte et vous devrez la supprimer pour que le texte automatisé n'apparaisse pas à côté de votre logo dans votre formulaire.</p>
 
 `logo.jpg` en faisant glisser le fichier ou en le sélectionnant depuis votre ordinateur.
+
+- Les formats d'image recommandés sont JPEG et PNG. Les images SVG ne sont pas prises en charge.
+- Les dimensions recommandées pour les logos sont une largeur de 400 pixels et une hauteur de 100 pixels.
