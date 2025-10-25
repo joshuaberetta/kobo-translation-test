@@ -29,3 +29,5 @@ Pour commencer :
 -   Sauter l'étape finale signifiera que votre formulaire sera affiché sans les fichiers média. Assurez-vous que les fichiers média sont importés avant de télécharger le formulaire sur vos appareils lors de l'utilisation de l'application Android.
 
 <p class="note">Si vous ouvrez l'interface de création de formulaires après avoir déployé votre XLSForm avec le fichier image de logo, elle donnera automatiquement à la question une étiquette de texte et vous devrez la supprimer pour que le texte automatisé n'apparaisse pas à côté de votre logo dans votre formulaire.</p>
+
+`logo.jpg` en faisant glisser le fichier ou en le sélectionnant depuis votre ordinateur.
