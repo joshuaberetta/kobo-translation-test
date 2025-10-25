@@ -20,7 +20,7 @@ Para comenzar:
 | survey|
 
 3. Cuando termines de editar el formulario, carga el XLSForm en un proyecto nuevo o
-   existente.
+   en uno existente.
 
 4. Despliega o vuelve a desplegar tu formulario, dependiendo de si es un proyecto nuevo o si está
    reemplazando un formulario existente.
