@@ -23,14 +23,14 @@ To begin:
    an existing project.
 
 4. Deploy or redeploy your form, depending on whether it's a new project or it's
-   replacing an existing form.
+   replacing an existing form in your account.
 
 5. In your project page go to **SETTINGS>MEDIA** and [upload](media.md) your
    `logo.jpg` file.
 
 ## Tips:
 
--   Keep your image small.
+-   Keep your image as small as possible to improve loading times.
 -   Your logo image will not appear in the form preview, only when the form is
     opened.
 -   Skipping the final step will mean that your form will be displayed without
