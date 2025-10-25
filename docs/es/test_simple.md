@@ -15,6 +15,7 @@ Sigue estos pasos para recolectar datos de manera efectiva:
 3. **Prepara tus herramientas** - Crea tus preguntas y materiales
 4. **Recolecta los datos** - Recopila información de los/as participantes
 5. **Revisa tus resultados** - Analiza lo que aprendiste
+6. **Comparte tus hallazgos** - Presenta tus datos a las partes interesadas
 
 ## Consejos para el éxito
 
