@@ -38,5 +38,8 @@ To begin:
 -   Skipping the final step will mean that your form will be displayed without
     the media files. Make sure the media files are uploaded before downloading
     the form to your devices when using the Android app.
+-  The recommended image formats are JPEG and PNG. SVG images are not supported.
+- The recommended dimensions for logos are a width of 400 pixels and a height of
+   100 pixels.
 
 <p class="note">If you open the formbuilder after deploying your XLSForm with the logo image file, it will automatically give the question a text label and you'll need to delete it for the automated text not to appear next to your logo in your form.</p>
