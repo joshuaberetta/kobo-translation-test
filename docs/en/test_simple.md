@@ -44,17 +44,3 @@ Once you understand the basics, you can:
 - Share your findings
 
 For more information, visit our documentation or contact support.
-
-## Testing auto trigger
-
-
-## New Section Added
-
-This is a test of automatic translation detection.
-
-
-## Automatic Translation Test
-
-This change should trigger automatic translation.
-
-The workflow should detect this file change and translate it to Spanish, French, and Arabic.
