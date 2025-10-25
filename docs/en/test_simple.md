@@ -51,3 +51,10 @@ For more information, visit our documentation or contact support.
 ## New Section Added
 
 This is a test of automatic translation detection.
+
+
+## Automatic Translation Test
+
+This change should trigger automatic translation.
+
+The workflow should detect this file change and translate it to Spanish, French, and Arabic.
