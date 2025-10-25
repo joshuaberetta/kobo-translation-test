@@ -33,3 +33,7 @@ libre de instalar tu propia instancia de KoboToolbox en tu propio servidor.
 Si deseas que eliminemos todos los datos de tu proyecto, incluida tu
 cuenta de KoboToolbox, por favor contacta al Equipo de Soporte y menciona 'Solicitud RGPD
 de ser Olvidado/a.'
+
+Cumplimos completamente con el RGPD, así como con la norma ISO27001. Si te encuentras en la Unión Europea,
+ISO27001 es un estándar internacional sobre cómo gestionar la seguridad de la información y es una parte crítica
+de nuestro compromiso de mantener tus datos seguros.

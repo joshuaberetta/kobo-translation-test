@@ -32,3 +32,7 @@ libre d'installer votre propre instance de KoboToolbox sur votre propre serveur.
 Si vous souhaitez que nous supprimions toutes les données de votre projet, y compris votre
 compte KoboToolbox, veuillez contacter l'équipe d'assistance et mentionner « Demande RGPD
 de droit à l'oubli ».
+
+Nous sommes entièrement conformes au RGPD ainsi qu'à la norme ISO27001. Si vous êtes situé dans l'Union européenne,
+la norme ISO27001 est une norme internationale sur la gestion de la sécurité de l'information et elle constitue un élément essentiel
+de notre engagement à protéger vos données.
