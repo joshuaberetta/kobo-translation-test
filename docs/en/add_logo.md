@@ -2,13 +2,11 @@
 **Last updated:** <a href="https://github.com/kobotoolbox/docs/blob/47cbc8887d6df73ef3bf760d5a3962b77ab26ed8/source/add_logo.md" class="reference">29 Jul 2025</a>
 
 Adding a custom logo to the top of your form is a simple process and primarily
-follows the same steps as [adding media content to your forms](media.md). Adding a logo is a great way to brand your forms for your organization or project.
-
-You can add a logo to your form by following these steps:
+follows the same steps as [adding media content to your forms](media.md).
 
 To begin:
 
-1. Start by creating your logo image file and save it with a short and descriptive file name.
+1. Start by creating your logo image file and save it with a short file name.
 
 2. In your XLSForm, make the first question a Note question type, leave the
    label blank, and add a column titled `media::image` with your logo file name
@@ -22,24 +20,21 @@ To begin:
 | survey|
 
 3. When you're done editing the form, upload the XLSForm to either a new or
-   an existing project.
+   existing project.
 
 4. Deploy or redeploy your form, depending on whether it's a new project or it's
-   replacing an existing form in your account.
+   replacing an existing form.
 
 5. In your project page go to **SETTINGS>MEDIA** and [upload](media.md) your
-   `logo.jpg` file by dragging the file or selecting from your computer.
+   `logo.jpg` file.
 
 ## Tips:
 
--   Keep your image as small as possible to improve loading times.
+-   Keep your image small.
 -   Your logo image will not appear in the form preview, only when the form is
     opened.
 -   Skipping the final step will mean that your form will be displayed without
     the media files. Make sure the media files are uploaded before downloading
     the form to your devices when using the Android app.
--  The recommended image formats are JPEG and PNG. SVG images are not supported.
-- The recommended dimensions for logos are a width of 400 pixels and a height of
-   100 pixels.
 
 <p class="note">If you open the formbuilder after deploying your XLSForm with the logo image file, it will automatically give the question a text label and you'll need to delete it for the automated text not to appear next to your logo in your form.</p>

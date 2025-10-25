@@ -16,7 +16,7 @@ on:
       languages:
         description: 'Languages (comma-separated: es,fr,ar)'
         required: false
-        default: 'es,fr,ar'
+        default: 'es,fr'
 
 jobs:
   translate-and-pr:

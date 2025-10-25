@@ -8,11 +8,8 @@ is a new comprehensive data protection law in the EU that replaces existing laws
 to strengthen the protection of personal data and the rights of the individual.
 It is a single set of rules, directly enforceable in each EU member state.
 
-We are fully compliant with the GDPR as well as ISO27001. If you are located in the European Union,
+We are fully compliant with the GDPR. If you are located in the European Union,
 [you can sign a data processing agreement (DPA) here](https://www.digisigner.com/online/showTemplate?linkId=495db186-9c9e-4627-99f7-a943282eeab5).
-
-ISO27001 is an international standard on how to manage information security and it is a critcal part
-of our commitment to keeping your data safe.
 
 ## Security and Privacy at KoboToolbox
 
