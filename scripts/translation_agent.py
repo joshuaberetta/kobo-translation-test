@@ -200,8 +200,89 @@ You are translating KoboToolbox documentation. Follow these rules EXACTLY.
         # Standard: Most documents
         return 'standard'
     
+    def translate_diff(self, diff_content: str, target_lang: str,
+                      context: str = None) -> str:
+        """
+        Translate only a diff (changed content) using Claude
+        
+        Args:
+            diff_content: Only the changed lines/paragraphs to translate
+            target_lang: Target language (es, fr, ar)
+            context: Optional surrounding context for better translation
+        """
+        print(f"  📊 Translation mode: DIFF-BASED (changes only)")
+        
+        # Use condensed skill + brand terminology for diffs
+        skill_prompt = f"""
+{self.skill_context['condensed']}
+
+## BRAND TERMINOLOGY REFERENCE (Check for every brand term)
+{self.skill_context.get('brand', '[Brand terminology not available]')}
+"""
+        
+        # Build prompt emphasizing diff-only translation
+        context_note = ""
+        if context:
+            context_note = f"""
+SURROUNDING CONTEXT (for reference only - DO NOT translate):
+```
+{context}
+```
+"""
+        
+        prompt = f"""{skill_prompt}
+
+TARGET LANGUAGE: {target_lang.upper()}
+
+🚨 CRITICAL: You are translating ONLY a diff (changed content).
+- Translate ONLY the content provided below
+- Do NOT translate any surrounding context
+- Do NOT add explanations or meta-text
+- Provide ONLY the translated diff content
+
+{context_note}
+
+---BEGIN DIFF TO TRANSLATE---
+{diff_content}
+---END DIFF TO TRANSLATE---
+
+Translated diff:"""
+
+        print(f"  🤖 Calling Claude API...")
+        
+        try:
+            # Call Claude API
+            response = self.claude.messages.create(
+                model="claude-sonnet-4-5-20250929",
+                max_tokens=8000,
+                temperature=0.3,  # Lower for consistency
+                messages=[{
+                    "role": "user",
+                    "content": prompt
+                }]
+            )
+            
+            # Extract translation
+            translation = ""
+            for block in response.content:
+                if block.type == "text":
+                    translation += block.text
+            
+            # Report token usage
+            usage = response.usage
+            print(f"  📊 Tokens used: {usage.input_tokens} input, {usage.output_tokens} output")
+            cost = (usage.input_tokens / 1_000_000 * 3) + (usage.output_tokens / 1_000_000 * 15)
+            print(f"  💰 Estimated cost: ${cost:.4f}")
+            
+            return translation
+            
+        except Exception as e:
+            print(f"  ❌ Translation failed: {e}")
+            raise
+    
     def translate_file(self, source_path: str, target_lang: str,
-                      complexity: str = None) -> str:
+                      complexity: str = None, is_update: bool = False,
+                      diff_content: str = None) -> str:
         """
         Translate a markdown file using Claude with embedded skill
         
@@ -209,7 +290,18 @@ You are translating KoboToolbox documentation. Follow these rules EXACTLY.
             source_path: Path to source markdown file
             target_lang: Target language (es, fr, ar)
             complexity: Force complexity level, or auto-detect if None
+            is_update: If True, expects diff_content to be provided
+            diff_content: Only the changed content (for updates)
         """
+        # Handle diff-based updates
+        if is_update:
+            if not diff_content:
+                raise ValueError("diff_content must be provided when is_update=True")
+            
+            print(f"  🔄 UPDATE MODE: Translating diff only")
+            return self.translate_diff(diff_content, target_lang)
+        
+        # Full file translation (NEW content)
         # Read source file
         source_content = Path(source_path).read_text(encoding='utf-8')
         
@@ -247,7 +339,7 @@ You are translating KoboToolbox documentation. Follow these rules EXACTLY.
 
 TARGET LANGUAGE: {target_lang.upper()}
 
-Now translate this document following ALL rules above.
+Now translate this COMPLETE NEW document following ALL rules above.
 Provide ONLY the translated markdown. No explanations, comments, or meta-text.
 
 ---BEGIN SOURCE DOCUMENT---
@@ -287,6 +379,40 @@ Translation:"""
         except Exception as e:
             print(f"  ❌ Translation failed: {e}")
             raise
+    
+    def apply_translated_diff(self, existing_translation: str, 
+                             translated_diff: str,
+                             line_number: int = None,
+                             old_content: str = None) -> str:
+        """
+        Apply a translated diff to an existing translation
+        
+        Args:
+            existing_translation: Current translated document
+            translated_diff: The newly translated diff content
+            line_number: Line number where to apply change (optional)
+            old_content: Old content to replace (optional, for search-replace)
+        
+        Returns:
+            Updated translation with diff applied
+        """
+        if old_content:
+            # Search and replace mode
+            if old_content not in existing_translation:
+                raise ValueError("old_content not found in existing translation")
+            return existing_translation.replace(old_content, translated_diff, 1)
+        
+        elif line_number is not None:
+            # Line number mode
+            lines = existing_translation.split('\n')
+            diff_lines = translated_diff.split('\n')
+            
+            # Replace at specific line
+            lines[line_number:line_number+len(diff_lines)] = diff_lines
+            return '\n'.join(lines)
+        
+        else:
+            raise ValueError("Either old_content or line_number must be provided")
     
     def validate_translation(self, source_path: str, translation: str,
                            target_lang: str) -> Dict:
@@ -370,6 +496,21 @@ def main():
         action='store_true',
         help='Show detailed output'
     )
+    parser.add_argument(
+        '--diff',
+        type=str,
+        help='Diff content to translate (for update mode). Use with --update-mode'
+    )
+    parser.add_argument(
+        '--update-mode',
+        action='store_true',
+        help='Update mode: translate only the diff and apply to existing translation'
+    )
+    parser.add_argument(
+        '--old-content',
+        type=str,
+        help='Old content to replace (used with --update-mode to find where to apply diff)'
+    )
     
     args = parser.parse_args()
     
@@ -378,10 +519,19 @@ def main():
         print(f"❌ Source file not found: {args.file}")
         sys.exit(1)
     
+    # Validate update mode arguments
+    if args.update_mode and not args.diff:
+        print("❌ --update-mode requires --diff to be provided")
+        sys.exit(1)
+    
     print("🚀 KoboToolbox Translation Agent - Test Mode")
     print("=" * 60)
     print(f"📄 Source: {args.file}")
     print(f"🌐 Target language: {args.language.upper()}")
+    if args.update_mode:
+        print(f"⚡ Mode: UPDATE (diff-based translation)")
+    else:
+        print(f"📝 Mode: NEW (full file translation)")
     print("=" * 60)
     
     try:
@@ -389,41 +539,88 @@ def main():
         agent = TranslationAgent(test_mode=True)
         
         # Translate
-        print(f"\n🔄 Translating to {args.language.upper()}...")
-        translation = agent.translate_file(
-            args.file,
-            args.language,
-            args.complexity
-        )
-        
-        # Validate
-        print(f"\n✓ Translation complete!")
-        print(f"\n🔍 Validating translation...")
-        validation = agent.validate_translation(args.file, translation, args.language)
-        
-        print("\nValidation Results:")
-        for check, passed in validation.items():
-            if check == 'passed':
-                continue
-            status = "✅" if passed else "❌"
-            print(f"  {status} {check}")
-        
-        if validation['passed']:
-            print(f"\n✅ All validation checks passed!")
+        if args.update_mode:
+            print(f"\n🔄 Translating diff to {args.language.upper()}...")
+            translated_diff = agent.translate_file(
+                args.file,
+                args.language,
+                is_update=True,
+                diff_content=args.diff
+            )
+            
+            # Apply to existing translation if it exists
+            target_dir = Path('docs') / args.language
+            target_file = target_dir / Path(args.file).name
+            
+            if target_file.exists() and args.save:
+                print(f"\n📝 Applying translated diff to existing translation...")
+                existing = target_file.read_text(encoding='utf-8')
+                
+                if args.old_content:
+                    updated = agent.apply_translated_diff(
+                        existing,
+                        translated_diff,
+                        old_content=args.old_content
+                    )
+                else:
+                    # If no old_content specified, append or manual application needed
+                    print("⚠️  No --old-content specified. Showing diff for manual application.")
+                    updated = None
+                
+                if updated:
+                    target_file.write_text(updated, encoding='utf-8')
+                    print(f"✅ Updated translation saved to: {target_file}")
+                else:
+                    print("\n" + "=" * 60)
+                    print("TRANSLATED DIFF (apply manually):")
+                    print("=" * 60)
+                    print(translated_diff)
+                    print("=" * 60)
+            else:
+                print("\n" + "=" * 60)
+                print("TRANSLATED DIFF:")
+                print("=" * 60)
+                print(translated_diff)
+                print("=" * 60)
+                if not args.save:
+                    print("\nℹ️  Use --save to apply to existing translation")
         else:
-            print(f"\n⚠️  Some validation checks failed - review translation carefully")
-        
-        # Save or display
-        if args.save:
-            target_path = agent.save_translation(translation, args.file, args.language)
-            print(f"\n💾 Translation saved to: {target_path}")
-        else:
-            print("\n" + "=" * 60)
-            print("TRANSLATION OUTPUT:")
-            print("=" * 60)
-            print(translation)
-            print("=" * 60)
-            print("\nℹ️  Use --save to write translation to file")
+            # Full file translation
+            print(f"\n🔄 Translating complete file to {args.language.upper()}...")
+            translation = agent.translate_file(
+                args.file,
+                args.language,
+                args.complexity
+            )
+            
+            # Validate
+            print(f"\n✓ Translation complete!")
+            print(f"\n🔍 Validating translation...")
+            validation = agent.validate_translation(args.file, translation, args.language)
+            
+            print("\nValidation Results:")
+            for check, passed in validation.items():
+                if check == 'passed':
+                    continue
+                status = "✅" if passed else "❌"
+                print(f"  {status} {check}")
+            
+            if validation['passed']:
+                print(f"\n✅ All validation checks passed!")
+            else:
+                print(f"\n⚠️  Some validation checks failed - review translation carefully")
+            
+            # Save or display
+            if args.save:
+                target_path = agent.save_translation(translation, args.file, args.language)
+                print(f"\n💾 Translation saved to: {target_path}")
+            else:
+                print("\n" + "=" * 60)
+                print("TRANSLATION OUTPUT:")
+                print("=" * 60)
+                print(translation)
+                print("=" * 60)
+                print("\nℹ️  Use --save to write translation to file")
         
         print("\n✨ Translation test complete!")
         

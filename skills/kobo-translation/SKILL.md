@@ -9,11 +9,16 @@ description: "Translation and localization guidelines for KoboToolbox content in
 
 Translate KoboToolbox content in French, Spanish, and Arabic with consistent terminology, appropriate tone, and cultural adaptation.
 
-**🚨 CRITICAL: When translating updates to existing articles:**
-- **ONLY translate new or modified content** from the source article
-- **DO NOT re-translate or modify existing translations** that are already correct
-- Compare the source changes carefully and apply only those specific changes to the target language
-- Preserve all existing translated content that corresponds to unchanged source material
+**🚨 CRITICAL: Diff-based translation for updates**
+
+**For NEW content:**
+- Translate the entire document from scratch
+
+**For UPDATES to existing translated articles:**
+- **ONLY translate the diff (changed content)** - never the full article
+- Apply the translated diff back to the existing translation
+- This preserves existing translations and prevents unnecessary changes
+- See "Update Workflow" section for detailed process
 
 ## 🚨 CRITICAL: Pre-Translation Checklist
 
@@ -86,8 +91,8 @@ Translate KoboToolbox content in French, Spanish, and Arabic with consistent ter
 **🔴 STOP! Before translating anything:**
 
 1. **Determine translation type:**
-   - **New content?** → Proceed with full translation workflow
-   - **Update to existing article?** → Follow "Update Workflow" below
+   - **New content?** → Proceed with full translation workflow below
+   - **Update to existing article?** → **STOP** - You should receive ONLY the diff (changed content), not the full article. If you receive the full article, request only the changed sections instead.
 
 2. Identify all brand terms in the source text (KoboToolbox, servers, Question Library, Formbuilder, etc.)
 3. Open **brand-terminology.md** and verify EXACT translations
@@ -96,53 +101,59 @@ Translate KoboToolbox content in French, Spanish, and Arabic with consistent ter
 
 ### Update Workflow (for changes to existing articles)
 
-**When translating updates to an already-translated article:**
+**🚨 CRITICAL: Use DIFF-BASED translation workflow for updates**
 
-1. **Compare source versions:**
-   - Identify exactly what changed in the English (source) version
-   - Note: new paragraphs, modified sentences, deleted sections, updated terms
+When translating updates to an already-translated article, **DO NOT translate the entire article**. Instead:
 
-2. **Review existing translation:**
-   - Open the current translated version
-   - Locate the sections that correspond to the changed source content
+**Step 1: Extract the diff (changes only)**
+- Get ONLY the changed lines/paragraphs from the source (English) document
+- This should be provided as a diff or list of specific changes
+- **NEVER work with the full article** - only the changed sections
 
-3. **Apply ONLY the necessary changes:**
-   - Translate ONLY the new or modified content
-   - Integrate the changes into the existing translation
-   - **DO NOT re-translate unchanged sections**, even if you might phrase them differently today
+**Step 2: Translate ONLY the diff**
+- Translate only the new or modified content that was extracted
+- Do NOT reference or translate any unchanged content
+- Apply all terminology and style guidelines to the new content
 
-4. **Preserve existing work:**
-   - Keep all existing translations that correspond to unchanged source material
-   - Maintain consistency with the existing translation's style and terminology choices
-   - Only make changes where the source content has actually changed
+**Step 3: Apply the translated diff back**
+- Insert the translated changes into the existing translated document
+- Replace old content with new translations where content changed
+- Add new translations where content was added
+- Remove translations where content was deleted
+- **DO NOT touch any other part of the existing translation**
 
-5. **Quality check:**
-   - Verify the updated sections flow naturally with existing content
-   - Ensure terminology consistency between old and new sections
-   - Check that nothing was unnecessarily changed
+**Step 4: Minimal verification**
+- Check that the new translations flow naturally with surrounding existing content
+- Verify terminology consistency with existing translations
+- Confirm no unintended changes were made
 
-**Example Update Scenario:**
-- Source change: One paragraph updated with new feature name
-- Translation update: ONLY translate that one paragraph
-- Result: The rest of the article remains exactly as it was
+**❌ WRONG APPROACH:**
+```
+Input: Full English article with minor changes
+Process: Translate entire article
+Output: Completely re-translated article
+Problem: Existing good translations are unnecessarily changed
+```
+
+**✅ CORRECT APPROACH:**
+```
+Input: ONLY the diff (changed lines/paragraphs from English)
+Process: Translate ONLY the diff
+Output: Translated diff applied to existing translation
+Result: Only changed content is updated, rest stays identical
+```
+
+**Example:**
+- English change: "Click the **Deploy** button" → "Click the **DEPLOY** button"
+- Translation task: Translate only "Click the **DEPLOY** button"
+- Apply to French: Replace old sentence with "Cliquez sur le bouton **DÉPLOYER**"
+- Leave everything else in the French document untouched
 
 ---
 
 ### Step 1: Identify Content Type
 
-**⚠️ IMPORTANT: Determine if this is new content or an update:**
-
-**New content (full translation needed):**
-- Translate the entire document from scratch
-- Apply all guidelines and terminology consistently
-
-**Update to existing translation:**
-- **ONLY translate the specific changes made to the source (English) document**
-- **DO NOT modify existing translations that are already correct**
-- Identify what changed in the source and apply ONLY those changes to the target
-- Preserve all unchanged content in the existing translation
-
----
+**Note:** This step applies to **new content** or when translating the **diff for updates**.
 
 **Formal communications** (server announcements, formal emails):
 - French: Use "vous", addressee "Cher utilisateur, Chère utilisatrice"
@@ -468,13 +479,20 @@ START: Do I see ANY of these terms in the source text?
 
 Before finalizing translation:
 
-**� Translation Scope (for updates to existing content):**
-- [ ] Identified what changed in the source document
-- [ ] ONLY translated the new/modified content
-- [ ] Preserved all existing translations that correspond to unchanged source content
-- [ ] Did NOT re-translate or unnecessarily modify existing correct translations
+**📋 Translation Scope:**
 
-**�🚨 CRITICAL - Brand & UI Terms:**
+**For NEW content:**
+- [ ] Translated entire document consistently
+- [ ] Applied all terminology and style guidelines
+
+**For UPDATES (diff-based translation):**
+- [ ] Received ONLY the diff (changed content), not the full article
+- [ ] Translated ONLY the provided diff
+- [ ] Applied translated diff back to existing translation
+- [ ] Verified NO other parts of the existing translation were modified
+- [ ] Confirmed unchanged content remains byte-for-byte identical
+
+**🚨 CRITICAL - Brand & UI Terms:**
 - [ ] All server names use EXACT translations from brand-terminology.md (with articles!)
 - [ ] "Question Library" has capital article: "La bibliothèque" / "La biblioteca"
 - [ ] Formbuilder includes English on first reference
