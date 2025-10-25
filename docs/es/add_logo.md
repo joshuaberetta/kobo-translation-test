@@ -20,17 +20,17 @@ Para comenzar:
 | survey|
 
 3. Cuando termines de editar el formulario, carga el XLSForm en un proyecto nuevo o
-   existente.
+   en uno existente.
 
 4. Despliega o vuelve a desplegar tu formulario, dependiendo de si es un proyecto nuevo o si está
-   reemplazando un formulario existente.
+   reemplazando un formulario existente en tu cuenta.
 
 5. En la página de tu proyecto ve a **CONFIGURACIÓN>MULTIMEDIA** y [carga](media.md) tu
    archivo `logo.jpg`.
 
 ## Consejos:
 
--   Mantén tu imagen pequeña.
+-   Mantén tu imagen lo más pequeña posible para mejorar los tiempos de carga.
 -   Tu imagen de logotipo no aparecerá en la vista previa del formulario, solo cuando el formulario se
     abra.
 -   Omitir el paso final significará que tu formulario se mostrará sin
