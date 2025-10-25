@@ -46,3 +46,8 @@ Once you understand the basics, you can:
 For more information, visit our documentation or contact support.
 
 ## Testing auto trigger
+
+
+## New Section Added
+
+This is a test of automatic translation detection.
