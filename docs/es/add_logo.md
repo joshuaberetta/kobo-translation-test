@@ -43,3 +43,5 @@ archivo `logo.jpg` arrastrando el archivo o seleccionándolo desde tu computador
 
 - Los formatos de imagen recomendados son JPEG y PNG. Las imágenes SVG no son compatibles.
 - Las dimensiones recomendadas para los logotipos son un ancho de 400 píxeles y una altura de 100 píxeles.
+
+- Mantén tu imagen pequeña.
