@@ -62,7 +62,7 @@ class TranslationAgent:
         # Load skill content
         print("📚 Loading kobo-translation skill...", file=sys.stderr)
         self.skill_context = self._load_skill_context()
-        print("✅ Skill loaded successfully", file=sys.stderr)
+        print(f"✅ Skill loaded successfully ({len(self.skill_context)} files)", file=sys.stderr)
     
     def _load_skill_context(self) -> Dict[str, str]:
         """Load skill files from repository into memory"""
@@ -100,73 +100,9 @@ class TranslationAgent:
                 if file_path.exists():
                     context[key] = file_path.read_text(encoding='utf-8')
                 else:
-                    print(f"⚠️  Optional reference file not found: {filename}")
-        
-        # Create condensed version for efficiency
-        context['condensed'] = self._create_condensed_rules()
+                    print(f"⚠️  Reference file not found: {filename}", file=sys.stderr)
         
         return context
-    
-    def _create_condensed_rules(self) -> str:
-        """Create condensed version with only critical rules"""
-        return """
-🚨 CRITICAL TRANSLATION RULES
-
-You are translating KoboToolbox documentation. Follow these rules EXACTLY.
-
-1. BRAND TERMS (Use EXACTLY - DO NOT MODIFY):
-
-   Server Names:
-   ├─ Spanish: "Servidor Global" (NOT "Servidor Global de KoboToolbox")
-   ├─ Spanish EU: "Servidor con sede en la Unión Europea"
-   ├─ French: "Le serveur KoboToolbox mondial" (MUST include "Le")
-   └─ French EU: "Le serveur KoboToolbox Union européenne"
-
-   Question Library:
-   ├─ Spanish: "La biblioteca de preguntas" (CAPITAL L)
-   └─ French: "La bibliothèque de questions" (CAPITAL L)
-
-   Formbuilder (FIRST reference ONLY):
-   ├─ Spanish: "editor de formularios de KoboToolbox (Formbuilder)"
-   ├─ French: "l'interface de création de formulaires KoboToolbox (KoboToolbox Formbuilder)"
-   └─ Subsequent uses: Use short form only
-
-   Keep in English:
-   ├─ KoboToolbox (brand name)
-   ├─ XLSForm (technical term)
-   └─ Product names: iPhone, Android, Google Drive, Dropbox
-
-2. UI ELEMENTS:
-   ├─ Capitalize: Draft → Brouillon(FR) / Borrador(ES)
-   ├─ Tabs ALL CAPS: FORM → FORMULAIRE / FORMULARIO, DATA → DONNÉES / DATOS
-   └─ Buttons: NEW → NOUVEAU / NUEVO, DEPLOY → DÉPLOYER / DESPLEGAR
-
-3. LANGUAGE STYLE:
-   Spanish:
-   ├─ Use informal "tú"
-   ├─ Gender-inclusive: "los/as usuarios/as" (NOT "los usuarios")
-   ├─ Data collection: "recolectar" (NOT "recopilar")
-   └─ Management: "manejo de datos" (NOT "gestión de datos")
-   
-   French:
-   ├─ Use formal "vous"
-   ├─ Gender-inclusive: "utilisatrices et utilisateurs"
-   ├─ Upload: "importer" (NOT "télécharger")
-   └─ Data collection: "collecte de données"
-   
-   Arabic:
-   ├─ Use formal Modern Standard Arabic
-   ├─ Keep brand names in English
-   └─ Use natural Arabic phrasing
-
-4. FORMATTING:
-   ├─ Preserve all HTML/markdown structure
-   ├─ Keep links functional
-   ├─ Maintain document hierarchy
-   └─ Preserve icons like <i class="k-icon-plus"></i>
-
-⚠️ CHECK THESE BEFORE SUBMITTING TRANSLATION
-"""
     
     def determine_complexity(self, file_path: str) -> str:
         """
@@ -212,12 +148,27 @@ You are translating KoboToolbox documentation. Follow these rules EXACTLY.
         """
         print(f"  📊 Translation mode: DIFF-BASED (changes only)", file=sys.stderr)
         
-        # Use condensed skill + brand terminology for diffs
+        # Use main skill + all reference files for diffs to ensure accuracy
         skill_prompt = f"""
-{self.skill_context['condensed']}
+{self.skill_context.get('main', '')}
 
-## BRAND TERMINOLOGY REFERENCE (Check for every brand term)
-{self.skill_context.get('brand', '[Brand terminology not available]')}
+## BRAND TERMINOLOGY REFERENCE
+{self.skill_context.get('brand', '')}
+
+## UI TERMINOLOGY REFERENCE
+{self.skill_context.get('ui', '')}
+
+## DATA COLLECTION TERMS
+{self.skill_context.get('data', '')}
+
+## FORM BUILDING TERMS
+{self.skill_context.get('forms', '')}
+
+## QUESTION TYPES
+{self.skill_context.get('questions', '')}
+
+## COURSE TERMINOLOGY
+{self.skill_context.get('course', '')}
 """
         
         # Build prompt with EXTREME emphasis on diff-only translation
@@ -338,27 +289,28 @@ This is critical - translate ONLY what is explicitly marked for translation.""",
         
         print(f"  📊 Complexity level: {complexity}")
         
-        # Select skill context based on complexity
-        if complexity == 'simple':
-            skill_prompt = self.skill_context['condensed']
-        elif complexity == 'complex':
-            # Use full skill + brand + UI references
-            skill_prompt = f"""
-{self.skill_context['condensed']}
+        # Build comprehensive skill prompt with all reference materials
+        # All files are used regardless of complexity to ensure consistency
+        skill_prompt = f"""
+{self.skill_context.get('main', '')}
 
-## COMPLETE BRAND TERMINOLOGY REFERENCE
-{self.skill_context.get('brand', '[Brand terminology not available]')}
+## BRAND TERMINOLOGY REFERENCE
+{self.skill_context.get('brand', '')}
 
-## COMPLETE UI TERMINOLOGY REFERENCE
-{self.skill_context.get('ui', '[UI terminology not available]')}
-"""
-        else:  # standard
-            # Condensed + brand terminology (most common)
-            skill_prompt = f"""
-{self.skill_context['condensed']}
+## UI TERMINOLOGY REFERENCE
+{self.skill_context.get('ui', '')}
 
-## BRAND TERMINOLOGY REFERENCE (Check for every brand term)
-{self.skill_context.get('brand', '[Brand terminology not available]')}
+## DATA COLLECTION TERMS
+{self.skill_context.get('data', '')}
+
+## FORM BUILDING TERMS
+{self.skill_context.get('forms', '')}
+
+## QUESTION TYPES
+{self.skill_context.get('questions', '')}
+
+## COURSE TERMINOLOGY
+{self.skill_context.get('course', '')}
 """
         
         # Build final prompt
