@@ -1,6 +1,5 @@
 # Adding Calculations and Constraints in a Matrix Question
 
-**Last updated:**
 <a href="https://github.com/kobotoolbox/docs/blob/aaabdac8ec257d3157ec2ab2ceae65130e8c12d4/source/calculations_constraints_matrix.md" class="reference">14
 Apr 2022</a>
 

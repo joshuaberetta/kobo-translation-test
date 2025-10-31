@@ -1,5 +1,4 @@
 # Adding Another Language to your XLSForm
-**Last updated:** <a href="https://github.com/kobotoolbox/docs/blob/47cbc8887d6df73ef3bf760d5a3962b77ab26ed8/source/language_xls.md" class="reference">29 Jul 2025</a>
 
 There are two methods to adding multiple languages to your form. You can either
 add and manage them directly through the online

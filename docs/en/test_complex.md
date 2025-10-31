@@ -1,7 +1,5 @@
 # Quick Start Guide
 
-**Last updated:** January 15, 2025
-
 This article provides a quick guide to getting started using KoboToolbox. It explains how to create an account, build and deploy a form, and start collecting data.
 
 ## Create an Account and Log In

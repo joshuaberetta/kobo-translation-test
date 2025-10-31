@@ -1,6 +1,5 @@
 ﻿# Adding Skip Logic to a Matrix Question
 
-**Last updated:**
 <a href="https://github.com/kobotoolbox/docs/blob/83d9dadfcc132d75f99e2705f77c425c2fee6d70/source/adding_skip_to_matrix.md" class="reference">11
 Mar 2022</a>
 

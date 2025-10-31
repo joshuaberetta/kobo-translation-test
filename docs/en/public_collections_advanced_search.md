@@ -1,6 +1,5 @@
 # Public Collections Advanced Search
 
-**Last updated:**
 <a href="https://github.com/kobotoolbox/docs/blob/a6ae76d4d566c1139914f03ba8452fdbf122cf11/source/public_collections_advanced_search.md" class="reference">4
 Mar 2021</a>
 
