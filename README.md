@@ -93,6 +93,7 @@ python scripts/translation_agent.py --test \
 
 ### 5. Test with GitHub Actions
 
+#### Option A: Automatic (on push to main)
 ```bash
 # Make a change to an English doc
 echo "## New Section\n\nTest content" >> docs/en/test_simple.md
@@ -105,6 +106,35 @@ git push
 # Watch GitHub Actions run:
 # https://github.com/YOUR-ORG/kobo-translation-test/actions
 ```
+
+#### Option B: Manual Workflow Dispatch
+
+You can manually trigger translations via GitHub's Actions tab:
+
+**To translate specific files:**
+1. Go to Actions → Auto-Translate Documentation
+2. Click "Run workflow"
+3. Enter files: `docs/en/test_simple.md,docs/en/test_complex.md`
+4. Enter languages: `es,fr,ar`
+5. Click "Run workflow"
+
+**To translate ALL English source files:**
+1. Go to Actions → Auto-Translate Documentation
+2. Click "Run workflow"
+3. Check ☑️ "Translate ALL English source files"
+4. Enter languages: `es,fr,ar`
+5. Click "Run workflow"
+
+⚠️ **Warning**: Translating all files will:
+- Process **100+ files** (based on your docs/en/ directory)
+- Cost approximately **$15-30** depending on file sizes
+- Take **30-60 minutes** to complete
+- Create a large PR with many changes
+
+This is useful for:
+- Initial bulk translation setup
+- Major skill/terminology updates that affect all files
+- Periodic quality refresh of all translations
 
 ### 6. Review and Merge
 

@@ -9,6 +9,11 @@ on:
   
   workflow_dispatch:
     inputs:
+      translate_all:
+        description: 'Translate ALL English source files (overrides files_to_translate)'
+        required: false
+        type: boolean
+        default: false
       files_to_translate:
         description: 'Files to translate (comma-separated, e.g., docs/en/test_simple.md)'
         required: false
@@ -36,10 +41,26 @@ jobs:
           echo "Event: ${{ github.event_name }}"
           
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            # Manual trigger - use input
-            FILES="${{ github.event.inputs.files_to_translate }}"
-            LANGUAGES="${{ github.event.inputs.languages }}"
-            echo "Manual trigger - using input files"
+            # Manual trigger - check if translate_all is enabled
+            if [ "${{ github.event.inputs.translate_all }}" == "true" ]; then
+              echo "🌍 TRANSLATE ALL MODE - Finding all English source files..."
+              
+              # Find all markdown files in docs/en/
+              ALL_FILES=$(find docs/en -name "*.md" -type f | tr '\n' ',' | sed 's/,$//')
+              FILES="$ALL_FILES"
+              LANGUAGES="${{ github.event.inputs.languages }}"
+              
+              FILE_COUNT=$(echo "$FILES" | tr ',' '\n' | wc -l)
+              echo "📊 Found $FILE_COUNT English source files to translate"
+              echo ""
+              echo "Files:"
+              echo "$FILES" | tr ',' '\n'
+            else
+              # Manual trigger - use input
+              FILES="${{ github.event.inputs.files_to_translate }}"
+              LANGUAGES="${{ github.event.inputs.languages }}"
+              echo "Manual trigger - using input files"
+            fi
           else
             # Auto trigger - detect what changed
             echo "Auto trigger - detecting changes..."
@@ -332,9 +353,9 @@ jobs:
         with:
           token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
           commit-message: |
-            🌐 Auto-translate: Update translations
+            🌐 Auto-translate: ${{ github.event.inputs.translate_all == 'true' && 'ALL FILES' || 'Update translations' }}
             
-            Files: ${{ steps.detect.outputs.files }}
+            ${{ github.event.inputs.translate_all == 'true' && format('Mode: BULK TRANSLATION\nTotal files: {0}', steps.detect.outputs.files) || format('Files: {0}', steps.detect.outputs.files) }}
             Languages: ${{ steps.detect.outputs.languages }}
             
             Automated by Translation Bot
@@ -343,6 +364,8 @@ jobs:
           title: "🌐 Auto-translate #${{ github.run_number }}"
           body: |
             ## 🤖 Automated Translation
+            
+            ${{ github.event.inputs.translate_all == 'true' && '### 🌍 BULK TRANSLATION MODE\n\n**Translating ALL English source files** - This is a complete translation refresh.\n' || '' }}
             
             AI-generated translations using the kobo-translation skill with **diff-based updates**.
             
