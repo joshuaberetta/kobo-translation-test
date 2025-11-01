@@ -1,23 +1,22 @@
-# Incluir códigos P en los datos de salida
-**Última actualización:** <a href="https://github.com/kobotoolbox/docs/blob/47cbc8887d6df73ef3bf760d5a3962b77ab26ed8/source/p_codes.md" class="reference">29 Jul 2025</a>
+# Incluir P-Codes en los datos de salida
 
 Si utilizas listas en cascada, por favor [sigue las instrucciones](cascading_select.md)
 para selecciones en cascada.
 
-Normalmente, solo el "Name" y NO el "Label" aparecerá en tu archivo de Excel exportado,
-lo que significa que solo el código P O el nombre de la ubicación aparecerá.
+Normalmente, solo el "Name" (nombre) y NO el "Label" (etiqueta) aparecerá en tu archivo Excel
+exportado, lo que significa que solo el P-code O el nombre de la ubicación aparecerá.
 
-Para obtener **tanto el código P como el nombre** como parte de tus datos exportados, haz lo
+Para obtener **tanto el P-code como el nombre** como parte de tus datos exportados, haz lo
 siguiente:
 
-1. En todas las columnas "Name" de tu formulario exportado, usa el código P de la ubicación
-2. En todas las columnas "Label" de tu formulario exportado, usa el nombre de la ubicación
-3. Para cada nivel administrativo que uses, agrega una pregunta con tipo "calculate", usando la
+1. En todas las columnas "Name" (nombre) de tu formulario exportado, usa el P-code de la ubicación
+2. En todas las columnas "Label" (etiqueta) de tu formulario exportado, usa el nombre de la ubicación
+3. Para cada nivel administrativo que uses, añade una pregunta con tipo "calculate" (cálculo), usando la
    sintaxis:
 
 `if(string-length(${name_of_pcode_column}) != 0,jr:choice-name(${name_of_pcode_column},'${name_of_pcode_column}'),'(unspecified name_of_pcode_column)')`
 
-<p class="note">Esta fórmula extraerá el "Label" (es decir, el nombre de la ubicación) de la entrada, y en tus resultados exportados obtendrás tanto el nombre como el código P.</p>
+<p class="note">Esta fórmula extraerá el "Label" (etiqueta) (es decir, el nombre de la ubicación) de la entrada, y obtendrás en tus resultados exportados tanto el nombre como el p-code.</p>
 
 ## Ejemplo con 3 niveles administrativos, usando listas en cascada
 

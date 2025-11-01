@@ -1,7 +1,6 @@
-# Primeros pasos con XLSForm
-**Última actualización:** <a href="https://github.com/kobotoolbox/docs/blob/8d0c50778ae17aa78829bafa85b7bf16ef00c45c/source/getting_started_xlsform.md" class="reference">10 Jun 2025</a>
+# Iniciar con XLSForm
 
-Al crear formularios de encuesta para KoboToolbox, puedes construir tu formulario con el editor de formularios de KoboToolbox (Formbuilder) o en XLSForm. XLSForm es muy efectivo para crear formularios tanto básicos como avanzados en un formato fácil de usar.
+Al crear formularios de encuesta para KoboToolbox, puedes elaborar tu formulario con el editor de formularios de KoboToolbox (Formbuilder) o en XLSForm. XLSForm es muy efectivo para crear formularios tanto básicos como avanzados en un formato fácil de usar.
 
 Este artículo explica cómo:
 
@@ -19,17 +18,17 @@ Este artículo explica cómo:
 <br/>
 
 <p class="note">
-  <b>Nota:</b> Algunas funcionalidades de XLSForm no están actualmente disponibles en el Formbuilder, pero pueden ser usadas para la construcción de formularios en XLSForm y luego cargarse a KoboToolbox. Esto puede ser especialmente útil para formularios complejos.
+  <b>Nota:</b> Algunas funcionalidades de XLSForm no están disponibles actualmente en el Formbuilder, pero pueden usarse para la elaboración de formularios en XLSForm y luego cargarse en KoboToolbox. Esto puede ser especialmente útil para formularios complejos.
 </p>
 
 ## Qué es XLSForm
 
-XLSForm es un estándar para desarrollar formularios usando Microsoft Excel y otros programas de hojas de cálculo. Los XLSForms pueden luego cargarse a KoboToolbox para generar un formulario de recolección de datos.
+XLSForm es un formato estándar para desarrollar formularios usando Microsoft Excel y otros programas de hojas de cálculo. Los XLSForms pueden cargarse en KoboToolbox para generar un formulario de recolección de datos.
 
-Hay muchas ventajas al usar XLSForm, especialmente para construir formularios complejos con funcionalidades más avanzadas, incluyendo condiciones de relevancia, cálculos y restricciones. XLSForm también te permite colaborar en la construcción de formularios usando el mismo archivo de Excel o en tiempo real usando Google Sheets.
+Existen muchas ventajas al usar XLSForm, especialmente para elaborar formularios complejos con funcionalidades más avanzadas, incluyendo condiciones de relevancia, cálculos y restricciones. XLSForm también te permite colaborar en la elaboración de formularios usando el mismo archivo de Excel o en tiempo real usando Google Sheets.
 
 <p class="note">
-  <b>Nota:</b> Para una introducción completa al desarrollo de formularios usando XLSForm, recomendamos el curso en línea a tu propio ritmo <a class="reference" href="https://academy.kobotoolbox.org/courses/xlsform-fundamentals">XLSForm Fundamentals Course</a> de KoboToolbox Academy.
+  <b>Nota:</b> Para una introducción completa al desarrollo de formularios usando XLSForm, recomendamos el <a class="reference" href="https://academy.kobotoolbox.org/courses/xlsform-fundamentals">Curso de Fundamentos de XLSForm</a> en línea y a tu propio ritmo de KoboToolbox Academy.
 </p>
 
 ## Configurar un XLSForm
@@ -64,12 +63,12 @@ Para configurar la estructura básica de un XLSForm:
 | name | Define un nombre corto y único para referirse a cada opción de respuesta |
 | label | Define el texto de la opción tal como se mostrará en el formulario |
 
-## Agregar preguntas
+## Añadir preguntas
 
-En XLSForm, las preguntas se agregan en la hoja de trabajo **survey**. El proceso paso a paso a continuación explica cómo agregar las siguientes preguntas de ejemplo: **¿Cuál es tu nombre?**, **¿Cuál es el sexo de tu bebé?** y **¿Cuántos años tienes?**
+En XLSForm, las preguntas se añaden en la hoja de trabajo **survey**. El proceso paso a paso a continuación explica cómo añadir las siguientes preguntas de ejemplo: **¿Cuál es tu nombre?**, **¿Cuál es el sexo de tu bebé?** y **¿Cuántos años tienes?**
 
 1. En la columna `type` de la hoja de trabajo survey, escribe **text**. Este es el tipo de pregunta para la primera pregunta, **¿Cuál es tu nombre?**
-2. En la columna `name`, escribe **yourname**. Este será el nombre único usado para identificar la primera pregunta. Cada pregunta debe tener un nombre único y no puede contener espacios o símbolos (excepto el guion bajo).
+2. En la columna `name`, escribe **yourname**. Este será el nombre único usado para identificar la primera pregunta. Cada pregunta debe tener un nombre único y no puede contener espacios ni símbolos (excepto el guion bajo).
 3. En la columna `label`, escribe **¿Cuál es tu nombre?**. Esta etiqueta se mostrará como el texto de la pregunta en el formulario durante la recolección de datos.
 
 | type | name     | label              |
@@ -79,7 +78,7 @@ En XLSForm, las preguntas se agregan en la hoja de trabajo **survey**. El proces
 
 4. Para la segunda pregunta, **¿Cuál es el sexo de tu bebé?**, ingresa **select_one sex** en la columna `type` de la hoja de trabajo survey.
    - **select_one** es el tipo de pregunta que permite a los/as usuarios/as seleccionar solo una opción de una lista de opciones de respuesta.
-   - **sex** es el nombre de la lista de opciones de respuesta, que se define en la hoja de trabajo choices (ver [Agregar opciones de respuesta](https://support.kobotoolbox.org/getting_started_xlsform.html#adding-response-choices)).
+   - **sex** es el nombre de la lista de opciones de respuesta, que se define en la hoja de trabajo choices (ver [Añadir opciones de respuesta](https://support.kobotoolbox.org/getting_started_xlsform.html#adding-response-choices)).
 5. En la columna `name`, escribe **baby_sex**.
 6. En la columna `label`, escribe **¿Cuál es el sexo de tu bebé?**
 
@@ -97,21 +96,21 @@ En XLSForm, las preguntas se agregan en la hoja de trabajo **survey**. El proces
 | survey |
 
 <p class="note">
-  <b>Nota:</b> Para aprender más sobre los tipos de preguntas en XLSForm, consulta <a class="reference external" href="https://xlsform.org/en/#question-types">Question types (XLSForm.org)</a>.
+  <b>Nota:</b> Para aprender más sobre los tipos de pregunta en XLSForm, consulta <a class="reference external" href="https://xlsform.org/en/#question-types">Tipos de pregunta (XLSForm.org)</a>.
 </p>
 
-## Agregar opciones de respuesta
+## Añadir opciones de respuesta
 
-Para preguntas de tipo select (**select_one** y **select_multiple**), las opciones de respuesta se agregan en la hoja de trabajo **choices**. El proceso paso a paso a continuación explica cómo agregar las opciones para la pregunta de ejemplo: **¿Cuál es el sexo de tu bebé?**
+Para preguntas de tipo select (**select_one** y **select_multiple**), las opciones de respuesta se añaden en la hoja de trabajo **choices**. El proceso paso a paso a continuación explica cómo añadir las opciones para la pregunta de ejemplo: **¿Cuál es el sexo de tu bebé?**
 
 1. En la columna `list_name` en la hoja de trabajo choices, ingresa el list_name **sex**.
    - Este es el list_name previamente definido para la pregunta **baby_sex** en la hoja de trabajo survey.
    - El list_name es el identificador único para la lista de opciones de respuesta.
-2. En la columna name, agrega el nombre de opción **male**.
-   - El nombre de opción es el identificador único para cada opción.
-3. En la columna label, ingresa la etiqueta de opción **Male**.
-   - La etiqueta de opción se muestra en el formulario durante la recolección de datos.
-4. Para agregar la segunda opción de respuesta para la pregunta **baby_sex**, ingresa **sex** en la columna `list_name`. Ingresa **female** como el nombre de opción y **Female** como la etiqueta de opción.
+2. En la columna name, añade el nombre de la opción **male**.
+   - El nombre de la opción es el identificador único para cada opción.
+3. En la columna label, ingresa la etiqueta de la opción **Male**.
+   - La etiqueta de la opción se muestra en el formulario durante la recolección de datos.
+4. Para añadir la segunda opción de respuesta para la pregunta **baby_sex**, ingresa **sex** en la columna `list_name`. Ingresa **female** como el nombre de la opción y **Female** como la etiqueta de la opción.
 
 | list_name | name   | label  |
 | :-------- | :----- | :----- |
@@ -119,9 +118,9 @@ Para preguntas de tipo select (**select_one** y **select_multiple**), las opcion
 | sex       | female | Female |
 | choices |
 
-## Agregar configuraciones
+## Añadir configuraciones
 
-Hay muchas configuraciones opcionales que pueden agregarse a la hoja de trabajo **settings** en XLSForm.
+Existen muchas configuraciones opcionales que pueden añadirse a la hoja de trabajo **settings** en XLSForm.
 
 Las configuraciones comunes del formulario incluyen:
 
@@ -133,31 +132,31 @@ Las configuraciones comunes del formulario incluyen:
 | version          | ID de versión del formulario                        |
 | settings |
 
-Por ejemplo, para agregar un título de formulario:
+Por ejemplo, para añadir un título de formulario:
 
-1. Agrega una columna en la hoja de trabajo settings llamada `form_title`.
+1. Añade una columna en la hoja de trabajo settings llamada `form_title`.
 2. Ingresa el título del formulario en la columna `form_title`.
    - Si no defines un título de formulario en tu XLSForm, por defecto el nombre del archivo de Excel se usará como el nombre del proyecto en KoboToolbox. Esto puede editarse en KoboToolbox.
 
 <p class="note">
-  <b>Nota:</b> Para aprender más sobre la hoja de trabajo settings en XLSForm, consulta <a class="reference external" href="https://xlsform.org/en/#settings-worksheet">Settings worksheet (XLSForm.org)</a>.
+  <b>Nota:</b> Para aprender más sobre la hoja de trabajo settings en XLSForm, consulta <a class="reference external" href="https://xlsform.org/en/#settings-worksheet">Hoja de trabajo settings (XLSForm.org)</a>.
 </p>
 
-## Agregar columnas opcionales a la hoja de trabajo survey
+## Añadir columnas opcionales a la hoja de trabajo survey
 
-Para personalizar aún más tu XLSForm, puedes agregar columnas opcionales que incluyen lógica de formulario, opciones de preguntas y configuraciones avanzadas.
+Para personalizar aún más tu XLSForm, puedes añadir columnas opcionales que incluyan lógica de formulario, opciones de pregunta y configuraciones avanzadas.
 
 | **Nombre de columna**    | **Descripción**                                |
 | :----------------- | :--------------------------------------------- |
 | hint               | Sugerencia de pregunta                                  |
-| guidance_hint      | Sugerencia de orientación                                  |
+| guidance_hint      | Sugerencia adicional                                  |
 | required           | Opción para hacer una pregunta obligatoria            |
-| relevant           | Condiciones de lógica de salto para la pregunta         |
+| relevant           | Condiciones de lógica de omisión para la pregunta         |
 | constraint         | Criterios de validación para la pregunta           |
 | constraint_message | Mensaje de error cuando no se cumplen los criterios de validación |
-| appearance         | Opciones para cómo se muestran las preguntas        |
-| choice_filter      | Criterios para select en cascada                  |
-| parameters         | Configuraciones para tipos de preguntas específicas           |
+| appearance         | Opciones de cómo se muestran las preguntas        |
+| choice_filter      | Criterios para selección en cascada                  |
+| parameters         | Configuraciones para tipos de pregunta específicos           |
 | calculation        | Expresión matemática para pregunta de cálculo |
 | default            | Respuesta predeterminada para una pregunta                |
 
@@ -165,14 +164,14 @@ Para personalizar aún más tu XLSForm, puedes agregar columnas opcionales que i
 
 Para cargar y previsualizar tu XLSForm en KoboToolbox:
 
-1. Ve a la vista **Lista de Proyectos** en KoboToolbox y haz clic en **NUEVO**.
+1. Ve a la vista **Lista de proyectos** en KoboToolbox y haz click en **NUEVO**.
 2. Selecciona **Cargar un XLSForm** y carga tu archivo de **Excel**.
-   - Si creaste tu XLSForm en **Google Sheets**, necesitarás descargar el archivo antes de cargarlo a KoboToolbox. En el menú de Google Sheets, haz clic en Archivo > Descargar > Microsoft Excel.
-3. Ingresa los detalles del proyecto y haz clic en **CREAR PROYECTO**.
-4. Haz clic en el botón <i class="k-icon k-icon-view"></i> **Previsualizar**.
+   - Si creaste tu XLSForm en **Google Sheets**, necesitarás descargar el archivo antes de cargarlo en KoboToolbox. En el menú de Google Sheets, haz click en Archivo > Descargar > Microsoft Excel.
+3. Ingresa los detalles del proyecto y haz click en **CREAR PROYECTO**.
+4. Haz click en el botón <i class="k-icon k-icon-view"></i> **Vista previa**.
 
 <p class="note">
-  <b>Nota:</b> Para aprender cómo importar tu XLSForm vía URL, consulta el artículo de ayuda <a class="reference" href="https://support.kobotoolbox.org/xls_url.html">Importar un XLSForm vía URL</a>.
+  <b>Nota:</b> Para aprender cómo importar tu XLSForm mediante URL, consulta el artículo de ayuda <a class="reference" href="https://support.kobotoolbox.org/xls_url.html">Importar un XLSForm mediante URL</a>.
 </p>
 
 ## Descargar un XLSForm desde KoboToolbox
@@ -180,24 +179,24 @@ Para cargar y previsualizar tu XLSForm en KoboToolbox:
 Los formularios creados usando el editor de formularios de KoboToolbox pueden descargarse fácilmente como un archivo XLSForm.
 
 1. Ve a la ventana **FORMULARIO** de tu proyecto en KoboToolbox.
-2. Haz clic en el ícono <i class="k-icon k-icon-more"></i> **Más acciones**.
-3. Haz clic en <i class="k-icon k-icon-xls-file"></i>**Descargar XLS**.
+2. Haz click en el ícono <i class="k-icon k-icon-more"></i> **Más acciones**.
+3. Haz click en <i class="k-icon k-icon-xls-file"></i>**Descargar XLS**.
 
 Descargar tu formulario de KoboToolbox como un archivo XLSForm puede ser muy útil por muchas razones, incluyendo:
 
--   Agregar funcionalidades avanzadas a tu formulario que no están actualmente soportadas en el Formbuilder.
--   Hacer cambios al formulario que son más eficientes de hacer en XLSForm (por ejemplo, duplicar un gran número de preguntas o agregar traducciones).
--   Evitar velocidades lentas de computadora o internet que pueden afectar la construcción de formularios en el Formbuilder (por ejemplo, RAM limitada, conectividad de internet deficiente).
--   Compartir el formulario como un archivo de Excel para colaboración con miembros del equipo y manejo de versiones del formulario.
--   Compartir el formulario para solicitar asistencia del equipo de soporte de KoboToolbox o en el Foro de la comunidad.
+-   Añadir funcionalidades avanzadas a tu formulario que actualmente no están disponibles en el Formbuilder.
+-   Realizar cambios al formulario que son más eficientes de hacer en XLSForm (por ejemplo, duplicar un gran número de preguntas o añadir traducciones).
+-   Evitar velocidades lentas de computadora o internet que pueden afectar la elaboración de formularios en el Formbuilder (por ejemplo, RAM limitada, conectividad de internet deficiente).
+-   Compartir el formulario como un archivo de Excel para colaborar con miembros del equipo y gestionar versiones del formulario.
+-   Compartir el formulario para solicitar asistencia del equipo de ayuda de KoboToolbox o en el Foro de la comunidad.
 
 ## Reemplazar un formulario con un archivo XLSForm
 
-Puedes reemplazar un formulario existente en el Formbuilder con una nueva versión usando un XLSForm. Por ejemplo, después de editar el formulario en Excel, debes cargar el archivo actualizado a KoboToolbox.
+Puedes reemplazar un formulario existente en el Formbuilder con una nueva versión usando un XLSForm. Por ejemplo, después de editar el formulario en Excel, debes cargar el archivo actualizado en KoboToolbox.
 
 1. Ve a la ventana **FORMULARIO** de tu proyecto en KoboToolbox.
-2. Haz clic en el ícono <i class="k-icon k-icon-more"></i> **Más acciones**.
-3. Haz clic en <i class="k-icon k-icon-replace"></i> **Reemplazar formulario**.
+2. Haz click en el ícono <i class="k-icon k-icon-more"></i> **Más acciones**.
+3. Haz click en <i class="k-icon k-icon-replace"></i> **Reemplazar formulario**.
 4. Elige el archivo que deseas cargar.
 
 ## Más recursos de XLSForm
@@ -205,4 +204,4 @@ Puedes reemplazar un formulario existente en el Formbuilder con una nueva versi�
 Para más información sobre el uso de XLSForm, consulta los siguientes recursos:
 
 -   [Documentación oficial de XLSForm en XLSForm.org](https://xlsform.org)
--   [Documentación de construcción de formularios de ODK](https://docs.getodk.org/)
+-   [Documentación de elaboración de formularios de ODK](https://docs.getodk.org/)

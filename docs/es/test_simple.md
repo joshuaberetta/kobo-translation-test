@@ -1,12 +1,12 @@
-# Primeros pasos con la recolección de datos
+# Iniciar con la Recolección de Datos
 
 La recolección de datos es una parte esencial de cualquier proyecto de investigación o encuesta. Esta guía te ayudará a comprender los conceptos básicos de KoboToolbox.
 
-## ¿Qué es la recolección de datos?
+## ¿Qué es la Recolección de Datos?
 
 La recolección de datos es el proceso de recopilar información de diversas fuentes. Ayuda a las organizaciones a tomar decisiones informadas basadas en hechos y evidencia.
 
-## Pasos básicos
+## Pasos Básicos
 
 Sigue estos pasos para recolectar datos de manera efectiva:
 
@@ -17,7 +17,7 @@ Sigue estos pasos para recolectar datos de manera efectiva:
 5. **Revisa tus resultados** - Analiza lo que aprendiste
 6. **Comparte tus hallazgos** - Presenta tus datos a las partes interesadas
 
-## Consejos para el éxito
+## Consejos para el Éxito
 
 - Mantén las preguntas claras y simples
 - Prueba tu proceso antes de comenzar
@@ -25,23 +25,23 @@ Sigue estos pasos para recolectar datos de manera efectiva:
 - Almacena los datos de forma segura
 - Revisa y verifica tu información
 
-## Desafíos comunes
+## Desafíos Comunes
 
-### Desafío 1: Bajas tasas de respuesta
-**Solución:** Facilita la participación y explica los beneficios claramente.
+### Desafío 1: Bajas Tasas de Respuesta
+**Solución:** Facilita la participación y explica claramente los beneficios.
 
-### Desafío 2: Datos incompletos
+### Desafío 2: Datos Incompletos
 **Solución:** Usa campos obligatorios y proporciona instrucciones claras.
 
-### Desafío 3: Calidad de los datos
+### Desafío 3: Calidad de los Datos
 **Solución:** Valida las respuestas y haz seguimiento a las respuestas poco claras.
 
-## Próximos pasos
+## Próximos Pasos
 
 Una vez que comprendas los conceptos básicos, puedes:
 - Diseñar encuestas más complejas
-- Usar tipos de preguntas avanzadas
+- Usar tipos de pregunta avanzados
 - Analizar tus datos
 - Compartir tus hallazgos
 
-Esta es una nueva línea al documento. ¡Feliz recolección de datos!
+Esta es una nueva línea en el documento. ¡Feliz recolección de datos!

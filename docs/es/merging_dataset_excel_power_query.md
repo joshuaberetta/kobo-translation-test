@@ -1,40 +1,39 @@
-# Combinar datos individuales con datos de lista a través de Power Query en Excel
-**Última actualización:** <a href="https://github.com/kobotoolbox/docs/blob/73dbdbb56448bbfbdb62af8017b71582965291d2/source/merging_dataset_excel_power_query.md" class="reference">6 abr 2022</a>
+# Combinación de datos individuales con datos de lista mediante Power Query en Excel
 
 Como se ilustra en el artículo de ayuda,
-[Agrupar preguntas y grupos repetidos](group_repeat.md), puedes usar
-grupos repetidos para cumplir ciertos requisitos de encuesta. También puedes necesitar
-analizar datos de los grupos repetidos que fueron recolectados. Al
+[Agrupar preguntas y grupos de repetición](group_repeat.md), puedes usar
+grupos de repetición para cumplir con ciertos requisitos de encuesta. También es posible que necesites
+analizar datos de los grupos de repetición que se recolectaron. Al
 [descargar los datos del servidor (en formato XLS)](export_download.md), deberías
 ver los datos en la siguiente estructura:
 
-![Dataset Sheets](/images/merging_dataset_excel_power_query/dataset_sheets.png)
+![Hojas del conjunto de datos](/images/merging_dataset_excel_power_query/dataset_sheets.png)
 
 La primera hoja con el nombre **Repeat Group (Merge)** que se ve en la imagen
 anterior contiene los _datos individuales_ de la encuesta, mientras que la segunda hoja con
 el nombre **CR** contiene los _datos de lista_.
 
 <p class="note">
-  Para conjuntos de datos descargados, deberías tener una hoja más que el número de
-  <em>grupos repetidos</em>. Por ejemplo, si tuvieras un
-  <em>grupo repetido</em> incluido en el formulario de encuesta, deberías tener dos hojas
+  Para los conjuntos de datos descargados, deberías tener una hoja más que el número de
+  <em>grupos de repetición</em>. Por ejemplo, si tuvieras un
+  <em>grupo de repetición</em> incluido en el formulario de encuesta, deberías tener dos hojas
   en tu conjunto de datos.
 </p>
 
 Este artículo de ayuda también ilustrará la diferencia entre _datos
 individuales_ y _datos de lista_. Luego mostrará los pasos para combinarlos en
-un solo conjunto de datos a través de **Power Query** en **Excel**.
+un solo conjunto de datos mediante **Power Query** en **Excel**.
 
-Combinar _datos individuales_ y _datos de lista_ a través del sistema actualmente no está
-disponible, pero es posible a través de **Power Query** en **Excel**. Se eligió Excel sobre otro software porque es una hoja de cálculo ampliamente utilizada y disponible
-para casi todas las PCs. También es relativamente fácil de usar.
+La combinación de _datos individuales_ y _datos de lista_ mediante el sistema actualmente no está
+disponible, pero es posible mediante **Power Query** en **Excel**. Se eligió Excel sobre otro software porque es una hoja de cálculo ampliamente utilizada y disponible
+para casi todas las computadoras. También es relativamente fácil de usar.
 
 ## Diferencias entre datos individuales y datos de lista:
 
 Los _datos individuales_ son información que generalmente se captura solo una vez en una
 entrevista. Los _datos de lista_, por otro lado, se capturan más de una vez _(por ejemplo,
-detalles de todos los miembros de la familia que viven dentro de un hogar)_ de la misma
-persona en una entrevista. El número de casos en _datos individuales_ puede ser igual
+detalles de todos los miembros de la familia que viven en un hogar)_ dentro del mismo
+individuo en una entrevista. El número de casos en _datos individuales_ puede ser igual
 a los _datos de lista_ pero nunca puede excederlos, mientras que el número de casos en _datos
 de lista_ generalmente excede los _datos individuales_ pero a veces puede ser igual (pero
 nunca menor).
@@ -43,12 +42,12 @@ Un formulario de encuesta completado, como se muestra a continuación, debería 
 diferencias entre _datos individuales_ y _datos de lista_. _Ten en cuenta que todos los datos
 utilizados en este artículo de ayuda son hipotéticos_.
 
-![Form](/images/merging_dataset_excel_power_query/form.png)
+![Formulario](/images/merging_dataset_excel_power_query/form.png)
 
 <p class="note">
-  Cualquier dato que se recolecta fuera del grupo repetido es
-  <em>datos individuales</em> y cualquier dato que se recolecta dentro de un grupo repetido
-  es <em>datos de lista</em>.
+  Cualquier dato que se recolecta fuera del grupo de repetición son
+  <em>datos individuales</em> y cualquier dato que se recolecta dentro de un grupo de repetición
+  son <em>datos de lista</em>.
 </p>
 
 Los datos descargados en formato XLS también deberían mostrar la diferencia entre
@@ -59,7 +58,7 @@ Cada registro _(como se muestra en la imagen a continuación)_, bajo `Name of th
 `Total school going children (aged 6-16 years) in the household` de la primera
 hoja **Repeat Group (Merge)** son _datos individuales_.
 
-![Individual Data](/images/merging_dataset_excel_power_query/individual_data.png)
+![Datos individuales](/images/merging_dataset_excel_power_query/individual_data.png)
 
 Este conjunto de datos de ejemplo tiene un total de 7 entrevistas como sus _datos individuales_.
 
@@ -67,32 +66,32 @@ De manera similar, cada registro _(como se muestra en la imagen a continuación)
 `Age of child`, y `Sex of child` de la segunda hoja, **CR**, son _datos
 de lista_.
 
-![Roster Data](/images/merging_dataset_excel_power_query/roster_data.png)
+![Datos de lista](/images/merging_dataset_excel_power_query/roster_data.png)
 
 Entonces, este conjunto de datos de muestra de ejemplo tiene un total de 12 registros como sus _datos de lista_.
 
 <p class="note">
   <strong>Nota:</strong> Al descargar un conjunto de datos del servidor, también deberías
-  poder ver otras variables (variables de metadatos) si no han sido
-  filtradas. Han sido eliminadas de este conjunto de datos de ejemplo por simplicidad.
+  poder ver otras variables (variables de metadatos) si no se han
+  filtrado. Se han eliminado de este conjunto de datos de ejemplo por simplicidad.
 </p>
 
-## Combinar datos individuales con datos de lista:
+## Combinación de datos individuales con datos de lista:
 
 Si observas detenidamente las imágenes compartidas anteriormente, puedes ver la columna `_index` con
 valor "1" en la primera hoja **Repeat Group (Merge)**. De manera similar, también hay
 una columna `_parent_index` con valor "1" en la segunda hoja **CR**. `_index` y
 `_parent_index` son variables adicionales creadas por el sistema para manejar grupos
-repetidos. Son variables coincidentes necesarias para combinar _datos individuales_ y
+de repetición. Son variables coincidentes necesarias para combinar _datos individuales_ y
 _datos de lista_ juntos en uno.
 
 A continuación se presentan dos enfoques para combinar _datos individuales_ y _datos de lista_ en un
-solo conjunto de datos a través de **Power Query** en **Excel**. Puedes usar cualquiera de los
+solo conjunto de datos mediante **Power Query** en **Excel**. Puedes usar cualquiera de los
 siguientes enfoques:
 
-### Primer enfoque: Combinar datos individuales con datos de lista (cuando el conjunto de datos ya está abierto)
+### Primer enfoque: Combinación de datos individuales con datos de lista (cuando el conjunto de datos ya está abierto)
 
-Para el primer enfoque, debes tener abierto tu conjunto de datos XLS. Para más detalles,
+Para el primer enfoque, debes haber abierto tu conjunto de datos XLS. Para más detalles,
 consulta el video a continuación:
 
 <video controls>
@@ -112,17 +111,17 @@ consulta el video a continuación:
 
 -   Selecciona el ícono **Cerrar y cargar** que se encuentra en la esquina superior izquierda de
     la pantalla. Ahora deberías ver dos opciones desplegables: **Cerrar y cargar** y
-    **Cerrar y cargar en…**.
+    **Cerrar y cargar en...**.
 
--   Selecciona **Cerrar y cargar en…**.
+-   Selecciona **Cerrar y cargar en...**.
 
 -   Aparecerá un cuadro de diálogo **(Importar datos)**. Selecciona **Solo crear
     conexión** y luego presiona **Aceptar**.
 
 -   Ahora has creado una tabla de consulta para los _(datos individuales)_.
 
--   Ahora puedes ir a la segunda hoja, _(datos de lista)_, y seguir los mismos
-    pasos que realizaste anteriormente.
+-   Ahora puedes ir a la segunda hoja, _(datos de lista)_, y seguir los pasos exactos
+    que realizaste anteriormente.
 
 -   Con esto has creado una tabla de consulta para los _(datos de lista)_.
 
@@ -134,8 +133,8 @@ consulta el video a continuación:
 -   Carga ambas tablas de consulta. Una vez que ambas tablas estén cargadas, selecciona la
     variable coincidente `_index` de la primera tabla. De manera similar, selecciona la
     variable coincidente `_parent_index` de la segunda tabla. Tan pronto como
-    selecciones ambas variables coincidentes deberías poder ver **La selección
-    coincide con … de … filas de la primera tabla**. La tabla de consulta ahora debería estar
+    selecciones ambas variables coincidentes, deberías poder ver **La selección
+    coincide con ... de ... filas de la primera tabla**. La tabla de consulta ahora debería estar
     combinada.
 
 -   Para expandir la tabla combinada, marca todas las variables que desees tener en
@@ -147,12 +146,12 @@ consulta el video a continuación:
 
 -   Una vez más, selecciona el ícono **Cerrar y cargar** que se encuentra en la esquina superior izquierda
     de la pantalla. Deberías ver dos opciones desplegables: **Cerrar y cargar**
-    y **Cerrar y cargar en…**.
+    y **Cerrar y cargar en...**.
 
 -   Selecciona **Cerrar y cargar**. Con este clic final has combinado tus
     _datos individuales_ y _datos de lista_ en un solo conjunto de datos.
 
-### Segundo enfoque: Combinar datos individuales con datos de lista (cuando el conjunto de datos aún no está abierto)
+### Segundo enfoque: Combinación de datos individuales con datos de lista (cuando el conjunto de datos aún no está abierto)
 
 Usa el segundo enfoque cuando aún no hayas abierto tu conjunto de datos XLS y solo
 hayas abierto tu nuevo libro de Excel. Para más detalles, consulta el video a continuación:
@@ -169,7 +168,7 @@ hayas abierto tu nuevo libro de Excel. Para más detalles, consulta el video a c
 -   En la pestaña **Datos**, selecciona **Obtener datos**. Desde allí selecciona **Desde archivo**
     y luego **Desde libro**.
 
--   Busca el archivo en tu PC. Una vez que lo veas, selecciona el archivo y luego
+-   Busca el archivo en tu computadora. Una vez que lo veas, selecciona el archivo y luego
     presiona **Importar**.
 
 -   Se ve un cuadro de diálogo **Navegador**. Aquí, marca **Seleccionar varios elementos**
@@ -178,7 +177,7 @@ hayas abierto tu nuevo libro de Excel. Para más detalles, consulta el video a c
     se activa.
 
 -   Selecciona el botón **Cargar**. Deberías ver dos opciones desplegables: **Cargar**
-    y **Cargar en…**. Selecciona **Cargar**.
+    y **Cargar en...**. Selecciona **Cargar**.
 
 -   Con esto, has creado tablas de consulta para los _(datos individuales)_ y los
     _(datos de lista)_.
@@ -191,8 +190,8 @@ hayas abierto tu nuevo libro de Excel. Para más detalles, consulta el video a c
 -   Carga ambas tablas de consulta. Una vez que ambas tablas estén cargadas, selecciona la
     variable coincidente `_index` de la primera tabla. De manera similar, selecciona la
     variable coincidente `_parent_index` de la segunda tabla. Tan pronto como
-    selecciones ambas variables coincidentes deberías poder ver **La selección
-    coincide con … de … filas de la primera tabla**. La tabla de consulta ahora debería estar
+    selecciones ambas variables coincidentes, deberías poder ver **La selección
+    coincide con ... de ... filas de la primera tabla**. La tabla de consulta ahora debería estar
     combinada.
 
 -   Para expandir la tabla combinada, marca todas las variables que desees tener en
@@ -204,20 +203,20 @@ hayas abierto tu nuevo libro de Excel. Para más detalles, consulta el video a c
 
 -   Una vez más, selecciona el ícono **Cerrar y cargar** que se encuentra en la esquina superior izquierda
     de la pantalla. Deberías ver dos opciones desplegables: **Cerrar y cargar**
-    y **Cerrar y cargar en…**.
+    y **Cerrar y cargar en...**.
 
 -   Selecciona **Cerrar y cargar**. Con este clic final has combinado tus
     _datos individuales_ y _datos de lista_ en un solo conjunto de datos.
 
 <p class="note">
   Las diferencias en los dos enfoques están en la carga de la tabla de consulta. Una vez
-  que las tablas de consulta estén cargadas, necesitarás seguir los mismos pasos para combinar
-  los <em>datos individuales</em> y los <em>datos de lista</em>.
+  que las tablas de consulta estén cargadas, deberás seguir los mismos pasos para combinar
+  los <em>datos individuales</em> y <em>datos de lista</em>.
 </p>
 
 ## Solución de problemas:
 
--   Exportar _grupos repetidos_ no es compatible con el formato CSV. Necesitarás
+-   La exportación de _grupos de repetición_ no es compatible con el formato CSV. Deberás
     descargar los datos en formato XLS.
 
 -   Microsoft Power Query para Excel es un complemento de Excel. Puedes descargarlo

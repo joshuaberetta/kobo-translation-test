@@ -1,16 +1,15 @@
 # Título del artículo
-**Última actualización:** <a href="https://github.com/kobotoolbox/docs/blob/2afa3a0c670fe98b296a79b798f33abf248d0273/source/article_template.md" class="reference">6 Sep 2025</a>
 
-Aquí va tu introducción. Ten en cuenta que el código "Última actualización" que aparece arriba se actualizará automáticamente con el nombre del artículo y la fecha correctos cuando publiques, por lo que no es necesario realizar ningún cambio manual. Recuerda nombrar este archivo de acuerdo con el título del artículo y terminar el nombre del archivo con `.md`.
+Aquí es donde va tu introducción. Ten en cuenta que el código "Last updated" se actualizará automáticamente con el nombre del artículo y la fecha correctos cuando publiques, por lo que no se necesita ningún cambio manual. Recuerda nombrar este archivo según el título del artículo y terminar el nombre del archivo con `.md`.
 
 Este artículo incluye:
 
--   [Formato de texto en markdown](#this-is-a-header)
--   [Agregar archivos multimedia](#adding-media-files)
--   [Agregar tablas](#adding-tables)
--   [Formato HTML](#html-formatting)
--   [Crear una sección de solución de problemas](#troubleshooting)
--   [Lista de íconos](#list-of-icons)
+-   [Formato de texto en markdown](#este-es-un-encabezado)
+-   [Agregar archivos multimedia](#agregar-archivos-multimedia)
+-   [Agregar tablas](#agregar-tablas)
+-   [Formato HTML](#formato-html)
+-   [Crear una sección de solución de problemas](#solucion-de-problemas)
+-   [Lista de iconos](#lista-de-iconos)
 
 Para obtener ayuda con el formato markdown o HTML, consulta [esta guía](https://www.markdownguide.org/basic-syntax/).
 
@@ -26,7 +25,7 @@ Después de crear un nuevo artículo, no olvides agregarlo al archivo [index.rst
 
 1. Esta es una lista numerada.
 2. en markdown.
-    - Con una sub viñeta.
+    - Con una viñeta secundaria.
 
 Este es un **texto en negrita** en markdown.
 
@@ -36,13 +35,13 @@ Este es un `código monoespaciado` en markdown.
 
 > Esta es una cita en bloque (actualmente no se usa en la documentación)
 
-Insertar enlaces: Para transferir la propiedad de tu Equipo a otro/a usuario/a, [por favor contacta a nuestro equipo de soporte](support@kobotoolbox.org).
+Insertar enlaces: Para transferir la propiedad de tu equipo a otro/a usuario/a, [por favor contacta a nuestro equipo de soporte](support@kobotoolbox.org).
 
 Obtén más información sobre [nuestros servicios de capacitación](https://www.kobotoolbox.org/services/training/).
 
 **Enlaces a otros artículos:** Para obtener más información, consulta [permisos a nivel de fila](row_level_permissions.md)
 
-Enlace a [otra sección](#adding-media-files) dentro del artículo. Nota: solo un # para todos los tamaños de encabezado, sin espacio entre # y el nombre del ancla, los nombres de las etiquetas de ancla deben estar en minúsculas y delimitados por guiones si son de varias palabras.
+Enlace a [otra sección](#agregar-archivos-multimedia) dentro del artículo. Nota: solo un # para todos los tamaños de encabezado, sin espacio entre # y el nombre del ancla, los nombres de las etiquetas de ancla deben estar en minúsculas y delimitados por guiones si son de varias palabras.
 
 Para convertir rápidamente una URL o dirección de correo electrónico en un enlace, enciérrala entre corchetes angulares.
 
@@ -69,18 +68,18 @@ Para agregar un salto de línea completo, usa:
 
 ![image](/images/getting_started_organization_feature/organizations_project_views.gif)
 
-Almacena las imágenes en la [carpeta de imágenes](https://github.com/kobotoolbox/docs/tree/master/source/images), en una carpeta nombrada según el artículo de soporte. Incluye el nombre de la carpeta y el nombre del archivo de imagen en la ruta del archivo anterior.
+Almacena las imágenes en la [carpeta de imágenes](https://github.com/kobotoolbox/docs/tree/master/source/images), en una carpeta nombrada según el artículo de ayuda. Incluye el nombre de la carpeta y el nombre del archivo de imagen en la ruta del archivo anterior.
 
-### Agregar íconos
-Haz clic en el ícono <i class="k-icon k-icon-more"></i> **Más acciones** para el/la usuario/a que deseas eliminar.
+### Agregar iconos
+Haz click en el ícono <i class="k-icon k-icon-more"></i> **Más acciones** para el/la usuario/a que deseas eliminar.
 
-Haz clic en <i class="k-icon k-icon-replace"></i> **Reemplazar formulario**.
+Haz click en <i class="k-icon k-icon-replace"></i> **Reemplazar formulario**.
 
-Para obtener una lista completa de todos los íconos, consulta [aquí](https://support.kobotoolbox.org/article_template.html#list-of-icons) y también [aquí](https://support.kobotoolbox.org/_static/kpi-icons/k-icons.html).
+Para obtener una lista completa de todos los iconos, consulta [aquí](https://support.kobotoolbox.org/article_template.html#lista-de-iconos) y también [aquí](https://support.kobotoolbox.org/_static/kpi-icons/k-icons.html).
 
 ### Agregar un video de YouTube
 
-Recomendamos publicar videos en YouTube e insertar un enlace usando iframes. 
+Recomendamos publicar videos en YouTube e insertar un enlace usando iframes.
 
 <iframe src="https://www.youtube.com/embed/oKtMmBAlHho?si=OqS7-rewYMf-Rrw2" style="width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -100,14 +99,14 @@ También puedes incluir videos de la siguiente manera:
 
 ## Agregar tablas
 
-### Tabla normal 
+### Tabla normal
 
 | **Nombre de columna**    | **Descripción**                                |
 | :----------------- | :--------------------------------------------- |
 | hint               | Sugerencia de pregunta                                  |
-| guidance_hint      | Sugerencia de orientación                                  |
+| guidance_hint      | Sugerencia adicional                                  |
 | required           | Opción para hacer una pregunta obligatoria            |
-| relevant           | Condiciones de lógica de salto para la pregunta         |
+| relevant           | Condiciones de lógica de omisión para la pregunta         |
 | constraint         | Criterios de validación para la pregunta           |
 | constraint_message | Mensaje de error cuando no se cumplen los criterios de validación |
 | appearance         | Opciones de cómo se muestran las preguntas        |
@@ -126,13 +125,13 @@ También puedes incluir videos de la siguiente manera:
 Ten en cuenta el `| survey |` en la parte inferior de la tabla.
 
 
-### Fijar ancho de tabla
+### Ajustar el ancho de la tabla
 
 Si una de las columnas no es lo suficientemente grande, agrega espacios `&emsp;` para hacerla más ancha, como se muestra a continuación:
 
 | **Configuración de exportación** | **Descripción**                                |
 | :-------------------- | :------------------------------------ |
-| Guardar selección como… &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| Marca esta opción e ingresa un nombre para tu configuración de exportación. Cuando hagas clic en <strong>EXPORTAR</strong>, esta configuración se guardará y el nombre aparecerá en el cuadro <strong>Aplicar configuración de exportación guardada</strong>. | 
+| Guardar selección como… &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| Marca esta opción e ingresa un nombre para tu configuración de exportación. Cuando hagas click en <strong>EXPORTAR</strong>, esta configuración se guardará y el nombre aparecerá en el cuadro <strong>Aplicar configuración de exportación guardada</strong>. | 
 
 
 <br/> 
@@ -142,7 +141,7 @@ Si una de las columnas no es lo suficientemente grande, agrega espacios `&emsp;`
 Dentro de cuadros de notas y tablas, **usa HTML** para dar formato a tu texto. Por ejemplo:
 
 <p class="note">
-  <b>Nota importante</b>: No es posible compartir proyectos y datos entre los dos servidores. Esto significa que todos/as los/as usuarios/as que trabajen en un proyecto compartido deben usar el mismo servidor para acceder al proyecto. <a href="https://www.kobotoolbox.org/about-us">Agrega un enlace en HTML de esta manera.</a></li>
+  <b>Nota importante</b>: No es posible compartir proyectos y datos entre los dos servidores. Esto significa que todos/as los/as usuarios/as que trabajan en un proyecto compartido deben usar el mismo servidor para acceder al proyecto. <a href="https://www.kobotoolbox.org/about-us">Agrega un enlace en HTML de esta manera.</a></li>
 </p>
 
 <p class="note">
@@ -168,7 +167,7 @@ Saltos de línea en HTML:
 <p>Esta es la primera línea.<br>
 Y esta es la segunda línea.</p>
 
-Haz que tu texto esté en <strong>negrita</strong>, <em>cursiva</em>, o <code>código monoespaciado</code>.
+Haz que tu texto sea <strong>negrita</strong>, <em>cursiva</em>, o <code>código monoespaciado</code>.
 
 Agrega una lista numerada:
 <ol>
@@ -193,7 +192,7 @@ Agrega una lista sin numerar:
 <details>
 <summary><strong>Enketo vs KoboCollect</strong></summary>
 <br>
-    Usa este formato para configurar <strong>secciones de solución de problemas</strong> en tus artículos de soporte. Incluye un título corto que describa claramente el problema y propone soluciones aquí.
+    Usa este formato para configurar <strong>secciones de solución de problemas</strong> en tus artículos de ayuda. Incluye un título breve que describa claramente el problema y propone soluciones aquí.
     <br><br>
     Para separar líneas dentro de un elemento de solución de problemas, agrega un doble salto de línea.
 </details>
@@ -201,12 +200,12 @@ Agrega una lista sin numerar:
 <details>
 <summary><strong>Enketo vs KoboCollect</strong></summary>
 <br>
-Usa este formato para configurar <strong>secciones de solución de problemas</strong> en tus artículos de soporte. Incluye un título corto que describa claramente el problema y propone soluciones aquí.
+Usa este formato para configurar <strong>secciones de solución de problemas</strong> en tus artículos de ayuda. Incluye un título breve que describa claramente el problema y propone soluciones aquí.
 </details>
 
 <br/> 
 
-## Lista de íconos
+## Lista de iconos
 
 <details>
 <summary><strong>Flechas</strong></summary>
@@ -252,7 +251,7 @@ k-icon-caret-up	<i class="k-icon k-icon-caret-up"></i>
 </details>
 
 <details>
-<summary><strong>Editor de formularios</strong></summary>
+<summary><strong>Formbuilder</strong></summary>
 <br>
 
 k-icon-kobo 	<i class="k-icon k-icon-kobo"></i>

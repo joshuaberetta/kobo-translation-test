@@ -1,5 +1,4 @@
 # Archivar y desarchivar proyectos
-**Última actualización:** <a href="https://github.com/kobotoolbox/docs/blob/102fcd123671942ecf7c20504874a5c78d068e9d/source/archiving_projects.md" class="reference">26 jul 2020</a>
 
 **Este artículo describe el propósito y el proceso de archivar y desarchivar un proyecto**
 
@@ -15,7 +14,7 @@ Para archivar un proyecto necesitas seguir los siguientes pasos:
 
     ![image](/images/archiving_projects/project.jpg)
 
-* Haz clic en la página de configuración y desplázate hacia abajo para encontrar el botón de archivar
+* Toca en la página de ajustes y desplázate hacia abajo para encontrar el botón de archivar
 
     ![image](/images/archiving_projects/archive_button.jpg)
 
@@ -27,8 +26,8 @@ Para archivar un proyecto necesitas seguir los siguientes pasos:
 
 ## Proceso de desarchivar
 
-* Seguirás el mismo proceso seleccionando el proyecto, haciendo clic en sus botones de configuración, seleccionando el botón de desarchivar
+* Seguirás el mismo proceso seleccionando el proyecto, tocando sus botones de ajustes, seleccionando el botón de desarchivar
 
     ![image](/images/archiving_projects/unarchive_popup.jpg)
 
-* Recibirás una advertencia similar que debes confirmar seleccionando desarchivar
+* Obtendrás una advertencia similar que debes confirmar seleccionando desarchivar
