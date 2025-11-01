@@ -1,13 +1,12 @@
 # Migración de la API v1 a v2
-**Última actualización:** <a href="https://github.com/kobotoolbox/docs/blob/7a618b1d0f3bc3dffa450c17d9e5063ca4c69770/source/migrating_api.md" class="reference">7 ago 2025</a>
 
-Como parte de nuestros esfuerzos continuos para optimizar y modernizar la plataforma KoboToolbox, estamos eliminando gradualmente los endpoints `v1` de KPI y KoboCAT. Todos los endpoints `v1` de KPI y KoboCAT están ahora obsoletos y se eliminarán por completo en enero de 2026. Los endpoints `v1` están siendo reemplazados por la API KPI `v2`, que es más robusta y cuenta con soporte completo.
+Como parte de nuestros esfuerzos continuos para optimizar y modernizar la plataforma KoboToolbox, estamos eliminando gradualmente los endpoints `v1` de KPI y KoboCAT. Todos los endpoints `v1` de KPI y KoboCAT están ahora obsoletos y se eliminarán por completo en enero de 2026. Los endpoints `v1` están siendo reemplazados por la API KPI `v2`, más robusta y con soporte completo.
 
 Este artículo explica cómo migrar tus integraciones de API desde la API `v1` (KoboCAT y KPI) a la API KPI `v2`. Cubre cada endpoint `v1` obsoleto y su equivalente en `v2` para ayudarte a realizar la transición de tus flujos de trabajo.
 
 
 ## Migración de KPI v1 a KPI v2
-La migración de la API KPI antigua (`v1`) a la nueva versión (`v2`) es sencilla en la mayoría de los casos.
+La migración de la antigua API KPI (`v1`) a la nueva versión (`v2`) es sencilla en la mayoría de los casos.
 
 En general, solo necesitas actualizar la ruta base de `/endpoint/` a `/api/v2/endpoint/`.
 
@@ -85,7 +84,7 @@ Estos endpoints recuperan todos los datos de envío de un proyecto específico o
 Basándote en la `url` que obtienes de la propiedad `data` en el endpoint del asset, puedes obtener los datos de envío en `v2`.
 
 <p class="note">
-  <b>Nota:</b> La estructura de respuesta es casi la misma, <strong>excepto que <code>v2</code> introduce paginación</strong>.
+  <b>Nota:</b> La estructura de la respuesta es casi la misma, <strong>excepto que <code>v2</code> introduce paginación</strong>.
 </p>
 
 
@@ -131,7 +130,7 @@ Estos endpoints devuelven atributos detallados de todos los formularios comparti
 
 
 <p class="note">
-  <b>Nota:</b> El endpoint <code>v2</code> sigue la misma estructura para cada elemento como se enumera a continuación, pero introduce paginación. Algunas propiedades del endpoint <code>v1</code> no están disponibles directamente en el endpoint <code>v2</code> del asset, pero aún se pueden acceder de manera diferente (consulta la leyenda debajo de la tabla para más detalles).
+  <b>Nota:</b> El endpoint <code>v2</code> sigue la misma estructura para cada elemento como se enumera a continuación, pero introduce paginación. Algunas propiedades del endpoint <code>v1</code> no están disponibles directamente en el endpoint de asset <code>v2</code>, pero aún se pueden acceder de manera diferente (consulta la leyenda debajo de la tabla para más detalles).
 </p>
 
 
@@ -159,7 +158,7 @@ Estos endpoints devuelven atributos detallados de todos los formularios comparti
 <sup>1</sup> _En el endpoint `/api/v2/assets`, ya no se utilizan identificadores enteros secuenciales. Cada entrada se identifica de forma única mediante un `uid` alfanumérico_.  
 <sup>2</sup> _En `v1`, las etiquetas se devolvían como un array; en `v2`, se devuelven como una cadena separada por comas._  
 <sup>3</sup> _Estos campos ya no están expuestos. Consulta la sección **Permisos** a continuación para más detalles._  
-<sup>4</sup> _No es directamente accesible a través del endpoint del asset. Usa el endpoint `/api/v2/asset_usage/` y recupera el campo `storage_bytes` del proyecto correspondiente._
+<sup>4</sup> _No accesible directamente a través del endpoint de asset. Usa el endpoint `/api/v2/asset_usage/` y recupera el campo `storage_bytes` del proyecto correspondiente._
 
 <details>
 <summary><strong>Ejemplo de respuesta <code>v1</code></strong></summary>
@@ -289,7 +288,7 @@ Estos endpoints devuelven atributos detallados de todos los formularios comparti
 
 Las etiquetas en `v1` y `v2` no comparten la misma base de datos subyacente. Como resultado, las etiquetas de `v1` **no se migrarán automáticamente** a `v2`. Si necesitas conservarlas, debes volver a aplicar las etiquetas manualmente usando una solicitud `PATCH` a `/api/v2/assets/{uid}/`.
 
-Ejemplo de payload:
+Ejemplo de carga útil:
 ```json
 { "tag_string": "tag1,tag2,tag3" }
 ```
@@ -344,7 +343,7 @@ Este endpoint no se ha portado a `v2`, pero aún es posible **etiquetar** un pro
 ---
 
 ### Endpoints de metadatos
-Estos endpoints devuelven una lista plana de todos los archivos multimedia asociados con el/la usuario/a actual, en todos los proyectos desplegados o en un proyecto específico. En `v2`, los archivos multimedia ahora están limitados por proyecto. Al igual que con otros endpoints, `v2` introduce paginación, mientras que `v1` devuelve todos los resultados en una sola respuesta.
+Estos endpoints devuelven una lista plana de todos los archivos multimedia asociados con el/la usuario/a actual, en todos los proyectos desplegados o un proyecto específico. En `v2`, los archivos multimedia ahora están limitados por proyecto. Al igual que con otros endpoints, `v2` introduce paginación, mientras que `v1` devuelve todos los resultados en una sola respuesta.
 
 **Mapeo de endpoints**
 

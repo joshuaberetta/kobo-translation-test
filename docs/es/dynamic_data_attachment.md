@@ -1,5 +1,4 @@
 # Adjuntos de datos dinámicos
-**Última actualización:** <a href="https://github.com/kobotoolbox/docs/blob/0c4cbe231491ab3ee9bd1e3a82967d30ac63e2c6/source/dynamic_data_attachment.md" class="reference">15 Oct 2025</a>
 
 La vinculación dinámica te permite usar datos de un **proyecto principal** dentro de **proyectos secundarios**, simplificando el manejo de la recolección de datos longitudinales. Este artículo explica cómo vincular dinámicamente datos entre proyectos de KoboToolbox.
 
@@ -7,7 +6,7 @@ La vinculación dinámica te permite usar datos de un **proyecto principal** den
     <strong>Nota:</strong> Los adjuntos de datos dinámicos funcionan de manera similar a la función <a href="https://support.kobotoolbox.org/pull_data_kobotoolbox.html"><code>pulldata()</code></a>, pero eliminan la necesidad de archivos CSV separados, ya que los datos de un proyecto principal vinculado sirven como fuente de datos.
 </p>
 
-Puedes recuperar varias **respuestas que no sean multimedia** de un proyecto principal y realizar cálculos sobre estos datos vinculados en un proyecto secundario. Esto puede ser útil para recuperar datos de línea base, información de contacto o registros de salud en estudios de cohorte, o para confirmar o verificar datos recolectados previamente.
+Puedes recuperar varias **respuestas que no sean multimedia** de un proyecto principal y realizar cálculos sobre estos datos vinculados en un proyecto secundario. Esto puede ser útil para recuperar datos de línea base, información de contacto o registros de salud en estudios de cohortes, o para confirmar o verificar datos recolectados previamente.
 
 Recomendamos usar [XLSForm](https://support.kobotoolbox.org/edit_forms_excel.html) para configurar adjuntos de datos dinámicos. Para ejemplos de proyectos principales y secundarios, descarga archivos de muestra [aquí](https://support.kobotoolbox.org/_static/files/dynamic_data_attachment/parent.xlsx) y [aquí](https://support.kobotoolbox.org/_static/files/dynamic_data_attachment/child.xlsx).
 
@@ -34,8 +33,8 @@ Vincular proyectos dinámicamente requiere un **proyecto principal** y al menos 
 | type | name     | label              | calculation |
 | :--- | :------- | :----------------- | :----------------- |
 | xml-external | parent |               |              |
-| text | participant_id | ¿Cuál es el ID del/de la participante? |  |
-| integer | age | Confirma la edad del/de la participante | instance('parent')/root/data[enrollment_id = current()/../participant_id]/age |
+| text | participant_id | ¿Cuál es el ID del participante? |  |
+| integer | age | Confirma la edad del participante | instance('parent')/root/data[enrollment_id = current()/../participant_id]/age |
 | survey | 
 
 <p class="note">
@@ -79,58 +78,58 @@ Una vez que tus XLSForms estén configurados, inicia sesión en tu cuenta de Kob
 
 1. Carga y despliega el **proyecto principal**, si aún no está desplegado. Asegúrate de que el proyecto principal tenga al menos un envío.
 2. Habilita el intercambio de datos para el proyecto principal: 
-    - En la pestaña **SETTINGS > Connect Projects** del proyecto principal, activa el interruptor **Data sharing** (deshabilitado por defecto) y haz clic en **ACKNOWLEDGE AND CONTINUE** en la ventana de confirmación. 
-    - Todos los datos se comparten por defecto, pero puedes restringir variables específicas para compartir con proyectos secundarios haciendo clic en "Select specific questions to share".
+    - En la ventana **SETTINGS > Connect Projects** del proyecto principal, activa el interruptor **Data sharing** (deshabilitado por defecto) y click en **ACKNOWLEDGE AND CONTINUE** en la ventana de confirmación.
+    - Todos los datos se comparten por defecto, pero puedes restringir variables específicas para compartir con proyectos secundarios haciendo click en "Select specific questions to share".
 
 <p class="note">
-    <strong>Nota:</strong> Si los proyectos tienen diferentes propietarios/as, el/la propietario/a del proyecto principal debe <a href="https://support.kobotoolbox.org/managing_permissions.html">compartir el proyecto</a> con el/la propietario/a del proyecto secundario. Los permisos mínimos requeridos para que funcionen los adjuntos de datos dinámicos son <strong>View form</strong> y <strong>View submissions</strong>. Ten en cuenta que esto permite a los/as administradores/as del proyecto secundario ver todos los datos del proyecto principal.
+    <strong>Nota:</strong> Si los proyectos tienen diferentes propietarios/as, el/la propietario/a del proyecto principal debe <a href="https://support.kobotoolbox.org/managing_permissions.html">compartir el proyecto</a> con el/la propietario/a del proyecto secundario. Los permisos mínimos requeridos para que los adjuntos de datos dinámicos funcionen son <strong>View form</strong> y <strong>View submissions</strong>. Ten en cuenta que esto permite a los/as administradores/as del proyecto secundario ver todos los datos del proyecto principal.
 </p>
 
 3. Carga y despliega el **proyecto secundario**.
 4. Conecta el proyecto secundario al proyecto principal: 
-    - En la pestaña **SETTINGS > Connect Projects** del proyecto secundario, haz clic en "Select a different project to import data from". Un menú desplegable te permitirá seleccionar un proyecto principal para vincular. 
-    - Renombra el proyecto principal vinculado al nombre de la pregunta `xml-external` definido en el XLSForm y haz clic en **IMPORT**. 
+    - En la ventana **SETTINGS > Connect Projects** del proyecto secundario, click en "Select a different project to import data from." Un menú desplegable te permitirá seleccionar un proyecto principal para vincular.
+    - Renombra el proyecto principal vinculado al nombre de pregunta `xml-external` definido en el XLSForm y click en **IMPORT**.
     - Luego puedes seleccionar preguntas específicas del proyecto principal para compartir con el proyecto secundario, o seleccionar todas las preguntas.
 5. Si agregas nuevos campos al formulario principal y deseas usarlos en el proyecto secundario, vuelve a importar el proyecto principal en la configuración del proyecto secundario.
 
 <p class="note">
-    <strong>Nota:</strong> Los formularios solo pueden vincularse entre sí si están en el mismo servidor de KoboToolbox.
+    <strong>Nota:</strong> Los formularios solo se pueden vincular entre sí si están en el mismo servidor de KoboToolbox.
 </p>
 
-<iframe src="https://www.youtube.com/embed/pBqEsFlxqE4?si=6BPiDgOzU4LPO7zv" style="width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/pBqEsFlxqE4?si=6BPiDgOzO4LPO7zv" style="width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
 ## Vincular dinámicamente un formulario a sí mismo
 
 Es posible que un proyecto principal y secundario sean el mismo proyecto. Los pasos son los mismos que los descritos anteriormente. Ejemplos de casos de uso incluyen:
 
-- **Monitoreo diario**: Si un formulario se usa para encuestar a la misma persona a lo largo del tiempo, puedes vincularlo a sí mismo para contar envíos anteriores. Esto puede permitirte mostrar un mensaje (por ejemplo, "el monitoreo está completo") después de un cierto número de entradas o informar al/a la encuestador/a del número de formularios enviados, como se muestra en el ejemplo a continuación.
+- **Monitoreo diario**: Si se usa un formulario para encuestar a la misma persona a lo largo del tiempo, puedes vincularlo a sí mismo para contar envíos previos. Esto puede permitirte mostrar un mensaje (por ejemplo, "el monitoreo está completo") después de un cierto número de entradas o informar al/a la encuestador/a del número de formularios enviados, como se muestra en el ejemplo a continuación.
 
 **Hoja de cálculo survey**
 
 | type | name     | label              | calculation |
 | :--- | :------- | :----------------- | :----------------- |
 | xml-external | monitoring |               |              |
-| text | participant_id | ¿Cuál es el ID del/de la participante? |  |
+| text | participant_id | ¿Cuál es el ID del participante? |  |
 | calculate | count |  | count(instance('monitoring')/root/ data[monitoring/participant_id = current()/../participant_id]) |
-| note | monitoring_note | Este/a participante ha sido encuestado/a ${count} veces. | |
+| note | monitoring_note | Este participante ha sido encuestado ${count} veces. | |
 | survey | 
 
-- **Formulario de registro**: Al vincular un formulario de registro a sí mismo, puedes verificar si un/a usuario/a ya ha sido registrado/a. Esto puede permitirte generar un mensaje de error o agregar una restricción si ya está registrado/a, previniendo registros duplicados, como se muestra en el ejemplo a continuación.
+- **Formulario de registro**: Al vincular un formulario de registro a sí mismo, puedes verificar si un/a usuario/a ya ha sido registrado/a. Esto puede permitirte generar un mensaje de error o agregar una restricción si ya están registrados/as, evitando registros duplicados, como se muestra en el ejemplo a continuación.
 
 **Hoja de cálculo survey**
 
 | type | name     | label              | calculation | relevant | 
 | :--- | :------- | :----------------- | :----------------- | :------------ |
 | xml-external | registration |               |              | |
-| text | customer_id | ¿Cuál es el número de ID del/de la cliente? |  | | 
+| text | customer_id | ¿Cuál es el número de ID del cliente? |  | | 
 | calculate | count |  | count(instance('registration')/root/ data[registration/customer_id = current()/../customer_id]) | |
-| note | already_registered | Este/a cliente ya está registrado/a. Por favor cierra este formulario. | | ${count} > 0 |
+| note | already_registered | Este cliente ya está registrado. Por favor cierra este formulario. | | ${count} > 0 |
 | survey | 
 
 ## Recolectar y manejar datos con vinculación dinámica
 
-Los datos para proyectos vinculados dinámicamente pueden recolectarse usando la [aplicación de Android de KoboCollect](https://support.kobotoolbox.org/kobocollect_on_android_latest.html) o [formularios web de Enketo](https://support.kobotoolbox.org/data_through_webforms.html).
+Los datos para proyectos vinculados dinámicamente se pueden recolectar usando la [aplicación de Android de KoboCollect](https://support.kobotoolbox.org/kobocollect_on_android_latest.html) o [formularios web de Enketo](https://support.kobotoolbox.org/data_through_webforms.html).
 
 Al recolectar datos, ten en cuenta lo siguiente:
 
@@ -167,7 +166,7 @@ Los adjuntos de datos dinámicos grandes pueden ralentizar la carga del formular
 
 <details>
 <summary><strong>Los datos dinámicos no se actualizan en KoboCollect</strong></summary>
-Si estás usando KoboCollect y recolectando datos sin conexión, los datos primero deben enviarse al proyecto principal y luego descargarse a tu dispositivo de recolección de datos para que funcione el adjunto de datos dinámicos. Ambos pasos requieren una conexión a internet. Descargar datos principales es similar a descargar una nueva versión de un formulario, y la aplicación de KoboCollect puede configurarse para <a href="https://support.kobotoolbox.org/kobocollect_settings.html#form-management-settings">descargar automáticamente nuevos datos</a> con una frecuencia establecida. No se recomienda depender de adjuntos de datos dinámicos para datos recolectados sin conexión en un corto período de tiempo.
+Si estás usando KoboCollect y recolectando datos sin conexión, primero se deben enviar los datos al proyecto principal y luego descargarlos a tu dispositivo de recolección de datos para que el adjunto de datos dinámicos funcione. Ambos pasos requieren una conexión a internet. Descargar datos principales es similar a descargar una nueva versión de un formulario, y la aplicación de KoboCollect se puede configurar para <a href="https://support.kobotoolbox.org/kobocollect_settings.html#form-management-settings">descargar automáticamente nuevos datos</a> con una frecuencia establecida. No se recomienda depender de adjuntos de datos dinámicos para datos recolectados sin conexión en un período corto de tiempo.
 </details>
 
 <br>
@@ -181,7 +180,7 @@ Para extraer datos dinámicos de un formulario principal a un formulario secunda
 
 <details>
 <summary><strong>Error al evaluar campos en KoboCollect</strong></summary>
-Si tu formulario principal contiene envíos duplicados, puedes recibir un mensaje de error en KoboCollect que indica "Error evaluating field / XPath evaluation: type mismatch /This field is repeated". Para resolver este problema y extraer datos solo del primer envío que contenga un valor de índice específico, usa el argumento <code>[position()=1]</code>, como se muestra a continuación:
+Si tu formulario principal contiene envíos duplicados, puedes recibir un mensaje de error en KoboCollect que dice "Error evaluating field / XPath evaluation: type mismatch /This field is repeated." Para resolver este problema y extraer datos solo del primer envío que contenga un valor de índice específico, usa el argumento <code>[position()=1]</code>, como se muestra a continuación:
 <br><br>
 <code>instance('parent')/root/data[parent_index_group/parent_index_question = current()/../child_index_question][position()=1]/parent_group/parent_question</code>
 
