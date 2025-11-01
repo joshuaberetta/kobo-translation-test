@@ -103,12 +103,20 @@ jobs:
             LANGUAGES="es,fr"
           fi
           
+          # Pass translate_all flag to translation step
+          TRANSLATE_ALL="${{ github.event.inputs.translate_all }}"
+          if [ -z "$TRANSLATE_ALL" ]; then
+            TRANSLATE_ALL="false"
+          fi
+
           echo "files=$FILES" >> $GITHUB_OUTPUT
           echo "languages=$LANGUAGES" >> $GITHUB_OUTPUT
-          
+          echo "translate_all=$TRANSLATE_ALL" >> $GITHUB_OUTPUT
+
           echo "=== Detection Results ==="
           echo "Files to translate: $FILES"
           echo "Languages: $LANGUAGES"
+          echo "Force translate all: $TRANSLATE_ALL"
           
           # Check if we have files
           if [ -z "$FILES" ] || [ "$FILES" == "" ]; then
@@ -224,9 +232,13 @@ jobs:
               fi
               
               # Check if this is a new file or update
-              if [ ! -f "$TARGET_FILE" ]; then
-                # NEW FILE - full translation
-                echo "  🆕 NEW FILE: Full translation to $LANG..."
+              # Force full translation if translate_all is enabled
+              if [ ! -f "$TARGET_FILE" ] || [ "${{ steps.detect.outputs.translate_all }}" == "true" ]; then
+                if [ "${{ steps.detect.outputs.translate_all }}" == "true" ] && [ -f "$TARGET_FILE" ]; then
+                  echo "  🔄 FORCE RE-TRANSLATE: Full translation to $LANG (translate_all mode)..."
+                else
+                  echo "  🆕 NEW FILE: Full translation to $LANG..."
+                fi
                 
                 if python scripts/translation_agent.py \
                   --file "$FILE" \
