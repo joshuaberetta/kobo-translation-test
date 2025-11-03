@@ -1,26 +1,25 @@
-# Grabar una Entrevista Completa con la Grabación de Audio de Fondo
+# Grabar una entrevista completa con grabación de audio de fondo
 
-**Última actualización:**
 <a href="https://github.com/kobotoolbox/docs/blob/511ea4cb3c698a4b45e7c2b4efd1af4e356e811f/source/recording-interviews.md" class="reference">15
 Feb 2022</a>
 
 **La grabación de audio de fondo** es una funcionalidad poderosa que permite a los/as usuarios/as grabar
 una entrevista en segundo plano (cuando el formulario está abierto) y almacenar la grabación
 como datos de audio. Esta funcionalidad mejora la recolección de datos cualitativos al permitir que
-la información matizada se recolecte en su totalidad.
+se recolecte información detallada en su totalidad.
 
-La grabación de audio de fondo también permite a los/as supervisores/as y gerentes/as de proyecto
-saber cómo sus encuestadores/as realizaron la entrevista en términos de aseguramiento de calidad
-de datos o si desean tener una grabación de respaldo de la entrevista transcrita.
+La grabación de audio de fondo también permite a los/as supervisores/as y gerentes de proyecto
+saber cómo sus encuestadores/as realizaron la entrevista en términos de garantía de calidad de datos
+o si desean tener una grabación de respaldo de la entrevista transcrita.
 
-Actualmente, los/as usuarios/as pueden grabar la entrevista completa con **La aplicación de Android de KoboCollect**
-`v1.30` y superior. **Enketo** aún no soporta esta funcionalidad.
+Actualmente, los/as usuarios/as pueden grabar la entrevista completa con la **aplicación de Android de KoboCollect**
+`v1.30` y superior. **Enketo** aún no admite esta funcionalidad.
 
 <p class="note">
-  Si requieres una grabación de audio en lugar de la completa
-  <strong>grabación de audio de fondo</strong>, consulta nuestro artículo de ayuda,
+  Si requieres una grabación de audio en lugar de la
+  <strong>grabación de audio de fondo</strong> completa, consulta nuestro artículo de ayuda,
   <a class="reference" href="media.html"
-    >Agregar Varios Tipos de Medios (imagen, audio, video) a un Formulario</a
+    >Agregar varios tipos de datos multimedia (imagen, audio, video) a un formulario</a
   >.
 </p>
 
@@ -36,18 +35,16 @@ la **grabación de audio de fondo**, sigue los pasos que se muestran en el video
   />
 </video>
 
--   En la ventana **FORMULARIO**, selecciona el botón **Editar**. _(Este paso puede no ser
-    necesario si ya estás en el editor de formularios)_
--   En la esquina superior derecha, selecciona **Diseño y Ajustes** y luego **Audio de
-    fondo** debería ser visible.
--   Activa el botón **Habilitar grabación de audio en segundo plano**. Una
-    notificación debería aparecer en la parte superior del editor de formularios.
+-   En la ventana **FORMULARIO**, selecciona el botón **Editar**. _(Es posible que no se requiera este paso si ya estás en el editor de formularios)_
+-   En la esquina superior derecha, selecciona **Diseño y ajustes** y luego debería ser visible **Audio de fondo**.
+-   Activa el botón **Habilitar grabación de audio en segundo plano**. Debería aparecer una
+    notificación en la parte superior del editor de formularios.
 -   **Solo voz** es la calidad de audio predeterminada para el **audio de fondo**.
     Puedes cambiar la calidad de audio a **Baja** o **Normal** según sea necesario (consulta
     la tabla a continuación para ver las diferencias en el tamaño del archivo).
 -   Después de realizar todas las configuraciones necesarias, selecciona **GUARDAR** y **Salir**
     en el editor de formularios.
--   **DESPLEGAR** el formulario para ponerlo en funcionamiento.
+-   **DESPLIEGA** el formulario para activarlo.
 
 ## Incluir el tipo de pregunta de audio de fondo en XLSForm
 
@@ -61,35 +58,35 @@ tipo de pregunta `background-audio`, sigue los pasos que se muestran en el video
   />
 </video>
 
-En tu XLSForm, agrega `background-audio` bajo la columna `type` de la
-hoja **survey**. Este es el tipo de pregunta que grabará el audio en
-segundo plano.
+En tu XLSForm, agrega `background-audio` en la columna `type` de la
+hoja **survey**. Este es el tipo de pregunta que grabará el audio en segundo
+plano.
 
 ## Establecer una calidad de audio apropiada
 
-La columna `parameters` es opcional pero es importante elegir el
+La columna `parameters` es opcional, pero es importante elegir el
 parámetro apropiado. La calidad de audio está directamente relacionada con el tamaño del archivo que
 se almacenará en el servidor. Ten en cuenta cuánto de tu espacio de almacenamiento total
 deseas usar para tus archivos de audio. Consulta la tabla a continuación al elegir
 el parámetro apropiado:
 
-| Calidad    | Parámetros         | Extensión | Codificación | Tasa de bits | Tasa de muestreo | Tamaño del archivo |
-| :--------- | :----------------- | :-------- | :----------- | :----------- | :--------------- | :----------------- |
-| normal     | quality=normal     | .m4a      | AAC          | 64 kbps      | 32 kHz           | ~ 30 MB/hora       |
-| low        | quality=low        | .m4a      | AAC          | 24 kbps      | 32 kHz           | ~ 11 MB/hora       |
-| voice-only | quality=voice-only | .amr      | AMR          | 12.2 kbps    | 8 kHz            | ~ 5 MB/hora        |
+| Calidad    | Parámetros         | Extensión | Codificación | Tasa de bits  | Frecuencia de muestreo | Tamaño de archivo    |
+| :--------- | :----------------- | :-------- | :----------- | :------------ | :--------------------- | :------------------- |
+| normal     | quality=normal     | .m4a      | AAC          | 64 kbps       | 32 kHz                 | ~ 30 MB/hora         |
+| low        | quality=low        | .m4a      | AAC          | 24 kbps       | 32 kHz                 | ~ 11 MB/hora         |
+| voice-only | quality=voice-only | .amr      | AMR          | 12.2 kbps     | 8 kHz                  | ~ 5 MB/hora          |
 
 Puedes dejar la columna en blanco para que el parámetro se establezca en `voice-only`, que
-capturará el audio bien en un entorno de entrevista silencioso. Si estás grabando audio
-donde podría haber múltiples personas hablando simultáneamente, `low` sería más
-adecuado. `normal` es la opción de mayor calidad y usará la mayor cantidad
-de espacio de almacenamiento.
+capturará bien el audio en un entorno de entrevista silencioso. Si estás grabando audio
+donde podría haber varias personas hablando simultáneamente, `low` sería más
+adecuado. `normal` es la opción de mayor calidad y utilizará la mayor cantidad de
+espacio de almacenamiento.
 
 ## Recolectar audio de fondo con la aplicación de Android de KoboCollect
 
 Revisa nuestro artículo de ayuda,
-[Recolección de Datos en la Aplicación de KoboCollect](kobocollect_on_android_latest.md), para aprender
-en detalle sobre la recolección de datos en **La aplicación de Android de KoboCollect**.
+[Recolección de datos en la aplicación de KoboCollect](kobocollect_on_android_latest.md), para aprender
+en detalle sobre la recolección de datos en la **aplicación de Android de KoboCollect**.
 
 <video controls>
   <source
@@ -98,12 +95,12 @@ en detalle sobre la recolección de datos en **La aplicación de Android de Kobo
   />
 </video>
 
-Mientras grabas activamente audio de fondo con **La aplicación de Android de KoboCollect**, deberías
+Mientras grabas activamente audio de fondo con la **aplicación de Android de KoboCollect**, deberías
 poder ver un micrófono en la parte superior de tu formulario.
 
 ![Pantalla de audio de fondo](/images/recording_interviews/background_audio_screen.jpg)
 
-## Ver archivos de audio que fueron grabados como audio de fondo
+## Ver archivos de audio que se grabaron como audio de fondo
 
 Cuando tienes `background-audio` configurado para tu proyecto, puedes ver el
 archivo de audio grabado en **DATOS>Tabla** como se muestra en la imagen a continuación.
@@ -113,7 +110,7 @@ archivo de audio grabado en **DATOS>Tabla** como se muestra en la imagen a conti
 ## Descargar archivos de audio
 
 Puedes descargar todos los archivos de audio de fondo como un archivo ZIP desde
-**DATOS>Descargas>Archivos Adjuntos Multimedia (ZIP)** como se muestra en el video a continuación.
+**DATOS>Descargas>Archivos adjuntos multimedia (ZIP)** como se muestra en el video a continuación.
 
 <video controls>
   <source
@@ -125,40 +122,40 @@ Puedes descargar todos los archivos de audio de fondo como un archivo ZIP desde
 ## Consideraciones éticas
 
 Al recolectar datos, es ético tener el consentimiento informado de los/as
-encuestados/as antes de la recolección de datos, en este caso grabando audio de
+encuestados/as antes de la recolección de datos, en este caso al grabar audio de
 fondo.
 
 <p class="note">
-  Alentamos a todos/as los/as usuarios/as a considerar las implicaciones éticas de su recolección
-  de datos y a cumplir con la legislación aplicable de protección de datos dentro
+  Alentamos a todos/as los/as usuarios/as a considerar las implicaciones éticas de su recolección de datos
+  y a cumplir con la legislación de protección de datos aplicable dentro
   de la jurisdicción de su trabajo.
 </p>
 
 ## Solución de problemas
 
--   Esta funcionalidad es compatible con **La aplicación de Android de KoboCollect** `v1.30` y
+-   Esta funcionalidad es compatible con la **aplicación de Android de KoboCollect** `v1.30` y
     superior.
 -   Esta funcionalidad actualmente no es compatible con los **formularios web de Enketo**.
--   Tu dispositivo debe tener una grabadora de audio incorporada para que esta funcionalidad funcione
+-   Tu dispositivo debe tener una grabadora de audio integrada para que esta funcionalidad funcione
     sin problemas. Puedes descargar
     [Audio Recorder](https://play.google.com/store/apps/details?id=com.github.axet.audiorecorder)
     desde Google Play Store si es necesario.
 -   Antes de comenzar la recolección de datos, asegúrate de que tu dispositivo tenga suficiente
     espacio para almacenar las grabaciones de audio de fondo.
--   Si editas tu archivo de audio en **Editar Formulario Guardado**, tendrás ambas
+-   Si editas tu archivo de audio en **Editar formulario guardado**, tendrás ambas
     versiones (el archivo de audio original y el archivo editado) en un solo archivo.
     Por ejemplo, si tienes un audio de fondo de _'Prueba de muestra'_ y editaste
-    la grabación, cambiándola a _'Muestra para re-prueba'_, cuando
-    descargues tu archivo de audio de fondo, consistirá del audio de fondo combinado
-    de _'Prueba de muestra'_ y _'Muestra para re-prueba'_.
+    la grabación, cambiándola a _'Muestra para volver a probar'_, cuando
+    descargues tu archivo de audio de fondo, consistirá en el audio de fondo
+    combinado de _'Prueba de muestra'_ y _'Muestra para volver a probar'_.
 -   Si tus archivos de audio de fondo ocupan suficiente espacio de almacenamiento para llevar tu
-    almacenamiento total por encima de tu cantidad asignada (5GB para todas las cuentas gratuitas), puedes
-    solicitar espacio adicional (por un costo) contactando a
+    almacenamiento total por encima de la cantidad asignada (5GB para todas las cuentas gratuitas), puedes
+    solicitar espacio adicional (por un costo) comunicándote con
     [info@kobotoolbox.org](mailto:info@kobotoolbox.org). El pago se utiliza para
     cubrir los costos adicionales asociados con proyectos de recolección de datos grandes
-    y asegura que el servidor siga funcionando bien para nuestros/as usuarios/as.
+    y garantiza que el servidor siga funcionando bien para nuestros/as usuarios/as.
 -   Cuando tienes archivos de audio de fondo grandes y/o largos en tu cuenta, puedes
-    tener problemas al descargarlos como **Archivos Adjuntos Multimedia (ZIP)**. En tal
+    tener problemas para descargarlos como **Archivos adjuntos multimedia (ZIP)**. En tal
     caso, sigue nuestro artículo de ayuda
-    [Descargar Fotos y Otros Medios](photo_download.md), que debería ayudarte
+    [Descargar fotos y otros datos multimedia](photo_download.md), que debería ayudarte
     a descargar archivos multimedia grandes del sistema.
