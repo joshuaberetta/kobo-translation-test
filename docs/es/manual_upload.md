@@ -1,9 +1,8 @@
 # Cargar envíos manualmente
-**Última actualización:** <a href="https://github.com/kobotoolbox/docs/blob/20273bf768ef8d800b55bacef5af057845b1559d/source/manual_upload.md" class="reference">6 Sep 2023</a>
 
-<p class="note">Ten en cuenta que esta sigue siendo una funcionalidad experimental y no te impide crear envíos duplicados.</p>
+<p class="note">Ten en cuenta que esta sigue siendo una funcionalidad experimental y no evita que crees envíos duplicados.</p>
 
-En ciertas situaciones, es posible que no puedas usar la opción de carga estándar después de recolectar datos con **KoboCollect** o **Formularios web de Enketo**. Esto puede ser resultado de problemas con tu dispositivo móvil que esté parcialmente dañado (por ejemplo, la pantalla está rota), o debido a que te encuentras en una ubicación remota sin acceso a Internet. Es posible que desees descargar tus envíos desde el dispositivo de recolección de datos a tu computadora local y luego cargarlos al servidor cuando hayas recuperado la conectividad a Internet.
+En ciertas situaciones, es posible que no puedas usar la opción estándar de carga después de recolectar datos con **KoboCollect** o **Formularios web de Enketo**. Esto puede ser resultado de problemas con tu dispositivo móvil que está parcialmente dañado (por ejemplo, la pantalla está rota), o debido a que te encuentras en una ubicación remota sin acceso a Internet. Es posible que desees descargar tus envíos desde el dispositivo de recolección de datos a tu computadora local y luego cargarlos al servidor cuando hayas recuperado la conectividad a Internet.
 
 ## Exportar datos desde formularios web
 
@@ -19,7 +18,7 @@ En ciertas situaciones, es posible que no puedas usar la opción de carga están
 
 ## Exportar datos desde KoboCollect
 
-1. Conecta el dispositivo a tu computadora a través de un cable USB.
+1. Conecta el dispositivo a tu computadora mediante un cable USB.
 
 2. Abre el almacenamiento interno del dispositivo en tu computadora. (Para **Windows**, los controladores se instalarán automáticamente y el dispositivo se puede abrir en **Mi PC**. En **MacOS** necesitarás [Android File Transfer](https://www.android.com/intl/en_us/filetransfer/) de Google para acceder a los archivos del dispositivo.)
 
@@ -31,7 +30,7 @@ En ciertas situaciones, es posible que no puedas usar la opción de carga están
 
 4. Copia la carpeta "instances" y pégala en algún lugar de tu computadora.
 
-5. Si tienes más de un dispositivo, repite los pasos anteriores y cambia el nombre de cada una de las carpetas "instances" con un nombre o número único.
+5. Si tienes más de un dispositivo, repite los pasos anteriores y renombra cada una de las carpetas "instances" con un nombre o número único.
 
 6. Crea un archivo ZIP de la carpeta.
 
@@ -39,9 +38,7 @@ En ciertas situaciones, es posible que no puedas usar la opción de carga están
 
 ## Importar un archivo ZIP de datos
 
-1. Inicia sesión en tu cuenta de KoboToolbox, luego visita:
-   `https://kc-eu.kobotoolbox.org/tu_nombre_de_usuario/bulk-submission-form` O
-   `https://kc.kobotoolbox.org/tu_nombre_de_usuario/bulk-submission-form` (dependiendo de dónde te registraste), y reemplaza `tu_nombre_de_usuario` con **tu propio nombre de usuario**.
+1. Inicia sesión en tu cuenta de KoboToolbox, luego visita: `https://kc-eu.kobotoolbox.org/tu_nombre_de_usuario/bulk-submission-form` O `https://kc.kobotoolbox.org/tu_nombre_de_usuario/bulk-submission-form` (dependiendo de dónde te hayas registrado), y reemplaza `tu_nombre_de_usuario` con **tu propio nombre de usuario**.
 
 2. Selecciona y carga el archivo ZIP. Todos los registros se cargarán al servidor, asumiendo que corresponden a un formulario existente.
 
