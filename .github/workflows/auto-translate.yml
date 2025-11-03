@@ -40,7 +40,14 @@ jobs:
         run: |
           echo "Event: ${{ github.event_name }}"
           
+          # Determine if this is a force/manual translation
+          FORCE_TRANSLATE="false"
+          
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            # Manual trigger - always force translate (don't check for diffs)
+            FORCE_TRANSLATE="true"
+            echo "⚡ FORCE TRANSLATE MODE: All specified files will be fully re-translated"
+            
             # Manual trigger - check if translate_all is enabled
             if [ "${{ github.event.inputs.translate_all }}" == "true" ]; then
               echo "🌍 TRANSLATE ALL MODE - Finding all English source files..."
@@ -112,11 +119,13 @@ jobs:
           echo "files=$FILES" >> $GITHUB_OUTPUT
           echo "languages=$LANGUAGES" >> $GITHUB_OUTPUT
           echo "translate_all=$TRANSLATE_ALL" >> $GITHUB_OUTPUT
+          echo "force_translate=$FORCE_TRANSLATE" >> $GITHUB_OUTPUT
 
           echo "=== Detection Results ==="
           echo "Files to translate: $FILES"
           echo "Languages: $LANGUAGES"
           echo "Force translate all: $TRANSLATE_ALL"
+          echo "Force translate: $FORCE_TRANSLATE"
           
           # Check if we have files
           if [ -z "$FILES" ] || [ "$FILES" == "" ]; then
@@ -190,9 +199,11 @@ jobs:
           
           FILES="${{ steps.detect.outputs.files }}"
           LANGUAGES="${{ steps.detect.outputs.languages }}"
+          FORCE_TRANSLATE="${{ steps.detect.outputs.force_translate }}"
           
           echo "Files: $FILES"
           echo "Languages: $LANGUAGES"
+          echo "Force translate: $FORCE_TRANSLATE"
           
           # Convert comma-separated to arrays
           IFS=',' read -ra FILE_ARRAY <<< "$FILES"
@@ -231,14 +242,23 @@ jobs:
                 continue
               fi
               
-              # Check if this is a new file or update
-              # Force full translation if translate_all is enabled
-              if [ ! -f "$TARGET_FILE" ] || [ "${{ steps.detect.outputs.translate_all }}" == "true" ]; then
-                if [ "${{ steps.detect.outputs.translate_all }}" == "true" ] && [ -f "$TARGET_FILE" ]; then
-                  echo "  🔄 FORCE RE-TRANSLATE: Full translation to $LANG (translate_all mode)..."
-                else
-                  echo "  🆕 NEW FILE: Full translation to $LANG..."
-                fi
+              # Decide translation mode: NEW, FORCE, or UPDATE
+              if [ ! -f "$TARGET_FILE" ]; then
+                # NEW FILE - full translation
+                echo "  🆕 NEW FILE: Full translation to $LANG..."
+                TRANSLATION_MODE="new"
+              elif [ "$FORCE_TRANSLATE" == "true" ]; then
+                # FORCE MODE - full re-translation even if file exists
+                echo "  ⚡ FORCE MODE: Full re-translation to $LANG..."
+                TRANSLATION_MODE="force"
+              else
+                # UPDATE MODE - diff-based translation
+                echo "  🔄 UPDATE: Extracting changes for $LANG..."
+                TRANSLATION_MODE="update"
+              fi
+              
+              # NEW or FORCE: Full translation
+              if [ "$TRANSLATION_MODE" == "new" ] || [ "$TRANSLATION_MODE" == "force" ]; then
                 
                 if python scripts/translation_agent.py \
                   --file "$FILE" \
@@ -263,10 +283,10 @@ jobs:
                 fi
                 
                 rm -f "translation_${LANG}.log"
-              else
+              
+              # UPDATE MODE: Diff-based translation
+              elif [ "$TRANSLATION_MODE" == "update" ]; then
                 # EXISTING FILE - extract and translate only the English diff
-                echo "  � UPDATE: Extracting changes for $LANG..."
-                
                 # Get the actual changes from English source
                 if [ -n "${{ github.event.before }}" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
                   ENGLISH_DIFF=$(git diff -U0 ${{ github.event.before }} ${{ github.sha }} -- "$FILE" 2>/dev/null || echo "")
@@ -339,9 +359,9 @@ jobs:
                 
                 # Cleanup temp files
                 rm -f "/tmp/new_content_${LANG}.txt" "/tmp/old_content_${LANG}.txt" "translation_${LANG}.txt" "translation_${LANG}.log"
-              fi
-            done
-          done
+              fi  # End of translation mode (new/force/update)
+            done  # End of language loop
+          done  # End of file loop
           
           # Output final statistics
           echo ""
@@ -379,14 +399,15 @@ jobs:
             
             ${{ github.event.inputs.translate_all == 'true' && '### 🌍 BULK TRANSLATION MODE\n\n**Translating ALL English source files** - This is a complete translation refresh.\n' || '' }}
             
-            AI-generated translations using the kobo-translation skill with **diff-based updates**.
+            ${{ steps.detect.outputs.force_translate == 'true' && '### ⚡ FORCE TRANSLATION MODE\n\n**Full re-translation of specified files** - Existing translations will be completely regenerated.\n' || '' }}
+            
+            AI-generated translations using the kobo-translation skill with **${{ steps.detect.outputs.force_translate == 'true' && 'full re-translation' || 'diff-based updates' }}**.
             
             ### 🔄 Translation Mode
             
-            - **New files**: Full translation
-            - **Existing files**: Only changed content translated and merged
+            ${{ steps.detect.outputs.force_translate == 'true' && '- **Force mode**: All files fully re-translated (manual trigger)\n- **Reason**: Ensures latest terminology and style guidelines are applied\n' || '- **New files**: Full translation\n- **Existing files**: Only changed content translated and merged\n' }}
             
-            This preserves manual reviewer improvements in unchanged sections.
+            ${{ steps.detect.outputs.force_translate == 'false' && 'This preserves manual reviewer improvements in unchanged sections.\n' || '' }}
             
             **⚠️ IMPORTANT: Protecting Manual Edits**
             
