@@ -1,5 +1,4 @@
 # Uso de estilos alternativos de formularios web de Enketo
-**Última actualización:** <a href="https://github.com/kobotoolbox/docs/blob/347a1280aadb22c9aebf88650fd6efa1bcadbcdf/source/alternative_enketo.md" class="reference">24 Sep 2025</a>
 
 Los formularios web de Enketo se pueden personalizar en la forma en que se presentan tus preguntas.
 Hay dos estilos alternativos que se pueden seleccionar e incluso combinar:
@@ -11,20 +10,20 @@ funciona KoboCollect.
 
 **Tema de cuadrícula** es una visualización alternativa de preguntas diseñada para ser más compacta
 y más parecida a los formularios en papel donde el espacio suele ser una preocupación importante. theme-grid
-permite mostrar múltiples preguntas por fila y se adapta de manera flexible en caso de lógica de salto
-haciendo que una nueva pregunta aparezca o desaparezca. Para mostrar múltiples preguntas
+permite mostrar múltiples preguntas por fila y se adapta de manera flexible en caso de lógica de omisión
+haciendo que aparezca o desaparezca una nueva pregunta. Para mostrar múltiples preguntas
 en una fila, deben ser parte de un grupo, que por defecto muestra hasta cuatro
 preguntas una al lado de la otra. Este tema se puede personalizar definiendo el
-número de preguntas a incluir en cada fila a través del campo de apariencia de
+número de preguntas que se incluirán en cada fila a través del campo de aspecto de
 la configuración de cada pregunta. Para más detalles
 [consulta esta publicación](https://blog.enketo.org/gorgeous-grid).
 
 También es posible usar tanto **Páginas múltiples** como **Tema de cuadrícula** juntos.
-Puedes configurar estos estilos a través de la interfaz de usuario del editor de formularios de KoboToolbox:
+Puedes configurar estos estilos a través de la interfaz de usuario del editor de formularios de KoboToolbox (Formbuilder):
 
 ![image](/images/alternative_enketo/multiple_grid.gif)
 
-Si estás construyendo tu proyecto de encuesta a través de XLSForm, podrías hacer lo mismo
+Si estás elaborando tu proyecto de encuesta a través de XLSForm, podrías hacer lo mismo
 definiendo el tema bajo la columna `style` en la hoja `settings`:
 
 **hoja settings**
@@ -36,11 +35,11 @@ definiendo el tema bajo la columna `style` en la hoja `settings`:
 
 ## Estilos disponibles en XLSForm:
 
-| Tema XLSForm                         | Descripción                                                    |
-| :----------------------------------- | :------------------------------------------------------------- |
-| (dejar en blanco)                    | Predeterminado – página única                                  |
-| `theme-grid no-text-transform`       | Tema de cuadrícula                                             |
-| `theme-grid`                         | Tema de cuadrícula con encabezados en MAYÚSCULAS              |
-| `pages`                              | Páginas múltiples                                              |
-| `theme-grid pages no-text-transform` | Tema de cuadrícula + Páginas múltiples                         |
+| Tema XLSForm                         | Descripción                                        |
+| :----------------------------------- | :------------------------------------------------- |
+| (dejar en blanco)                    | Predeterminado – página única                      |
+| `theme-grid no-text-transform`       | Tema de cuadrícula                                 |
+| `theme-grid`                         | Tema de cuadrícula con encabezados en MAYÚSCULAS   |
+| `pages`                              | Páginas múltiples                                  |
+| `theme-grid pages no-text-transform` | Tema de cuadrícula + Páginas múltiples             |
 | `theme-grid pages`                   | Tema de cuadrícula + Páginas múltiples + encabezados en MAYÚSCULAS |
