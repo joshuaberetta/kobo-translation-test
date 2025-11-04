@@ -72,55 +72,61 @@ class SRTTranslationAgent:
         if target_lang in self.skill_cache:
             return self.skill_cache[target_lang]
         
-        print(f"📚 Loading kobo-translation-srt skill for {target_lang.upper()}...", file=sys.stderr)
-        
-        # Try SRT-specific skill first
-        srt_skill_base = Path(f'skills/kobo-translation-srt-{target_lang}')
-        if not srt_skill_base.exists():
-            srt_skill_base = Path('skills/kobo-translation-srt')
-        
-        # Fall back to main skill if SRT skill doesn't exist
-        if not srt_skill_base.exists():
-            print(f"  ⚠️  SRT-specific skill not found, using main translation skill", file=sys.stderr)
-            srt_skill_base = Path(f'skills/kobo-translation-{target_lang}')
-            if not srt_skill_base.exists():
-                srt_skill_base = Path('skills/kobo-translation')
-        
-        if not srt_skill_base.exists():
-            raise FileNotFoundError(
-                f"Translation skill not found. Tried:\n"
-                f"  - skills/kobo-translation-srt-{target_lang}\n"
-                f"  - skills/kobo-translation-srt\n"
-                f"  - skills/kobo-translation-{target_lang}\n"
-                f"  - skills/kobo-translation"
-            )
+        print(f"📚 Loading translation skills for {target_lang.upper()}...", file=sys.stderr)
         
         context = {}
         
-        # Read main skill file
-        main_skill = srt_skill_base / 'SKILL.md'
-        if main_skill.exists():
-            context['main'] = main_skill.read_text(encoding='utf-8')
-        else:
-            raise FileNotFoundError(f"SKILL.md not found in {srt_skill_base}")
+        # First, load BASE skill (kobo-translation) for terminology
+        base_skill_path = Path(f'skills/kobo-translation-{target_lang}')
+        if not base_skill_path.exists():
+            base_skill_path = Path('skills/kobo-translation')
         
-        # Read reference files if they exist
-        refs_dir = srt_skill_base / 'references'
-        if refs_dir.exists():
-            ref_files = [
-                'brand-terminology.md',
-                'ui-terminology.md',
-                'subtitle-guidelines.md',  # SRT-specific
-            ]
+        if base_skill_path.exists():
+            print(f"  📖 Loading base skill: {base_skill_path.name}", file=sys.stderr)
             
-            for filename in ref_files:
-                file_path = refs_dir / filename
-                if file_path.exists():
-                    key = filename.replace('.md', '').replace('-', '_')
-                    context[key] = file_path.read_text(encoding='utf-8')
+            # Read base SKILL.md
+            base_skill_file = base_skill_path / 'SKILL.md'
+            if base_skill_file.exists():
+                context['base_skill'] = base_skill_file.read_text(encoding='utf-8')
+            
+            # Read all base reference files
+            base_refs_dir = base_skill_path / 'references'
+            if base_refs_dir.exists():
+                for ref_file in base_refs_dir.glob('*.md'):
+                    key = f"base_{ref_file.stem.replace('-', '_')}"
+                    context[key] = ref_file.read_text(encoding='utf-8')
+                    print(f"    ✓ {ref_file.name}", file=sys.stderr)
+        
+        # Then, load SRT-specific skill extension
+        srt_skill_path = Path(f'skills/kobo-translation-srt-{target_lang}')
+        if not srt_skill_path.exists():
+            srt_skill_path = Path('skills/kobo-translation-srt')
+        
+        if srt_skill_path.exists():
+            print(f"  📖 Loading SRT extension: {srt_skill_path.name}", file=sys.stderr)
+            
+            # Read SRT SKILL.md (this extends the base)
+            srt_skill_file = srt_skill_path / 'SKILL.md'
+            if srt_skill_file.exists():
+                context['srt_skill'] = srt_skill_file.read_text(encoding='utf-8')
+            
+            # Read SRT-specific reference files
+            srt_refs_dir = srt_skill_path / 'references'
+            if srt_refs_dir.exists():
+                for ref_file in srt_refs_dir.glob('*.md'):
+                    key = f"srt_{ref_file.stem.replace('-', '_')}"
+                    context[key] = ref_file.read_text(encoding='utf-8')
+                    print(f"    ✓ {ref_file.name}", file=sys.stderr)
+        
+        if not context:
+            raise FileNotFoundError(
+                f"Translation skills not found. Tried:\n"
+                f"  - {base_skill_path}\n"
+                f"  - {srt_skill_path}"
+            )
         
         self.skill_cache[target_lang] = context
-        print(f"✅ Skill loaded successfully ({len(context)} files)", file=sys.stderr)
+        print(f"✅ Loaded {len(context)} skill files total", file=sys.stderr)
         
         return context
     
@@ -215,8 +221,35 @@ UPCOMING CONTEXT (will be translated next, for flow):
         
         subtitles_str = '\n\n'.join(subtitle_lines)
         
+        # Build comprehensive prompt with all skill context
+        skill_sections = []
+        
+        # Add base skill if present
+        if 'base_skill' in skill_context:
+            skill_sections.append("# BASE TRANSLATION SKILL\n\n" + skill_context['base_skill'])
+        
+        # Add all base reference files
+        for key, content in skill_context.items():
+            if key.startswith('base_') and key != 'base_skill':
+                title = key.replace('base_', '').replace('_', ' ').title()
+                skill_sections.append(f"# {title}\n\n{content}")
+        
+        # Add SRT skill extension
+        if 'srt_skill' in skill_context:
+            skill_sections.append("# SRT SUBTITLE EXTENSION\n\n" + skill_context['srt_skill'])
+        
+        # Add SRT-specific reference files
+        for key, content in skill_context.items():
+            if key.startswith('srt_') and key != 'srt_skill':
+                title = key.replace('srt_', '').replace('_', ' ').title()
+                skill_sections.append(f"# {title}\n\n{content}")
+        
+        full_skill_context = '\n\n---\n\n'.join(skill_sections)
+        
         # Build comprehensive prompt
-        prompt = f"""{skill_context.get('main', '')}
+        prompt = f"""{full_skill_context}
+
+---
 
 TARGET LANGUAGE: {target_lang.upper()}
 
