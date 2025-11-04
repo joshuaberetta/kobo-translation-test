@@ -332,6 +332,375 @@ Once everything works:
    - Train reviewers
    - Roll out gradually
 
+## SRT Subtitle Translation Workflow
+
+### Overview
+
+The SRT translation workflow is specifically designed for translating video subtitles with:
+- **Chunked translation**: Processes 20-30 subtitles at a time with overlap for context
+- **Character limits**: Ensures subtitles stay readable on screen (35-42 chars ideal, 50 max)
+- **Context preservation**: Maintains narrative flow while minimizing hallucinations
+- **Timing preservation**: Keeps all timestamps and subtitle numbering intact
+
+### Setup for SRT Translation
+
+```bash
+# The SRT translation skill is already included in the repository
+# Structure:
+# skills/
+# ├── kobo-translation/          # Base translation skill
+# └── kobo-translation-srt/      # SRT extension skill
+#     ├── SKILL.md
+#     └── references/
+#         └── subtitle-guidelines.md
+
+# SRT helper scripts are in scripts/:
+# - srt_helper.py        # Parse, validate, and convert SRT files
+# - translate_srt.py     # Translate SRT files with chunking
+```
+
+### Testing SRT Translation
+
+**1. Validate an SRT file:**
+
+```bash
+# Check if an SRT file is properly formatted
+python scripts/srt_helper.py validate examples/sample_transcript_en.srt
+
+# Output shows:
+# ✅ Valid / ❌ Invalid
+# Subtitle count
+# Any issues found (overlaps, missing text, etc.)
+```
+
+**2. Convert SRT to JSON (optional):**
+
+```bash
+# Convert to JSON for inspection
+python scripts/srt_helper.py parse examples/sample_transcript_en.srt \
+  --output examples/sample_transcript_en.json
+
+# View the structure
+cat examples/sample_transcript_en.json
+```
+
+**3. Translate an SRT file:**
+
+```bash
+# Translate to Spanish
+python scripts/translate_srt.py examples/sample_transcript_en.srt \
+  --language es \
+  --video-title "Creating Forms in KoboToolbox"
+
+# This will:
+# 1. Parse the SRT file (45 subtitles in the example)
+# 2. Create chunks of 25 subtitles with 3-subtitle overlap
+# 3. Translate each chunk with context awareness
+# 4. Output: examples/sample_transcript_en_es.srt
+
+# Check the output
+head -n 20 examples/sample_transcript_en_es.srt
+```
+
+**4. Customize chunking parameters:**
+
+```bash
+# Adjust chunk size and overlap for different needs
+python scripts/translate_srt.py examples/sample_transcript_en.srt \
+  --language fr \
+  --chunk-size 20 \     # Smaller chunks = more API calls but better accuracy
+  --overlap 5 \          # More overlap = better context but more token usage
+  --video-title "Tutorial Title"
+```
+
+### SRT Translation Best Practices
+
+**Chunk Size Guidelines:**
+
+| Video Length | Chunk Size | Overlap | Rationale |
+|--------------|------------|---------|-----------|
+| Short (<5 min) | 30-40 | 3 | Full context fits, fewer chunks |
+| Medium (5-15 min) | 25 | 3-5 | **Default - balanced** |
+| Long (15-30 min) | 20 | 5 | More overlap prevents drift |
+| Very Long (>30 min) | 15-20 | 5-7 | Tighter chunking for consistency |
+
+**Cost Estimates for SRT Translation:**
+
+```bash
+# Sample video: 2-minute tutorial (45 subtitles)
+# Chunk size: 25, Overlap: 3
+# Result: 2 chunks
+
+# Per language costs (approximate):
+Spanish:  $0.25 - $0.35
+French:   $0.25 - $0.35  
+Arabic:   $0.30 - $0.40 (RTL complexity)
+
+# All three languages: ~$0.90 for a 2-minute video
+
+# For longer videos:
+# 10-minute video (~225 subtitles): ~$2.00-3.00 per language
+# 30-minute video (~675 subtitles): ~$6.00-9.00 per language
+# 60-minute video (~1350 subtitles): ~$12.00-18.00 per language
+```
+
+**Quality Assurance for Subtitles:**
+
+```bash
+# After translating, validate the output
+python scripts/srt_helper.py validate examples/sample_transcript_en_es.srt
+
+# Check for:
+# ✅ All subtitles translated (count matches)
+# ✅ No timing changes
+# ✅ Sequential numbering maintained
+# ✅ No overlaps introduced
+
+# Manual review checklist:
+# - Brand terms correct (Servidor Global, La biblioteca de preguntas)
+# - Character limits respected (<50 chars per line)
+# - Natural spoken language
+# - Technical terms in English (list_name, cascading select)
+# - Consistent terminology throughout
+```
+
+### SRT Workflow Integration
+
+**Option 1: Local batch translation**
+
+```bash
+#!/bin/bash
+# translate_video_subtitles.sh
+
+SOURCE_SRT="$1"
+VIDEO_TITLE="$2"
+
+for lang in es fr ar; do
+  echo "Translating to $lang..."
+  python scripts/translate_srt.py "$SOURCE_SRT" \
+    --language "$lang" \
+    --video-title "$VIDEO_TITLE"
+done
+
+echo "All translations complete!"
+```
+
+Usage:
+```bash
+./translate_video_subtitles.sh \
+  "video_tutorials/intro.srt" \
+  "Introduction to KoboToolbox"
+```
+
+**Option 2: Manual workflow**
+
+```bash
+# 1. Create English subtitles (YouTube auto-generate or manual)
+# 2. Export as SRT
+# 3. Clean and validate
+python scripts/srt_helper.py validate video.srt
+
+# 4. Translate
+python scripts/translate_srt.py video.srt --language es
+
+# 5. Review translation (open in subtitle editor)
+# 6. Upload to video platform
+
+# 7. Repeat for other languages
+```
+
+**Option 3: GitHub Actions (future)**
+
+```yaml
+# .github/workflows/translate-subtitles.yml
+# (Not included in current test repo, but could be added)
+
+name: Translate Video Subtitles
+on:
+  workflow_dispatch:
+    inputs:
+      srt_file:
+        description: 'Path to SRT file'
+        required: true
+      video_title:
+        description: 'Video title for context'
+        required: true
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+      - name: Translate subtitles
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          for lang in es fr ar; do
+            python scripts/translate_srt.py "${{ github.event.inputs.srt_file }}" \
+              --language "$lang" \
+              --video-title "${{ github.event.inputs.video_title }}"
+          done
+      - name: Upload translations
+        uses: actions/upload-artifact@v2
+        with:
+          name: translated-subtitles
+          path: '**/*_es.srt'
+```
+
+### Common SRT Translation Issues
+
+**Issue: Subtitles too long after translation**
+```bash
+# Solution: The translator tries to compress naturally,
+# but you can manually edit if needed
+# Use a subtitle editor like:
+# - Subtitle Edit (Windows/Linux)
+# - Aegisub (cross-platform)
+# - Subtitle Workshop
+
+# Check character counts:
+python -c "
+import sys
+with open(sys.argv[1]) as f:
+    for line in f:
+        if line.strip() and '-->' not in line and not line.strip().isdigit():
+            if len(line.strip()) > 50:
+                print(f'Long: {len(line.strip())} chars - {line.strip()[:60]}...')
+" examples/sample_transcript_en_es.srt
+```
+
+**Issue: Technical terms translated incorrectly**
+```bash
+# The SRT skill keeps XLSForm terms in English
+# But verify by searching:
+grep -n "list_name\|cascading" examples/sample_transcript_en_es.srt
+
+# Should show English terms preserved
+```
+
+**Issue: Brand terms incorrect**
+```bash
+# Check server names:
+grep -n "Servidor" examples/sample_transcript_en_es.srt
+# Should be "Servidor Global" NOT "Servidor Global de KoboToolbox"
+
+# Check Question Library:
+grep -n "biblioteca" examples/sample_transcript_en_es.srt  
+# Should be "La biblioteca de preguntas" with capital L
+```
+
+**Issue: Context lost between chunks**
+```bash
+# Increase overlap:
+python scripts/translate_srt.py video.srt \
+  --language es \
+  --overlap 7  # More context between chunks
+
+# Or reduce chunk size:
+python scripts/translate_srt.py video.srt \
+  --language es \
+  --chunk-size 15  # Smaller chunks, more frequent context
+```
+
+### SRT Testing Checklist
+
+Before using SRT translations in production:
+
+- [ ] Test with short video (2-5 minutes)
+- [ ] Validate all brand terms are correct
+- [ ] Check character limits (no lines >50 chars)
+- [ ] Verify technical terms in English
+- [ ] Test with subtitle editor (timing sync)
+- [ ] Calculate actual costs vs estimates
+- [ ] Review with native speaker
+- [ ] Test on actual video player
+- [ ] Check readability at normal playback speed
+- [ ] Verify formality level (tú vs vous)
+
+### Example: Complete SRT Workflow
+
+```bash
+# Starting with English subtitles from YouTube
+# File: intro_to_kobo.srt (English)
+
+# Step 1: Validate source
+python scripts/srt_helper.py validate intro_to_kobo.srt
+# ✅ Valid, 120 subtitles, 5.2 minutes
+
+# Step 2: Translate to Spanish
+python scripts/translate_srt.py intro_to_kobo.srt \
+  --language es \
+  --video-title "Introduction to KoboToolbox" \
+  --chunk-size 25 \
+  --overlap 3
+
+# Output:
+# 📦 Created 5 chunks
+# 🤖 Translating chunk 1/5... ✓
+# 🤖 Translating chunk 2/5... ✓
+# 🤖 Translating chunk 3/5... ✓
+# 🤖 Translating chunk 4/5... ✓
+# 🤖 Translating chunk 5/5... ✓
+# ✅ Translated 120 subtitles
+# 💾 Saved to: intro_to_kobo_es.srt
+# 💰 Estimated cost: $1.85
+
+# Step 3: Validate translation
+python scripts/srt_helper.py validate intro_to_kobo_es.srt
+# ✅ Valid, 120 subtitles
+
+# Step 4: Check key terms
+grep "Servidor Global" intro_to_kobo_es.srt
+grep "La biblioteca de preguntas" intro_to_kobo_es.srt
+# ✅ All correct
+
+# Step 5: Manual review in subtitle editor
+# Open in Aegisub or Subtitle Edit
+# Check timing, readability, and flow
+
+# Step 6: Upload to YouTube
+# Video → Subtitles → Upload file → intro_to_kobo_es.srt
+
+# Step 7: Repeat for other languages
+python scripts/translate_srt.py intro_to_kobo.srt --language fr
+python scripts/translate_srt.py intro_to_kobo.srt --language ar
+
+# Total cost: ~$5.50 for all three languages
+```
+
+### When to Use SRT vs Document Translation
+
+**Use SRT translation (`translate_srt.py`) for:**
+- ✅ Video subtitles and captions
+- ✅ Webinar transcripts
+- ✅ Tutorial voiceovers
+- ✅ Live event captions
+- ✅ Any time-coded transcripts
+
+**Use document translation (`translation_agent.py`) for:**
+- ✅ Documentation articles
+- ✅ Support articles
+- ✅ Blog posts
+- ✅ Marketing materials
+- ✅ Email templates
+
+**Key differences:**
+
+| Feature | SRT | Document |
+|---------|-----|----------|
+| Format | Time-coded subtitles | Markdown/HTML |
+| Character limits | Yes (35-42 ideal, 50 max) | No limits |
+| XLSForm terms | English only | English + translation |
+| Processing | Chunked with overlap | Full or diff-based |
+| Context | Sequential narrative | Section-based |
+| Cost per 1000 words | Higher (chunking overhead) | Lower (bulk processing) |
+
 ## Cost Tracking
 
 Keep track of your testing costs:

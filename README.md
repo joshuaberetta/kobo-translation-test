@@ -2,6 +2,8 @@
 
 This is a minimal test setup to validate the AI translation workflow before implementing in the full documentation repository.
 
+**✨ NEW: SRT Subtitle Translation** - Now includes complete workflow for translating video subtitles with context-aware chunking to minimize hallucinations. See `SRT_WORKFLOW.md` for details.
+
 ## Repository Structure
 
 ```
@@ -16,22 +18,29 @@ kobo-translation-test/
 │   │   └── test_complex.md             # Complex doc with brand terms
 │   ├── es/                              # Spanish translations (auto-generated)
 │   ├── fr/                              # French translations (auto-generated)
-│   ├── ar/                              # Arabic translations (auto-generated)
-│   └── _metadata/
-│       └── translation_status.json      # Tracks translation state
+│   └── ar/                              # Arabic translations (auto-generated)
+├── examples/
+│   ├── sample_transcript_en.srt         # Sample video transcript
+│   ├── test_webinar.srt                 # Real webinar content (tested ✅)
+│   ├── test_srt_parser.py               # Parser verification test
+│   └── TEST_RESULTS.md                  # Verification results
 ├── skills/
-│   └── kobo-translation/                # Translation skill (from your work)
+│   ├── kobo-translation/                # Main translation skill
+│   │   ├── SKILL.md
+│   │   └── references/
+│   └── kobo-translation-srt/            # SRT subtitle extension skill
 │       ├── SKILL.md
 │       └── references/
-│           ├── brand-terminology.md
-│           ├── ui-terminology.md
-│           └── ... (other reference files)
+│           └── subtitle-guidelines.md
 ├── scripts/
-│   ├── translation_agent.py             # Main translation agent
-│   ├── validate_translation.py          # Validation checks
+│   ├── translation_agent.py             # Main translation agent (docs)
+│   ├── translate_srt.py                 # SRT translation agent (NEW)
+│   ├── srt_helper.py                    # SRT parser & converter (NEW)
 │   └── requirements.txt                 # Python dependencies
-├── .env.example                         # Template for secrets
-├── .gitignore
+├── SRT_WORKFLOW.md                      # SRT translation guide (NEW)
+├── SRT_IMPLEMENTATION.md                # Implementation details (NEW)
+├── SETUP.md                             # Complete setup guide
+├── QUICKSTART.md                        # Quick start checklist
 └── README.md                            # This file
 ```
 

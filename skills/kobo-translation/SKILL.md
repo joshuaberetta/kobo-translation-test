@@ -9,6 +9,8 @@ description: "Translation and localization guidelines for KoboToolbox content in
 
 Translate KoboToolbox content in French, Spanish, and Arabic with consistent terminology, appropriate tone, and cultural adaptation.
 
+**📹 For Video Subtitles/Transcripts:** If you're translating SRT subtitle files, use the **[kobo-translation-srt](../kobo-translation-srt/SKILL.md)** skill extension which includes all base rules plus subtitle-specific guidelines for character limits, spoken language, and chunked translation.
+
 **Translation approach:**
 
 For **NEW FILES** (full translation):
@@ -127,6 +129,16 @@ For **UPDATES** (diff-based translation):
 - Context-dependent
 - Generally use "vous"/"usted" for semi-formal
 - May use "tu"/"tú" for very informal contexts
+
+**Video subtitles/transcripts (SRT files):**
+- **Use the [kobo-translation-srt](../kobo-translation-srt/SKILL.md) skill extension**
+- All base rules apply PLUS subtitle-specific adaptations
+- Key differences:
+  - XLSForm terms: English only (no translations due to character limits)
+  - Character limits: 35-42 characters per line ideal, 50 max
+  - Natural spoken language (more conversational than written)
+  - Chunked translation approach to preserve context
+- Same formality levels as educational content (vous/tú)
 
 ### Step 2: Check Terminology Category
 
