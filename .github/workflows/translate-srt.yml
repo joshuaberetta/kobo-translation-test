@@ -264,4 +264,3 @@ jobs:
             subtitles
             automated
           assignees: ${{ github.actor }}
-          reviewers: ${{ github.actor }}
