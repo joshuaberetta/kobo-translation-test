@@ -58,6 +58,8 @@ class SRTTranslationAgent:
         # Track token usage
         self.total_input_tokens = 0
         self.total_output_tokens = 0
+        self.total_cache_read_tokens = 0
+        self.total_cache_write_tokens = 0
     
     def _load_skill_context(self, target_lang: str) -> Dict[str, str]:
         """
@@ -246,10 +248,21 @@ UPCOMING CONTEXT (will be translated next, for flow):
         
         full_skill_context = '\n\n---\n\n'.join(skill_sections)
         
-        # Build comprehensive prompt
-        prompt = f"""{full_skill_context}
-
----
+        print(f"  🤖 Translating chunk {chunk['chunk_number']}/{total_chunks} "
+              f"({len(chunk['subtitles'])} subtitles)...", file=sys.stderr)
+        
+        try:
+            # Build message content with prompt caching
+            # Cache the static skill context (large and repeated across chunks)
+            message_content = [
+                {
+                    "type": "text",
+                    "text": full_skill_context,
+                    "cache_control": {"type": "ephemeral"}  # Cache skill content
+                },
+                {
+                    "type": "text",
+                    "text": f"""---
 
 TARGET LANGUAGE: {target_lang.upper()}
 
@@ -291,11 +304,9 @@ Translated text here
 Translated text here
 
 Translation:"""
-
-        print(f"  🤖 Translating chunk {chunk['chunk_number']}/{total_chunks} "
-              f"({len(chunk['subtitles'])} subtitles)...", file=sys.stderr)
-        
-        try:
+                }
+            ]
+            
             response = self.claude.messages.create(
                 model="claude-sonnet-4-5-20250929",
                 max_tokens=8000,
@@ -308,7 +319,7 @@ Translation:"""
 5. Maintain the exact format: [index] timestamp --> timestamp\\ntext""",
                 messages=[{
                     "role": "user",
-                    "content": prompt
+                    "content": message_content
                 }]
             )
             
@@ -318,12 +329,22 @@ Translation:"""
                 if block.type == "text":
                     translation += block.text
             
-            # Track usage
+            # Track usage (including cache metrics)
             usage = response.usage
             self.total_input_tokens += usage.input_tokens
             self.total_output_tokens += usage.output_tokens
             
-            print(f"    ✓ Tokens: {usage.input_tokens} in, {usage.output_tokens} out", file=sys.stderr)
+            # Track cache metrics if available
+            cache_read = getattr(usage, 'cache_read_input_tokens', 0)
+            cache_write = getattr(usage, 'cache_creation_input_tokens', 0)
+            self.total_cache_read_tokens += cache_read
+            self.total_cache_write_tokens += cache_write
+            
+            if cache_read > 0 or cache_write > 0:
+                print(f"    ✓ Tokens: {usage.input_tokens} in, {usage.output_tokens} out", file=sys.stderr)
+                print(f"    💾 Cache: {cache_read} read, {cache_write} write", file=sys.stderr)
+            else:
+                print(f"    ✓ Tokens: {usage.input_tokens} in, {usage.output_tokens} out", file=sys.stderr)
             
             # Parse translated subtitles
             translated_subs = self._parse_translated_chunk(translation, chunk['subtitles'])
@@ -486,13 +507,32 @@ Translation:"""
         print(f"Total input tokens: {self.total_input_tokens:,}", file=sys.stderr)
         print(f"Total output tokens: {self.total_output_tokens:,}", file=sys.stderr)
         
-        # Cost calculation (Claude Sonnet 4 pricing)
+        # Show cache statistics if caching was used
+        if self.total_cache_read_tokens > 0 or self.total_cache_write_tokens > 0:
+            print(f"💾 Cache read tokens: {self.total_cache_read_tokens:,}", file=sys.stderr)
+            print(f"💾 Cache write tokens: {self.total_cache_write_tokens:,}", file=sys.stderr)
+            
+            # Calculate savings
+            cache_savings = (self.total_cache_read_tokens * 3.00 / 1_000_000) * 0.9  # 90% saved
+            print(f"💰 Cache savings: ${cache_savings:.4f}", file=sys.stderr)
+        
+        # Cost calculation (Claude Sonnet 4 pricing with prompt caching)
+        # Regular input tokens
         input_cost = self.total_input_tokens / 1_000_000 * 3.00
+        
+        # Cache write tokens (25% premium: $3.75/MTok)
+        cache_write_cost = self.total_cache_write_tokens / 1_000_000 * 3.75
+        
+        # Cache read tokens (90% discount: $0.30/MTok)
+        cache_read_cost = self.total_cache_read_tokens / 1_000_000 * 0.30
+        
+        # Output tokens
         output_cost = self.total_output_tokens / 1_000_000 * 15.00
-        total_cost = input_cost + output_cost
+        
+        total_cost = input_cost + cache_write_cost + cache_read_cost + output_cost
         
         print(f"💰 Estimated cost: ${total_cost:.4f}", file=sys.stderr)
-        print(f"   (Input: ${input_cost:.4f}, Output: ${output_cost:.4f})", file=sys.stderr)
+        print(f"   (Input: ${input_cost:.4f}, Cache Write: ${cache_write_cost:.4f}, Cache Read: ${cache_read_cost:.4f}, Output: ${output_cost:.4f})", file=sys.stderr)
         print(f"=" * 60, file=sys.stderr)
 
 

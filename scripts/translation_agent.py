@@ -181,9 +181,21 @@ class TranslationAgent:
         # Load language-specific skill context
         skill_context = self._get_skill_context(target_lang)
         
-        # Use main skill + all reference files for diffs to ensure accuracy
-        skill_prompt = f"""
-{skill_context.get('main', '')}
+        # Build context note
+        context_note = ""
+        if context:
+            context_note = f"""
+SURROUNDING CONTEXT (for reference only - DO NOT translate):
+```
+{context}
+```
+"""
+        
+        # Build message content with prompt caching
+        message_content = [
+            {
+                "type": "text",
+                "text": f"""{skill_context.get('main', '')}
 
 ## BRAND TERMINOLOGY REFERENCE
 {skill_context.get('brand', '')}
@@ -201,21 +213,12 @@ class TranslationAgent:
 {skill_context.get('questions', '')}
 
 ## COURSE TERMINOLOGY
-{skill_context.get('course', '')}
-"""
-        
-        # Build prompt with EXTREME emphasis on diff-only translation
-        context_note = ""
-        if context:
-            context_note = f"""
-SURROUNDING CONTEXT (for reference only - DO NOT translate):
-```
-{context}
-```
-"""
-        
-        prompt = f"""{skill_prompt}
-
+{skill_context.get('course', '')}""",
+                "cache_control": {"type": "ephemeral"}  # Cache skill content
+            },
+            {
+                "type": "text",
+                "text": f"""
 TARGET LANGUAGE: {target_lang.upper()}
 
 🚨🚨🚨 CRITICAL INSTRUCTION 🚨🚨🚨
@@ -242,7 +245,9 @@ Your job is to translate ONLY this small change.
 ---END DIFF TO TRANSLATE---
 
 Now provide ONLY the translated diff content (nothing else):"""
-
+            }
+        ]
+        
         print(f"  🤖 Calling Claude API...", file=sys.stderr)
         
         try:
@@ -259,7 +264,7 @@ Now provide ONLY the translated diff content (nothing else):"""
 This is critical - translate ONLY what is explicitly marked for translation.""",
                 messages=[{
                     "role": "user",
-                    "content": prompt
+                    "content": message_content
                 }]
             )
             
@@ -269,10 +274,22 @@ This is critical - translate ONLY what is explicitly marked for translation.""",
                 if block.type == "text":
                     translation += block.text
             
-            # Report token usage
+            # Report token usage (including cache metrics)
             usage = response.usage
+            cache_read = getattr(usage, 'cache_read_input_tokens', 0)
+            cache_write = getattr(usage, 'cache_creation_input_tokens', 0)
+            
             print(f"  📊 Tokens used: {usage.input_tokens} input, {usage.output_tokens} output", file=sys.stderr)
-            cost = (usage.input_tokens / 1_000_000 * 3) + (usage.output_tokens / 1_000_000 * 15)
+            if cache_read > 0 or cache_write > 0:
+                print(f"  💾 Cache: {cache_read} read, {cache_write} write", file=sys.stderr)
+            
+            # Calculate cost with prompt caching
+            input_cost = usage.input_tokens / 1_000_000 * 3
+            cache_write_cost = cache_write / 1_000_000 * 3.75  # 25% premium
+            cache_read_cost = cache_read / 1_000_000 * 0.30  # 90% discount
+            output_cost = usage.output_tokens / 1_000_000 * 15
+            
+            cost = input_cost + cache_write_cost + cache_read_cost + output_cost
             print(f"  💰 Estimated cost: ${cost:.4f}", file=sys.stderr)
             
             return translation
@@ -325,10 +342,11 @@ This is critical - translate ONLY what is explicitly marked for translation.""",
         # Load language-specific skill context
         skill_context = self._get_skill_context(target_lang)
         
-        # Build comprehensive skill prompt with all reference materials
-        # All files are used regardless of complexity to ensure consistency
-        skill_prompt = f"""
-{skill_context.get('main', '')}
+        # Build final prompt with prompt caching
+        message_content = [
+            {
+                "type": "text",
+                "text": f"""{skill_context.get('main', '')}
 
 ## BRAND TERMINOLOGY REFERENCE
 {skill_context.get('brand', '')}
@@ -346,12 +364,12 @@ This is critical - translate ONLY what is explicitly marked for translation.""",
 {skill_context.get('questions', '')}
 
 ## COURSE TERMINOLOGY
-{skill_context.get('course', '')}
-"""
-        
-        # Build final prompt
-        prompt = f"""{skill_prompt}
-
+{skill_context.get('course', '')}""",
+                "cache_control": {"type": "ephemeral"}  # Cache skill content
+            },
+            {
+                "type": "text",
+                "text": f"""
 TARGET LANGUAGE: {target_lang.upper()}
 
 Now translate this COMPLETE NEW document following ALL rules above.
@@ -362,6 +380,8 @@ Provide ONLY the translated markdown. No explanations, comments, or meta-text.
 ---END SOURCE DOCUMENT---
 
 Translation:"""
+            }
+        ]
 
         print(f"  🤖 Calling Claude API...")
         
@@ -373,7 +393,7 @@ Translation:"""
                 temperature=0.3,  # Lower for consistency
                 messages=[{
                     "role": "user",
-                    "content": prompt
+                    "content": message_content
                 }]
             )
             
@@ -383,10 +403,22 @@ Translation:"""
                 if block.type == "text":
                     translation += block.text
             
-            # Report token usage
+            # Report token usage (including cache metrics)
             usage = response.usage
+            cache_read = getattr(usage, 'cache_read_input_tokens', 0)
+            cache_write = getattr(usage, 'cache_creation_input_tokens', 0)
+            
             print(f"  📊 Tokens used: {usage.input_tokens} input, {usage.output_tokens} output")
-            cost = (usage.input_tokens / 1_000_000 * 3) + (usage.output_tokens / 1_000_000 * 15)
+            if cache_read > 0 or cache_write > 0:
+                print(f"  💾 Cache: {cache_read} read, {cache_write} write")
+            
+            # Calculate cost with prompt caching
+            input_cost = usage.input_tokens / 1_000_000 * 3
+            cache_write_cost = cache_write / 1_000_000 * 3.75  # 25% premium
+            cache_read_cost = cache_read / 1_000_000 * 0.30  # 90% discount
+            output_cost = usage.output_tokens / 1_000_000 * 15
+            
+            cost = input_cost + cache_write_cost + cache_read_cost + output_cost
             print(f"  💰 Estimated cost: ${cost:.4f}")
             
             return translation
