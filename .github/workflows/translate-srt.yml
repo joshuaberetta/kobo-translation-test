@@ -1,0 +1,198 @@
+name: Translate SRT Subtitles
+
+on:
+  workflow_dispatch:
+    inputs:
+      srt_file:
+        description: 'Path to SRT file in transcripts/en/ (e.g., intro_tutorial.srt)'
+        required: true
+        type: string
+      languages:
+        description: 'Target languages (comma-separated: es, fr, ar, or es,fr,ar for all)'
+        required: true
+        type: string
+        default: 'es,fr,ar'
+      video_title:
+        description: 'Video title for translation context (optional but recommended)'
+        required: false
+        type: string
+      chunk_size:
+        description: 'Subtitles per chunk (default: 25, use 15-20 for long videos, 30-40 for short)'
+        required: false
+        type: number
+        default: 25
+      overlap:
+        description: 'Overlap between chunks for context (default: 3, use 5-7 for long videos)'
+        required: false
+        type: number
+        default: 3
+
+jobs:
+  translate-subtitles:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/requirements.txt
+      
+      - name: Validate input file
+        run: |
+          FILE_PATH="transcripts/en/${{ github.event.inputs.srt_file }}"
+          
+          if [ ! -f "$FILE_PATH" ]; then
+            echo "❌ Error: File not found: $FILE_PATH"
+            echo "Please check the file path and try again."
+            exit 1
+          fi
+          
+          echo "✅ Found source file: $FILE_PATH"
+          
+          # Validate SRT format
+          python scripts/srt_helper.py validate "$FILE_PATH"
+      
+      - name: Parse languages
+        id: parse_langs
+        run: |
+          LANGS="${{ github.event.inputs.languages }}"
+          # Remove spaces and convert to array
+          LANGS=$(echo "$LANGS" | tr -d ' ')
+          echo "languages=$LANGS" >> $GITHUB_OUTPUT
+          echo "📋 Will translate to: $LANGS"
+      
+      - name: Create output directories
+        run: |
+          for lang in $(echo "${{ steps.parse_langs.outputs.languages }}" | tr ',' ' '); do
+            mkdir -p "transcripts/$lang"
+            echo "✅ Created transcripts/$lang/"
+          done
+      
+      - name: Translate subtitles
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          SOURCE_FILE="transcripts/en/${{ github.event.inputs.srt_file }}"
+          FILENAME="${{ github.event.inputs.srt_file }}"
+          BASENAME="${FILENAME%.srt}"
+          VIDEO_TITLE="${{ github.event.inputs.video_title }}"
+          CHUNK_SIZE="${{ github.event.inputs.chunk_size }}"
+          OVERLAP="${{ github.event.inputs.overlap }}"
+          
+          echo "🎬 Translating: $SOURCE_FILE"
+          echo "📦 Chunk size: $CHUNK_SIZE"
+          echo "🔄 Overlap: $OVERLAP"
+          
+          if [ -n "$VIDEO_TITLE" ]; then
+            echo "📝 Video title: $VIDEO_TITLE"
+            TITLE_ARG="--video-title \"$VIDEO_TITLE\""
+          else
+            echo "ℹ️  No video title provided"
+            TITLE_ARG=""
+          fi
+          
+          # Translate to each language
+          for lang in $(echo "${{ steps.parse_langs.outputs.languages }}" | tr ',' ' '); do
+            echo ""
+            echo "================================================"
+            echo "Translating to: $lang"
+            echo "================================================"
+            
+            OUTPUT_FILE="transcripts/$lang/${BASENAME}.srt"
+            
+            if [ -n "$VIDEO_TITLE" ]; then
+              python scripts/translate_srt.py "$SOURCE_FILE" \
+                --language "$lang" \
+                --output "$OUTPUT_FILE" \
+                --chunk-size "$CHUNK_SIZE" \
+                --overlap "$OVERLAP" \
+                --video-title "$VIDEO_TITLE"
+            else
+              python scripts/translate_srt.py "$SOURCE_FILE" \
+                --language "$lang" \
+                --output "$OUTPUT_FILE" \
+                --chunk-size "$CHUNK_SIZE" \
+                --overlap "$OVERLAP"
+            fi
+            
+            if [ $? -eq 0 ]; then
+              echo "✅ Translation complete: $OUTPUT_FILE"
+              
+              # Validate output
+              python scripts/srt_helper.py validate "$OUTPUT_FILE"
+            else
+              echo "❌ Translation failed for language: $lang"
+              exit 1
+            fi
+          done
+      
+      - name: Generate summary
+        if: always()
+        run: |
+          echo "## 📊 Translation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Source File:** \`transcripts/en/${{ github.event.inputs.srt_file }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Languages:** ${{ github.event.inputs.languages }}" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -n "${{ github.event.inputs.video_title }}" ]; then
+            echo "**Video Title:** ${{ github.event.inputs.video_title }}" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "**Chunk Size:** ${{ github.event.inputs.chunk_size }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Overlap:** ${{ github.event.inputs.overlap }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📁 Generated Files" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          BASENAME="${{ github.event.inputs.srt_file }}"
+          BASENAME="${BASENAME%.srt}"
+          
+          for lang in $(echo "${{ steps.parse_langs.outputs.languages }}" | tr ',' ' '); do
+            OUTPUT_FILE="transcripts/$lang/${BASENAME}.srt"
+            if [ -f "$OUTPUT_FILE" ]; then
+              SUBTITLE_COUNT=$(grep -c "^[0-9]\+$" "$OUTPUT_FILE" || echo "0")
+              FILE_SIZE=$(du -h "$OUTPUT_FILE" | cut -f1)
+              echo "- ✅ \`$OUTPUT_FILE\` ($SUBTITLE_COUNT subtitles, $FILE_SIZE)" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- ❌ \`$OUTPUT_FILE\` (failed)" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📝 Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "1. Download the artifacts below to review translations" >> $GITHUB_STEP_SUMMARY
+          echo "2. Check subtitle quality (brand terms, character limits, etc.)" >> $GITHUB_STEP_SUMMARY
+          echo "3. If satisfied, commit the translations to the repository" >> $GITHUB_STEP_SUMMARY
+          echo "4. Upload SRT files to your video platform" >> $GITHUB_STEP_SUMMARY
+      
+      - name: Upload translated subtitles
+        uses: actions/upload-artifact@v3
+        with:
+          name: translated-subtitles
+          path: |
+            transcripts/*/
+            !transcripts/en/
+          retention-days: 30
+      
+      - name: Create commit (optional)
+        if: github.event.inputs.auto_commit == 'true'
+        run: |
+          # This step is commented out by default
+          # Uncomment to automatically commit translations
+          # 
+          # git config user.name "Translation Bot"
+          # git config user.email "bot@kobotoolbox.org"
+          # git add transcripts/
+          # git commit -m "Add SRT translations for ${{ github.event.inputs.srt_file }}"
+          # git push
+          
+          echo "ℹ️  Auto-commit is disabled. Download artifacts to review translations."
