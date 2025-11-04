@@ -1,0 +1,2815 @@
+1  
+00:00:00,000 --> 00:00:09,119  
+*Music*
+
+2  
+00:00:09,119 --> 00:00:15,762  
+Welcome everyone to Kobo's milestone webinar celebrating our ten years of community-led impact and innovation.
+
+3  
+00:00:15,762 --> 00:00:22,762  
+Over the last ten years, you have taken our tools to the field and helped us create something better year over year.
+
+4  
+00:00:22,762 --> 00:00:27,742  
+Together, we have built an amazing community that spans over two hundred countries.
+
+5  
+00:00:27,742 --> 00:00:33,629  
+And today, we celebrate this community and everybody here who's curious about our work.
+
+6  
+00:00:33,629 --> 00:00:38,149  
+I'm Dev More. I'll be your host for today. So, here's our agenda for today.
+
+7  
+00:00:38,149 --> 00:00:43,309  
+We'll first start with our ten year journey, and Patrick will share about this journey.
+
+8  
+00:00:43,309 --> 00:00:46,579  
+And then, we'll have Tino who will tell us about some
+
+9  
+00:00:46,579 --> 00:00:50,569  
+recent product updates and about the future of the platform.
+
+10  
+00:00:50,569 --> 00:00:57,319  
+Then we'll jump into talking about our new offerings, where I'll be talking to Ayman and Paula.
+
+11  
+00:00:57,319 --> 00:01:01,229  
+After that, we have Tala from WHH and Sharon
+
+12  
+00:01:01,229 --> 00:01:06,059  
+from Save the Children who will be sharing their experience with the platform.
+
+13  
+00:01:06,059 --> 00:01:09,559  
+And in the end, we'll have an open round of Q\&A where we will
+
+14  
+00:01:09,559 --> 00:01:13,487  
+take up some questions from the Q\&A box.
+
+15  
+00:01:13,487 --> 00:01:19,407  
+So, let's start where it all began with Patrick, our cofounder and president.
+
+16  
+00:01:19,407 --> 00:01:24,147  
+Patrick, could you share a bit about the history of Kobo from its earliest days and the
+
+17  
+00:01:24,147 --> 00:01:28,739  
+journey on how we got to where we are today? Sure.
+
+18  
+00:01:28,739 --> 00:01:35,069  
+First, let me thank you, Dev, and everyone on the team for organizing this event, and thanks to the participants.
+
+19  
+00:01:35,069 --> 00:01:38,430  
+It's amazing to see so many people coming and joining
+
+20  
+00:01:38,430 --> 00:01:42,239  
+us in discussing where we were and where we're going.
+
+21  
+00:01:42,239 --> 00:01:45,470  
+So I really look forward to the discussion today.
+
+22  
+00:01:45,470 --> 00:01:49,560  
+But as you said, let's maybe look a little bit back before we look forward.
+
+23  
+00:01:49,560 --> 00:01:54,169  
+And not many people know that Kobo is actually more than ten years old.
+
+24  
+00:01:54,169 --> 00:01:58,440  
+It really started as an idea when  
+
+25  
+00:01:58,440 --> 00:02:03,079  
+Phuong Pham, the other cofounder (but also my wife), and I were in Iraq.
+
+26  
+00:02:03,079 --> 00:02:06,839  
+\[Unintelligible\]
+
+27  
+00:02:06,839 --> 00:02:12,245  
+\[Unintelligible\]
+
+28  
+00:02:12,245 --> 00:02:17,955  
+And we had a very simple idea. It seems so obvious today, but it wasn't the case at the time, was, well, let's ask people.
+
+29  
+00:02:17,955 --> 00:02:23,804  
+And so we started using what would be traditionally epidemiological methods to kind of assess
+
+30  
+00:02:23,804 --> 00:02:30,474  
+people's opinions and perspectives on how to rebuild after violence.
+
+31  
+00:02:30,474 --> 00:02:36,254  
+But in doing so, we realized that we needed to move much faster in order to be able to drive action.
+
+32  
+00:02:36,254 --> 00:02:42,204  
+In other words, the time from the moment we collect data to inform policies is very, very short.
+
+33  
+00:02:42,204 --> 00:02:47,194  
+And so we needed to go faster and that's how we created Kobo. And so moving forward with, you
+
+34  
+00:02:47,194 --> 00:02:50,414  
+know, a couple of years, we use literally the money we would normally use
+
+35  
+00:02:50,414 --> 00:02:53,884  
+for photocopies and data entry to create the first Kobo.
+
+36  
+00:02:53,884 --> 00:02:56,944  
+And I had a bit of a kick looking back at some of those pictures
+
+37  
+00:02:56,944 --> 00:03:00,345  
+because what you see there on the top right is the very first Kobo.
+
+38  
+00:03:00,345 --> 00:03:05,024  
+It's not Android. It's not iPhone. Those things did not exist. It's actually a Mio phone that
+
+39  
+00:03:05,024 --> 00:03:08,072  
+was running a Windows mobile application.
+
+40  
+00:03:08,072 --> 00:03:13,645  
+That is the very first version of Kobo. But what we learned from it is that it worked, that it
+
+41  
+00:03:13,645 --> 00:03:17,774  
+was really possible to collect data in the field
+
+42  
+00:03:17,774 --> 00:03:22,857  
+in a way that would allow us to move faster.
+
+43  
+00:03:22,857 --> 00:03:27,057  
+And that experience of Kobo in the field is what gave the name Kobo.
+
+44  
+00:03:27,057 --> 00:03:33,187  
+Kobo literally means transfer. It was really about transferring knowledge from the experience
+
+45  
+00:03:33,187 --> 00:03:38,157  
+of people to those who are taking action and building projects.
+
+46  
+00:03:38,157 --> 00:03:41,807  
+And so the next step forward was in the Central African Republic.
+
+47  
+00:03:41,807 --> 00:03:44,857  
+what you see on the right is “hotel Kobo”.
+
+48  
+00:03:44,857 --> 00:03:51,559  
+It's literally a hut in which you what you see there were those solar chargers and how we would be 
+
+49  
+00:03:51,559 --> 00:03:56,059  
+in the field without connectivity, without any kind of access
+
+50  
+00:03:56,059 --> 00:04:00,649  
+to electricity even, and still being able to collect data.
+
+51  
+00:04:00,649 --> 00:04:04,480  
+And that's where we realized \- Hey. We're onto something here. This is actually helpful.
+
+52  
+00:04:04,480 --> 00:04:07,559  
+And we started having people asking us, “can we use it?”
+
+53  
+00:04:07,559 --> 00:04:11,240  
+And so that's what really led us to where Kobo
+
+54  
+00:04:11,240 --> 00:04:15,225  
+kind of started building.
+
+55  
+00:04:15,225 --> 00:04:18,725  
+It proved that it works in the worst conditions.
+
+56  
+00:04:18,725 --> 00:04:24,229  
+So then how did we build from there? And so we deployed in DRC, Uganda, Liberia.
+
+57  
+00:04:24,229 --> 00:04:29,420  
+And as people started using the tool, we made it publicly available, open source.
+
+58  
+00:04:29,420 --> 00:04:35,009  
+We just wanted it to be a global good. And then IRC, OCHA approached us in a partnership.
+
+59  
+00:04:35,009 --> 00:04:40,739  
+How can we make it better? How can we make it more relevant for humanitarian actors and
+
+60  
+00:04:40,739 --> 00:04:44,234  
+others in the field facing the same kind of challenge you're
+
+61  
+00:04:44,234 --> 00:04:48,959  
+facing and and for which this tool could be really useful.
+
+62  
+00:04:48,959 --> 00:04:55,399  
+And that's where over the course of one year, we worked on basically releasing
+
+63  
+00:04:55,399 --> 00:05:02,329  
+the first global platform as it looks today, leveraging open standards, access forms
+
+64  
+00:05:02,329 --> 00:05:06,345  
+with this partnership with OCHA and IRC,
+
+65  
+00:05:06,345 --> 00:05:10,442  
+making it publicly available worldwide through our public server.
+
+66  
+00:05:10,442 --> 00:05:13,512  
+And that's very much the starting point of the modern Kobo, if you’d like.
+
+67  
+00:05:13,512 --> 00:05:18,762  
+So that's the ten years we're talking about. And something amazing happened from that point
+
+68  
+00:05:18,762 --> 00:05:24,574  
+in time, which is that it took about a year to get the first million submissions. It took
+
+69  
+00:05:24,574 --> 00:05:27,804  
+another year to get five million submissions, another year to get
+
+70  
+00:05:27,804 --> 00:05:31,514  
+twenty million submissions, and now we've reached a billion submissions.
+
+71  
+00:05:31,514 --> 00:05:38,214  
+And the point is that we have grown alongside organizations like yours in both
+
+72  
+00:05:38,214 --> 00:05:41,914  
+understanding how to improve the tools and making it relevant
+
+73  
+00:05:41,914 --> 00:05:45,640  
+and useful for actors on the ground.
+
+74  
+00:05:45,640 --> 00:05:51,570  
+So, in 2019, what was up until then a project run by Phuong and I out of our
+
+75  
+00:05:51,570 --> 00:05:57,869  
+universities and across time and different places, we actually established a
+
+76  
+00:05:57,869 --> 00:06:00,940  
+nonprofit, Kobo, which is now hosting Kobo-
+
+77  
+00:06:00,940 --> 00:06:04,950  
+Toolbox and making sure that this original vision remains intact.
+
+78  
+00:06:04,950 --> 00:06:11,660  
+The vision around making sure that we provide the best, most accessible,
+
+79  
+00:06:11,660 --> 00:06:18,190  
+freely usable tool for organizations who need data to drive impact.
+
+80  
+00:06:18,190 --> 00:06:23,110  
+We're very proud that we've been recognized as a digital public good, even prouder to see the
+
+81  
+00:06:23,110 --> 00:06:29,630  
+number of people in this webinar, even prouder to see the statistics coming on the usage in the field.
+
+82  
+00:06:29,630 --> 00:06:33,390  
+And so, again, it's been an amazing journey driven by you.
+
+83  
+00:06:33,390 --> 00:06:39,612  
+I mentioned the one billion submissions. Dev mentioned the fact that we pretty much operate
+
+84  
+00:06:39,612 --> 00:06:43,572  
+or have users or people leveraging Kobo to
+
+85  
+00:06:43,572 --> 00:06:47,727  
+advance their impact around the world in every country.
+
+86  
+00:06:47,727 --> 00:06:51,717  
+And as you can see, the statistics are clear. They speak for themselves.
+
+87  
+00:06:51,717 --> 00:06:58,175  
+Yes. We have some users, very large users, who help us maintain and ensure that we can
+
+88  
+00:06:58,175 --> 00:07:03,864  
+continue offering the platform for free to the large majority of our users, whether community
+
+89  
+00:07:03,864 --> 00:07:10,659  
+based organizations, small local NGOs organizations for whom frankly,
+
+90  
+00:07:10,659 --> 00:07:14,179  
+KoboToolbox is the best possible solution in
+
+91  
+00:07:14,179 --> 00:07:18,454  
+in order to drive impact again.
+
+92  
+00:07:18,454 --> 00:07:21,864  
+So it's not just a gimmick to say that you named us.
+
+93  
+00:07:21,864 --> 00:07:26,854  
+It is truly the community. It is truly the experience, the partners in Uganda that gave us the
+
+94  
+00:07:26,854 --> 00:07:30,264  
+name, and it is truly through the partnership over the
+
+95  
+00:07:30,264 --> 00:07:34,344  
+years that we have been shaped into the platform we are today.
+
+96  
+00:07:34,344 --> 00:07:38,204  
+The functions, the needs, the way to operate Kobo \-
+
+97  
+00:07:38,204 --> 00:07:42,664  
+was all driven by users, for users, with users.
+
+98  
+00:07:42,664 --> 00:07:46,064  
+And you continue to inspire us in that journey.
+
+99  
+00:07:46,064 --> 00:07:50,874  
+And that remains very much core to what we will discuss next, which is what are some of the
+
+100  
+00:07:50,874 --> 00:07:54,844  
+priorities, what are some of the directions in which we are going.
+
+101  
+00:07:54,844 --> 00:08:01,020  
+This is a critical moment because what we know is that those systems, those information
+
+102  
+00:08:01,020 --> 00:08:04,310  
+landscapes on which we rely on are actually disappearing.
+
+103  
+00:08:04,310 --> 00:08:09,492  
+They are definitely under threat. And at the same time, the reality of the funding landscape
+
+104  
+00:08:09,492 --> 00:08:16,505  
+and the growing needs and the complexity is that in some ways, data is even more critical than ever.
+
+105  
+00:08:16,505 --> 00:08:19,945  
+The fewer resources we have, the better we need to be at
+
+106  
+00:08:19,945 --> 00:08:24,565  
+allocating them, and data has an important role to play in that function.
+
+107  
+00:08:24,565 --> 00:08:30,225  
+And so we want to be your partner in making sure that we are not building top down information
+
+108  
+00:08:30,225 --> 00:08:34,135  
+system, but really leveraging the community and more participatory
+
+109  
+00:08:34,135 --> 00:08:38,854  
+information system in the humanitarian space.
+
+110  
+00:08:38,854 --> 00:08:43,905  
+In other words, what we wanna make sure is that we are contributing towards this ability
+
+111  
+00:08:43,905 --> 00:08:49,724  
+to create the change from a community perspective that you as actors on the ground have the
+
+112  
+00:08:49,724 --> 00:08:54,140  
+agency and power to create that change.
+
+113  
+00:08:54,140 --> 00:08:57,840  
+So, I hope that you will join us and there are different ways of doing that.
+
+114  
+00:08:57,840 --> 00:09:03,319  
+You know, the forum is an important part where you can help first time users,
+
+115  
+00:09:03,319 --> 00:09:08,069  
+and we really appreciate all of you who are contributing already to that forum.
+
+116  
+00:09:08,069 --> 00:09:14,030  
+You can share your lessons learned. It's amazing. I mean, we have learned from practice and so we want to learn from you.
+
+117  
+00:09:14,030 --> 00:09:20,460  
+And so any ideas you have on new features, on improvements, on the way to operate, we're very keen to hear that.
+
+118  
+00:09:20,460 --> 00:09:25,290  
+Again, we want to hear from you. We want to listen to your experience and opinions, and you
+
+119  
+00:09:25,290 --> 00:09:31,450  
+should feel free to reach out to us with suggestions, improvements, and sharing your experience.
+
+120  
+00:09:31,450 --> 00:09:38,350  
+We're very, very keen to do that. I will repeat it again: “for users, with users”, is to me
+
+121  
+00:09:38,350 --> 00:09:42,860  
+critical. And “by users” because we continue doing research, doing data collection and
+
+122  
+00:09:42,860 --> 00:09:46,320  
+partnering with organizations like you in the field.
+
+123  
+00:09:46,320 --> 00:09:51,130  
+I'm very proud that a few years ago, we started rolling out the ambassador program, which is
+
+124  
+00:09:51,130 --> 00:09:56,890  
+really a way to recognize those contributors on the ground who are already helping each
+
+125  
+00:09:56,890 --> 00:10:01,170  
+other and kind of empowering those actors in their
+
+126  
+00:10:01,170 --> 00:10:05,895  
+reach and their support to KoboToolbox users.
+
+127  
+00:10:05,895 --> 00:10:10,885  
+And finally, I need to, of course, note the Enterprise partner that can join a
+
+128  
+00:10:10,885 --> 00:10:14,025  
+community of practice that is dedicated to large-scale
+
+129  
+00:10:14,025 --> 00:10:17,455  
+organizations with a wide deployment of the KoboToolbox platform.
+
+130  
+00:10:17,455 --> 00:10:22,385  
+They have unique needs and we want to recognize that and really kind of make sure that we spend
+
+131  
+00:10:22,385 --> 00:10:26,415  
+the support and engagement from our smallest, very local
+
+132  
+00:10:26,415 --> 00:10:31,145  
+partners all the way to our largest key users.
+
+133  
+00:10:31,145 --> 00:10:34,765  
+Again, I want to emphasize that this is critical to the future of Kobo.
+
+134  
+00:10:34,765 --> 00:10:40,075  
+We have exciting news. We're working on AI. We're working on so many features that
+
+135  
+00:10:40,075 --> 00:10:43,495  
+Tino and others will outline in the future.
+
+136  
+00:10:43,495 --> 00:10:47,745  
+But it is with you in mind. It is with your input, with your partnership, and with you
+
+137  
+00:10:47,745 --> 00:10:50,905  
+driving those efforts through those avenues.
+
+138  
+00:10:50,905 --> 00:10:54,505  
+And so I hope that you continue being part of our future.
+
+139  
+00:10:54,505 --> 00:10:58,280  
+Over to you, Dev.
+
+140  
+00:10:58,280 --> 00:11:03,577  
+Awesome. Thank you so much, Patrick. Thank you for telling our story and providing
+
+141  
+00:11:03,577 --> 00:11:09,524  
+such a powerful vision for the future that we want to create with our wonderful community.
+
+142  
+00:11:09,524 --> 00:11:14,044  
+Before we let you go, I had a quick question for you.
+
+143  
+00:11:14,044 --> 00:11:20,460  
+What is your favorite memory as you have navigated the past twenty years at Kobo?
+
+144  
+00:11:20,460 --> 00:11:24,980  
+I was about to go, and I have to apologize.
+
+145  
+00:11:24,980 --> 00:11:31,424  
+I will jump on a separate call, but I'll still be in the Q\&A. It's a tough question.
+
+146  
+00:11:31,424 --> 00:11:36,034  
+There are so many from really the creation and the rollout of Kobo.
+
+147  
+00:11:36,034 --> 00:11:42,154  
+But I would say that I'm still very active on the ground. And when I go to small
+
+148  
+00:11:42,154 --> 00:11:48,359  
+areas in Northern Iraq or in Ethiopia, and people don't really know or associate me with
+
+149  
+00:11:48,359 --> 00:11:52,479  
+Kobo (I've never been promotional in that sense),
+
+150  
+00:11:52,479 --> 00:11:55,549  
+They come to me and say, hey. “You know, we're using this great tool.
+
+151  
+00:11:55,549 --> 00:11:59,399  
+It's called KoboToolbox. Do you know about it?” Well, Actually, I do know about it.
+
+152  
+00:11:59,399 --> 00:12:02,489  
+And and it's an amazing experience to see how
+
+153  
+00:12:02,489 --> 00:12:06,579  
+wide the reach has been and how helpful the tool has been.
+
+154  
+00:12:06,579 --> 00:12:10,659  
+Something that frankly was created because we needed it, because we wanted to be able to do
+
+155  
+00:12:10,659 --> 00:12:14,617  
+that kind of engagement, to see that kind of need and 
+
+156  
+00:12:14,617 --> 00:12:18,637  
+service echo with so many people around the world has been amazing.
+
+157  
+00:12:18,637 --> 00:12:22,347  
+So, again, thank you everyone for making Kobo the success it is today.
+
+158  
+00:12:22,347 --> 00:12:26,945  
+Thank you, Patrick.
+
+159  
+00:12:26,945 --> 00:12:30,304  
+So, before we continue and go to the next section, we'll run a quick
+
+160  
+00:12:30,304 --> 00:12:33,945  
+thirty-second poll, which should appear on your screen.
+
+161  
+00:12:33,945 --> 00:12:38,424  
+When was your first time using KoboToolbox?
+
+162  
+00:12:38,424 --> 00:12:45,419  
+I know for me, it was 2017 when somebody
+
+163  
+00:12:45,419 --> 00:12:50,700  
+from IRC insisted that I check out KoboToolbox's report builder for its
+
+164  
+00:12:50,700 --> 00:12:51,479  
+intuitiveness.
+
+165  
+00:12:51,479 --> 00:13:01,184  
+ 
+
+166  
+00:13:01,184 --> 00:13:05,294  
+I wish you could see what I see, which is the numbers coming in in real time.
+
+167  
+00:13:05,294 --> 00:13:08,792  
+It's fantastic. Hundreds of responses already.
+
+168  
+00:13:08,792 --> 00:13:12,700  
+Oh, wow\! Tino: We are over 50%.
+
+169  
+00:13:12,700 --> 00:13:18,119  
+Alright. If you haven't voted yet, please quickly add your vote to the poll.
+
+170  
+00:13:18,119 --> 00:13:21,660  
+I realize as a panelist, I cannot vote, but I will select
+
+171  
+00:13:21,660 --> 00:13:25,300  
+before 2014, and I would be curious to know if anyone has done that.
+
+172  
+00:13:25,300 --> 00:13:29,500  
+That would be amazing because that would be the very early days of Kobo.
+
+173  
+00:13:29,500 --> 00:13:36,310  
+You will be surprised. Okay. I'm gonna end it. Here are the results.
+
+174  
+00:13:36,310 --> 00:13:43,150  
+Alright. Well, it seems to be 2018-2019
+
+175  
+00:13:43,150 --> 00:13:49,392  
+to be the winner here.
+
+176  
+00:13:49,392 --> 00:13:52,462  
+No. Actually, the year before that, 2020-2021.
+
+177  
+00:13:52,462 --> 00:13:59,384  
+Great. Great to see a mix of long time users and newcomers. So, yeah,
+
+178  
+00:13:59,384 --> 00:14:01,625  
+let's move to the next section
+
+179  
+00:14:01,625 --> 00:14:12,420  
+ 
+
+180  
+00:14:12,420 --> 00:14:16,540  
+All right. I would like to welcome
+
+181  
+00:14:16,540 --> 00:14:20,887  
+Tino, our chief operating and innovation officer.
+
+182  
+00:14:20,887 --> 00:14:24,465  
+Tino has been guiding our product
+
+183  
+00:14:24,465 --> 00:14:28,275  
+roadmap and the Kobo team for many years now.
+
+184  
+00:14:28,275 --> 00:14:34,462  
+He will share with us some exciting updates and give us a glimpse into the future of the platform.
+
+185  
+00:14:34,462 --> 00:14:37,889  
+Over to you, Tino. Tino: Thank you, Dev.
+
+186  
+00:14:37,889 --> 00:14:41,809  
+Thanks, Patrick. And thanks for everyone for being here today. It's really fantastic to have
+
+187  
+00:14:41,809 --> 00:14:44,939  
+such a huge group from the Kobo community.
+
+188  
+00:14:44,939 --> 00:14:49,929  
+You know, the last ten years of growth and innovation behind KoboToolbox have been extremely exciting for all of us.
+
+189  
+00:14:49,929 --> 00:14:55,219  
+And as you can see, it's not just the organization that's been growing, but of course also our users.
+
+190  
+00:14:55,219 --> 00:15:00,057  
+We now have more than a quarter million active users and that's very humbling.
+
+191  
+00:15:00,057 --> 00:15:03,447  
+You know, we're reaching this pivotal moment, not just because of where we've been growing as
+
+192  
+00:15:03,447 --> 00:15:07,497  
+an organization, but also because of the features that are still coming up.
+
+193  
+00:15:07,497 --> 00:15:12,197  
+But first, I wanna take a moment to discuss some of the new and most recent updates that  
+
+194  
+00:15:12,197 --> 00:15:17,297  
+you can now draw on and that expands the way that you can use Kobo to collect and analyze data.
+
+195  
+00:15:17,297 --> 00:15:21,337  
+Here you already see one of them. That's been one of our most anticipated feature updates
+
+196  
+00:15:21,337 --> 00:15:24,407  
+from the last year, especially for larger organizations.
+
+197  
+00:15:24,407 --> 00:15:29,612  
+Our Teams feature in essence allows well, teams and, of course, larger organizations to
+
+198  
+00:15:29,612 --> 00:15:33,642  
+manage larger groups of people that are part of their team.
+
+199  
+00:15:33,642 --> 00:15:37,772  
+So, you can invite colleagues, manage team members, and centralize data management this way.
+
+200  
+00:15:37,772 --> 00:15:42,335  
+And, of course, if someone leaves a team, you can remove them and thereby remove access.
+
+201  
+00:15:42,335 --> 00:15:47,315  
+Joining a team works this way. You actually transfer the user's existing projects,
+
+202  
+00:15:47,315 --> 00:15:51,595  
+which are then owned by the team, and any new projects, any new forms or data collection
+
+203  
+00:15:51,595 --> 00:15:57,095  
+projects that they create in the future will then be owned by the team itself rather than an individual user.
+
+204  
+00:15:57,095 --> 00:16:01,825  
+And that's extremely helpful so that if someone leaves the team, the owners and admins of the
+
+205  
+00:16:01,825 --> 00:16:05,145  
+team will always have full visibility and access and control over the data
+
+206  
+00:16:05,145 --> 00:16:08,500  
+that was collected on behalf of the organization.
+
+207  
+00:16:08,500 --> 00:16:14,924  
+For now, the teams feature is available through our teams and enterprise plan and, of course, through our private server offerings.
+
+208  
+00:16:14,924 --> 00:16:19,375  
+This also means, and that's really useful for many larger teams, that you have a shared
+
+209  
+00:16:19,375 --> 00:16:23,234  
+amount of submission and storage usage that the entire team can
+
+210  
+00:16:23,234 --> 00:16:27,484  
+access, so instead of having individual buckets.
+
+211  
+00:16:27,484 --> 00:16:34,379  
+And I know Ayman will talk about this a bit later today. Next, we  
+
+212  
+00:16:34,379 --> 00:16:39,792  
+recently rolled out our automatic transcription and translation features to all of our users.
+
+213  
+00:16:39,792 --> 00:16:43,242  
+What that means is you can now turn your interview audio responses.
+
+214  
+00:16:43,242 --> 00:16:48,722  
+And, of course, audio is extremely useful for collecting open-ended responses from your surveys.
+
+215  
+00:16:48,722 --> 00:16:52,832  
+You can transcribe them into text in many different languages. And then if needed, you can
+
+216  
+00:16:52,832 --> 00:16:58,549  
+also translate that transcript into more than a hundred fifty languages using machine translation.
+
+217  
+00:16:58,549 --> 00:17:02,729  
+Obviously, manual transcription and manual translation are always options.
+
+218  
+00:17:02,729 --> 00:17:09,000  
+And, of course, you can use our editor feature to review and edit any of the transcripts or translations as needed.
+
+219  
+00:17:09,000 --> 00:17:14,690  
+That's extremely important because, of course, AI tools, as any other technology, can make mistakes.
+
+220  
+00:17:14,690 --> 00:17:19,940  
+So we always encourage you, and as you can see here, we sort of force you to review before
+
+221  
+00:17:19,940 --> 00:17:26,869  
+saving the transcript. Next, we built a feature to make it possible not just to
+
+222  
+00:17:26,869 --> 00:17:33,329  
+transcribe the audio, but also to do qualitative analysis.
+
+223  
+00:17:33,329 --> 00:17:37,382  
+You can go to the next slide. We made it possible to
+
+224  
+00:17:37,382 --> 00:17:41,722  
+analyze the data that you collect this way much more effectively.
+
+225  
+00:17:41,722 --> 00:17:44,952  
+So, we rolled out the quality of analysis feature a few months ago.
+
+226  
+00:17:44,952 --> 00:17:49,072  
+And what you can do with that is actually create additional meta questions about these open
+
+227  
+00:17:49,072 --> 00:17:52,612  
+ended interview transcripts, and then you can assign labels, categorize them,
+
+228  
+00:17:52,612 --> 00:17:56,332  
+summarize them, and whatever you need as a summary.
+
+229  
+00:17:56,332 --> 00:18:01,732  
+That feature in particular makes it much, much easier to conduct truly mixed method surveys.
+
+230  
+00:18:01,732 --> 00:18:07,152  
+This means you can combine the advantages of fast mobile electronic data collection with the
+
+231  
+00:18:07,152 --> 00:18:10,322  
+depth and rigor of qualitative data as well.
+
+232  
+00:18:10,322 --> 00:18:14,932  
+For example, you can easily add one or more audio questions to your existing survey just to be
+
+233  
+00:18:14,932 --> 00:18:18,602  
+able to record the why to a question, or can you give me an
+
+234  
+00:18:18,602 --> 00:18:22,362  
+example or give me an anecdote for that sort of data.
+
+235  
+00:18:22,362 --> 00:18:26,122  
+So, you can combine your close-ended, fast,
+
+236  
+00:18:26,122 --> 00:18:30,392  
+multiple choice questions with this open-ended data much more easily.
+
+237  
+00:18:30,392 --> 00:18:36,762  
+It also means you can do this without having to leave Kobo. You don't need expensive and difficult software to do qualitative analysis.
+
+238  
+00:18:36,762 --> 00:18:40,252  
+And after you've collected and analyzed it this way, what you see in the interface here, it
+
+239  
+00:18:40,252 --> 00:18:44,232  
+still goes part it becomes part of the same data table.
+
+240  
+00:18:44,232 --> 00:18:48,052  
+Your exports, your API \- everything already includes these responses.
+
+241  
+00:18:48,052 --> 00:18:52,522  
+So all you need to do is download and visualize it and analyze it together with the rest
+
+242  
+00:18:52,522 --> 00:19:00,874  
+of your dataset. Next, we also, a few months ago, added logging and security features.
+
+243  
+00:19:00,874 --> 00:19:03,875  
+Actually, quite a few of them. And we're really happy to do that, and we're
+
+244  
+00:19:03,875 --> 00:19:07,064  
+really proud that we've collaborated with you and UNHCR on this.
+
+245  
+00:19:07,064 --> 00:19:13,885  
+What it allows us to do is actually provide you the logs of when someone logged into your account.
+
+246  
+00:19:13,885 --> 00:19:17,574  
+If that was someone else other than you, maybe you've given access to someone on your team.
+
+247  
+00:19:17,574 --> 00:19:21,895  
+You can see exactly when they logged in and from where. For project history, you can also see
+
+248  
+00:19:21,895 --> 00:19:26,265  
+exactly when someone made a change and, when data came in, when the modifications were
+
+249  
+00:19:26,265 --> 00:19:29,824  
+made to the data, to the form, to the metadata of the project.
+
+250  
+00:19:29,824 --> 00:19:34,424  
+All of that is extremely useful, especially if you have a large, distributed team.
+
+251  
+00:19:34,424 --> 00:19:37,875  
+If you work in a lot of different locations, you wanna know who made what edit.
+
+252  
+00:19:37,875 --> 00:19:42,635  
+And so you can see all that. You can download it. You can export it for lots of compliance and
+
+253  
+00:19:42,635 --> 00:19:45,930  
+auditing purposes.
+
+254  
+00:19:45,930 --> 00:19:49,479  
+That is extremely useful. And then finally, we're excited today that Kobo
+
+255  
+00:19:49,479 --> 00:19:53,829  
+will officially be ISO 27001 certified.
+
+256  
+00:19:53,829 --> 00:20:00,234  
+That's extremely important for lots of organizations where this is a compliance requirement.
+
+257  
+00:20:00,234 --> 00:20:05,847  
+And what it means is for those who haven't heard of the standard, it basically certifies  
+
+258  
+00:20:05,847 --> 00:20:10,527  
+and ensures that Kobo always follows the highest international standards for data security to
+
+259  
+00:20:10,527 --> 00:20:14,269  
+protect all private data: all
+
+260  
+00:20:14,269 --> 00:20:18,279  
+data that you collect through your surveys, and of course, your own personal data as well.
+
+261  
+00:20:18,279 --> 00:20:21,889  
+So, these are all the features we're most proud of from the past few months, and I think
+
+262  
+00:20:21,889 --> 00:20:26,704  
+they will make a big difference to our many users and organizations around the world.
+
+263  
+00:20:26,704 --> 00:20:30,804  
+But I'm even more excited to show you what we're planning for the near future.
+
+264  
+00:20:30,804 --> 00:20:34,304  
+For starters, the coming months will see us release
+
+265  
+00:20:34,304 --> 00:20:37,824  
+an AI analysis feature as you can see here on the screen already.
+
+266  
+00:20:37,824 --> 00:20:42,064  
+That particular feature will allow you to answer these meta questions we saw earlier about
+
+267  
+00:20:42,064 --> 00:20:48,125  
+open ended audio transcripts in a much more efficient and time saving way.
+
+268  
+00:20:48,125 --> 00:20:51,794  
+It also means, in our experience, it is more reliable than asking
+
+269  
+00:20:51,794 --> 00:20:55,734  
+many data analysts, human analysts, on your team to do this on your behalf.
+
+270  
+00:20:55,734 --> 00:21:00,025  
+Our new AI models that we're training for this purpose will automatically analyze the transcript
+
+271  
+00:21:00,025 --> 00:21:03,164  
+and answer all the relevant questions within seconds.
+
+272  
+00:21:03,164 --> 00:21:09,099  
+So we're building this integration with the highest ethical standards and in consultation with many of our partners and users.
+
+273  
+00:21:09,099 --> 00:21:13,309  
+We always, of course, design this feature to make sure that there's a human in the loop.
+
+274  
+00:21:13,309 --> 00:21:17,299  
+So as you can see, there's a button, for example, to verify the data.
+
+275  
+00:21:17,299 --> 00:21:21,775  
+And if it's not verified, you know that it came from an AI agent only.
+
+276  
+00:21:21,775 --> 00:21:26,505  
+That particular feature will really speed up the process. For example, you could now collect
+
+277  
+00:21:26,505 --> 00:21:32,360  
+hundreds or thousands of audio from open ended responses and then analyze them in a
+
+278  
+00:21:32,360 --> 00:21:36,820  
+single day or in a single morning perhaps rather than giving this to lots of
+
+279  
+00:21:36,820 --> 00:21:43,714  
+people to transcribe and analyze over the course of days or more likely weeks. Next,
+
+280  
+00:21:43,714 --> 00:21:50,024  
+our huge flagship initiative that we're working on designing right now is our AI powered form builder.
+
+281  
+00:21:50,024 --> 00:21:55,354  
+This actually will integrate an AI assistant for the first time, and that'll help you
+
+282  
+00:21:55,354 --> 00:21:58,534  
+give feedback, receive feedback to your form.
+
+283  
+00:21:58,534 --> 00:22:02,204  
+So while you're designing the drafts, you can get immediate feedback.
+
+284  
+00:22:02,204 --> 00:22:06,334  
+You can also use it to create survey questions based on your prompts.
+
+285  
+00:22:06,334 --> 00:22:11,625  
+And, of course, very importantly, we're adding a way to upload any existing indicators or
+
+286  
+00:22:11,625 --> 00:22:16,114  
+guidance materials that you might have within your organization or within your sector.
+
+287  
+00:22:16,114 --> 00:22:21,734  
+So imagine having a survey expert, a methods specialist always at your fingertips,
+
+288  
+00:22:21,734 --> 00:22:25,924  
+always at the ready to give you feedback, to tell you what the best way is to ask a particular
+
+289  
+00:22:25,924 --> 00:22:32,074  
+question, who might tell you to improve perhaps your consent question, and so on.
+
+290  
+00:22:32,074 --> 00:22:36,474  
+So we're training this AI agent. We're still in the early stages, but we're training that to
+
+291  
+00:22:36,474 --> 00:22:43,135  
+be very, very careful, not just to be as ethical and reliable as
+
+292  
+00:22:43,135 --> 00:22:49,035  
+possible, but also to use the right methodological guidance and training available within our sector.
+
+293  
+00:22:49,035 --> 00:22:53,484  
+And as a result, once this is available, I think it'll make a huge difference to our sectors
+
+294  
+00:22:53,484 --> 00:23:00,459  
+and to the nonprofit world to build better surveys much faster. And then finally, we're
+
+295  
+00:23:00,459 --> 00:23:04,280  
+working on incorporating more case management features in Kobo.
+
+296  
+00:23:04,280 --> 00:23:10,670  
+Our goal is to enable you to track beneficiaries over time and make longitudinal studies much easier to manage.
+
+297  
+00:23:10,670 --> 00:23:14,349  
+We've listened to many users who told us that it's extremely important
+
+298  
+00:23:14,349 --> 00:23:18,180  
+to them that Kobo remains easy, intuitive to use.
+
+299  
+00:23:18,180 --> 00:23:21,959  
+And so we're very careful about adding these quite advanced features to make sure it doesn't
+
+300  
+00:23:21,959 --> 00:23:25,760  
+clutter up the interface and doesn't make it hard to use in practice.
+
+301  
+00:23:25,760 --> 00:23:30,170  
+So if you're interested in joining our user research on this feature, we'd love to hear from you.
+
+302  
+00:23:30,170 --> 00:23:33,790  
+Please, let us know. There will be a survey at the very end of the webinar.
+
+303  
+00:23:33,790 --> 00:23:37,369  
+You can add your details there and check a box. So, we'd love to have
+
+304  
+00:23:37,369 --> 00:23:41,232  
+you and talk to your team about this more.
+
+305  
+00:23:41,232 --> 00:23:44,592  
+Alright. So before I hand it back over to Dev, we have lots planned for today.
+
+306  
+00:23:44,592 --> 00:23:50,222  
+I have a final appeal. KoboToolbox has always been, as you heard from Patrick, community-led.
+
+307  
+00:23:50,222 --> 00:23:55,512  
+We really depend on you guys. So, if you have any other ideas for new features, big or small,
+
+308  
+00:23:55,512 --> 00:23:59,422  
+improvements. I see some of them already coming in here today.
+
+309  
+00:23:59,422 --> 00:24:02,882  
+But really where we want to hear from you is on the Community Forum.
+
+310  
+00:24:02,882 --> 00:24:07,942  
+The Community Forum is built for you to share ideas, to vote on ideas from other users.
+
+311  
+00:24:07,942 --> 00:24:13,022  
+So, please, if you haven't already, do sign up to go to community.kobotoolbox.org,
+
+312  
+00:24:13,022 --> 00:24:17,025  
+create an account, and share what you have in mind.
+
+313  
+00:24:17,025 --> 00:24:21,254  
+And of course, interact with others who already have posted ideas.
+
+314  
+00:24:21,254 --> 00:24:25,285  
+You can vote on them and so on. Of course, the forum is also great, as you heard from Patrick,
+
+315  
+00:24:25,285 --> 00:24:29,145  
+for helping each other out, learning from each other, and
+
+316  
+00:24:29,145 --> 00:24:33,374  
+doing that also makes a huge difference to our many, many thousands of users.
+
+317  
+00:24:33,374 --> 00:24:37,482  
+So thank you to those who are here today who are already very active.
+
+318  
+00:24:37,482 --> 00:24:42,692  
+Our ambassadors and our community power users, we really love you guys.
+
+319  
+00:24:42,692 --> 00:24:49,175  
+So thank you for being a part of this Kobo community over the last few years  And, yeah, back to you, Dev.
+
+320  
+00:24:49,175 --> 00:24:53,049  
+Thank you. Thank you, Tino. And thank you for all the
+
+321  
+00:24:53,049 --> 00:24:57,380  
+work that has gone into making the platform what it is today.
+
+322  
+00:24:57,380 --> 00:25:01,079  
+I know a lot of community members will be really happy,  
+
+323  
+00:25:01,079 --> 00:25:04,929  
+to hear what they heard today about upcoming capabilities.
+
+324  
+00:25:04,929 --> 00:25:09,640  
+And I know that our product team is really excited to work with the with our community
+
+325  
+00:25:09,640 --> 00:25:12,854  
+as we build these capabilities out.
+
+326  
+00:25:12,854 --> 00:25:17,224  
+Before we move on to the next section, I had a question for you.
+
+327  
+00:25:17,224 --> 00:25:21,405  
+This comes up often, and I also
+
+328  
+00:25:21,405 --> 00:25:25,959  
+see a couple of questions in this direction.
+
+329  
+00:25:25,959 --> 00:25:29,250  
+So, thought of asking you while you're here.
+
+330  
+00:25:29,250 --> 00:25:35,554  
+You know, so as you know, the platform is known for its accessibility, for its
+
+331  
+00:25:35,554 --> 00:25:38,704  
+simplicity, and for its intuitiveness.
+
+332  
+00:25:38,704 --> 00:25:45,274  
+As we work on integrating AI, how do you think that'll impact how
+
+333  
+00:25:45,274 --> 00:25:51,150  
+people collect data on the ground. Tino: That's a great question, Dev.
+
+334  
+00:25:51,150 --> 00:25:54,160  
+Yeah. And quickly, I think one of the most important things  
+
+335  
+00:25:54,160 --> 00:25:57,320  
+for us and for many people here today is Kobo is a free platform.
+
+336  
+00:25:57,320 --> 00:26:02,129  
+It's not only open source, but we want to make sure that it is remaining a free platform as a nonprofit.
+
+337  
+00:26:02,129 --> 00:26:07,760  
+Our mission is to help many of you. So the most important thing is that we focus on our core offering:
+
+338  
+00:26:07,760 --> 00:26:14,474  
+Collecting data in the most widely-accessible way possible within
+
+339  
+00:26:14,474 --> 00:26:18,117  
+limits, of course, that's something we will never change.
+
+340  
+00:26:18,117 --> 00:26:22,160  
+All these new AI features, of course, they're extra.
+
+341  
+00:26:22,160 --> 00:26:26,400  
+They're additional things that we're experimenting with. And so, yes, they can make the
+
+342  
+00:26:26,400 --> 00:26:29,940  
+survey creation a bit faster and perhaps better in some cases.
+
+343  
+00:26:29,940 --> 00:26:35,430  
+They can make the analysis faster. And so they are added services, and we're experimenting
+
+344  
+00:26:35,430 --> 00:26:41,579  
+even with other ways to help you use AI for conducting questions and so on.
+
+345  
+00:26:41,579 --> 00:26:46,520  
+But at the end of the day, our roots are very clear, and they show us that nothing will
+
+346  
+00:26:46,520 --> 00:26:50,539  
+replace a human interviewer who can do face to face interviews.
+
+347  
+00:26:50,539 --> 00:26:55,419  
+Um , what we can do is make a lot of the other processes a little bit easier, a little bit faster, and more efficient.
+
+348  
+00:26:55,419 --> 00:26:59,889  
+And whether that's AI or just other software,  improvements, we we will always see where
+
+349  
+00:26:59,889 --> 00:27:05,194  
+we can focus our energy  Well, good to know.
+
+350  
+00:27:05,194 --> 00:27:09,944  
+Alright. So,  before we move to the next section, we'll have another poll.
+
+351  
+00:27:09,944 --> 00:27:16,525  
+ And this is which feature update you're
+
+352  
+00:27:16,525 --> 00:27:19,525  
+more most excited to hear about.
+
+353  
+00:27:19,525 --> 00:27:27,410  
+ 
+
+354  
+00:27:27,410 --> 00:27:32,025  
+Well, not surprising  AI is getting a lot of
+
+355  
+00:27:32,025 --> 00:27:36,895  
+traction. I mean, for me, it's definitely offline case management.
+
+356  
+00:27:36,895 --> 00:27:43,085  
+I think our sector deserves a case management capability that is
+
+357  
+00:27:43,085 --> 00:27:46,447  
+both easy and intuitive to configure
+
+358  
+00:27:46,447 --> 00:28:02,414  
+ 
+
+359  
+00:28:02,414 --> 00:28:03,454  
+Alright.
+
+360  
+00:28:03,454 --> 00:28:07,524  
+Do we have the results? And here they are.
+
+361  
+00:28:07,524 --> 00:28:10,529  
+Thanks everyone for voting.  Alright.
+
+362  
+00:28:10,529 --> 00:28:14,530  
+Not surprising. AI-enabled qualitative analysis
+
+363  
+00:28:14,530 --> 00:28:20,660  
+comes to the top, closely followed by automatic transcriptions.
+
+364  
+00:28:20,660 --> 00:28:26,515  
+Awesome. Thank you everyone for participating. There'll be one more poll in a bit.
+
+365  
+00:28:26,515 --> 00:28:29,684  
+Now let's move to the next section.
+
+366  
+00:28:29,684 --> 00:28:39,419  
+ 
+
+367  
+00:28:39,419 --> 00:28:40,909  
+Alright.
+
+368  
+00:28:40,909 --> 00:28:46,169  
+So, in this section, we'll be talking to Ayman, who leads our partnership efforts, and
+
+369  
+00:28:46,169 --> 00:28:50,449  
+Paula, who's a project manager in our Partner Services team.
+
+370  
+00:28:50,449 --> 00:28:57,295  
+They'll be talking to us about our latest and greatest offerings. 
+
+371  
+00:28:57,295 --> 00:29:00,364  
+Ayman will talk to us about Teams and Enterprise,
+
+372  
+00:29:00,364 --> 00:29:04,875  
+and Paula will talk to us about partner services.
+
+373  
+00:29:04,875 --> 00:29:08,895  
+So, you may have noticed in the recent past, there have been quite a few updates to the website.
+
+374  
+00:29:08,895 --> 00:29:13,119  
+We've been working hard to gather feedback and align
+
+375  
+00:29:13,119 --> 00:29:17,810  
+our plans and our services to the diverse needs of our community.
+
+376  
+00:29:17,810 --> 00:29:24,345  
+So all these updates have been a result of  all that work. Now I would love to
+
+377  
+00:29:24,345 --> 00:29:30,915  
+welcome Ayman,  who'll chat with us about the team's plan.
+
+378  
+00:29:30,915 --> 00:29:37,890  
+Hey, Ayman. Ayman: Hey, Dev. Dev: Ayman, would love to get your thoughts on
+
+379  
+00:29:37,890 --> 00:29:44,040  
+how the new Teams plan came about. Ayman: Thanks, Dev.
+
+380  
+00:29:44,040 --> 00:29:50,450  
+As you mentioned, our community and professional plan are primarily for individual users.
+
+381  
+00:29:50,450 --> 00:29:55,600  
+So, with the professional plan providing large data collection efforts, there has been a
+
+382  
+00:29:55,600 --> 00:30:01,424  
+natural evolution in this community just to work more collaboratively, and we responded to that
+
+383  
+00:30:01,424 --> 00:30:07,280  
+with the team's offering because multiple users wanted to benefit from a single subscription
+
+384  
+00:30:07,280 --> 00:30:10,790  
+plan, which works well for organizations.
+
+385  
+00:30:10,790 --> 00:30:15,530  
+All the projects and data would be owned at the team level.
+
+386  
+00:30:15,530 --> 00:30:21,439  
+So, basically, if an individual member leaves, their work is still accessible to the team.
+
+387  
+00:30:21,439 --> 00:30:26,290  
+Of course, it comes with higher submission quota, six hundred thousand submissions per year,
+
+388  
+00:30:26,290 --> 00:30:32,890  
+and unlimited storage, which can be shared with the entire team 
+
+389  
+00:30:32,890 --> 00:30:39,810  
+Awesome  Here, you mentioned a higher submission quota.
+
+390  
+00:30:39,810 --> 00:30:45,430  
+Could you share a little bit what exactly those numbers look like?
+
+391  
+00:30:45,430 --> 00:30:51,094  
+And after that, I'm very curious to also get your thoughts on if partners are 
+
+392  
+00:30:51,094 --> 00:30:54,734  
+interested in operating in in many teams,
+
+393  
+00:30:54,734 --> 00:30:59,430  
+how should they be looking at our offerings? Yeah.
+
+394  
+00:30:59,430 --> 00:31:04,859  
+We're gonna start with the submission quotas. Basically,  if you subscribe to a Teams plan
+
+395  
+00:31:04,859 --> 00:31:08,239  
+on an annual basis, you get six hundred thousand submissions to be
+
+396  
+00:31:08,239 --> 00:31:12,439  
+used anytime during the year by all of the plan members.
+
+397  
+00:31:12,439 --> 00:31:16,469  
+So, basically, there is no assigned quota to a single account.
+
+398  
+00:31:16,469 --> 00:31:23,255  
+It's assigned to the entire team. As for using across multiple teams, I
+
+399  
+00:31:23,255 --> 00:31:30,190  
+Think \- the Teams plan subscription comes with one team, and this
+
+400  
+00:31:30,190 --> 00:31:34,959  
+one team comes with the ability to add additional teams to the original.
+
+401  
+00:31:34,959 --> 00:31:41,060  
+As you add more teams, you're really moving in the direction of the organizational use of the platform.
+
+402  
+00:31:41,060 --> 00:31:46,420  
+So, at that point, the enterprise offering might just make more sense and become a good fit
+
+403  
+00:31:46,420 --> 00:31:50,885  
+Then, that's a great segue
+
+404  
+00:31:50,885 --> 00:31:55,765  
+into chatting about our two different enterprise offerings.
+
+405  
+00:31:55,765 --> 00:31:59,475  
+Ayman, I would love for you to
+
+406  
+00:31:59,475 --> 00:32:03,410  
+compare these two offerings  Ayman: Sure.
+
+407  
+00:32:03,410 --> 00:32:10,012  
+We have basically two enterprise offerings as you mentioned.
+
+408  
+00:32:10,012 --> 00:32:13,542  
+The first is the entry level enterprise offering.
+
+409  
+00:32:13,542 --> 00:32:19,765  
+It comes with ten teams plans, basically built into the offering itself, and there is no
+
+410  
+00:32:19,765 --> 00:32:26,440  
+limits on submissions or storage for all team members of the organization.
+
+411  
+00:32:26,440 --> 00:32:33,359  
+And then we have the enterprise private server, which gives our partners their own dedicated KoboToolbox server.
+
+412  
+00:32:33,359 --> 00:32:39,179  
+And it can be hosted in twenty five countries or even in your own local infrastructure.
+
+413  
+00:32:39,179 --> 00:32:42,405  
+Gotcha.
+
+414  
+00:32:42,405 --> 00:32:47,945  
+Just so I under under understand this correctly,  when you mentioned
+
+415  
+00:32:47,945 --> 00:32:54,009  
+25 countries and local infrastructure, let's say a large organization
+
+416  
+00:32:54,009 --> 00:33:00,509  
+like CRS or IRC or Mercy Corps want multiple
+
+417  
+00:33:00,509 --> 00:33:07,145  
+private servers, let's say one in India, one in South Africa.
+
+418  
+00:33:07,145 --> 00:33:10,515  
+Could we make it happen?
+
+419  
+00:33:10,515 --> 00:33:14,214  
+Absolutely. Yes. As I said, we have hosting in about
+
+420  
+00:33:14,214 --> 00:33:18,535  
+25 countries, and we have some hosting options in our cloud.
+
+421  
+00:33:18,535 --> 00:33:21,665  
+And there we can do it on your own infrastructure.
+
+422  
+00:33:21,665 --> 00:33:28,020  
+So, basically, yeah, we can set organizations up this way. Dev: Awesome.
+
+423  
+00:33:28,020 --> 00:33:32,675  
+Thank you. and then could you also tell us a little bit about all the different
+
+424  
+00:33:32,675 --> 00:33:38,914  
+types of services that our enterprise partners get? Ayman:  Yeah.
+
+425  
+00:33:38,914 --> 00:33:44,060  
+Basically, the enterprise offerings \- they're not just the software to us.
+
+426  
+00:33:44,060 --> 00:33:49,989  
+Fundamentally, they represent a strategic partnership between us and the enterprise partner.
+
+427  
+00:33:49,989 --> 00:33:53,650  
+We collaborate closely towards their success.
+
+428  
+00:33:53,650 --> 00:33:59,535  
+So our enterprise partners have access to a dedicated customer success manager.
+
+429  
+00:33:59,535 --> 00:34:05,614  
+We provide thirty hours of time set aside for trainings and consultation.
+
+430  
+00:34:05,614 --> 00:34:11,625  
+They get unlimited access to the KoboToolbox Academy for any needs of onboarding or, you
+
+431  
+00:34:11,625 --> 00:34:15,864  
+know, getting new staff to work on KoboToolbox.
+
+432  
+00:34:15,864 --> 00:34:20,125  
+And it also comes with priority support within one business day
+
+433  
+00:34:20,125 --> 00:34:25,149  
+ And that's just part of the features.
+
+434  
+00:34:25,149 --> 00:34:29,235  
+There's more. Dev:  Great.
+
+435  
+00:34:29,235 --> 00:34:33,985  
+Thank you so much,  Ayman, for chatting with us. And also thank you to
+
+436  
+00:34:33,985 --> 00:34:40,015  
+entire purchase partnerships team for doing such a great job at
+
+437  
+00:34:40,015 --> 00:34:43,105  
+taking care of our partners and making sure that our
+
+438  
+00:34:43,105 --> 00:34:46,575  
+offerings are aligned with the diverse needs of our community.
+
+439  
+00:34:46,575 --> 00:34:49,599  
+Thank you. You're welcome.
+
+440  
+00:34:49,599 --> 00:34:55,859  
+Now, I would love to have Paula over to chat about our Partner Services offerings.
+
+441  
+00:34:55,859 --> 00:35:02,584  
+Hi, Paula. Hi, Dev. Hi, everyone. Dev: Paula, you have such a
+
+442  
+00:35:02,584 --> 00:35:08,135  
+rich and fascinating background in monitoring and evaluation across multiple countries.
+
+443  
+00:35:08,135 --> 00:35:11,454  
+I'm curious what made you
+
+444  
+00:35:11,454 --> 00:35:15,399  
+join Kobo's partner services team.
+
+445  
+00:35:15,399 --> 00:35:21,860  
+Yeah. So I worked with Kobo for years as well, and I saw that many organizations around the
+
+446  
+00:35:21,860 --> 00:35:25,530  
+world are not using Kobo at its maximum potential.
+
+447  
+00:35:25,530 --> 00:35:31,479  
+It's very often seen that we're using very basic service, very basic data analysis, and
+
+448  
+00:35:31,479 --> 00:35:37,689  
+these team missions is actually work on supporting and getting the best of Kobo
+
+449  
+00:35:37,689 --> 00:35:40,999  
+Gotcha.
+
+450  
+00:35:40,999 --> 00:35:47,940  
+Thank you. Could you share a little bit about how specifically Partner
+
+451  
+00:35:47,940 --> 00:35:54,852  
+Services help in some of these challenges that our partners face that you were referring to?
+
+452  
+00:35:54,852 --> 00:36:01,204  
+Yeah. So, working with directly with the organizations that are working directly with
+
+453  
+00:36:01,204 --> 00:36:07,954  
+communities that need specific features or specific forms for helping them
+
+454  
+00:36:07,954 --> 00:36:11,774  
+understand how to better use Kobo and how to
+
+455  
+00:36:11,774 --> 00:36:16,329  
+improve what they are doing, being more efficient in derisking failure.
+
+456  
+00:36:16,329 --> 00:36:21,100  
+In our team, we have M\&E practitioners. We have humanitarian workers.
+
+457  
+00:36:21,100 --> 00:36:28,025  
+We have people that have worked directly within the field, so we have the perfect combination within teams that are working  
+
+458  
+00:36:28,025 --> 00:36:33,634  
+directly with Kobo, that have the expertise with Kobo, but also have been working  
+
+459  
+00:36:33,634 --> 00:36:38,740  
+directly with communities in the past. Thank you.
+
+460  
+00:36:38,740 --> 00:36:42,820  
+Could you also share 
+
+461  
+00:36:42,820 --> 00:36:47,720  
+the different types of services offered by our partner services team?
+
+462  
+00:36:47,720 --> 00:36:54,410  
+Yeah. Absolutely. So, as Tino and Patrick have mentioned, our aim is also to keep
+
+463  
+00:36:54,410 --> 00:36:57,930  
+Kobo being affordable and also
+
+464  
+00:36:57,930 --> 00:37:02,160  
+having in the core that we're a nonprofit, and that's the heart of what we do.
+
+465  
+00:37:02,160 --> 00:37:07,030  
+We are also offering some services for big users and for partners.
+
+466  
+00:37:07,030 --> 00:37:12,219  
+We have four basic umbrellas. The first one is form development.
+
+467  
+00:37:12,219 --> 00:37:17,469  
+So, we support teams with the creation of surveys and, in general, the usage of 
+
+468  
+00:37:17,469 --> 00:37:20,847  
+KoboToolbox, then developing custom dashboards,
+
+469  
+00:37:20,847 --> 00:37:25,015  
+research and evaluation, and also solutions that are tailored.
+
+470  
+00:37:25,015 --> 00:37:28,485  
+All of these services are tailored to the needs of specific
+
+471  
+00:37:28,485 --> 00:37:32,094  
+partners. Dev: Great.
+
+472  
+00:37:32,094 --> 00:37:38,882  
+Thank you. I'm sure our community would love to hear about a recent example
+
+473  
+00:37:38,882 --> 00:37:42,510  
+of a partner services project.  Yeah.
+
+474  
+00:37:42,510 --> 00:37:46,370  
+So we're working with the UN Women Regional Office
+
+475  
+00:37:46,370 --> 00:37:50,610  
+In the Arab states with this project that we call TrackIt.
+
+476  
+00:37:50,610 --> 00:37:56,714  
+So, what we're doing is, basically, they are working along the region with over ten countries,
+
+477  
+00:37:56,714 --> 00:38:00,234  
+over a hundred implementing partners, and they have
+
+478  
+00:38:00,234 --> 00:38:04,054  
+more than eight projects that have been tracked using the system.
+
+479  
+00:38:04,054 --> 00:38:10,194  
+So, we help them create the forms. We help them create the dashboard that you're seeing in the images.
+
+480  
+00:38:10,194 --> 00:38:14,984  
+And with them we're collaborating so for everyone it's easier to access the data.
+
+481  
+00:38:14,984 --> 00:38:20,444  
+And it's not only a tick box for donors or for the organization, but it's also an opportunity
+
+482  
+00:38:20,444 --> 00:38:24,434  
+to make better decisions based on the evidence that they are collecting
+
+483  
+00:38:24,434 --> 00:38:28,229  
+Thank you.
+
+484  
+00:38:28,229 --> 00:38:31,849  
+Thank you, Paula, for sharing
+
+485  
+00:38:31,849 --> 00:38:35,639  
+the different types of services that our partner services team offers.
+
+486  
+00:38:35,639 --> 00:38:42,614  
+And, also, just thank you for all the amazing work that you and your team have been doing.  Alright.
+
+487  
+00:38:42,614 --> 00:38:44,984  
+Time for our last poll.
+
+488  
+00:38:44,984 --> 00:38:54,350  
+ 
+
+489  
+00:38:54,350 --> 00:39:00,610  
+And this poll speaks the different scale at which
+
+490  
+00:39:00,610 --> 00:39:06,984  
+the community uses the platform \- from small
+
+491  
+00:39:06,984 --> 00:39:12,604  
+NGOs to large international NGOs,  running programs at scale.
+
+492  
+00:39:12,604 --> 00:39:19,849  
+ 
+
+493  
+00:39:19,849 --> 00:39:22,359  
+Give it another five seconds.
+
+494  
+00:39:22,359 --> 00:39:27,969  
+Alright  Okay. We're over majority have voted.
+
+495  
+00:39:27,969 --> 00:39:34,454  
+Let's end it, and here are the results. Alright.
+
+496  
+00:39:34,454 --> 00:39:38,514  
+So five hundred to a thousand submissions
+
+497  
+00:39:38,514 --> 00:39:43,125  
+is where most people are at.
+
+498  
+00:39:43,125 --> 00:39:49,830  
+Alright. Thank you, everybody, for participating. And now we are
+
+499  
+00:39:49,830 --> 00:39:56,420  
+moving to our Community Spotlight section, where we have Tala
+
+500  
+00:39:56,420 --> 00:40:02,834  
+from WHH who'll be talking about
+
+501  
+00:40:02,834 --> 00:40:09,714  
+her experience with our Teams offering, and then we'll have Sharon 
+
+502  
+00:40:09,714 --> 00:40:13,344  
+talking about Save the
+
+503  
+00:40:13,344 --> 00:40:17,630  
+Children's experience with our enterprise private server offering.
+
+504  
+00:40:17,630 --> 00:40:24,530  
+So, we'll first start with Tala. So, Tala brings over eight years
+
+505  
+00:40:24,530 --> 00:40:28,360  
+of monitoring and evaluation experience primarily in
+
+506  
+00:40:28,360 --> 00:40:33,465  
+the Middle East and North Africa region.
+
+507  
+00:40:33,465 --> 00:40:40,294  
+She has worked for a range of organizations, from NRC
+
+508  
+00:40:40,294 --> 00:40:46,239  
+to CESVI, and then right now at WHH.
+
+509  
+00:40:46,239 --> 00:40:52,469  
+Tala specializes in designing MEAL systems and strengthening information
+
+510  
+00:40:52,469 --> 00:40:59,467  
+management for evidence-based programming, and she also has experience across
+
+511  
+00:40:59,467 --> 00:41:04,357  
+different programmatic areas, including shelter, livelihood, education,
+
+512  
+00:41:04,357 --> 00:41:07,895  
+protection, and nutrition with the recent
+
+513  
+00:41:07,895 --> 00:41:12,337  
+focus on the Palestine operations.
+
+514  
+00:41:12,337 --> 00:41:16,820  
+Over to you, Tala. Tala: Thank you very much, Dev.
+
+515  
+00:41:16,820 --> 00:41:21,350  
+Thank you for having me in this webinar. So, today, I'll be sharing our
+
+516  
+00:41:21,350 --> 00:41:25,919  
+experience with using Kobo in the context of Gaza, which is an emergency context.
+
+517  
+00:41:25,919 --> 00:41:32,865  
+So, in the context of Gaza: Gaza, as you all know, has
+
+518  
+00:41:32,865 --> 00:41:36,265  
+been facing one of the most severe humanitarian crises.
+
+519  
+00:41:36,265 --> 00:41:42,205  
+And over the past two years, the situation has deteriorated rapidly, with homes,
+
+520  
+00:41:42,205 --> 00:41:47,360  
+hospitals, schools, infrastructures, severely damaged and destroyed.
+
+521  
+00:41:47,360 --> 00:41:52,550  
+There's also been mass and ongoing displacements with over 90% of the population
+
+522  
+00:41:52,550 --> 00:41:58,974  
+displaced and often multiple times. And the humanitarian situation has truly collapsed.
+
+523  
+00:41:58,974 --> 00:42:05,864  
+And this has created a complex and high-risk operational environment.  And
+
+524  
+00:42:05,864 --> 00:42:11,560  
+some of the operational challenges that we encounter.  
+
+525  
+00:42:11,560 --> 00:42:14,850  
+Could you move on to the next? Thank you.
+
+526  
+00:42:14,850 --> 00:42:18,680  
+Some of the operational challenges that we encounter include access and movement
+
+527  
+00:42:18,680 --> 00:42:23,989  
+restrictions, which truly limits our ability to reach people in need.
+
+528  
+00:42:23,989 --> 00:42:29,255  
+The ongoing bombardments also pose a serious risk to our staff and the communities we serve.
+
+529  
+00:42:29,255 --> 00:42:34,735  
+And the constant displacement is just another layer of complexity, making service
+
+530  
+00:42:34,735 --> 00:42:40,540  
+delivery unstable. The aid supplies are limited, which means that we must
+
+531  
+00:42:40,540 --> 00:42:44,899  
+continuously verify and monitor and prioritize our services.
+
+532  
+00:42:44,899 --> 00:42:50,794  
+And the population's needs are constantly evolving in this environment, and with that in
+
+533  
+00:42:50,794 --> 00:42:57,734  
+mind, our data systems need to be adaptive, timely, and transparent in order
+
+534  
+00:42:57,734 --> 00:43:03,314  
+to guide our response and uphold accountability and trust
+
+535  
+00:43:03,314 --> 00:43:09,770  
+So, 
+
+536  
+00:43:09,770 --> 00:43:16,580  
+WHH truly works through local partners and our emergency response has focused mainly on
+
+537  
+00:43:16,580 --> 00:43:22,267  
+three sectors, including nutrition and food, shelter, and
+
+538  
+00:43:22,267 --> 00:43:28,414  
+NFI, and the WASH. Next, please.
+
+539  
+00:43:28,414 --> 00:43:32,895  
+And given the realities, 
+
+540  
+00:43:32,895 --> 00:43:37,839  
+that we're working with, Kobo has become essential to our response.
+
+541  
+00:43:37,839 --> 00:43:44,260  
+It's enabled us to monitor activities remotely, especially when direct access is limited or unsafe.
+
+542  
+00:43:44,260 --> 00:43:50,945  
+It's also given us timely and digitized data \- data that supports our decision making.
+
+543  
+00:43:50,945 --> 00:43:54,554  
+And Kobo works flexibly, and the fact that it's widely adopted by
+
+544  
+00:43:54,554 --> 00:43:58,254  
+our local partners facilitates our work.
+
+545  
+00:43:58,254 --> 00:44:02,157  
+And, specifically the Teams plan, has added the structure
+
+546  
+00:44:02,157 --> 00:44:06,599  
+And the scalability that we need to sustain our operations.
+
+547  
+00:44:06,599 --> 00:44:10,339  
+So, with that, we've been able to tailor our
+
+548  
+00:44:10,339 --> 00:44:14,422  
+data workflows to fit the realities on the ground.
+
+549  
+00:44:14,422 --> 00:44:20,474  
+And this has been especially important for our verification and monitoring activities, 
+
+550  
+00:44:20,474 --> 00:44:26,155  
+where Kobo allows us to collect data even in hard to reach areas or when there's no Internet access.
+
+551  
+00:44:26,155 --> 00:44:31,850  
+Rapid needs assessment also helps us guide our emergency responses.
+
+552  
+00:44:31,850 --> 00:44:37,880  
+And when it comes to expanding our network of local partners, Kobo has supported our
+
+553  
+00:44:37,880 --> 00:44:44,334  
+preassessment process for CBOs. Because Kobo works offline and on
+
+554  
+00:44:44,334 --> 00:44:49,034  
+smartphones, it's accessible to our teams, our partners, even in the most
+
+555  
+00:44:49,034 --> 00:44:53,354  
+challenging conditions. The Teams plan
+
+556  
+00:44:53,354 --> 00:44:58,265  
+has brought several key benefits that have strengthened our response.
+
+557  
+00:44:58,265 --> 00:45:03,834  
+The first is scalability. As our projects expand, we're able to scale our
+
+558  
+00:45:03,834 --> 00:45:08,532  
+operations without needing to disrupt our existing workflow.
+
+559  
+00:45:08,532 --> 00:45:14,734  
+Second, it has decentralized project management,  which allows us to host all our
+
+560  
+00:45:14,734 --> 00:45:22,002  
+projects under one organizational account, and preserves the institutional knowledge within WHH.
+
+561  
+00:45:22,002 --> 00:45:27,792  
+It also makes coordination between country offices and the field teams smoother and easier.
+
+562  
+00:45:27,792 --> 00:45:33,542  
+The third point is that the Teams management feature, which enables role
+
+563  
+00:45:33,542 --> 00:45:39,392  
+based access control, and allows us to align permissions with our staffing structure.
+
+564  
+00:45:39,392 --> 00:45:43,752  
+Because we have main coordinators, consultants, volunteers,
+
+565  
+00:45:43,752 --> 00:45:48,130  
+and data collectors, this fits perfectly with our structure.
+
+566  
+00:45:48,130 --> 00:45:51,350  
+This not only promotes accountability, but it
+
+567  
+00:45:51,350 --> 00:45:55,199  
+also safeguards sensitive data, especially in such conditions.
+
+568  
+00:45:55,199 --> 00:46:00,059  
+The last point is around having enhanced support from the Kobo team
+
+569  
+00:46:00,059 --> 00:46:03,785  
+themselves.  And maybe,
+
+570  
+00:46:03,785 --> 00:46:08,534  
+lastly, from my side is just some feedback and reflections on the use of Kobo.
+
+571  
+00:46:08,534 --> 00:46:15,004  
+And feedback from the field has been generally very positive, and Kobo is seen as user-
+
+572  
+00:46:15,004 --> 00:46:19,360  
+friendly, practical, and empowering to the local communities.
+
+573  
+00:46:19,360 --> 00:46:25,969  
+Looking forward, WHH would want to capitalize on
+
+574  
+00:46:25,969 --> 00:46:30,820  
+strengthening the team management to help us create a more structured and secure
+
+575  
+00:46:30,820 --> 00:46:34,919  
+environment for data collection and promoting the library as a
+
+576  
+00:46:34,919 --> 00:46:39,604  
+centralized space for standardized templates and forms.
+
+577  
+00:46:39,604 --> 00:46:43,695  
+Thank you, and over to you, Dev. Dev: Thank you, Tala.
+
+578  
+00:46:43,695 --> 00:46:48,574  
+Thank you for taking the time to be here and for sharing
+
+579  
+00:46:48,574 --> 00:46:52,395  
+your experience about the
+
+580  
+00:46:52,395 --> 00:46:57,475  
+platform and your ongoing work in Gaza.
+
+581  
+00:46:57,475 --> 00:47:03,695  
+Thank you so much. Now, we'll have Sharon
+
+582  
+00:47:03,695 --> 00:47:10,295  
+share Save the Children’s experience with our Enterprise private server
+
+583  
+00:47:10,295 --> 00:47:15,669  
+offering. Sharon is a digital development professional.
+
+584  
+00:47:15,669 --> 00:47:22,499  
+She leads efforts to expand and standardize data collection globally  
+
+585  
+00:47:22,499 --> 00:47:29,334  
+within Save the Children. She has experience working across 
+
+586  
+00:47:29,334 --> 00:47:36,145  
+both local and international NGOs, along with experience in CSR and digital
+
+587  
+00:47:36,145 --> 00:47:43,040  
+education initiatives  Sharon leverages technology to amplify impact.
+
+588  
+00:47:43,040 --> 00:47:48,660  
+She holds an MSC in Development Management from London School of Economics.
+
+589  
+00:47:48,660 --> 00:47:51,882  
+Over to you, Sharon. Welcome\!
+
+590  
+00:47:51,882 --> 00:47:54,922  
+Thank you, Dev. Hi, all. I'm Sharon Sagues.
+
+591  
+00:47:54,922 --> 00:47:59,244  
+I'm the associate product owner for digital data collection at Save the Children International,
+
+592  
+00:47:59,244 --> 00:48:03,925  
+and I'll be talking about our journey in using KoboToolbox as an organization wide strategic
+
+593  
+00:48:03,925 --> 00:48:08,119  
+tool for data collection in our programs. As you may
+
+594  
+00:48:08,119 --> 00:48:12,479  
+Save the Children works across the world, reaching millions of children every year.
+
+595  
+00:48:12,479 --> 00:48:18,060  
+Whether it's responding to emergencies or improving education, data helps us to understand what
+
+596  
+00:48:18,060 --> 00:48:22,772  
+works, where we need to improve, and how to increase impact.
+
+597  
+00:48:22,772 --> 00:48:27,002  
+So with thousands of staff and partners collecting data, we needed tools that are secure,
+
+598  
+00:48:27,002 --> 00:48:31,714  
+scalable, and easy to use. Why?
+
+599  
+00:48:31,714 --> 00:48:36,135  
+Because accurate data capturing is essential in identifying activities that provide better
+
+600  
+00:48:36,135 --> 00:48:40,294  
+outcomes, allowing us to increase the impact towards our breakthroughs for the most
+
+601  
+00:48:40,294 --> 00:48:47,079  
+marginalized and deprived children.  
+
+602  
+00:48:47,079 --> 00:48:51,467  
+Before KoboToolbox enterprise, our data collection faced three major issues.
+
+603  
+00:48:51,467 --> 00:48:57,824  
+First, it was unsafe. Data was stored on laptops or in filing cabinets, and many tools used
+
+604  
+00:48:57,824 --> 00:49:03,402  
+didn't meet our data protection standards. Second, it was inefficient.
+
+605  
+00:49:03,402 --> 00:49:08,132  
+MEAL teams spent hours manually processing data and building surveys from scratch with little
+
+606  
+00:49:08,132 --> 00:49:13,550  
+guidance on what tools to use. Third, we had low quality data.
+
+607  
+00:49:13,550 --> 00:49:16,840  
+Too many tools meant data couldn't be easily shared or compared.
+
+608  
+00:49:16,840 --> 00:49:22,324  
+Paper forms were still being used, and the lack of standardization made analysis difficult.
+
+609  
+00:49:22,324 --> 00:49:27,365  
+These challenges made it clear that we needed a secure, scalable, and standardized solution.
+
+610  
+00:49:27,365 --> 00:49:32,545  
+So what did we do about it? In 2022, we launched our private enterprise, Kobo
+
+611  
+00:49:32,545 --> 00:49:38,765  
+Instance, exclusive to Save the Children offices; then, we started wide onboarding from 2023\.
+
+612  
+00:49:38,765 --> 00:49:45,302  
+This gave us better control over data storage, access to new features, and improved data management for our users.
+
+613  
+00:49:45,302 --> 00:49:50,764  
+We supported the rollout with onboarding guidance, data migration from public Kobo instances,
+
+614  
+00:49:50,764 --> 00:49:54,194  
+a form library based on the public collections feature,
+
+615  
+00:49:54,194 --> 00:49:58,237  
+and ongoing help desk support for our users.
+
+616  
+00:49:58,237 --> 00:50:02,547  
+For some offices, this was not only transitioning from legacy digital tools, but a full
+
+617  
+00:50:02,547 --> 00:50:05,737  
+transition into digital data collection from paper.
+
+618  
+00:50:05,737 --> 00:50:12,077  
+The transition wasn't easy, but strong internal coordination and clear governance helped us overcome those hurdles.
+
+619  
+00:50:12,077 --> 00:50:17,775  
+And within six months, over 95% of our offices were using our KoboToolbox instance.
+
+620  
+00:50:17,775 --> 00:50:21,255  
+Now, it's well embedded in our monitoring and evaluation, and
+
+621  
+00:50:21,255 --> 00:50:24,792  
+we have millions of submissions annually to prove this.
+
+622  
+00:50:24,792 --> 00:50:28,732  
+But there's no better way to express this than through the words of our colleagues who have
+
+623  
+00:50:28,732 --> 00:50:34,079  
+highlighted, for example, an improvement in their security and data protection practices,
+
+624  
+00:50:34,079 --> 00:50:40,415  
+effective time saving, and increased confidence through the usage of a standardized tool.
+
+625  
+00:50:40,415 --> 00:50:43,915  
+We can hear from some of them in the video upcoming.
+
+626  
+00:50:43,915 --> 00:50:49,785  
+ 
+
+627  
+00:50:49,785 --> 00:50:52,795  
+Kobo is a magical and time saving platform.
+
+628  
+00:50:52,795 --> 00:51:00,040  
+Efficient. From our side would be data security and privacy.
+
+629  
+00:51:00,040 --> 00:51:04,070  
+So, Kobo is real time, human friendly
+
+630  
+00:51:04,070 --> 00:51:13,595
+
+631  
+00:51:13,595 --> 00:51:16,495  
+So, we are proud of the progress that we have made so far.
+
+632  
+00:51:16,495 --> 00:51:22,015  
+And while the work is still far from over, we have learned some key lessons along the way.
+
+633  
+00:51:22,015 --> 00:51:25,280  
+On the “do” side, we managed to tap into a real
+
+634  
+00:51:25,280 --> 00:51:29,139  
+demand for change from our country offices, which helped drive momentum.
+
+635  
+00:51:29,139 --> 00:51:33,790  
+We also had senior stakeholder support, which was crucial because having champions at the top
+
+636  
+00:51:33,790 --> 00:51:40,224  
+makes a real difference. We delivered clear and simple communications both globally and country
+
+637  
+00:51:40,224 --> 00:51:46,274  
+by country, and this helped keep everyone aligned. We prepared as much as possible, but we
+
+638  
+00:51:46,274 --> 00:51:50,707  
+stayed flexible to adapt to each country office's needs.
+
+639  
+00:51:50,707 --> 00:51:55,177  
+Then, we scaled up existing features, for example, as I mentioned, to create shareable
+
+640  
+00:51:55,177 --> 00:52:00,147  
+templates working with our MEAL community to build an organization wide library of best in class
+
+641  
+00:52:00,147 --> 00:52:05,684  
+forms for each of our thematic areas. On the “don't” side:
+
+642  
+00:52:05,684 --> 00:52:11,894  
+As a small team of three, our advice looking back is to not under-resource.
+
+643  
+00:52:11,894 --> 00:52:16,709  
+Rolling out tech at scale needs dedicated people and time.
+
+644  
+00:52:16,709 --> 00:52:21,909  
+We also recommend not to underestimate the role of local partners, which may vary widely, and
+
+645  
+00:52:21,909 --> 00:52:25,469  
+we're still working on the best way to reach them all.
+
+646  
+00:52:25,469 --> 00:52:31,327  
+And for us, the migration task was also bigger than we expected, but it was essential for a smooth transition.
+
+647  
+00:52:31,327 --> 00:52:35,844  
+And finally, as you know, data aggregation across countries is complex.
+
+648  
+00:52:35,844 --> 00:52:40,884  
+Digitization through KoboToolbox and the creation of standardized forms are just the first
+
+649  
+00:52:40,884 --> 00:52:44,464  
+steps in building a truly comparable organization wide reporting system
+
+650  
+00:52:44,464 --> 00:52:48,300  
+So, that's it for me.
+
+651  
+00:52:48,300 --> 00:52:54,499  
+Thank you for listening. Grateful to be part of this community, and here's to data that drives real change.
+
+652  
+00:52:54,499 --> 00:53:00,675  
+Thanks, Dev. Back to you. Dev: Thank you so much, Sharon.
+
+653  
+00:53:00,675 --> 00:53:05,255  
+It was fascinating to hear Save the Children’s journey from using
+
+654  
+00:53:05,255 --> 00:53:11,025  
+KoboToolbox so heavily in country offices in a decentralized way to
+
+655  
+00:53:11,025 --> 00:53:15,765  
+now, how it's being deployed in such an organized fashion.
+
+656  
+00:53:15,765 --> 00:53:19,309  
+Thank you so much. Alright.
+
+657  
+00:53:19,309 --> 00:53:24,839  
+So, now we will take some questions from our community.
+
+658  
+00:53:24,839 --> 00:53:31,795  
+Thank you so much for all these questions. And, like I mentioned, we will do our
+
+659  
+00:53:31,795 --> 00:53:36,655  
+best to answer as much as we can.
+
+660  
+00:53:36,655 --> 00:53:42,864  
+But if you're not able to get your question, we will be in touch
+
+661  
+00:53:42,864 --> 00:53:49,350  
+over email. Sharon, the first
+
+662  
+00:53:49,350 --> 00:53:56,020  
+question is for you. There seems to be a lot of
+
+663  
+00:53:56,020 --> 00:54:02,834  
+conversation in the community around how do organizations who adopt
+
+664  
+00:54:02,834 --> 00:54:09,435  
+a platform, say, KoboToolbox at a centralized level,
+
+665  
+00:54:09,435 --> 00:54:16,250  
+how do they manage to make it work
+
+666  
+00:54:16,250 --> 00:54:22,919  
+financially from a perspective of are you billing back,
+
+667  
+00:54:22,919 --> 00:54:29,650  
+the fees to individual users or country offices?
+
+668  
+00:54:29,650 --> 00:54:32,947  
+Could you share a little bit about how
+
+669  
+00:54:32,947 --> 00:54:37,415  
+Save the Children manages? Sharon: Sure.
+
+670  
+00:54:37,415 --> 00:54:41,385  
+Yes. We do divide the the cost of the whole
+
+671  
+00:54:41,385 --> 00:54:46,942  
+Enterprise package among the country offices that are using this.
+
+672  
+00:54:46,942 --> 00:54:51,412  
+This is and we do it in an equal way for all the country offices.
+
+673  
+00:54:51,412 --> 00:54:56,882  
+And, yeah, it's billed back, but it's a shared good, so we
+
+674  
+00:54:56,882 --> 00:55:01,014  
+we share the cost. Dev: Gotcha.
+
+675  
+00:55:01,014 --> 00:55:04,435  
+Thank you. The next
+
+676  
+00:55:04,435 --> 00:55:08,585  
+question is for Tala.
+
+677  
+00:55:08,585 --> 00:55:15,420  
+Tala, you mentioned that a lot of your
+
+678  
+00:55:15,420 --> 00:55:21,710  
+work happens through local implementing partners. Are there any
+
+679  
+00:55:21,710 --> 00:55:28,354  
+certain specific lessons you want to share
+
+680  
+00:55:28,354 --> 00:55:35,104  
+when you work with local implementing partners where everybody is
+
+681  
+00:55:35,104 --> 00:55:38,659  
+using KoboToolbox?
+
+682  
+00:55:38,659 --> 00:55:44,429  
+Yeah. Thank you. That's a good question. Actually, we try to capitalize on what
+
+683  
+00:55:44,429 --> 00:55:47,599  
+partners have and try to improve the systems that they already have,
+
+684  
+00:55:47,599 --> 00:55:51,165  
+just so we don't impose anything new on them.
+
+685  
+00:55:51,165 --> 00:55:54,505  
+In a way, that also makes their work easier,
+
+686  
+00:55:54,505 --> 00:55:58,285  
+and our work as well, easier.
+
+687  
+00:55:58,285 --> 00:56:02,875  
+So, the main lesson learned is really is just to work with what they have and improve the
+
+688  
+00:56:02,875 --> 00:56:07,655  
+systems that they already have, whether that be developing the
+
+689  
+00:56:07,655 --> 00:56:12,835  
+questionnaires or improving the questionnaires or the data flow and the linkages of
+
+690  
+00:56:12,835 --> 00:56:17,660  
+the tools and forms within their Kobo. 
+
+691  
+00:56:17,660 --> 00:56:21,455  
+Thank you. Gotcha. Thank you.
+
+692  
+00:56:21,455 --> 00:56:26,635  
+Well, we have two minutes left. So, we'll take one more question.
+
+693  
+00:56:26,635 --> 00:56:34,709  
+Tino, this is for you. Does Kobo work with government agencies?
+
+694  
+00:56:34,709 --> 00:56:40,869  
+Let's say a government agency is running a project and they want their own 
+
+695  
+00:56:40,869 --> 00:56:45,364  
+KoboToolbox server. 
+
+696  
+00:56:45,364 --> 00:56:50,714  
+Yeah\! Of course. I mean, the truth is many organizations and many government institutions already do that.
+
+697  
+00:56:50,714 --> 00:56:56,675  
+So, many of your cases, they collect data with Kobo and then at some point decide for
+
+698  
+00:56:56,675 --> 00:57:01,824  
+data sovereignty reasons or legal compliance reasons, they need the data to be on their own server.
+
+699  
+00:57:01,824 --> 00:57:07,020  
+And so we actually (I think Ayman mentioned this earlier) support  
+
+700  
+00:57:07,020 --> 00:57:12,330  
+235 different countries where the data can be hosted locally in our different data centers.
+
+701  
+00:57:12,330 --> 00:57:17,014  
+So, if that's a necessity for, frankly, for large and
+
+702  
+00:57:17,014 --> 00:57:21,844  
+complex use cases, whether that's a government agency or organization, that's certainly possible.
+
+703  
+00:57:21,844 --> 00:57:27,494  
+And we support quite a few of those larger ministries or institutions that way.
+
+704  
+00:57:27,494 --> 00:57:40,000  
+*Music*
+
