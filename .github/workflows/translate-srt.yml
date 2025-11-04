@@ -45,7 +45,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r scripts/requirements.txt
       
-      - name: Validate input file
+      - name: Validate and clean input file
         run: |
           FILE_PATH="transcripts/en/${{ github.event.inputs.srt_file }}"
           
@@ -57,8 +57,20 @@ jobs:
           
           echo "✅ Found source file: $FILE_PATH"
           
-          # Validate SRT format
-          python scripts/srt_helper.py validate "$FILE_PATH"
+          # First validation attempt
+          echo "🔍 Validating SRT format..."
+          if ! python scripts/srt_helper.py validate "$FILE_PATH"; then
+            echo ""
+            echo "⚠️  Validation failed - attempting to clean empty subtitles..."
+            
+            # Clean empty subtitles
+            python scripts/clean_empty_subtitles.py "$FILE_PATH"
+            
+            # Validate again after cleaning
+            echo ""
+            echo "🔍 Re-validating cleaned file..."
+            python scripts/srt_helper.py validate "$FILE_PATH"
+          fi
       
       - name: Parse languages
         id: parse_langs
