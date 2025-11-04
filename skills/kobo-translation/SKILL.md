@@ -209,7 +209,8 @@ Always include English + translation approach:
 - Use concise sentences
 - Follow target language punctuation conventions
 - Avoid slang: "gonna" → "going to"
-- Preserve all HTML tags and attributes
+- **Convert HTML heading tags to markdown format:** `<h2>` → `##`, `<h3>` → `###`, etc.
+- Preserve all other HTML tags and attributes (iframe, section, etc.)
 - Keep markdown link syntax intact
 - Don't translate image paths or URLs
 
@@ -234,8 +235,14 @@ Always include English + translation approach:
 ### HTML and Markdown Elements
 
 **Preserve HTML structure:**
-- Keep all HTML tags intact: `<h1>`, `<h2>`, `<h3>`, `<iframe>`, `<section>`, etc.
-- Maintain attributes: `dir="rtl"`, `id`, `class`, `style`, etc.
+- Keep all HTML tags intact EXCEPT heading tags: `<iframe>`, `<section>`, etc.
+- **IMPORTANT: Convert HTML heading tags to markdown headings:**
+  - `<h1>` → `#` (markdown h1)
+  - `<h2>` → `##` (markdown h2)
+  - `<h3>` → `###` (markdown h3)
+  - `<h4>` → `####` (markdown h4)
+  - Example: `<h2>Why KoboToolbox is unique</h2>` → `## Por qué KoboToolbox es único`
+- Maintain non-heading attributes: `dir="rtl"`, `id`, `class`, `style`, etc.
 - Do NOT translate HTML attributes or parameters
 
 **Metadata and front matter:**
@@ -246,13 +253,28 @@ Always include English + translation approach:
 
 **Links and cross-references:**
 - Preserve markdown link syntax: `[Text](url.md)`
-- Translate link text, keep URL unchanged
-- Cross-reference links to other language versions:
+- **Internal documentation links (same language):** Keep relative links as-is - they automatically resolve to the correct language folder
+  - Example: In `docs/es/article_a.md`, a link `[other article](article_b.md)` correctly points to `docs/es/article_b.md`
+- **Cross-language reference links:** Update the path to point to the correct language directory
+  - From Spanish (`docs/es/`), link to:
+    - English: `../en/filename.md` → Example: `[Read in English](../en/about_kobotoolbox.md)`
+    - French: `../fr/filename.md` → Example: `[Lire en français](../fr/about_kobotoolbox.md)`
+    - Arabic: `../ar/filename.md` → Example: `[اقرأ باللغة العربية](../ar/about_kobotoolbox.md)`
+  - From French (`docs/fr/`), link to:
+    - English: `../en/filename.md`
+    - Spanish: `../es/filename.md`
+    - Arabic: `../ar/filename.md`
+  - From Arabic (`docs/ar/`), link to:
+    - English: `../en/filename.md`
+    - Spanish: `../es/filename.md`
+    - French: `../fr/filename.md`
+- Cross-language link text:
   - English: "Read in English"
   - French: "Lire en français"
   - Spanish: "Leer en español"
   - Arabic: "اقرأ باللغة العربية"
-- Internal links translate the visible text but keep the URL: `[our mission](https://www.kobotoolbox.org/about-us/our-mission/)` → FR: `[notre mission](https://www.kobotoolbox.org/about-us/our-mission/)`
+- **External links** (https://...) translate the visible text but keep the URL unchanged
+  - Example: `[our mission](https://www.kobotoolbox.org/about-us/our-mission/)` → FR: `[notre mission](https://www.kobotoolbox.org/about-us/our-mission/)`
 
 **Images:**
 - Keep image paths unchanged: `![image](images/about_kobotoolbox/usermap.png)`
@@ -272,6 +294,7 @@ Always include English + translation approach:
 - English: Title case for main headings ("About KoboToolbox: Accessible Data Collection")
 - French: Capitalize first word and proper nouns only ("À propos de KoboToolbox : Collecte de données accessible à toutes et tous")
 - Spanish: Capitalize first word and proper nouns only ("Acerca de KoboToolbox: Recolección de datos accesible para todas las personas")
+- **CRITICAL: Always use markdown heading syntax (`##`, `###`) NOT HTML tags (`<h2>`, `<h3>`)**
 - Note: Some titles may use h1 (`#`), others h2 (`##`) - follow the source document's pattern
 
 **Inclusive language in titles:**
@@ -435,8 +458,11 @@ Before finalizing translation:
 - [ ] UI terms capitalized correctly (Brouillon, Borrador, etc.)
 
 **Structure & Formatting:**
-- [ ] All HTML tags preserved and unchanged
-- [ ] Markdown links maintained (translated text, unchanged URLs)
+- [ ] HTML heading tags converted to markdown (## for h2, ### for h3, etc.)
+- [ ] All other HTML tags preserved and unchanged (iframe, section, etc.)
+- [ ] Internal documentation links kept as relative paths (they auto-resolve correctly)
+- [ ] Cross-language reference links updated to use directory paths (../en/, ../es/, ../fr/, ../ar/)
+- [ ] External links: translated text, unchanged URLs
 - [ ] Image paths unchanged
 - [ ] YouTube embed language parameters updated (cc_lang_pref, hl)
 - [ ] Arabic content wrapped in `<section dir="rtl">` tags
@@ -549,7 +575,83 @@ Before finalizing translation:
 
 **Error fixed:** Added English term in parentheses on first reference
 
-### Example 4: Natural Language Flow
+### Example 4: HTML Headings to Markdown
+
+**Source (English with HTML tags):**
+```markdown
+<h3>Why KoboToolbox is unique</h3>
+
+KoboToolbox is hosted and maintained by the international nonprofit organization...
+
+<h3>Supporting global impact</h3>
+
+KoboToolbox is the most widely used data collection tool...
+```
+
+**✅ CORRECT Spanish (converted to markdown):**
+```markdown
+## Por qué KoboToolbox es único
+
+KoboToolbox es una organización internacional sin fines de lucro...
+
+## Apoyamos el impacto global
+
+KoboToolbox es la herramienta de recolección de datos más utilizada...
+```
+
+**❌ WRONG Spanish (keeping HTML tags):**
+```markdown
+<h3>Por qué KoboToolbox es único</h3>
+
+KoboToolbox es una organización internacional sin fines de lucro...
+```
+
+**Error fixed:** Converted HTML `<h3>` tags to markdown `##` (since h3 corresponds to ##)
+
+**Key observations:**
+- Always convert HTML heading tags to markdown format
+- Maintain the heading level: h1→#, h2→##, h3→###, h4→####
+- Keep all other HTML tags (iframe, section, etc.) intact
+
+### Example 5: Internal and Cross-Language Links
+
+**Source (English file in `docs/en/p_codes.md`):**
+```markdown
+# Including P-Codes in the Output Data
+
+[Lire en français](../fr/p_codes.md) | [Leer en español](../es/p_codes.md)
+
+If using cascading lists, please [follow the instructions](cascading_select.md)
+for cascading selects.
+```
+
+**✅ CORRECT Spanish translation (file in `docs/es/p_codes.md`):**
+```markdown
+# Incluir P-Codes en los datos de salida
+
+[Read in English](../en/p_codes.md) | [Lire en français](../fr/p_codes.md)
+
+Si utilizas listas en cascada, por favor [sigue las instrucciones](cascading_select.md)
+para selecciones en cascada.
+```
+
+**Key observations:**
+- Internal doc link `cascading_select.md` stays as-is (relative path auto-resolves to `docs/es/cascading_select.md`)
+- Cross-language links updated to use directory structure (`../en/`, `../fr/`)
+- Link text translated appropriately for each language
+
+**❌ WRONG Spanish translation:**
+```markdown
+[Read in English](p_codes.md) | [Lire en français](p_codes_fr.md)
+
+Si utilizas listas en cascada, por favor [sigue las instrucciones](cascading_select_es.md)
+```
+
+**Errors:**
+- Cross-language links don't specify the language directory
+- Internal link incorrectly uses `_es` suffix instead of relying on relative path
+
+### Example 6: Natural Language Flow
 
 **Source:** "To support our nonprofit users, we provide our tools for free under the Community Plan."
 

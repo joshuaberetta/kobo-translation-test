@@ -1,5 +1,11 @@
 # Question Types and Appearances
 
+**📝 FORMATTING NOTE:**
+- **Convert HTML heading tags to markdown:** `<h2>` → `##`, `<h3>` → `###`, etc.
+- **Keep internal doc links as-is:** Relative links like `[text](article.md)` automatically resolve to the correct language folder
+- **Update cross-language links:** Use directory paths like `../en/article.md`, `../es/article.md`, `../fr/article.md`
+- Keep all other HTML tags intact (iframe, section, etc.)
+
 ## Question Types (PREFERRED)
 
 These translations are preferred but can be adapted based on context.

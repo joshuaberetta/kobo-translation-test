@@ -4,6 +4,12 @@ All translations in this file are OFFICIAL and must be used exactly as specified
 
 **Capitalize according to UI appearance.** If modifications or corrections to UI terminology are needed, flag in comment and record in appropriate tracker or communications channel.
 
+**📝 FORMATTING NOTE:**
+- **Convert HTML heading tags to markdown:** `<h2>` → `##`, `<h3>` → `###`, etc.
+- **Keep internal doc links as-is:** Relative links like `[text](article.md)` automatically resolve to the correct language folder
+- **Update cross-language links:** Use directory paths like `../en/article.md`, `../es/article.md`, `../fr/article.md`
+- Keep all other HTML tags intact (iframe, section, etc.)
+
 ## 🚨 CRITICAL: Capitalization Rules
 
 **UI terms MUST match the exact capitalization shown in the actual KoboToolbox interface.**
