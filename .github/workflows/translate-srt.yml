@@ -175,7 +175,7 @@ jobs:
           echo "4. Upload SRT files to your video platform" >> $GITHUB_STEP_SUMMARY
       
       - name: Upload translated subtitles as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: translated-subtitles
           path: |
