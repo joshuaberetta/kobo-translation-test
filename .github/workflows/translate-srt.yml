@@ -186,7 +186,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
           commit-message: |
             Translate subtitles: ${{ github.event.inputs.srt_file }}
             
