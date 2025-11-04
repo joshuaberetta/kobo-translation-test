@@ -18,6 +18,7 @@ load_dotenv()
 try:
     import anthropic
     from srt_helper import SRTParser, SRTSubtitle, SRTWriter, SRTConverter
+    from transifex_sync import TransifexSync
 except ImportError:
     print("❌ Missing dependencies. Install with: pip install -r requirements.txt")
     sys.exit(1)
@@ -34,7 +35,8 @@ class SRTTranslationAgent:
     DEFAULT_CHUNK_SIZE = 25
     DEFAULT_OVERLAP = 3  # Number of subtitles to overlap between chunks for context
     
-    def __init__(self, api_key: str = None, chunk_size: int = None, overlap: int = None):
+    def __init__(self, api_key: str = None, chunk_size: int = None, overlap: int = None, 
+                 sync_transifex: bool = True, transifex_token: str = None):
         """
         Initialize the SRT translation agent
         
@@ -42,6 +44,8 @@ class SRTTranslationAgent:
             api_key: Anthropic API key (or uses ANTHROPIC_API_KEY env var)
             chunk_size: Number of subtitles per chunk (default: 25)
             overlap: Number of overlapping subtitles for context (default: 3)
+            sync_transifex: Whether to sync Transifex before translating (default: True)
+            transifex_token: Transifex API token (or uses TRANSIFEX_API_TOKEN env var)
         """
         self.api_key = api_key or os.getenv('ANTHROPIC_API_KEY')
         if not self.api_key:
@@ -51,6 +55,11 @@ class SRTTranslationAgent:
         
         self.chunk_size = chunk_size or self.DEFAULT_CHUNK_SIZE
         self.overlap = overlap or self.DEFAULT_OVERLAP
+        
+        # Transifex integration
+        self.sync_transifex = sync_transifex
+        self.transifex_token = transifex_token
+        self.transifex_synced = set()  # Track which languages we've synced
         
         # Skill context cache
         self.skill_cache = {}
@@ -75,6 +84,11 @@ class SRTTranslationAgent:
             return self.skill_cache[target_lang]
         
         print(f"📚 Loading translation skills for {target_lang.upper()}...", file=sys.stderr)
+        
+        # Sync Transifex terminology first (once per language)
+        if self.sync_transifex and target_lang not in self.transifex_synced:
+            self._sync_transifex_terminology(target_lang)
+            self.transifex_synced.add(target_lang)
         
         context = {}
         
@@ -131,6 +145,35 @@ class SRTTranslationAgent:
         print(f"✅ Loaded {len(context)} skill files total", file=sys.stderr)
         
         return context
+    
+    def _sync_transifex_terminology(self, target_lang: str):
+        """
+        Sync latest UI terminology from Transifex
+        
+        Args:
+            target_lang: Target language code
+        """
+        print(f"  🔄 Syncing Transifex terminology for {target_lang.upper()}...", file=sys.stderr)
+        
+        try:
+            sync = TransifexSync(api_token=self.transifex_token)
+            
+            # Fetch latest translations
+            translations = sync.sync_language_terminology(target_lang)
+            
+            if translations:
+                # Save to skill reference file
+                sync.save_terminology_file(translations, target_lang)
+                print(f"    ✅ Synced {len(translations)} UI terms from Transifex", file=sys.stderr)
+            else:
+                print(f"    ⚠️  No Transifex translations found", file=sys.stderr)
+                
+        except ValueError as e:
+            # Missing API token - warn but continue
+            print(f"    ⚠️  Skipping Transifex sync: {e}", file=sys.stderr)
+        except Exception as e:
+            # Other errors - warn but continue
+            print(f"    ⚠️  Transifex sync failed: {e}", file=sys.stderr)
     
     def chunk_subtitles(self, subtitles: List[SRTSubtitle]) -> List[Dict]:
         """
@@ -576,6 +619,15 @@ def main():
         '--api-key',
         help='Anthropic API key (or use ANTHROPIC_API_KEY env var)'
     )
+    parser.add_argument(
+        '--no-transifex-sync',
+        action='store_true',
+        help='Skip syncing latest UI terminology from Transifex'
+    )
+    parser.add_argument(
+        '--transifex-token',
+        help='Transifex API token (or use TRANSIFEX_API_TOKEN env var)'
+    )
     
     args = parser.parse_args()
     
@@ -589,7 +641,9 @@ def main():
         agent = SRTTranslationAgent(
             api_key=args.api_key,
             chunk_size=args.chunk_size,
-            overlap=args.overlap
+            overlap=args.overlap,
+            sync_transifex=not args.no_transifex_sync,
+            transifex_token=args.transifex_token
         )
         
         # Translate

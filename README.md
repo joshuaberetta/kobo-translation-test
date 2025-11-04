@@ -2,7 +2,9 @@
 
 This is a minimal test setup to validate the AI translation workflow before implementing in the full documentation repository.
 
-**✨ NEW: SRT Subtitle Translation** - Now includes complete workflow for translating video subtitles with context-aware chunking to minimize hallucinations. See `SRT_WORKFLOW.md` for details.
+**✨ NEW: Transifex Integration** - Automatically syncs latest KoboToolbox UI translations from Transifex before translating docs and subtitles. See `TRANSIFEX_INTEGRATION.md` for details.
+
+**✨ NEW: SRT Subtitle Translation** - Complete workflow for translating video subtitles with context-aware chunking to minimize hallucinations. See `SRT_WORKFLOW.md` for details.
 
 ## Repository Structure
 
@@ -77,13 +79,29 @@ cp .env.example .env
 
 # Edit .env and add your keys
 nano .env
+
+# Add these variables:
+# - ANTHROPIC_API_KEY (required)
+# - TRANSIFEX_API_TOKEN (optional, for UI terminology sync)
+# - GITHUB_TOKEN (optional, for automation)
 ```
+
+**NEW: Transifex Integration** 🔄
+
+The translation scripts can automatically sync the latest KoboToolbox UI translations from Transifex. To enable this:
+
+1. Get your Transifex API token: https://app.transifex.com/user/settings/api/
+2. Add to `.env`: `TRANSIFEX_API_TOKEN=your_token_here`
+3. Translations will auto-sync UI terminology before translating
+
+See `TRANSIFEX_INTEGRATION.md` for full details.
 
 #### GitHub Secrets (Required for automation)
 Go to: **Settings → Secrets and variables → Actions → New repository secret**
 
 Add these secrets:
-- `ANTHROPIC_API_KEY` - Your Claude API key
+- `ANTHROPIC_API_KEY` - Your Claude API key (required)
+- `TRANSIFEX_API_TOKEN` - Transifex API token (optional)
 - `TRANSLATION_BOT_TOKEN` - GitHub Personal Access Token with repo permissions
 
 ### 4. Test Locally (Recommended First)
@@ -270,8 +288,29 @@ This repository includes:
 - ✅ GitHub Actions workflows
 - ✅ Sample test documents
 - ✅ Complete kobo-translation skill
+- ✅ **NEW:** Transifex integration for UI terminology
+- ✅ **NEW:** SRT subtitle translation workflow
 - ✅ Validation scripts
 - ✅ Documentation
+
+## Documentation
+
+### Getting Started
+- **README.md** (this file) - Overview and quick start
+- **SETUP.md** - Detailed setup instructions
+- **QUICKSTART.md** - Quick start checklist
+
+### Features
+- **SRT_WORKFLOW.md** - Video subtitle translation guide
+- **SRT_IMPLEMENTATION.md** - SRT implementation details
+- **TRANSIFEX_INTEGRATION.md** - Transifex setup and usage
+- **TRANSIFEX_QUICK_REFERENCE.md** - Quick reference card
+- **TRANSIFEX_EXAMPLES.md** - Copy-paste examples
+- **TRANSIFEX_ARCHITECTURE.md** - System architecture
+
+### Advanced
+- **PROMPT_CACHING_IMPLEMENTATION.md** - Cost optimization guide
+- **FUTURE_IMPROVEMENTS.md** - Roadmap and ideas
 
 ## Support
 

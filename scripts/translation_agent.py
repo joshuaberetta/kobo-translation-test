@@ -19,6 +19,7 @@ load_dotenv()  # This loads .env file automatically
 try:
     import anthropic
     from github import Github
+    from transifex_sync import TransifexSync
 except ImportError:
     print("❌ Missing dependencies. Install with: pip install -r requirements.txt")
     sys.exit(1)
@@ -27,12 +28,15 @@ except ImportError:
 class TranslationAgent:
     """Simplified AI agent for testing automated documentation translation"""
     
-    def __init__(self, test_mode: bool = False):
+    def __init__(self, test_mode: bool = False, sync_transifex: bool = True, 
+                 transifex_token: str = None):
         """
         Initialize the translation agent
         
         Args:
             test_mode: If True, run locally without GitHub integration
+            sync_transifex: Whether to sync Transifex before translating (default: True)
+            transifex_token: Transifex API token (or uses TRANSIFEX_API_TOKEN env var)
         """
         self.test_mode = test_mode
         
@@ -42,6 +46,11 @@ class TranslationAgent:
             raise ValueError("ANTHROPIC_API_KEY environment variable not set")
         
         self.claude = anthropic.Anthropic(api_key=api_key)
+        
+        # Transifex integration
+        self.sync_transifex = sync_transifex
+        self.transifex_token = transifex_token
+        self.transifex_synced = set()  # Track which languages we've synced
         
         # GitHub integration (only if not in test mode)
         if not test_mode:
@@ -74,10 +83,45 @@ class TranslationAgent:
         """
         if target_lang not in self.skill_cache:
             print(f"📚 Loading kobo-translation skill for {target_lang.upper()}...", file=sys.stderr)
+            
+            # Sync Transifex terminology first (once per language)
+            if self.sync_transifex and target_lang not in self.transifex_synced:
+                self._sync_transifex_terminology(target_lang)
+                self.transifex_synced.add(target_lang)
+            
             self.skill_cache[target_lang] = self._load_skill_context(target_lang)
             print(f"✅ Skill loaded successfully ({len(self.skill_cache[target_lang])} files)", file=sys.stderr)
         
         return self.skill_cache[target_lang]
+    
+    def _sync_transifex_terminology(self, target_lang: str):
+        """
+        Sync latest UI terminology from Transifex
+        
+        Args:
+            target_lang: Target language code
+        """
+        print(f"  🔄 Syncing Transifex terminology for {target_lang.upper()}...", file=sys.stderr)
+        
+        try:
+            sync = TransifexSync(api_token=self.transifex_token)
+            
+            # Fetch latest translations
+            translations = sync.sync_language_terminology(target_lang)
+            
+            if translations:
+                # Save to skill reference file
+                sync.save_terminology_file(translations, target_lang)
+                print(f"    ✅ Synced {len(translations)} UI terms from Transifex", file=sys.stderr)
+            else:
+                print(f"    ⚠️  No Transifex translations found", file=sys.stderr)
+                
+        except ValueError as e:
+            # Missing API token - warn but continue
+            print(f"    ⚠️  Skipping Transifex sync: {e}", file=sys.stderr)
+        except Exception as e:
+            # Other errors - warn but continue
+            print(f"    ⚠️  Transifex sync failed: {e}", file=sys.stderr)
     
     def _load_skill_context(self, target_lang: str = None) -> Dict[str, str]:
         """
@@ -544,6 +588,15 @@ def main():
         help='Show detailed output'
     )
     parser.add_argument(
+        '--no-transifex-sync',
+        action='store_true',
+        help='Skip syncing latest UI terminology from Transifex'
+    )
+    parser.add_argument(
+        '--transifex-token',
+        help='Transifex API token (or use TRANSIFEX_API_TOKEN env var)'
+    )
+    parser.add_argument(
         '--diff',
         type=str,
         help='Diff content to translate (for update mode). Use with --update-mode'
@@ -584,7 +637,11 @@ def main():
     
     try:
         # Initialize agent
-        agent = TranslationAgent(test_mode=True)
+        agent = TranslationAgent(
+            test_mode=True, 
+            sync_transifex=not args.no_transifex_sync,
+            transifex_token=args.transifex_token
+        )
         
         # Translate
         if args.update_mode:
