@@ -177,17 +177,33 @@ jobs:
         if: steps.detect.outputs.has_files == 'true'
         run: |
           echo "📚 Checking for skill files..."
-          if [ ! -d "skills/kobo-translation" ]; then
-            echo "❌ Error: skills/kobo-translation directory not found"
+          
+          # Check for language-specific skills (preferred)
+          LANG_SKILLS_FOUND=0
+          for LANG in es fr ar; do
+            if [ -d "skills/kobo-translation-${LANG}" ] && [ -f "skills/kobo-translation-${LANG}/SKILL.md" ]; then
+              echo "✅ Language-specific skill found for ${LANG}"
+              LANG_SKILLS_FOUND=$((LANG_SKILLS_FOUND + 1))
+            else
+              echo "⚠️  Language-specific skill not found for ${LANG}"
+            fi
+          done
+          
+          # Also check for generic skill (fallback)
+          if [ -d "skills/kobo-translation" ] && [ -f "skills/kobo-translation/SKILL.md" ]; then
+            echo "✅ Generic skill found (fallback)"
+          else
+            echo "⚠️  Generic skill not found"
+          fi
+          
+          # Ensure at least some skills exist
+          if [ $LANG_SKILLS_FOUND -eq 0 ] && [ ! -f "skills/kobo-translation/SKILL.md" ]; then
+            echo "❌ Error: No translation skills found"
+            echo "❌ Need either language-specific skills (kobo-translation-es, etc.) or generic skill (kobo-translation)"
             exit 1
           fi
           
-          if [ ! -f "skills/kobo-translation/SKILL.md" ]; then
-            echo "❌ Error: SKILL.md not found"
-            exit 1
-          fi
-          
-          echo "✅ Skill files found"
+          echo "✅ Skill verification complete ($LANG_SKILLS_FOUND language-specific skills found)"
       
       - name: Translate documents
         if: steps.detect.outputs.has_files == 'true'

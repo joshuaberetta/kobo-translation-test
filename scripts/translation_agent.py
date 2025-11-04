@@ -59,14 +59,44 @@ class TranslationAgent:
         # Target languages
         self.languages = ['es', 'fr', 'ar']
         
-        # Load skill content
-        print("📚 Loading kobo-translation skill...", file=sys.stderr)
-        self.skill_context = self._load_skill_context()
-        print(f"✅ Skill loaded successfully ({len(self.skill_context)} files)", file=sys.stderr)
+        # Skill context cache (will be loaded per-language as needed)
+        self.skill_cache = {}
     
-    def _load_skill_context(self) -> Dict[str, str]:
-        """Load skill files from repository into memory"""
-        skill_base = Path('skills/kobo-translation')
+    def _get_skill_context(self, target_lang: str) -> Dict[str, str]:
+        """
+        Get skill context for a specific language, with caching
+        
+        Args:
+            target_lang: Target language code (es, fr, ar)
+        
+        Returns:
+            Dictionary containing skill content
+        """
+        if target_lang not in self.skill_cache:
+            print(f"📚 Loading kobo-translation skill for {target_lang.upper()}...", file=sys.stderr)
+            self.skill_cache[target_lang] = self._load_skill_context(target_lang)
+            print(f"✅ Skill loaded successfully ({len(self.skill_cache[target_lang])} files)", file=sys.stderr)
+        
+        return self.skill_cache[target_lang]
+    
+    def _load_skill_context(self, target_lang: str = None) -> Dict[str, str]:
+        """
+        Load skill files from repository into memory
+        
+        Args:
+            target_lang: Target language code (es, fr, ar). If provided, loads language-specific skill.
+                        If None, loads the generic multi-language skill.
+        """
+        # Try to load language-specific skill first if target_lang is provided
+        if target_lang:
+            skill_base = Path(f'skills/kobo-translation-{target_lang}')
+            if skill_base.exists():
+                print(f"  📚 Loading language-specific skill for {target_lang.upper()}...", file=sys.stderr)
+            else:
+                print(f"  ⚠️  Language-specific skill not found for {target_lang}, falling back to generic skill", file=sys.stderr)
+                skill_base = Path('skills/kobo-translation')
+        else:
+            skill_base = Path('skills/kobo-translation')
         
         if not skill_base.exists():
             raise FileNotFoundError(
@@ -148,27 +178,30 @@ class TranslationAgent:
         """
         print(f"  📊 Translation mode: DIFF-BASED (changes only)", file=sys.stderr)
         
+        # Load language-specific skill context
+        skill_context = self._get_skill_context(target_lang)
+        
         # Use main skill + all reference files for diffs to ensure accuracy
         skill_prompt = f"""
-{self.skill_context.get('main', '')}
+{skill_context.get('main', '')}
 
 ## BRAND TERMINOLOGY REFERENCE
-{self.skill_context.get('brand', '')}
+{skill_context.get('brand', '')}
 
 ## UI TERMINOLOGY REFERENCE
-{self.skill_context.get('ui', '')}
+{skill_context.get('ui', '')}
 
 ## DATA COLLECTION TERMS
-{self.skill_context.get('data', '')}
+{skill_context.get('data', '')}
 
 ## FORM BUILDING TERMS
-{self.skill_context.get('forms', '')}
+{skill_context.get('forms', '')}
 
 ## QUESTION TYPES
-{self.skill_context.get('questions', '')}
+{skill_context.get('questions', '')}
 
 ## COURSE TERMINOLOGY
-{self.skill_context.get('course', '')}
+{skill_context.get('course', '')}
 """
         
         # Build prompt with EXTREME emphasis on diff-only translation
@@ -289,28 +322,31 @@ This is critical - translate ONLY what is explicitly marked for translation.""",
         
         print(f"  📊 Complexity level: {complexity}")
         
+        # Load language-specific skill context
+        skill_context = self._get_skill_context(target_lang)
+        
         # Build comprehensive skill prompt with all reference materials
         # All files are used regardless of complexity to ensure consistency
         skill_prompt = f"""
-{self.skill_context.get('main', '')}
+{skill_context.get('main', '')}
 
 ## BRAND TERMINOLOGY REFERENCE
-{self.skill_context.get('brand', '')}
+{skill_context.get('brand', '')}
 
 ## UI TERMINOLOGY REFERENCE
-{self.skill_context.get('ui', '')}
+{skill_context.get('ui', '')}
 
 ## DATA COLLECTION TERMS
-{self.skill_context.get('data', '')}
+{skill_context.get('data', '')}
 
 ## FORM BUILDING TERMS
-{self.skill_context.get('forms', '')}
+{skill_context.get('forms', '')}
 
 ## QUESTION TYPES
-{self.skill_context.get('questions', '')}
+{skill_context.get('questions', '')}
 
 ## COURSE TERMINOLOGY
-{self.skill_context.get('course', '')}
+{skill_context.get('course', '')}
 """
         
         # Build final prompt
