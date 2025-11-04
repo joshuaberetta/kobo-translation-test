@@ -174,7 +174,7 @@ jobs:
           echo "3. If satisfied, commit the translations to the repository" >> $GITHUB_STEP_SUMMARY
           echo "4. Upload SRT files to your video platform" >> $GITHUB_STEP_SUMMARY
       
-      - name: Upload translated subtitles
+      - name: Upload translated subtitles as artifact
         uses: actions/upload-artifact@v3
         with:
           name: translated-subtitles
@@ -183,16 +183,85 @@ jobs:
             !transcripts/en/
           retention-days: 30
       
-      - name: Create commit (optional)
-        if: github.event.inputs.auto_commit == 'true'
-        run: |
-          # This step is commented out by default
-          # Uncomment to automatically commit translations
-          # 
-          # git config user.name "Translation Bot"
-          # git config user.email "bot@kobotoolbox.org"
-          # git add transcripts/
-          # git commit -m "Add SRT translations for ${{ github.event.inputs.srt_file }}"
-          # git push
-          
-          echo "ℹ️  Auto-commit is disabled. Download artifacts to review translations."
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: |
+            Translate subtitles: ${{ github.event.inputs.srt_file }}
+            
+            - Source: transcripts/en/${{ github.event.inputs.srt_file }}
+            - Languages: ${{ github.event.inputs.languages }}
+            - Video: ${{ github.event.inputs.video_title }}
+            - Chunk size: ${{ github.event.inputs.chunk_size }}
+            - Overlap: ${{ github.event.inputs.overlap }}
+          branch: translate-srt-${{ github.run_number }}
+          delete-branch: true
+          title: '🎬 Translate subtitles: ${{ github.event.inputs.srt_file }}'
+          body: |
+            ## 🎬 SRT Subtitle Translation
+            
+            **Source File:** `transcripts/en/${{ github.event.inputs.srt_file }}`
+            
+            **Target Languages:** ${{ github.event.inputs.languages }}
+            
+            **Video Title:** ${{ github.event.inputs.video_title || '(not provided)' }}
+            
+            ### ⚙️ Translation Parameters
+            
+            - **Chunk size:** ${{ github.event.inputs.chunk_size }} subtitles
+            - **Overlap:** ${{ github.event.inputs.overlap }} subtitles
+            
+            ### 📝 Review Checklist
+            
+            Before merging, please verify:
+            
+            **Brand Terms:**
+            - [ ] Server names correct (Servidor Global, Le serveur KoboToolbox mondial)
+            - [ ] Question Library has capital L (La biblioteca de preguntas, La bibliothèque de questions)
+            - [ ] Formbuilder translated appropriately for context
+            - [ ] All UI elements match official translations
+            
+            **Technical Terms:**
+            - [ ] XLSForm terms in English only (list_name, cascading select, etc.)
+            - [ ] No parenthetical translations added
+            
+            **Subtitle Quality:**
+            - [ ] All lines under 50 characters per line
+            - [ ] Natural spoken language (not overly formal)
+            - [ ] Character limits respected
+            - [ ] Timing and subtitle count unchanged
+            
+            **Language Specific:**
+            - [ ] Spanish: Informal tú, gender-inclusive (los/as usuarios/as)
+            - [ ] French: Formal vous, gender markers (utilisatrices et utilisateurs)
+            - [ ] Arabic: RTL considerations if applicable
+            
+            ### 🧪 Validation
+            
+            All translated files have been automatically validated for:
+            - ✅ Proper SRT format
+            - ✅ Sequential numbering
+            - ✅ Valid timestamps
+            - ✅ No overlaps
+            
+            ### 📊 Files Changed
+            
+            See the Files Changed tab to review the actual translations.
+            
+            ### 💡 Next Steps
+            
+            1. Review the translations in the Files Changed tab
+            2. Check the quality checklist above
+            3. If approved, merge this PR
+            4. Download the SRT files and upload to your video platform
+            
+            ---
+            
+            🤖 *This PR was automatically created by the [Translate SRT Subtitles workflow](https://github.com/${{ github.repository }}/actions/workflows/translate-srt.yml)*
+          labels: |
+            translation
+            subtitles
+            automated
+          assignees: ${{ github.actor }}
+          reviewers: ${{ github.actor }}

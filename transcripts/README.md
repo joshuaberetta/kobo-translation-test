@@ -28,8 +28,9 @@ transcripts/
    - **Overlap**: Default 3 (increase for long videos)
 6. Click **Run workflow**
 7. Wait for completion (5-15 minutes depending on video length)
-8. Download artifacts to review translations
-9. If satisfied, commit translations to repository
+8. **A Pull Request will be automatically created** with the translations
+9. Review the PR, check the quality checklist
+10. Merge the PR when satisfied
 
 ### Option 2: Local Translation
 
