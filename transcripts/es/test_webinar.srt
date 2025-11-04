@@ -1,0 +1,19 @@
+1
+00:00:00,000 --> 00:00:09,119
+\*Música\*
+
+2
+00:00:09,119 --> 00:00:15,762
+Bienvenidos al webinar especial de Kobo celebrando nuestros diez años de impacto e innovación liderados por la comunidad.
+
+3
+00:00:15,762 --> 00:00:22,762
+Durante estos diez años, han llevado nuestras herramientas al campo y nos han ayudado a crear algo mejor año tras año.
+
+4
+00:00:22,762 --> 00:00:27,742
+Juntos, hemos construido una comunidad increíble que abarca más de doscientos países.
+
+5
+00:00:27,742 --> 00:00:33,629
+Y hoy celebramos esta comunidad y a todos los que están aquí interesados en nuestro trabajo.
