@@ -6,6 +6,12 @@ anthropic>=0.39.0
 # GitHub API (for automation)
 PyGithub>=2.1.1
 
+# Transifex API integration
+requests>=2.31.0
+
+# Thinkific API integration
+beautifulsoup4>=4.12.0  # HTML parsing
+lxml>=4.9.0  # HTML parser backend
+
 # Optional but recommended
 python-dotenv>=1.0.0  # For loading .env files
-python-dotenv>=1.0.0
