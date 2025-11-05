@@ -127,8 +127,8 @@ class VoiceGenerator:
                 text_parts.append(text)
                 subtitle_data.append({
                     'index': sub.index,
-                    'start': sub.start,
-                    'end': sub.end,
+                    'start': sub.start_time,
+                    'end': sub.end_time,
                     'text': text
                 })
 
