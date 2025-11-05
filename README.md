@@ -44,6 +44,23 @@ kobo-translation-test/
 └── README.md                            # This file
 ```
 
+## 🆕 Meta Skill: Arabic Guide Generation
+
+**NEW**: Use the existing French and Spanish guides to generate comprehensive Arabic translation guides!
+
+The meta skill approach analyzes patterns from your well-developed French/Spanish guides and generates Arabic guides that follow the same structure, principles, and depth.
+
+**Quick Start**:
+```bash
+# Generate complete Arabic guide
+python scripts/generate_arabic_guide.py --all
+
+# Generate specific reference file
+python scripts/generate_arabic_guide.py --reference brand-terminology.md
+```
+
+See `ARABIC_GUIDE_GENERATION.md` for detailed instructions and `SOLUTION_SUMMARY.md` for the complete solution overview.
+
 ## Quick Start
 
 ### 1. Prerequisites
