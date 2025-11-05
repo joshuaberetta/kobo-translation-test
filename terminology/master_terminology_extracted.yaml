@@ -1,0 +1,1434 @@
+metadata:
+  version: '2.0'
+  last_updated: '2025-11-05'
+  generated_from: Extracted from existing FR/ES/AR reference files
+  languages:
+  - fr
+  - es
+  - ar
+  categories:
+  - brand_terms
+  - ui_terms
+  - form_building_terms
+  - question_types
+  - data_collection_terms
+  - course_terms
+brand_terms:
+- english: Question Library
+  category: OFFICIAL
+  translations:
+    fr: La bibliothèque de questions
+    es: La biblioteca de preguntas
+  file_source: brand_terms
+  notes: lowercase "la" / lowercase "l"
+- english: Formbuilder
+  category: OFFICIAL
+  translations:
+    fr: l'interface de création de formulaires KoboToolbox (KoboToolbox Formbuilder)
+    es: editor de formularios de KoboToolbox (Formbuilder)
+  file_source: brand_terms
+- english: Subsequent uses
+  category: OFFICIAL
+  translations:
+    fr: interface de création de formulaires
+    es: editor de formularios
+  file_source: brand_terms
+- english: Kobo
+  category: OFFICIAL
+  translations:
+    fr: Kobo / l'organisation Kobo
+    es: Kobo / la organización Kobo
+    ar: Kobo
+  file_source: brand_terms
+  notes: Gender neutral, no article. Use masculine adjectives. If gendered needed,
+    use compound noun
+- english: KoboToolbox
+  category: OFFICIAL
+  translations:
+    fr: KoboToolbox / la plateforme KoboToolbox / l'outil KoboToolbox
+    es: KoboToolbox / la plataforma KoboToolbox
+    ar: KoboToolbox
+  file_source: brand_terms
+  notes: Use "dans KoboToolbox" not "sur KoboToolbox"
+- english: KoboToolbox features
+  category: OFFICIAL
+  translations:
+    fr: les fonctionnalités de KoboToolbox
+    es: las funcionalidades de KoboToolbox
+    ar: خصائص KoboToolbox
+  file_source: brand_terms
+- english: KoboToolbox Academy
+  category: OFFICIAL
+  translations:
+    fr: KoboToolbox Academy
+    es: KoboToolbox Academy
+    ar: KoboToolbox Academy
+  file_source: brand_terms
+  notes: Always in English (brand term)
+- english: Official KoboToolbox Essentials certificate
+  category: OFFICIAL
+  translations:
+    fr: attestation de réussite du Cours d'initiation à KoboToolbox / certificat officiel
+      du Cours d'initiation à KoboToolbox
+    es: Certificado oficial del curso de Introducción a KoboToolbox
+  file_source: brand_terms
+- english: Global KoboToolbox Server
+  category: OFFICIAL
+  translations:
+    fr: Le serveur KoboToolbox mondial
+    es: Servidor Global
+  file_source: brand_terms
+  notes: See red box above for critical usage notes
+- english: European Union KoboToolbox Server
+  category: OFFICIAL
+  translations:
+    fr: Le serveur KoboToolbox Union européenne
+    es: Servidor con sede en la Unión Europea
+  file_source: brand_terms
+  notes: See red box above for critical usage notes
+- english: KoboToolbox private server
+  category: OFFICIAL
+  translations:
+    fr: serveurs privés Kobotoolbox
+    es: servidor privado de KoboToolbox
+  file_source: brand_terms
+- english: Formbuilder
+  category: OFFICIAL
+  translations:
+    fr: interface de création de formulaires / outil de construction de formulaires
+      KoboToolbox / KoboToolbox Formbuilder
+    es: editor de formularios / Formbuilder KoboToolbox / Formbuilder de KoboToolbox
+  file_source: brand_terms
+  notes: Include English "KoboToolbox Formbuilder" + translation on first instance,
+    then use short version
+- english: Community Forum
+  category: OFFICIAL
+  translations:
+    fr: Forum communautaire
+    es: Foro de la comunidad
+    ar: المنتدى
+  file_source: brand_terms
+  notes: Always capitalize Forum/Foro. Can include (Community Forum) for context
+- english: Help Center / support site
+  category: OFFICIAL
+  translations:
+    fr: Centre d'aide KoboToolbox / Centre d'aide
+    es: Centro de ayuda KoboToolbox / Centro de ayuda
+    ar: مركز المساعدة
+  file_source: brand_terms
+  notes: Always capitalize Centre/Centro. Can include (Help Center) for context
+- english: KoboToolbox Updates
+  category: OFFICIAL
+  translations:
+    fr: la newsletter KoboToolbox Updates
+    es: Actualizaciones de KoboToolbox
+  file_source: brand_terms
+- english: KoboToolbox Ambassadors
+  category: OFFICIAL
+  translations:
+    fr: KoboToolbox Ambassadors / ambassadeurs
+    es: KoboToolbox Ambassadors / embajador/a, embajador, embajadora
+    ar: KoboToolbox Ambassadors / سفير
+  file_source: brand_terms
+  notes: Full term in English (brand). Standalone "Ambassador" can be translated
+- english: Community Plan
+  category: OFFICIAL
+  translations:
+    fr: plan Community
+    es: el Community Plan (Plan Comunitario)
+  file_source: brand_terms
+  notes: Use English as brand term
+- english: Professional Plan
+  category: OFFICIAL
+  translations:
+    fr: plan Professional
+    es: el Professional Plan (Plan Profesional)
+  file_source: brand_terms
+  notes: Can shorten to "Pro Plan" in marketing
+- english: Teams Plan
+  category: OFFICIAL
+  translations:
+    fr: plan Teams
+    es: el Teams Plan (Plan Equipos)
+  file_source: brand_terms
+- english: Enterprise Plan
+  category: OFFICIAL
+  translations:
+    fr: plan Enterprise
+    es: El Enterprise Plan (Plan Empresarial)
+  file_source: brand_terms
+- english: Enterprise Private Server
+  category: OFFICIAL
+  translations:
+    fr: plan Enterprise Private Server (serveur privé entreprise)
+    es: Enterprise Private Server (Servidor Privado Empresarial)
+  file_source: brand_terms
+- english: Public Collections
+  category: OFFICIAL
+  translations:
+    fr: Collections publiques
+    es: Colecciones públicas
+  file_source: brand_terms
+- english: Question Library
+  category: OFFICIAL
+  translations:
+    fr: La bibliothèque de questions
+    es: La biblioteca de preguntas
+  file_source: brand_terms
+  notes: Capital "L" required - this is an official brand feature
+- english: My Library
+  category: OFFICIAL
+  translations:
+    fr: Ma bibliothèque
+    es: Mi biblioteca
+  file_source: brand_terms
+- english: UNHCR
+  category: OFFICIAL
+  translations:
+    fr: l'Agence des Nations Unies pour les réfugiés (HCNUR)
+    es: Agencia de las Naciones Unidas para los refugiados (ACNUR)
+  file_source: brand_terms
+  notes: Include full translation first, then acronym. "UNHCR" acceptable depending
+    on context
+- english: Human rights
+  category: OFFICIAL
+  translations:
+    fr: les droits de l'homme
+    es: derechos humanos
+  file_source: brand_terms
+  notes: For consistency with UNDHR usage
+- english: XLSForm standard
+  category: OFFICIAL
+  translations:
+    fr: format standardisé XLSForm / format XLSForm
+    es: Formato estándar XLSForm
+  file_source: brand_terms
+- english: Chief Operating and Innovation Officer
+  category: OFFICIAL
+  translations:
+    fr: Directeur des opérations et de l'innovation
+    es: Director de Operaciones y de Innovación
+  file_source: brand_terms
+- english: Updates
+  category: OFFICIAL
+  translations:
+    fr: Nouveautés (product) / Actualités (news) / Mises à jour (software)
+  file_source: brand_terms
+- english: Features
+  category: OFFICIAL
+  translations:
+    fr: Fonctionnalités
+  file_source: brand_terms
+- english: Logging / Activity logs
+  category: OFFICIAL
+  translations:
+    fr: Suivi / Suivi d'activité
+  file_source: brand_terms
+- english: User-friendly
+  category: OFFICIAL
+  translations:
+    fr: Facile à utiliser
+  file_source: brand_terms
+ui_terms:
+- english: Draft
+  category: OFFICIAL
+  translations:
+    fr: UI element / Form status
+    es: Brouillon
+    ar: Borrador
+  file_source: ui_terms
+  notes: Using lowercase in UI contexts
+- english: Form tab
+  category: OFFICIAL
+  translations:
+    fr: Main navigation
+    es: onglet FORMULAIRE
+    ar: Ventana FORMULARIO
+  file_source: ui_terms
+  notes: Not all caps
+- english: Data tab
+  category: OFFICIAL
+  translations:
+    fr: Main navigation
+    es: onglet DONNÉES
+    ar: Ventana DATOS
+  file_source: ui_terms
+  notes: Not all caps
+- english: The application programming interface (API) / KoboToolbox API
+  category: OFFICIAL
+  translations:
+    fr: interface de programmation d'application (API) / API KoboToolbox
+    es: interfaz de programación de aplicaciones (API)
+  file_source: ui_terms
+- english: Toolbar
+  category: OFFICIAL
+  translations:
+    fr: barre d'outils
+    es: barra de herramientas
+  file_source: ui_terms
+- english: Build from scratch
+  category: OFFICIAL
+  translations:
+    fr: Création de formulaires (in UI) / Créer un formulaire à partir de zéro (in
+      text)
+    es: Crear desde un borrador
+  file_source: ui_terms
+- english: Draft
+  category: OFFICIAL
+  translations:
+    fr: Brouillon
+    es: Borrador
+  file_source: ui_terms
+  notes: 'FR: not "ébauche" / Capitalize in UI contexts'
+- english: Save Draft (Enketo)
+  category: OFFICIAL
+  translations:
+    fr: Sauvegarder le brouillon
+    es: Guardar borrador
+  file_source: ui_terms
+- english: FORM tab
+  category: OFFICIAL
+  translations:
+    fr: onglet FORMULAIRE
+    es: Ventana FORMULARIO
+  file_source: ui_terms
+  notes: ALL CAPS for tab name
+- english: Form view / Form page
+  category: OFFICIAL
+  translations:
+    fr: mode formulaire / tableau de bord du formulaire
+    es: visualizar el formulario / página del formulario
+  file_source: ui_terms
+- english: DATA tab
+  category: OFFICIAL
+  translations:
+    fr: onglet DONNÉES
+    es: Ventana DATOS
+  file_source: ui_terms
+  notes: ALL CAPS for tab name
+- english: SUMMARY tab
+  category: OFFICIAL
+  translations:
+    fr: onglet SOMMAIRE
+    es: Ventana RESUMEN
+  file_source: ui_terms
+  notes: ALL CAPS for tab name
+- english: View
+  category: OFFICIAL
+  translations:
+    fr: mode
+    es: Vista
+  file_source: ui_terms
+  notes: 'FR: Can be "affichage" or "aperçu" in other contexts, but not for UI elements'
+- english: Table view
+  category: OFFICIAL
+  translations:
+    fr: mode Tableau
+    es: vista de Tabla
+  file_source: ui_terms
+- english: Map view
+  category: OFFICIAL
+  translations:
+    fr: mode Carte
+    es: vista de Mapa
+  file_source: ui_terms
+- english: Report view
+  category: OFFICIAL
+  translations:
+    fr: mode Rapports
+    es: vista de Informes
+  file_source: ui_terms
+- english: Downloads page
+  category: OFFICIAL
+  translations:
+    fr: page Téléchargements
+    es: página de Descargas
+  file_source: ui_terms
+- english: Gallery page
+  category: OFFICIAL
+  translations:
+    fr: page Galerie Photo
+    es: página de Galería
+  file_source: ui_terms
+- english: New Export
+  category: OFFICIAL
+  translations:
+    fr: Nouvel export
+    es: Nuevo exportable
+  file_source: ui_terms
+- english: Save image as
+  category: OFFICIAL
+  translations:
+    fr: Enregistrer l'image sous
+    es: Guardar la imágen como
+  file_source: ui_terms
+- english: Embeddable Web Form Code
+  category: OFFICIAL
+  translations:
+    fr: Code de formulaire Web
+    es: Código de formulario web integrable
+  file_source: ui_terms
+- english: Hook / webhook
+  category: OFFICIAL
+  translations:
+    fr: Hook / webhook
+    es: Hook / webhook
+  file_source: ui_terms
+- english: Start new form
+  category: OFFICIAL
+  translations:
+    fr: Remplir un formulaire
+    es: Iniciar nuevo formulario
+  file_source: ui_terms
+- english: Drafts
+  category: OFFICIAL
+  translations:
+    fr: Ébauches
+    es: Borradores
+  file_source: ui_terms
+- english: Ready to send
+  category: OFFICIAL
+  translations:
+    fr: Prêt à envoyer
+    es: Listo para enviar
+  file_source: ui_terms
+- english: Sent
+  category: OFFICIAL
+  translations:
+    fr: Envoyé
+    es: Enviado
+  file_source: ui_terms
+- english: Download form
+  category: OFFICIAL
+  translations:
+    fr: Télécharger formulaire
+    es: Descargar formulario
+  file_source: ui_terms
+- english: Delete form
+  category: OFFICIAL
+  translations:
+    fr: Supprimer formulaire
+    es: Borrar formulario
+  file_source: ui_terms
+- english: Select all
+  category: OFFICIAL
+  translations:
+    fr: Tout sélectionner
+    es: Seleccionar todo
+  file_source: ui_terms
+- english: Refresh
+  category: OFFICIAL
+  translations:
+    fr: Rafraîchir
+    es: Actualizar
+  file_source: ui_terms
+- english: Get Selected
+  category: OFFICIAL
+  translations:
+    fr: Télécharger la sélection
+    es: Obtener los Seleccionados
+  file_source: ui_terms
+- english: Manually enter project details
+  category: OFFICIAL
+  translations:
+    fr: Saisir les détails du projet
+    es: Entrar los detalles del proyecto manualmente
+  file_source: ui_terms
+- english: Settings
+  category: OFFICIAL
+  translations:
+    fr: Paramètres
+    es: Ajustes
+  file_source: ui_terms
+- english: Server
+  category: OFFICIAL
+  translations:
+    fr: Serveur
+    es: Servidor
+  file_source: ui_terms
+- english: Start GeoPoint
+  category: OFFICIAL
+  translations:
+    fr: Démarrer le point
+    es: Buscar Ubicación
+  file_source: ui_terms
+  notes: Iniciar Geopunto
+- english: Start GeoTrace
+  category: OFFICIAL
+  translations:
+    fr: Démarrer la ligne
+    es: Iniciar GeoLínea
+  file_source: ui_terms
+- english: Placement by tapping
+  category: OFFICIAL
+  translations:
+    fr: Placement en tapotant
+    es: Ubicación con toque
+  file_source: ui_terms
+- english: Manual location recording
+  category: OFFICIAL
+  translations:
+    fr: Enregistrement manuel de la localisation
+    es: Registro de localización manual
+  file_source: ui_terms
+- english: Record a point
+  category: OFFICIAL
+  translations:
+    fr: Enregistrer un point
+    es: Registrando un punto
+  file_source: ui_terms
+  notes: Registrar un punto
+- english: Automatic location recording
+  category: OFFICIAL
+  translations:
+    fr: Enregistrement automatique de la localisation
+    es: Registro de localización automática
+  file_source: ui_terms
+  notes: Registro de localización automático
+- english: Start
+  category: OFFICIAL
+  translations:
+    fr: Démarrer
+    es: Iniciar
+  file_source: ui_terms
+- english: Recording interval
+  category: OFFICIAL
+  translations:
+    fr: Intervalle d'enregistrement
+    es: Intervalo de grabación
+  file_source: ui_terms
+- english: Accuracy requirement
+  category: OFFICIAL
+  translations:
+    fr: Exigence de précision
+    es: Requisito de precisión
+  file_source: ui_terms
+- english: View of Change GeoTrace
+  category: OFFICIAL
+  translations:
+    fr: Voir ou modifier la ligne
+    es: Ver o cambiar GeoLínea
+  file_source: ui_terms
+- english: Start GeoShape
+  category: OFFICIAL
+  translations:
+    fr: Démarrer le polygone
+    es: Iniciar GeoArea
+  file_source: ui_terms
+- english: Record audio
+  category: OFFICIAL
+  translations:
+    fr: Enregistrement audio
+    es: Grabar sonido de fondo
+  file_source: ui_terms
+- english: Disable recording
+  category: OFFICIAL
+  translations:
+    fr: Désactiver enregistrement
+    es: Desactivar la grabación
+  file_source: ui_terms
+- english: Add
+  category: OFFICIAL
+  translations:
+    fr: Ajouter
+    es: Agregar
+  file_source: ui_terms
+- english: Do not add
+  category: OFFICIAL
+  translations:
+    fr: Ne pas ajouter
+    es: No agregar
+  file_source: ui_terms
+- english: NEXT
+  category: OFFICIAL
+  translations:
+    fr: SUIVANT
+    es: SIG.
+  file_source: ui_terms
+  notes: SIGUIENTE (ES)
+- english: Save as draft
+  category: OFFICIAL
+  translations:
+    fr: Enregistrer comme ébauche
+    es: Guardar como borrador
+  file_source: ui_terms
+  notes: Sauvegarder le brouillon (FR)
+- english: Finalize
+  category: OFFICIAL
+  translations:
+    fr: Finaliser
+    es: Finalizar
+  file_source: ui_terms
+- english: Send Selected
+  category: OFFICIAL
+  translations:
+    fr: Envoyer éléments sélectionnés
+    es: Enviar seleccionado
+  file_source: ui_terms
+- english: Tabs (all caps)
+  category: OFFICIAL
+  translations:
+    fr: DATA
+    es: DONNÉES
+  file_source: ui_terms
+  notes: DATOS
+- english: Tabs (all caps)
+  category: OFFICIAL
+  translations:
+    fr: FORM
+    es: FORMULAIRE
+  file_source: ui_terms
+  notes: FORMULARIO
+- english: Buttons
+  category: OFFICIAL
+  translations:
+    fr: DEPLOY
+    es: DÉPLOYER
+  file_source: ui_terms
+  notes: DESPLEGAR
+- english: Buttons
+  category: OFFICIAL
+  translations:
+    fr: NEW
+    es: NOUVEAU
+  file_source: ui_terms
+  notes: NUEVO
+- english: Status
+  category: OFFICIAL
+  translations:
+    fr: Draft
+    es: Brouillon
+  file_source: ui_terms
+  notes: Borrador
+form_building_terms:
+- english: Form building
+  category: OFFICIAL
+  translations:
+    fr: création de formulaire / construction de formulaires
+    es: elaboración de formularios
+  file_source: form_building_terms
+- english: Form Style
+  category: OFFICIAL
+  translations:
+    fr: style du formulaire
+  file_source: form_building_terms
+  notes: Refers to customization interface with themes. Also the XLSForm column name
+- english: Form themes
+  category: OFFICIAL
+  translations:
+    fr: thèmes du formulaire
+  file_source: form_building_terms
+  notes: Different appearance options in style column
+- english: Form media
+  category: OFFICIAL
+  translations:
+    fr: médias au sein du formulaire
+    es: datos multimedia del formulario
+  file_source: form_building_terms
+- english: Question type
+  category: OFFICIAL
+  translations:
+    fr: question de type [type name]
+    es: tipo de pregunta
+  file_source: form_building_terms
+  notes: 'Example: "question de type texte" / "El tipo de pregunta texto"'
+- english: Nested groups
+  category: OFFICIAL
+  translations:
+    fr: sous-groupes
+    es: los subgrupos
+  file_source: form_building_terms
+- english: Roster
+  category: OFFICIAL
+  translations:
+    fr: une série
+    es: grupo
+  file_source: form_building_terms
+  notes: Use only as specific example of groups, not equivalent to "group"
+- english: Repeat group
+  category: OFFICIAL
+  translations:
+    fr: groupes répétés / répétitions de questions
+    es: las preguntas del grupo de repetición
+  file_source: form_building_terms
+  notes: 'FR: not "occurrences"'
+- english: Occurrence of a repeat group
+  category: OFFICIAL
+  translations:
+    fr: répétitions d'un groupe répété
+  file_source: form_building_terms
+  notes: 'FR: not "occurrences". Refers to each instance of repeated questions'
+- english: start
+  category: OFFICIAL
+  translations:
+    fr: départ / nombre de départ
+    es: inicio
+  file_source: form_building_terms
+- english: end
+  category: OFFICIAL
+  translations:
+    fr: arrivée / nombre d'arrivée
+    es: final
+  file_source: form_building_terms
+- english: step
+  category: OFFICIAL
+  translations:
+    fr: écart
+    es: intervalo
+  file_source: form_building_terms
+- english: Question appearances
+  category: OFFICIAL
+  translations:
+    es: aspectos de las preguntas
+  file_source: form_building_terms
+- english: Question hint
+  category: OFFICIAL
+  translations:
+    fr: indice de question
+    es: sugerencia de pregunta
+  file_source: form_building_terms
+- english: Guidance hint
+  category: OFFICIAL
+  translations:
+    fr: instructions supplémentaires
+    es: sugerencia adicional
+  file_source: form_building_terms
+  notes: Include English on first reference (not yet in UI)
+- english: Regular hint
+  category: OFFICIAL
+  translations:
+    fr: indication de base
+    es: sugerencias comunes
+  file_source: form_building_terms
+- english: XML values
+  category: OFFICIAL
+  translations:
+    fr: valeurs XML
+    es: valor XML
+  file_source: form_building_terms
+- english: XML headers
+  category: OFFICIAL
+  translations:
+    fr: en-tête XML
+    es: encabezados XLM
+  file_source: form_building_terms
+- english: Value and header format
+  category: OFFICIAL
+  translations:
+    fr: format pour les valeurs et l'en-tête
+    es: formato de los valores y encabezados
+  file_source: form_building_terms
+- english: Cascading select
+  category: OFFICIAL
+  translations:
+    fr: Sélection en cascade
+  file_source: form_building_terms
+  notes: In XLSForm called "choice filters"
+- english: list_name
+  category: OFFICIAL
+  translations:
+    fr: nom de la liste
+    es: nombre de la lista
+  file_source: form_building_terms
+  notes: '"remplissez la colonne list_name (nom de la liste)"'
+- english: label
+  category: OFFICIAL
+  translations:
+    fr: libellé
+    es: etiqueta
+  file_source: form_building_terms
+  notes: Use "le libellé" for both questions and options
+- english: name
+  category: OFFICIAL
+  translations:
+    fr: nom de l'élément
+    es: nombre
+  file_source: form_building_terms
+- english: Parent list
+  category: OFFICIAL
+  translations:
+    fr: liste principale
+    es: lista principal
+  file_source: form_building_terms
+- english: Child list
+  category: OFFICIAL
+  translations:
+    fr: liste secondaire
+    es: lista secundaria
+  file_source: form_building_terms
+- english: Variable name
+  category: OFFICIAL
+  translations:
+    fr: nom de la variable
+    es: nombre de variable
+  file_source: form_building_terms
+- english: Data column name
+  category: OFFICIAL
+  translations:
+    fr: nom du champ / nom de champ / noms des champs / noms de champs
+    es: nombre de columna de datos
+  file_source: form_building_terms
+  notes: 'FR: See usage notes below'
+- english: ${DataColumnName}
+  category: OFFICIAL
+  translations:
+    fr: ${NomChamp}
+    es: ${Nombre}
+  file_source: form_building_terms
+- english: Data column prefix
+  category: OFFICIAL
+  translations:
+    fr: préfixe du champ
+    es: prefijo de columna de datos
+  file_source: form_building_terms
+- english: Data column suffix
+  category: OFFICIAL
+  translations:
+    fr: suffixe du champ
+    es: sufijo de columna de datos
+  file_source: form_building_terms
+- english: Question referencing format
+  category: OFFICIAL
+  translations:
+    fr: format de référencement de questions
+    es: formato de pregunta de referencia
+  file_source: form_building_terms
+- english: Case sensitive
+  category: OFFICIAL
+  translations:
+    fr: sont sensibles à l'utilisation de majuscules et de minuscules
+    es: distingue entre mayúsculas y minúsculas
+  file_source: form_building_terms
+  notes: 'FR: not "sensible à la casse"'
+- english: Single validation criteria
+  category: OFFICIAL
+  translations:
+    fr: critère de validation simple
+    es: criterio simple de validación
+  file_source: form_building_terms
+- english: Skip logic
+  category: OFFICIAL
+  translations:
+    fr: branchement conditionnel
+    es: lógica de omisión
+  file_source: form_building_terms
+  notes: 'FR: also known as "logique de saut", "logique de branchement". Not "critères
+    de passage"'
+- english: Save
+  category: OFFICIAL
+  translations:
+    fr: Enregistrer / Sauvegarder
+    es: guardar
+  file_source: form_building_terms
+  notes: 'FR: not "sauver"'
+- english: Upload a form
+  category: OFFICIAL
+  translations:
+    fr: envoyer un formulaire
+    es: enviar un formulario
+  file_source: form_building_terms
+- english: Form upload
+  category: OFFICIAL
+  translations:
+    fr: envoi d'un formulaire
+    es: envío de un formulario
+  file_source: form_building_terms
+- english: Uploaded forms
+  category: OFFICIAL
+  translations:
+    fr: formulaires envoyés
+    es: formularios enviados
+  file_source: form_building_terms
+- english: Load a form
+  category: OFFICIAL
+  translations:
+    fr: ouvrir un formulaire
+    es: cargar un formulario
+  file_source: form_building_terms
+  notes: '"When/once loaded" = "une fois le formulaire ouvert"'
+- english: Primary survey
+  category: OFFICIAL
+  translations:
+    fr: Questionnaire principal
+  file_source: form_building_terms
+  notes: Also called "parent" survey. Preferred terms are "primary/secondary"
+- english: Secondary survey
+  category: OFFICIAL
+  translations:
+    fr: Questionnaire secondaire
+  file_source: form_building_terms
+  notes: Also called "child" survey. Preferred terms are "primary/secondary"
+question_types:
+- english: Select one
+  category: OFFICIAL
+  translations:
+    fr: Choix unique
+    es: Seleccionar una
+  file_source: question_types
+  notes: select_one
+- english: Select many
+  category: OFFICIAL
+  translations:
+    fr: Choix multiple
+    es: Seleccionar varias
+  file_source: question_types
+  notes: select_multiple
+- english: Acknowledge
+  category: OFFICIAL
+  translations:
+    fr: Consentement
+    es: Consentimiento
+  file_source: question_types
+  notes: acknowledge
+- english: Text
+  category: OFFICIAL
+  translations:
+    fr: Texte
+    es: Texto
+  file_source: question_types
+  notes: text
+- english: Note
+  category: OFFICIAL
+  translations:
+    fr: Note
+    es: Nota
+  file_source: question_types
+  notes: note
+- english: Number
+  category: OFFICIAL
+  translations:
+    fr: Chiffre
+    es: Número
+  file_source: question_types
+  notes: integer
+- english: Decimal
+  category: OFFICIAL
+  translations:
+    fr: Décimale
+    es: Decimal
+  file_source: question_types
+  notes: decimal
+- english: Range
+  category: OFFICIAL
+  translations:
+    fr: Intervalle
+    es: Rango
+  file_source: question_types
+  notes: range
+- english: Date
+  category: OFFICIAL
+  translations:
+    fr: Date
+    es: Fecha
+  file_source: question_types
+  notes: date
+- english: Time
+  category: OFFICIAL
+  translations:
+    fr: Heure
+    es: Hora
+  file_source: question_types
+  notes: time
+- english: Date & time
+  category: OFFICIAL
+  translations:
+    fr: Date et heure
+    es: Fecha y hora
+  file_source: question_types
+  notes: datetime
+- english: Point
+  category: OFFICIAL
+  translations:
+    fr: Position
+    es: Punto
+  file_source: question_types
+  notes: geopoint
+- english: Line
+  category: OFFICIAL
+  translations:
+    fr: Ligne
+    es: Línea
+  file_source: question_types
+  notes: geotrace
+- english: Area
+  category: OFFICIAL
+  translations:
+    fr: Zone
+    es: Área
+  file_source: question_types
+  notes: geoshape
+- english: Photo
+  category: OFFICIAL
+  translations:
+    fr: Photographie
+    es: Foto
+  file_source: question_types
+  notes: image
+- english: Audio
+  category: OFFICIAL
+  translations:
+    fr: Audio
+    es: Audio
+  file_source: question_types
+  notes: audio
+- english: Video
+  category: OFFICIAL
+  translations:
+    fr: Vidéo
+    es: Video
+  file_source: question_types
+  notes: video
+- english: File
+  category: OFFICIAL
+  translations:
+    fr: Fichier
+    es: Archivo
+  file_source: question_types
+  notes: file
+- english: Barcode / QR Code
+  category: OFFICIAL
+  translations:
+    fr: Code-barres
+    es: Código de barras / Código QR
+  file_source: question_types
+  notes: barcode
+- english: Rating
+  category: OFFICIAL
+  translations:
+    fr: Notation
+    es: Calificación
+  file_source: question_types
+  notes: –––
+- english: Ranking
+  category: OFFICIAL
+  translations:
+    fr: Classement
+    es: Clasificación
+  file_source: question_types
+  notes: rank
+- english: Question Matrix
+  category: OFFICIAL
+  translations:
+    fr: Tableau de questions
+    es: Matriz de preguntas
+  file_source: question_types
+  notes: –––
+- english: Calculate
+  category: OFFICIAL
+  translations:
+    fr: Calcul
+    es: Cálculo
+  file_source: question_types
+  notes: calculate
+- english: Hidden
+  category: OFFICIAL
+  translations:
+    fr: Caché
+    es: Oculto
+  file_source: question_types
+  notes: hidden
+- english: External XML
+  category: OFFICIAL
+  translations:
+    fr: XML externe
+    es: XML externo
+  file_source: question_types
+  notes: xml-external
+- english: minimal
+  category: OFFICIAL
+  translations:
+    fr: Minimal
+    es: Mínimo
+  file_source: question_types
+  notes: Select one, Select many
+- english: likert
+  category: OFFICIAL
+  translations:
+    fr: Likert
+    es: Likert
+  file_source: question_types
+  notes: Select one
+- english: horizontal
+  category: OFFICIAL
+  translations:
+    fr: Horizontal
+    es: Horizontal
+  file_source: question_types
+  notes: Select one, Select many
+- english: quick
+  category: OFFICIAL
+  translations:
+    fr: Rapide
+    es: Rápida
+  file_source: question_types
+  notes: Select one
+- english: quickcompact
+  category: OFFICIAL
+  translations:
+    fr: Rapide compact
+    es: Compacto rápida
+  file_source: question_types
+  notes: Select one
+- english: thousands-sep
+  category: OFFICIAL
+  translations:
+    fr: Séparateur milliers
+    es: Separador de miles
+  file_source: question_types
+  notes: Number
+- english: bearing
+  category: OFFICIAL
+  translations:
+    fr: Relèvement
+    es: Rumbo (brújula)
+  file_source: question_types
+  notes: Decimal
+- english: vertical
+  category: OFFICIAL
+  translations:
+    fr: Vertical
+    es: Vertical
+  file_source: question_types
+  notes: Range
+- english: picker
+  category: OFFICIAL
+  translations:
+    fr: Sélecteur
+    es: Selector de fechas
+  file_source: question_types
+  notes: Range
+- english: rating
+  category: OFFICIAL
+  translations:
+    fr: Notation
+    es: Calificación
+  file_source: question_types
+  notes: Range
+- english: distress
+  category: OFFICIAL
+  translations:
+    fr: Thermomètre
+    es: Termométro
+  file_source: question_types
+  notes: Range
+- english: multiline
+  category: OFFICIAL
+  translations:
+    fr: Multiligne
+    es: Multiples líneas
+  file_source: question_types
+  notes: Text
+- english: numbers
+  category: OFFICIAL
+  translations:
+    fr: Chiffres
+    es: Números
+  file_source: question_types
+  notes: Text
+- english: month-year
+  category: OFFICIAL
+  translations:
+    fr: Mois année
+    es: Mes - año
+  file_source: question_types
+  notes: Date
+- english: year
+  category: OFFICIAL
+  translations:
+    fr: Année
+    es: Año
+  file_source: question_types
+  notes: Date
+- english: no-calendar
+  category: OFFICIAL
+  translations:
+    fr: Sans calendrier
+    es: Sin Calendario
+  file_source: question_types
+  notes: Date
+- english: coptic
+  category: OFFICIAL
+  translations:
+    fr: Copte
+    es: Cóptico
+  file_source: question_types
+  notes: Date
+- english: ethiopian
+  category: OFFICIAL
+  translations:
+    fr: Éthiopien
+    es: Etiope
+  file_source: question_types
+  notes: Date
+- english: islamic
+  category: OFFICIAL
+  translations:
+    fr: Islamique
+    es: Islámico
+  file_source: question_types
+  notes: Date
+- english: bikhram_sambat
+  category: OFFICIAL
+  translations:
+    fr: Bikhram Sambat
+    es: Bikhram Sambat
+  file_source: question_types
+  notes: Date
+- english: myanmar
+  category: OFFICIAL
+  translations:
+    fr: Birman
+    es: Birman
+  file_source: question_types
+  notes: Date
+- english: persian
+  category: OFFICIAL
+  translations:
+    fr: Persan
+    es: Pérsico
+  file_source: question_types
+  notes: Date
+- english: signature
+  category: OFFICIAL
+  translations:
+    fr: Signature
+    es: Firma
+  file_source: question_types
+  notes: Photo
+- english: draw
+  category: OFFICIAL
+  translations:
+    fr: Draw
+    es: Dibujo
+  file_source: question_types
+  notes: Photo
+- english: annotate
+  category: OFFICIAL
+  translations:
+    fr: Annotation
+    es: Anotación
+  file_source: question_types
+  notes: Photo
+data_collection_terms:
+- english: Insights
+  category: PREFERRED
+  translations:
+    fr: résultats
+    es: resultados
+  file_source: data_collection_terms
+- english: Enumerator
+  category: PREFERRED
+  translations:
+    fr: enquêteur
+    es: encuestador / encuestadora
+  file_source: data_collection_terms
+- english: Survey project
+  category: PREFERRED
+  translations:
+    fr: projet
+    es: proyecto de encuesta
+  file_source: data_collection_terms
+  notes: 'FR: not "projet d''enquête"'
+- english: Data collection
+  category: PREFERRED
+  translations:
+    fr: collecte de données
+    es: recolección de datos
+  file_source: data_collection_terms
+  notes: See French usage note below
+- english: Disaggregate
+  category: PREFERRED
+  translations:
+    fr: désagréger
+    es: desagregar
+  file_source: data_collection_terms
+  notes: 'FR: not "ventiler"'
+- english: Invalid values
+  category: PREFERRED
+  translations:
+    fr: valeurs incohérentes
+    es: valores inválidos
+  file_source: data_collection_terms
+- english: Background audio
+  category: PREFERRED
+  translations:
+    fr: audio d'arrière-plan
+    es: sonido de fondo / audio de fondo
+  file_source: data_collection_terms
+- english: Housing unit
+  category: PREFERRED
+  translations:
+    fr: logement
+    es: unidad de almacenamiento
+  file_source: data_collection_terms
+- english: Upload (verb)
+  category: PREFERRED
+  translations:
+    fr: importer
+    es: cargar
+  file_source: data_collection_terms
+  notes: 'FR: not "Télécharger". "Envoyer" acceptable depending on context (e.g.,
+    upload a form)'
+- english: Import (verb)
+  category: PREFERRED
+  translations:
+    fr: importer
+    es: importar
+  file_source: data_collection_terms
+- english: Submission
+  category: PREFERRED
+  translations:
+    fr: soumission
+    es: envío
+  file_source: data_collection_terms
+  notes: 'FR: See detailed usage below'
+- english: Record
+  category: PREFERRED
+  translations:
+    fr: formulaire
+    es: formulario
+  file_source: data_collection_terms
+  notes: 'FR: See detailed usage below'
+- english: Response
+  category: PREFERRED
+  translations:
+    fr: réponse
+    es: respuesta
+  file_source: data_collection_terms
+  notes: 'FR: See detailed usage below'
+course_terms:
+- english: Pre-training questionnaire
+  category: PREFERRED
+  translations:
+    fr: questionnaire préliminaire
+    es: Cuestionario preliminar
+  file_source: course_terms
+- english: Quiz
+  category: PREFERRED
+  translations:
+    fr: quiz
+    es: Quiz
+  file_source: course_terms
+  notes: Thinkific UI uses "questionnaire" not "quiz" - use "questionnaire" when referring
+    specifically to this UI element
+- english: Final quiz
+  category: PREFERRED
+  translations:
+    fr: évaluation finale
+    es: evaluación final
+  file_source: course_terms
+- english: Practice exercises
+  category: PREFERRED
+  translations:
+    fr: exercices pratiques
+    es: ejercicio práctico
+  file_source: course_terms
+  notes: 'FR: Only use "fichiers" when referring to files: "fichiers d''exercices
+    pratiques" / "fichiers pratiques"'
+- english: Official KoboToolbox Essentials certificate
+  category: PREFERRED
+  translations:
+    fr: attestation de réussite du Cours d'initiation à KoboToolbox / certificat officiel
+      du Cours d'initiation à KoboToolbox
+    es: Certificado oficial del curso de Introducción a KoboToolbox
+  file_source: course_terms
+- english: Course landing page
+  category: PREFERRED
+  translations:
+    fr: la page d'accueil du cours
+    es: página de inicio
+  file_source: course_terms
+- english: Dashboard (in Thinkific UI)
+  category: PREFERRED
+  translations:
+    fr: tableau de bord
+    es: portal de estudiante
+  file_source: course_terms
+- english: Knowledge transfer specialist
+  category: PREFERRED
+  translations:
+    fr: Expert en Transfert de Connaissances
+    es: Especialista de transferencia de conocimientos
+  file_source: course_terms
+- english: Tutorials
+  category: PREFERRED
+  translations:
+    fr: tutoriels
+    es: tutoriales
+  file_source: course_terms
+- english: Support article
+  category: PREFERRED
+  translations:
+    fr: article d'aide
+    es: artículos de ayuda
+  file_source: course_terms
+- english: Website
+  category: PREFERRED
+  translations:
+    fr: site web
+    es: sitio web
+  file_source: course_terms
+  notes: 'FR: not "site Internet"'
+- english: Web
+  category: PREFERRED
+  translations:
+    fr: web
+    es: web
+  file_source: course_terms
+  notes: 'FR: lowercase, e.g., "formulaire web Enketo"'
+- english: Getting started with …
+  category: PREFERRED
+  translations:
+    fr: '*localize / translate for context* (e.g., Se lancer avec)'
+    es: Iniciar con
+  file_source: course_terms
+  notes: 'FR: should not be "Débuter avec"'
+- english: Let's go ahead and add the question
+  category: PREFERRED
+  translations:
+    fr: ajoutons la question
+    es: Comencemos añadiendo la pregunta
+  file_source: course_terms
+  notes: 'FR: Simplify and omit "Let''s go ahead". Not "allons-y et ajoutons la question"'
+- english: Press (e.g., press the Submit button)
+  category: PREFERRED
+  translations:
+    fr: appuyer sur
+    es: click en
+  file_source: course_terms
+  notes: 'FR: not "presser"'
+language_specific:
+  formality:
+    french:
+      formal_contexts:
+      - vous
+      - votre
+      usage: Always formal 'vous' even for individuals in educational content
+    spanish:
+      formal_contexts:
+      - usted
+      informal_contexts:
+      - tú
+      - ustedes
+      usage: UI and courses use informal 'tú'; formal announcements use 'usted'
+    arabic:
+      formal_contexts:
+      - أنتَ/أنتِ (formal)
+      usage: Generally formal address in technical documentation
+  gender_inclusive:
+    french:
+      patterns:
+      - utilisatrices et utilisateurs
+      - débutant(e)s
+      - redirigé(e)
+    spanish:
+      patterns:
+      - los/as usuarios/as
+      - personas profesionales
+      - Se te dirigirá (neutral construction)
+      preference: Strongly prefer neutral constructions when possible
+    arabic:
+      patterns:
+      - المستخدمون والمستخدمات
+      - Use plural forms that encompass both genders
+      notes: Arabic has grammatical gender; use inclusive plural forms
