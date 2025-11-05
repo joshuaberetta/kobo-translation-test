@@ -1,0 +1,349 @@
+# Master Terminology Database
+# This is the SOURCE OF TRUTH for all translation guides
+#
+# When you add a new term here, run: python scripts/sync_terminology.py
+# This will automatically update all language-specific guides
+#
+# Format:
+#   - english: The English source term
+#     category: OFFICIAL (must use exact translation) or PREFERRED (can adapt for context)
+#     translations:
+#       fr: French translation
+#       es: Spanish translation
+#       ar: Arabic translation
+#     notes: Usage notes, context, or special rules
+#     examples: Optional usage examples
+
+metadata:
+  version: "1.0"
+  last_updated: "2025-11-05"
+  languages:
+    - fr  # French
+    - es  # Spanish
+    - ar  # Arabic
+  categories:
+    - brand          # Brand terms (KoboToolbox, servers, product names)
+    - ui             # User interface elements
+    - form-building  # XLSForm and form building terminology
+    - question-types # Question types and appearances
+    - data-collection # Data collection concepts
+    - course         # Learning platform terminology
+
+# =============================================================================
+# BRAND TERMS (OFFICIAL - Use EXACT translation)
+# =============================================================================
+
+brand_terms:
+  - english: "Global KoboToolbox Server"
+    category: "OFFICIAL"
+    translations:
+      fr: "Le serveur KoboToolbox mondial"
+      es: "Servidor Global"
+      ar: "الخادم العالمي لـ KoboToolbox"
+    notes: |
+      FR: Must include definite article "Le" (capitalized)
+      ES: Do NOT add "de KoboToolbox"
+      AR: Article ال integrated naturally
+    pitfalls:
+      fr_wrong: "serveur KoboToolbox mondial"
+      fr_reason: "Missing definite article 'Le'"
+      es_wrong: "Servidor Global de KoboToolbox"
+      es_reason: "Should not include 'de KoboToolbox'"
+
+  - english: "European Union KoboToolbox Server"
+    category: "OFFICIAL"
+    translations:
+      fr: "Le serveur KoboToolbox Union européenne"
+      es: "Servidor con sede en la Unión Europea"
+      ar: "خادم KoboToolbox في الاتحاد الأوروبي"
+    notes: |
+      FR: Include article AND "KoboToolbox"
+      ES: Full official name with "con sede en"
+      AR: Use في for location
+
+  - english: "Question Library"
+    category: "OFFICIAL"
+    translations:
+      fr: "La bibliothèque de questions"
+      es: "La biblioteca de preguntas"
+      ar: "مكتبة الأسئلة"
+    notes: |
+      CRITICAL: Capital "L" in French/Spanish article (brand feature name)
+      AR: No definite article needed in this construction
+    pitfalls:
+      fr_wrong: "la bibliothèque de questions"
+      es_wrong: "la biblioteca de preguntas"
+      reason: "Lowercase 'l' - must be capitalized as official brand feature"
+
+  - english: "Formbuilder"
+    category: "OFFICIAL"
+    first_reference_rule: true
+    translations:
+      fr: "l'interface de création de formulaires KoboToolbox (KoboToolbox Formbuilder)"
+      es: "editor de formularios de KoboToolbox (Formbuilder)"
+      ar: "أداة إنشاء النماذج في KoboToolbox (KoboToolbox Formbuilder)"
+    subsequent_use:
+      fr: "interface de création de formulaires"
+      es: "editor de formularios"
+      ar: "أداة إنشاء النماذج"
+    notes: |
+      CRITICAL: First mention MUST include English in parentheses
+      Subsequent uses can use short form
+
+  - english: "KoboToolbox"
+    category: "OFFICIAL"
+    translations:
+      fr: "KoboToolbox"
+      es: "KoboToolbox"
+      ar: "KoboToolbox"
+    notes: |
+      Brand name stays in English
+      FR: Use "dans KoboToolbox" not "sur KoboToolbox"
+      Gender neutral in all languages
+
+  - english: "KoboToolbox Academy"
+    category: "OFFICIAL"
+    translations:
+      fr: "KoboToolbox Academy"
+      es: "KoboToolbox Academy"
+      ar: "KoboToolbox Academy"
+    notes: "Always in English (brand term)"
+
+  - english: "KoboCollect"
+    category: "OFFICIAL"
+    translations:
+      fr: "KoboCollect"
+      es: "KoboCollect"
+      ar: "KoboCollect"
+    notes: "Android app name, stays in English"
+
+# User Plans
+  - english: "Community Plan"
+    category: "OFFICIAL"
+    translations:
+      fr: "plan Community"
+      es: "el Community Plan (Plan Comunitario)"
+      ar: "خطة Community"
+    notes: "Use English as brand term; ES can add translation in parentheses for clarity"
+
+  - english: "Professional Plan"
+    category: "OFFICIAL"
+    translations:
+      fr: "plan Professional"
+      es: "el Professional Plan (Plan Profesional)"
+      ar: "خطة Professional"
+    notes: "Can shorten to 'Pro Plan' in marketing"
+
+  - english: "Teams Plan"
+    category: "OFFICIAL"
+    translations:
+      fr: "plan Teams"
+      es: "el Teams Plan (Plan Equipos)"
+      ar: "خطة Teams"
+
+  - english: "Enterprise Plan"
+    category: "OFFICIAL"
+    translations:
+      fr: "plan Enterprise"
+      es: "El Enterprise Plan (Plan Empresarial)"
+      ar: "خطة Enterprise"
+
+# =============================================================================
+# UI TERMINOLOGY (OFFICIAL - Match exact UI capitalization)
+# =============================================================================
+
+ui_terms:
+  - english: "FORM"
+    category: "OFFICIAL"
+    translations:
+      fr: "FORMULAIRE"
+      es: "FORMULARIO"
+      ar: "النموذج"
+    notes: "All caps in UI, capitalize per interface"
+
+  - english: "DATA"
+    category: "OFFICIAL"
+    translations:
+      fr: "DONNÉES"
+      es: "DATOS"
+      ar: "البيانات"
+    notes: "All caps in UI"
+
+  - english: "Draft"
+    category: "OFFICIAL"
+    translations:
+      fr: "Brouillon"
+      es: "Borrador"
+      ar: "مسودة"
+    notes: "Capitalize in UI contexts"
+    pitfalls:
+      fr_wrong: "brouillon"
+      es_wrong: "borrador"
+      reason: "Must be capitalized in UI context"
+
+  - english: "NEW"
+    category: "OFFICIAL"
+    translations:
+      fr: "NOUVEAU"
+      es: "NUEVO"
+      ar: "جديد"
+
+  - english: "DEPLOY"
+    category: "OFFICIAL"
+    translations:
+      fr: "DÉPLOYER"
+      es: "IMPLEMENTAR"
+      ar: "نشر"
+
+# =============================================================================
+# FORM BUILDING TERMS (OFFICIAL - Technical terms)
+# =============================================================================
+
+form_building_terms:
+  - english: "list_name"
+    category: "OFFICIAL"
+    handling:
+      written_docs: "English + translation in parentheses"
+      subtitles: "English only (character limits)"
+    translations:
+      fr: "list_name (nom de la liste)"
+      es: "list_name (nombre de la lista)"
+      ar: "list_name (اسم القائمة)"
+    notes: "XLSForm column name - keep English in code/technical contexts"
+
+  - english: "cascading select"
+    category: "OFFICIAL"
+    handling:
+      written_docs: "English + translation"
+      subtitles: "English only"
+    translations:
+      fr: "cascading select (Sélection en cascade)"
+      es: "cascading select (selección en cascada)"
+      ar: "cascading select (الاختيار المتسلسل)"
+
+  - english: "choice_filter"
+    category: "OFFICIAL"
+    translations:
+      fr: "choice_filter (filtre de choix)"
+      es: "choice_filter (filtro de opciones)"
+      ar: "choice_filter (فلتر الخيارات)"
+
+  - english: "XML values"
+    category: "OFFICIAL"
+    translations:
+      fr: "XML values (valeurs XML)"
+      es: "XML values (valores XML)"
+      ar: "XML values (قيم XML)"
+
+# =============================================================================
+# DATA COLLECTION TERMS (PREFERRED - Can adapt for context)
+# =============================================================================
+
+data_collection_terms:
+  - english: "data collection"
+    category: "PREFERRED"
+    translations:
+      fr: "collecte de données"
+      es: "recolección de datos"
+      ar: "جمع البيانات"
+    notes: |
+      FR: Use "collecte de données" (general), "collecte des données" (specific project data)
+      ES: Always "recolectar" not "recopilar"
+
+  - english: "submission"
+    category: "PREFERRED"
+    translations:
+      fr: "soumission"
+      es: "envío"
+      ar: "إرسال"
+    notes: |
+      FR: "soumission" for data management/UI contexts; "réponse" for less technical
+      Context-dependent
+
+  - english: "management"
+    category: "PREFERRED"
+    context_variants:
+      data_management:
+        es: "manejo"
+        notes: "ES: Use 'manejo' for data/case management"
+      team_management:
+        es: "gestión"
+        notes: "ES: Use 'gestión' for teams/projects"
+    translations:
+      fr: "gestion"
+      es: "manejo / gestión"
+      ar: "إدارة"
+
+  - english: "upload"
+    category: "PREFERRED"
+    translations:
+      fr: "importer"
+      es: "cargar"
+      ar: "رفع"
+    notes: |
+      FR: Primary: "importer"; Context: "envoyer" (send a form); NOT "télécharger"
+
+# =============================================================================
+# CROSS-LANGUAGE RULES
+# =============================================================================
+
+cross_language_rules:
+  - english: "disaggregate"
+    translations:
+      fr: "désagréger"
+      es: "desagregar"
+      ar: "تفكيك"
+    notes: |
+      FR: NOT "ventiler"
+      ES: Use "desagregar"
+
+  - english: "press (button)"
+    translations:
+      fr: "appuyer sur"
+      es: "click en"
+      ar: "انقر على"
+    notes: |
+      FR: NOT "presser"
+
+  - english: "case sensitive"
+    translations:
+      fr: "sensibles à l'utilisation de majuscules et de minuscules"
+      es: "distingue entre mayúsculas y minúsculas"
+      ar: "حساس لحالة الأحرف"
+    notes: |
+      FR: NOT "sensible à la casse" (too technical)
+
+# =============================================================================
+# LANGUAGE-SPECIFIC PATTERNS
+# =============================================================================
+
+language_specific:
+  formality:
+    french:
+      formal_contexts: ["vous", "votre"]
+      usage: "Always formal 'vous' even for individuals in educational content"
+    spanish:
+      formal_contexts: ["usted"]
+      informal_contexts: ["tú", "ustedes"]
+      usage: "UI and courses use informal 'tú'; formal announcements use 'usted'"
+    arabic:
+      formal_contexts: ["أنتَ/أنتِ (formal)"]
+      usage: "Generally formal address in technical documentation"
+
+  gender_inclusive:
+    french:
+      patterns:
+        - "utilisatrices et utilisateurs"
+        - "débutant(e)s"
+        - "redirigé(e)"
+    spanish:
+      patterns:
+        - "los/as usuarios/as"
+        - "personas profesionales"
+        - "Se te dirigirá (neutral construction)"
+      preference: "Strongly prefer neutral constructions when possible"
+    arabic:
+      patterns:
+        - "المستخدمون والمستخدمات"
+        - "Use plural forms that encompass both genders"
+      notes: "Arabic has grammatical gender; use inclusive plural forms"
