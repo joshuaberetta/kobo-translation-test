@@ -2,27 +2,56 @@
 
 **TL;DR**: Expand Arabic guide and maintain all language guides efficiently
 
-## ⚡ 3-Minute Setup
+## ⚡ 5-Minute Setup
 
-### 1. Set API Key
+### 1. Extract Complete Terminology Database (One-Time)
+
+First, extract all **209 terms** from your existing French/Spanish reference files:
+
+```bash
+python scripts/extract_terminology.py
+```
+
+This creates `terminology/master_terminology_extracted.yaml` with:
+- ✅ 209 terms extracted
+- ✅ French translations: 99.5% complete (208/209)
+- ✅ Spanish translations: 95.2% complete (199/209)
+- ✅ Arabic translations: 4.8% complete (10/209) ⚠️ **Needs work!**
+
+### 2. Set API Key
 ```bash
 export ANTHROPIC_API_KEY='your-key-here'
 ```
 
-### 2. Generate Comprehensive Arabic Guide
+### 3. Generate Comprehensive Arabic Guide
 ```bash
 python scripts/generate_arabic_guide.py
 ```
 
-### 3. Validate All Guides
+### 4. Validate All Guides
 ```bash
 python scripts/validate_guides.py
 ```
 
 **Done!** You now have:
+- ✅ Complete master terminology database (209 terms)
 - ✅ Complete Arabic guide (600+ lines)
 - ✅ All reference files populated
 - ✅ Quality validation report
+
+### 5. Review and Activate the Extracted Database
+
+You now have TWO master terminology files:
+- `terminology/master_terminology.yaml` - Starter template (40 terms, hand-crafted examples)
+- `terminology/master_terminology_extracted.yaml` - Complete extraction (209 terms, auto-extracted)
+
+**Recommended:** Replace the starter with the extracted version:
+```bash
+mv terminology/master_terminology.yaml terminology/master_terminology_original.yaml
+mv terminology/master_terminology_extracted.yaml terminology/master_terminology.yaml
+```
+
+OR merge them manually if you prefer to keep the hand-crafted examples.
 
 ## 🎯 Common Tasks
 
