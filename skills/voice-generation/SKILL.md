@@ -4,7 +4,14 @@
 This skill provides guidelines and configurations for generating realistic AI voices from translated content using Eleven Labs API. It ensures consistent voice quality, appropriate voice selection, and optimal settings for Spanish, French, and Arabic content.
 
 ## Overview
-The voice generation system converts translated text (from SRT files or other sources) into natural-sounding audio using Eleven Labs' multilingual v2 model. This model supports 29 languages with high-quality, expressive voices.
+The voice generation system converts translated text (from SRT files or other sources) into natural-sounding audio using Eleven Labs API. The system supports multiple models:
+
+- **Eleven Multilingual v3** (default): Latest model with 70+ languages, enhanced emotional range, and 80% cost savings (alpha pricing until June 2025)
+- **Eleven Turbo v2.5**: Fast processing with 32 languages and low latency (~250-300ms)
+- **Eleven Flash v2.5**: Ultra-fast with <75ms latency for 29 languages
+- **Eleven Multilingual v2**: Stable, proven quality with 29 languages
+
+**Default**: v3 is used by default for highest quality and cost savings.
 
 ## Supported Languages
 
@@ -227,14 +234,24 @@ ELEVENLABS_VOICE_EN         # Custom English voice ID
   - 24kHz (high quality)
   - 44.1kHz (CD quality)
 
-### API Model
-- **Model ID**: `eleven_multilingual_v2`
-- **Languages Supported**: 29 languages
+### API Models
+
+**Default Model: `eleven_multilingual_v3`** (recommended)
+- **Languages Supported**: 70+ languages
+- **Pricing**: 80% cheaper (alpha discount until June 2025)
 - **Features**:
+  - Enhanced emotional range and contextual understanding
+  - Highest quality output
   - Multilingual voice consistency
-  - Advanced emotional range
   - Natural pronunciation
-  - Context awareness
+  - Advanced context awareness
+
+**Alternative Models:**
+- **`eleven_turbo_v2_5`**: 32 languages, low latency (~250-300ms), fast processing
+- **`eleven_flash_v2_5`**: 29 languages, ultra-low latency (<75ms), fastest
+- **`eleven_multilingual_v2`**: 29 languages, stable proven quality, fallback option
+
+**Model Selection**: Use `--model` flag (v3, turbo, flash, v2) or set `ELEVENLABS_MODEL` env var
 
 ## References
 - See `references/voice-styles.md` for detailed voice style examples

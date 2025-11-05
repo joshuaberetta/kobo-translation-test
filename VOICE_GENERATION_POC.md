@@ -6,8 +6,10 @@ This Proof of Concept (POC) demonstrates integration with Eleven Labs API to gen
 ## Features
 
 ### ✅ Implemented in POC
-- 🎙️ Text-to-speech generation using Eleven Labs multilingual v2 model
-- 🌍 Support for Spanish (es), French (fr), and Arabic (ar)
+- 🎙️ Text-to-speech generation using Eleven Labs **multilingual v3 model** (latest)
+- 🌍 Support for **70+ languages** including Spanish, French, and Arabic
+- 💰 **80% cost savings** with v3 alpha pricing (until June 2025)
+- 🎛️ **Multiple model options**: v3 (quality), turbo (speed), flash (fastest), v2 (stable)
 - 📊 Character usage tracking and cost estimation
 - ⚙️ Configurable voice settings (stability, similarity, style)
 - 🎯 Automatic language detection from SRT filenames
@@ -89,6 +91,21 @@ audio/
 
 ## Advanced Usage
 
+### Model Selection
+```bash
+# Use v3 (default) - highest quality, 80% cheaper
+python scripts/generate_voice.py transcripts/es/webinar-es.srt --model v3
+
+# Use turbo - faster processing, lower latency
+python scripts/generate_voice.py transcripts/es/webinar-es.srt --model turbo
+
+# Use flash - fastest, ultra-low latency
+python scripts/generate_voice.py transcripts/es/webinar-es.srt --model flash
+
+# Use v2 - stable, proven quality
+python scripts/generate_voice.py transcripts/es/webinar-es.srt --model v2
+```
+
 ### Custom Voice Settings
 ```bash
 # More expressive voice (lower stability)
@@ -134,6 +151,7 @@ python scripts/generate_voice.py --help
 ### Arguments
 - `srt_files` - One or more SRT files to process (required)
 - `--lang` - Target language code: es, fr, ar, en (optional, auto-detected)
+- `--model` - Model to use: v3, turbo, flash, v2 (default: v3)
 - `--voice-id` - Custom voice ID (optional, uses defaults)
 - `--output-dir` - Output directory (default: audio/)
 - `--stability` - Voice stability 0.0-1.0 (default: 0.5)
@@ -164,7 +182,7 @@ Controls how close the voice stays to the original:
 **Recommendation**: Use 0.75-0.85 for best quality
 
 ### Style (0.0 - 1.0)
-Controls style exaggeration (v2 model only):
+Controls style exaggeration (v2+ models):
 - **0.0**: Natural, minimal exaggeration (recommended)
 - **0.1-0.3**: Subtle emphasis
 - **0.4-0.6**: Moderate style
@@ -174,6 +192,8 @@ Controls style exaggeration (v2 model only):
 - Professional content: 0.0-0.1
 - Storytelling: 0.2-0.4
 - Dramatic content: 0.4-0.6
+
+**Note**: v3 model has enhanced emotional range and contextual understanding
 
 ### Speaker Boost
 Enhances clarity and similarity:
@@ -196,6 +216,40 @@ The POC comes with default voice IDs for testing:
 2. Test voices with your content
 3. Configure your preferred voices via environment variables
 
+## Available Models
+
+The POC supports multiple Eleven Labs models to balance quality, speed, and cost:
+
+| Model | Model ID | Languages | Features | Best For |
+|-------|----------|-----------|----------|----------|
+| **v3** (default) | `eleven_multilingual_v3` | 70+ | Highest quality, enhanced emotional range, 80% cheaper (until June 2025) | Production content, highest quality needs |
+| **turbo** | `eleven_turbo_v2_5` | 32 | Fast, low latency (~250-300ms), good quality | Batch processing, quick turnaround |
+| **flash** | `eleven_flash_v2_5` | 29 | Ultra-fast (<75ms latency) | Real-time applications, speed critical |
+| **v2** | `eleven_multilingual_v2` | 29 | Stable, proven quality | Fallback, if v3 has issues |
+
+### Model Selection Guide
+
+**Use v3 (default) when:**
+- Quality is the priority
+- Cost savings matter (80% cheaper)
+- Working with any of 70+ languages
+- Want enhanced emotional range and contextual understanding
+
+**Use turbo when:**
+- Processing large batches quickly
+- Need good quality with faster generation
+- Working within the 32 supported languages
+
+**Use flash when:**
+- Speed is absolutely critical
+- Real-time or near-real-time needed
+- Can trade some quality for speed
+
+**Use v2 when:**
+- Need proven stable quality
+- Experiencing issues with v3 alpha
+- Working with established workflows
+
 ## Cost Estimation
 
 ### Eleven Labs Pricing (Reference)
@@ -205,15 +259,27 @@ The POC comes with default voice IDs for testing:
 - **Scale**: $330/month = 2,000,000 characters
 
 ### Cost Per Video (Approximate)
+
+**With v3 model (80% discount until June 2025):**
+- **5-minute video**: ~3,000-5,000 characters = **$0.13-0.22** (Creator tier)
+- **15-minute video**: ~9,000-15,000 characters = **$0.40-0.66** (Creator tier)
+- **30-minute video**: ~18,000-25,000 characters = **$0.79-1.10** (Creator tier)
+
+**With v2/turbo/flash models (standard pricing):**
 - **5-minute video**: ~3,000-5,000 characters = $0.66-1.10 (Creator tier)
 - **15-minute video**: ~9,000-15,000 characters = $1.98-3.30 (Creator tier)
 - **30-minute video**: ~18,000-25,000 characters = $3.96-5.50 (Creator tier)
 
+**💰 Cost Savings with v3**: ~80% cheaper than other models!
+
 ### The script automatically displays:
 ```
 📊 VOICE GENERATION SUMMARY
+Model used: eleven_multilingual_v3
 Total characters processed: 12,450
-💰 Estimated cost: $2.74 (based on Creator tier pricing)
+💰 Estimated cost: $0.55 (based on Creator tier pricing with v3 alpha 80% discount)
+   Note: Actual cost depends on your Eleven Labs subscription tier
+   Note: v3 alpha 80% discount valid until June 30, 2025
 ```
 
 ## Example Workflows

@@ -29,7 +29,7 @@ class VoiceGenerator:
     Generates AI voices from translated SRT files using Eleven Labs API
     """
 
-    # Default voice IDs for multilingual v2 model (high quality, natural voices)
+    # Default voice IDs for multilingual models (high quality, natural voices)
     # These are example voice IDs - users should configure their preferred voices
     DEFAULT_VOICES = {
         'es': 'onwK4e9ZLuTAKqWW03F9',  # Spanish - Pablo (Male, natural)
@@ -38,16 +38,25 @@ class VoiceGenerator:
         'en': 'EXAVITQu4vr4xnSDxMaL',  # English - Sarah (Female, natural)
     }
 
-    # Voice model to use (multilingual-v2 supports 29 languages)
-    DEFAULT_MODEL = "eleven_multilingual_v2"
+    # Available Eleven Labs models (as of 2025)
+    AVAILABLE_MODELS = {
+        'v3': 'eleven_multilingual_v3',      # Latest: 70+ languages, high quality, 80% cheaper (alpha)
+        'turbo': 'eleven_turbo_v2_5',        # Fast: 32 languages, low latency (~250-300ms)
+        'flash': 'eleven_flash_v2_5',        # Fastest: Ultra-low latency (<75ms)
+        'v2': 'eleven_multilingual_v2',      # Stable: 29 languages, high quality
+    }
 
-    def __init__(self, api_key: str = None, output_dir: str = "audio"):
+    # Default model to use (v3 is latest with best quality and 80% cost savings until June 2025)
+    DEFAULT_MODEL = "eleven_multilingual_v3"
+
+    def __init__(self, api_key: str = None, output_dir: str = "audio", model: str = None):
         """
         Initialize the Voice Generation agent
 
         Args:
             api_key: Eleven Labs API key (or uses ELEVENLABS_API_KEY env var)
             output_dir: Directory to save generated audio files (default: audio/)
+            model: Model to use (v3, turbo, flash, v2) or full model ID (default: v3)
         """
         self.api_key = api_key or os.getenv('ELEVENLABS_API_KEY')
         if not self.api_key:
@@ -55,6 +64,17 @@ class VoiceGenerator:
 
         self.client = ElevenLabs(api_key=self.api_key)
         self.output_dir = Path(output_dir)
+
+        # Set model (resolve alias to full model ID if needed)
+        if model:
+            self.model = self.AVAILABLE_MODELS.get(model, model)
+        else:
+            # Check environment variable or use default
+            env_model = os.getenv('ELEVENLABS_MODEL')
+            if env_model:
+                self.model = self.AVAILABLE_MODELS.get(env_model, env_model)
+            else:
+                self.model = self.DEFAULT_MODEL
 
         # Track character usage for cost estimation
         self.total_characters = 0
@@ -138,6 +158,7 @@ class VoiceGenerator:
         """
         print(f"🎙️  Generating voice for: {srt_file.name}")
         print(f"   Language: {target_lang.upper()}", file=sys.stderr)
+        print(f"   Model: {self.model}", file=sys.stderr)
 
         # Extract text from SRT
         full_text, subtitle_data = self._extract_text_from_srt(srt_file)
@@ -158,7 +179,7 @@ class VoiceGenerator:
             voice_settings = {
                 'stability': 0.5,           # 0-1: Lower = more expressive, Higher = more stable
                 'similarity_boost': 0.75,   # 0-1: Higher = closer to original voice
-                'style': 0.0,               # 0-1: Higher = more exaggerated style (v2 model only)
+                'style': 0.0,               # 0-1: Higher = more exaggerated style (v2+ models)
                 'use_speaker_boost': True   # Boost clarity and similarity
             }
 
@@ -184,7 +205,7 @@ class VoiceGenerator:
             audio_generator = self.client.text_to_speech.convert(
                 voice_id=voice,
                 text=full_text,
-                model_id=self.DEFAULT_MODEL,
+                model_id=self.model,
                 voice_settings=settings,
                 output_format=output_format
             )
@@ -269,9 +290,10 @@ class VoiceGenerator:
         print("\n" + "=" * 70)
         print("📊 VOICE GENERATION SUMMARY")
         print("=" * 70)
+        print(f"Model used: {self.model}")
         print(f"Total characters processed: {self.total_characters:,}")
 
-        # Eleven Labs pricing (as of 2024):
+        # Eleven Labs pricing (as of 2025):
         # Starter: $5/month = 30,000 chars/month
         # Creator: $22/month = 100,000 chars/month
         # Pro: $99/month = 500,000 chars/month
@@ -279,11 +301,22 @@ class VoiceGenerator:
         # Business: Custom pricing
 
         # Approximate cost per character (using Creator tier as reference)
-        cost_per_char = 22 / 100000  # $0.00022 per character
+        base_cost_per_char = 22 / 100000  # $0.00022 per character
+
+        # Apply v3 discount if using v3 model (80% cheaper until June 2025)
+        if 'v3' in self.model:
+            cost_per_char = base_cost_per_char * 0.2  # 80% discount
+            discount_note = " (with v3 alpha 80% discount)"
+        else:
+            cost_per_char = base_cost_per_char
+            discount_note = ""
+
         estimated_cost = self.total_characters * cost_per_char
 
-        print(f"💰 Estimated cost: ${estimated_cost:.4f} (based on Creator tier pricing)")
+        print(f"💰 Estimated cost: ${estimated_cost:.4f} (based on Creator tier pricing{discount_note})")
         print(f"   Note: Actual cost depends on your Eleven Labs subscription tier")
+        if 'v3' in self.model:
+            print(f"   Note: v3 alpha 80% discount valid until June 30, 2025")
         print("=" * 70)
 
 
@@ -308,6 +341,9 @@ Examples:
   # Generate with custom voice settings
   python generate_voice.py transcripts/es/webinar-es.srt --stability 0.7 --similarity 0.8
 
+  # Use different model (turbo for speed, v3 for quality)
+  python generate_voice.py transcripts/es/webinar-es.srt --model turbo
+
   # Specify output directory
   python generate_voice.py transcripts/es/webinar-es.srt --output-dir custom_audio/
 
@@ -316,10 +352,18 @@ Examples:
 
 Environment Variables:
   ELEVENLABS_API_KEY        - Eleven Labs API key (required)
+  ELEVENLABS_MODEL          - Default model to use (v3, turbo, flash, v2)
   ELEVENLABS_VOICE_ES       - Custom Spanish voice ID
   ELEVENLABS_VOICE_FR       - Custom French voice ID
   ELEVENLABS_VOICE_AR       - Custom Arabic voice ID
   ELEVENLABS_VOICE_EN       - Custom English voice ID
+
+Models:
+  v3 (default)              - Eleven Multilingual v3 (alpha): Latest, 70+ languages,
+                              highest quality, 80% cheaper until June 2025
+  turbo                     - Eleven Turbo v2.5: Fast, 32 languages, low latency (~250-300ms)
+  flash                     - Eleven Flash v2.5: Fastest, ultra-low latency (<75ms)
+  v2                        - Eleven Multilingual v2: Stable, 29 languages
 
 Voice Settings:
   --stability               - Voice stability (0.0-1.0, default: 0.5)
@@ -327,7 +371,7 @@ Voice Settings:
   --similarity              - Similarity boost (0.0-1.0, default: 0.75)
                               Higher = closer to original voice
   --style                   - Style exaggeration (0.0-1.0, default: 0.0)
-                              Higher = more exaggerated style (v2 model only)
+                              Higher = more exaggerated style (v2+ models)
   --speaker-boost           - Enable speaker boost for clarity (default: True)
         """
     )
@@ -357,6 +401,14 @@ Voice Settings:
         type=str,
         default='audio',
         help='Output directory for audio files (default: audio/)'
+    )
+
+    parser.add_argument(
+        '--model',
+        type=str,
+        choices=['v3', 'turbo', 'flash', 'v2'],
+        default='v3',
+        help='Eleven Labs model to use (default: v3). v3=latest/best quality, turbo=fast, flash=fastest, v2=stable'
     )
 
     parser.add_argument(
@@ -404,7 +456,7 @@ Voice Settings:
 
     # Initialize generator
     try:
-        generator = VoiceGenerator(output_dir=args.output_dir)
+        generator = VoiceGenerator(output_dir=args.output_dir, model=args.model)
     except ValueError as e:
         print(f"❌ {e}")
         print("   Set ELEVENLABS_API_KEY environment variable or pass via --api-key")
