@@ -1,13 +1,12 @@
 # Recently updated Support Articles
 
-<!--This page is auto generated using the `scripts/last-updated.py` script, do not update manually-->
-1. [#Acerca de KoboToolbox: Recolección de datos accesible para todas las personas](about_kobotoolbox_es.md) (17 Oct 2025)
-1. [À propos de KoboToolbox : Collecte de données accessible à toutes et tous](about_kobotoolbox_fr.md) (17 Oct 2025)
-1. [Dynamic data attachments](dynamic_data_attachment.md) (15 Oct 2025)
-1. [Introduction to KoboToolbox](welcome.md) (15 Oct 2025)
-1. [KoboToolbox data security measures: Keeping your data safe](is_my_data_safe.md) (9 Oct 2025)
-1. [Using the Team management feature](getting_started_organization_feature.md) (3 Oct 2025)
-1. [Adding validation criteria in the Formbuilder](validation_criteria.md) (2 Oct 2025)
-1. [Adding skip logic in the Formbuilder](skip_logic.md) (30 Sep 2025)
-1. [Quickstart guide](quick_start.md) (30 Sep 2025)
-1. [Library locking](library_locking.md) (30 Sep 2025)
+1. [Pulling data from an external CSV](pull_data_kobotoolbox.md) (8 Dec 2025)
+1. [Using functions in XLSForm](functions_xls.md) (28 Nov 2025)
+1. [Selecting options from a map](select_from_map_xls.md) (25 Nov 2025)
+1. [Using question options in XLSForm](question_options_xls.md) (25 Nov 2025)
+1. [Adding cascading select questions in the Formbuilder](cascading_select.md) (25 Nov 2025)
+1. [Managing option choices in XLSForm](option_choices_xls.md) (25 Nov 2025)
+1. [Selecting options from an external file](select_from_file_xls.md) (25 Nov 2025)
+1. [Adding skip logic in the Formbuilder](skip_logic.md) (25 Nov 2025)
+1. [Form metadata in XLSForm](metadata_xls.md) (25 Nov 2025)
+1. [Question appearances in XLSForm](appearances_xls.md) (25 Nov 2025)

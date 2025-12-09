@@ -74,15 +74,14 @@ def remove_last_updated(file_path: Path, dry_run: bool = True) -> bool:
             is_after_h1 = (line_num > 0 and lines[line_num - 1].startswith('# '))
             
             # If we removed the "Last updated" line after an H1 heading,
-            # we need to ensure there's exactly one blank line
+            # ensure there's exactly one blank line between H1 and body
             if is_after_h1:
-                # Check if there's already a blank line at current position
-                if line_num < len(lines) and lines[line_num].strip() == '':
-                    # Already has a blank line, keep it
-                    pass
-                else:
-                    # No blank line, insert one to preserve spacing
-                    lines.insert(line_num, '')
+                # Remove any existing blank lines at current position
+                while line_num < len(lines) and lines[line_num].strip() == '':
+                    del lines[line_num]
+                
+                # Insert exactly one blank line
+                lines.insert(line_num, '')
             else:
                 # Not after H1, remove any trailing blank line to avoid double spacing
                 if line_num < len(lines) and lines[line_num].strip() == '':

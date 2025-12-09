@@ -1,8 +1,4 @@
 ﻿# Adding Skip Logic to a Matrix Question
-
-<a href="https://github.com/kobotoolbox/docs/blob/83d9dadfcc132d75f99e2705f77c425c2fee6d70/source/adding_skip_to_matrix.md" class="reference">11
-Mar 2022</a>
-
 In most situations, you can add skip logic to any question type as outlined in
 the support article **[Adding Skip Logic](skip_logic.md)**. However, when
 working within the formbuilder, adding skip logic to a `matrix` question is not
