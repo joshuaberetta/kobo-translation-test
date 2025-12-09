@@ -160,16 +160,16 @@ jobs:
           FILES="${{ steps.files.outputs.files }}"
           LANGUAGES="${{ github.event.inputs.languages }}"
           
-          # Build file arguments
-          FILE_ARGS=""
-          for FILE in $FILES; do
-            FILE_ARGS="$FILE_ARGS --files $FILE"
+          # Build language arguments (space-separated for single --language flag)
+          LANG_ARGS="--language"
+          for LANG in $(echo "$LANGUAGES" | tr ',' ' '); do
+            LANG_ARGS="$LANG_ARGS $LANG"
           done
           
-          # Build language arguments
-          LANG_ARGS=""
-          for LANG in $(echo "$LANGUAGES" | tr ',' ' '); do
-            LANG_ARGS="$LANG_ARGS --language $LANG"
+          # Build file arguments (space-separated for single --files flag)
+          FILE_ARGS="--files"
+          for FILE in $FILES; do
+            FILE_ARGS="$FILE_ARGS $FILE"
           done
           
           echo "Command: python scripts/bulk_retranslate.py $LANG_ARGS $FILE_ARGS --verbose"
