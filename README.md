@@ -2,254 +2,124 @@
 
 This is a minimal test setup to validate the AI translation workflow before implementing in the full documentation repository.
 
-**✨ NEW: SRT Subtitle Translation** - Now includes complete workflow for translating video subtitles with context-aware chunking to minimize hallucinations. See `SRT_WORKFLOW.md` for details.
+## Features
+
+✅ **Documentation Translation** - Automated translation of markdown docs with brand terminology preservation  
+✅ **SRT Subtitle Translation** - Context-aware video subtitle translation with chunking to minimize hallucinations  
+✅ **GitHub Actions Integration** - Automatic translation on commit or manual trigger  
+✅ **Language-Specific Skills** - Optimized translation context for each language pair  
+✅ **Prompt Caching** - 90% cost reduction on repeated translations
 
 ## Repository Structure
 
 ```
 kobo-translation-test/
-├── .github/
-│   └── workflows/
-│       ├── translation-trigger.yml      # Detects changes to English docs
-│       └── translation-agent.yml        # Runs translation agent
+├── .github/workflows/           # GitHub Actions automation
 ├── docs/
-│   ├── en/                              # English source (source of truth)
-│   │   ├── test_simple.md              # Simple test doc
-│   │   └── test_complex.md             # Complex doc with brand terms
-│   ├── es/                              # Spanish translations (auto-generated)
-│   ├── fr/                              # French translations (auto-generated)
-│   └── ar/                              # Arabic translations (auto-generated)
-├── examples/
-│   ├── sample_transcript_en.srt         # Sample video transcript
-│   ├── test_webinar.srt                 # Real webinar content (tested ✅)
-│   ├── test_srt_parser.py               # Parser verification test
-│   └── TEST_RESULTS.md                  # Verification results
+│   ├── en/                      # English source (source of truth)
+│   ├── es/fr/ar/                # Auto-generated translations
+│   └── guides/                  # Detailed documentation
+│       ├── SETUP.md             # Complete setup guide
+│       ├── QUICKSTART.md        # Quick start checklist
+│       ├── SRT_WORKFLOW.md      # SRT translation guide
+│       ├── SRT_IMPLEMENTATION.md
+│       ├── GITHUB_ACTIONS_SRT_GUIDE.md
+│       ├── PROMPT_CACHING_IMPLEMENTATION.md
+│       └── FUTURE_IMPROVEMENTS.md
+├── examples/                    # Sample files and test results
 ├── skills/
-│   ├── kobo-translation/                # Main translation skill (source of truth)
-│   │   ├── SKILL.md                     # ⚠️ EDIT THIS, then run split script
-│   │   └── references/                  # ⚠️ EDIT THESE, then run split script
-│   ├── kobo-translation-es/             # Spanish-only skill (auto-generated)
-│   ├── kobo-translation-fr/             # French-only skill (auto-generated)
-│   ├── kobo-translation-ar/             # Arabic-only skill (auto-generated)
-│   └── kobo-translation-srt/            # SRT subtitle extension skill
-│       ├── SKILL.md
-│       └── references/
-│           └── subtitle-guidelines.md
+│   ├── kobo-translation/        # ⚠️ EDIT HERE (source of truth)
+│   ├── kobo-translation-{es,fr,ar}/  # Auto-generated
+│   └── kobo-translation-srt/    # SRT extension skill
 ├── scripts/
-│   ├── translation_agent.py             # Main translation agent (docs)
-│   ├── translate_srt.py                 # SRT translation agent (NEW)
-│   ├── srt_helper.py                    # SRT parser & converter (NEW)
-│   ├── split_skill_by_language.py       # Generates language-specific skills
-│   └── requirements.txt                 # Python dependencies
-├── SRT_WORKFLOW.md                      # SRT translation guide (NEW)
-├── SRT_IMPLEMENTATION.md                # Implementation details (NEW)
-├── SETUP.md                             # Complete setup guide
-├── QUICKSTART.md                        # Quick start checklist
-└── README.md                            # This file
+│   ├── translation_agent.py     # Main doc translation
+│   ├── translate_srt.py         # SRT translation
+│   ├── srt_helper.py            # SRT utilities
+│   ├── split_skill_by_language.py  # Skill generator
+│   └── requirements.txt
+├── tests/                       # Test scripts
+└── transcripts/                 # Video subtitle files
 ```
+
 
 ## Quick Start
 
-### 1. Prerequisites
-
+### Prerequisites
 - GitHub account
 - Anthropic API key ([get one here](https://console.anthropic.com/))
 - Python 3.11+
 - Git
 
-### 2. Clone and Setup
+### Setup (5 minutes)
 
+1. **Clone and install dependencies:**
 ```bash
-# Clone this repository
 git clone https://github.com/YOUR-ORG/kobo-translation-test.git
 cd kobo-translation-test
-
-# Create virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r scripts/requirements.txt
 ```
 
-### 3. Configure Secrets
+2. **Configure GitHub Secrets:**
+   - Go to: **Settings → Secrets → Actions**
+   - Add `ANTHROPIC_API_KEY` - Your Claude API key
+   - Add `TRANSLATION_BOT_TOKEN` - GitHub Personal Access Token
 
-#### Local Testing (Optional)
+3. **Test locally (optional):**
 ```bash
-# Copy environment template
-cp .env.example .env
-
-# Edit .env and add your keys
-nano .env
-```
-
-#### GitHub Secrets (Required for automation)
-Go to: **Settings → Secrets and variables → Actions → New repository secret**
-
-Add these secrets:
-- `ANTHROPIC_API_KEY` - Your Claude API key
-- `TRANSLATION_BOT_TOKEN` - GitHub Personal Access Token with repo permissions
-
-### 4. Test Locally (Recommended First)
-
-```bash
-# Test translation of a single file
+# Test documentation translation
 python scripts/translation_agent.py --test \
     --file docs/en/test_simple.md \
     --language es
 
-# This will:
-# - Load the kobo-translation skill
-# - Translate to Spanish
-# - Show the output (but not commit)
+# Test SRT subtitle translation
+python scripts/translate_srt.py \
+    examples/sample_transcript_en.srt \
+    --language es
 ```
 
-### 5. Test with GitHub Actions
+4. **Trigger automation:**
+   - Edit any file in `docs/en/`
+   - Commit and push
+   - GitHub Actions will auto-translate to es, fr, ar
+   - Review the PR created by the bot
 
-#### Option A: Automatic (on push to main)
+📖 **Detailed guides:** See `docs/guides/` for complete setup instructions and advanced workflows.
+
+## Common Workflows
+
+### Translate Documentation
+
+**Automatic (on push):**
 ```bash
-# Make a change to an English doc
-echo "## New Section\n\nTest content" >> docs/en/test_simple.md
-
-# Commit and push
+echo "## New Section" >> docs/en/test_simple.md
 git add docs/en/test_simple.md
-git commit -m "Update test document"
+git commit -m "Update docs"
 git push
-
-# Watch GitHub Actions run:
-# https://github.com/YOUR-ORG/kobo-translation-test/actions
+# Watch Actions tab for automated translation
 ```
 
-#### Option B: Manual Workflow Dispatch
-
-You can manually trigger translations via GitHub's Actions tab:
-
-**To translate specific files:**
+**Manual trigger:**
 1. Go to Actions → Auto-Translate Documentation
 2. Click "Run workflow"
-3. Enter files: `docs/en/test_simple.md,docs/en/test_complex.md`
-4. Enter languages: `es,fr,ar`
-5. Click "Run workflow"
+3. Enter files and languages
+4. Review the PR
 
-**To translate ALL English source files:**
-1. Go to Actions → Auto-Translate Documentation
-2. Click "Run workflow"
-3. Check ☑️ "Translate ALL English source files"
-4. Enter languages: `es,fr,ar`
-5. Click "Run workflow"
+### Translate Video Subtitles
 
-⚠️ **Warning**: Translating all files will:
-- Process **100+ files** (based on your docs/en/ directory)
-- Cost approximately **$15-30** depending on file sizes
-- Take **30-60 minutes** to complete
-- Create a large PR with many changes
-
-This is useful for:
-- Initial bulk translation setup
-- Major skill/terminology updates that affect all files
-- Periodic quality refresh of all translations
-
-### 6. Review and Merge
-
-1. GitHub Actions will create a PR with translations
-2. Review the translations in the PR
-3. Check the validation results
-4. Merge if quality is good
-
-## What Gets Tested
-
-### Test Document 1: Simple (`test_simple.md`)
-- Basic translation
-- No brand terms
-- Simple formatting
-- **Purpose:** Verify basic translation works
-
-### Test Document 2: Complex (`test_complex.md`)
-- Contains brand terms (KoboToolbox, Formbuilder, servers)
-- UI elements
-- Links and formatting
-- **Purpose:** Verify skill rules are followed
-
-## Expected Workflow
-
-```
-1. Edit docs/en/test_simple.md
-   ↓
-2. Commit and push to main
-   ↓
-3. translation-trigger.yml detects change
-   ↓
-4. translation-agent.yml runs
-   ↓
-5. Agent translates to es, fr, ar
-   ↓
-6. Agent creates PR with translations
-   ↓
-7. You review PR
-   ↓
-8. Merge PR → translations live
-```
-
-## What to Check in PR
-
-Look for these in the automated PR:
-
-✅ **Brand Terms**
-- [ ] Server names correct (check Spanish doesn't have "de KoboToolbox")
-- [ ] Question Library has capital "L"
-- [ ] Formbuilder includes English on first reference
-
-✅ **UI Elements**
-- [ ] Capitalization correct (Brouillon, Borrador)
-- [ ] Button names match UI
-
-✅ **Language Style**
-- [ ] Spanish uses "tú" (informal)
-- [ ] French uses "vous" (formal)
-- [ ] Gender-inclusive language
-
-✅ **Formatting**
-- [ ] All links preserved
-- [ ] Headings maintained
-- [ ] Structure identical to source
-
-## Troubleshooting
-
-### "Workflow not triggering"
-- Check `.github/workflows/` files are in correct location
-- Verify GitHub Actions is enabled in repo settings
-- Check file paths in trigger workflow match your changes
-
-### "Translation agent fails"
-- Check `ANTHROPIC_API_KEY` secret is set correctly
-- Check `TRANSLATION_BOT_TOKEN` has correct permissions
-- View full logs in GitHub Actions run
-
-### "Translation quality poor"
-- Review which skill level is being used (condensed/standard/full)
-- Check skill files are in correct location
-- Try using "full" skill mode for complex documents
-
-### "Local test not working"
+**Local:**
 ```bash
-# Verify skill files exist
-ls -R skills/kobo-translation/
-
-# Check Python dependencies
-pip list | grep anthropic
-
-# Test with verbose output
-python scripts/translation_agent.py --test --file docs/en/test_simple.md --language es --verbose
+python scripts/translate_srt.py your_video.srt --language es
 ```
 
-## Cost Estimate
+**GitHub Actions:**
+1. Upload `.srt` file to `transcripts/en/`
+2. Go to Actions → Translate SRT Subtitles
+3. Enter filename and languages
+4. Download from Artifacts
 
-For this test repo:
-- 2 test documents × 3 languages = 6 translations
-- ~$0.15 per document = **~$0.90 per test run**
-- Testing 10 times = **~$9 total**
-
-Very affordable for testing!
+📖 **SRT Guide:** See `docs/guides/SRT_WORKFLOW.md` for detailed subtitle translation workflow.
 
 ## Next Steps
 
@@ -324,24 +194,81 @@ This automatically generates optimized, language-focused versions:
 
 These are **auto-generated** and will be overwritten when you run the script.
 
-## Files Included
+## Quality Checklist
 
-This repository includes:
+When reviewing automated translation PRs, check:
 
-- ✅ Minimal working translation agent
-- ✅ GitHub Actions workflows
-- ✅ Sample test documents
-- ✅ Complete kobo-translation skill
-- ✅ Validation scripts
-- ✅ Documentation
+✅ **Brand Terms**
+- [ ] Server names correct (Spanish: no "de KoboToolbox")
+- [ ] Question Library has capital "La"
+- [ ] Formbuilder includes English on first reference
 
-## Support
+✅ **UI Elements**
+- [ ] Capitalization matches UI
+- [ ] Button names correct
 
-If you encounter issues:
-1. Check the troubleshooting section above
-2. Review GitHub Actions logs
-3. Test locally first before debugging workflows
+✅ **Language Style**
+- [ ] Spanish uses "tú" (informal)
+- [ ] French uses "vous" (formal)
+- [ ] Gender-inclusive language where appropriate
 
-## License
+✅ **Formatting**
+- [ ] All links preserved
+- [ ] Headings maintained
+- [ ] Structure identical to source
 
-[Your License Here]
+## Documentation
+
+- **Setup Guide:** `docs/guides/SETUP.md` - Complete setup instructions
+- **Quick Start:** `docs/guides/QUICKSTART.md` - Fast setup checklist
+- **SRT Translation:** `docs/guides/SRT_WORKFLOW.md` - Video subtitle translation
+- **GitHub Actions SRT:** `docs/guides/GITHUB_ACTIONS_SRT_GUIDE.md` - Automate SRT translation
+- **Prompt Caching:** `docs/guides/PROMPT_CACHING_IMPLEMENTATION.md` - Cost optimization details
+- **Future Plans:** `docs/guides/FUTURE_IMPROVEMENTS.md` - Planned enhancements
+
+## Troubleshooting
+
+**Workflow not triggering:**
+- Verify GitHub Actions is enabled
+- Check workflow file paths match your changes
+
+**Translation agent fails:**
+- Verify `ANTHROPIC_API_KEY` secret is set
+- Check `TRANSLATION_BOT_TOKEN` has repo permissions
+- Review logs in GitHub Actions
+
+**Translation quality issues:**
+- Ensure latest language-specific skills are generated
+- Check skill files are in correct location
+- Review terminology in `skills/kobo-translation/references/`
+
+**Local test not working:**
+```bash
+# Verify dependencies
+pip list | grep anthropic
+
+# Test with verbose output
+python scripts/translation_agent.py --test \
+    --file docs/en/test_simple.md \
+    --language es --verbose
+```
+
+## Cost Estimates
+
+**Documentation:**
+- Test docs: ~$0.90 per run (6 translations)
+- Full docs (100+ files): ~$15-30 initial, ~$1-5 per update
+
+**Subtitles:**
+- 30-minute video: ~$2-5 per language (with caching)
+- Prompt caching saves 90% on subsequent chunks
+
+## Next Steps
+
+Once testing is successful:
+
+1. ✅ Verify translation quality meets expectations
+2. ✅ Confirm brand terms are handled correctly
+3. ✅ Validate automation workflow
+4. ✅ Train team on PR review process
+5. 🚀 Migrate to full documentation repository
