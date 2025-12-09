@@ -43,7 +43,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.TRANSLATION_BOT_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Validate inputs
         run: |
@@ -191,7 +191,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         id: pr
         with:
-          token: ${{ secrets.TRANSLATION_BOT_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: |
             🔄 Bulk retranslate: ${{ github.event.inputs.mode }} mode
             
