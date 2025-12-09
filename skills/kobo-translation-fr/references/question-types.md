@@ -10,32 +10,33 @@
 
 These translations are preferred but can be adapted based on context.
 
-|---------|--------|---------|--------|--------------|
-| Select one | Choix unique | Seleccionar una | | select_one |
-| Select many | Choix multiple | Seleccionar varias | | select_multiple |
-| Acknowledge | Consentement | Consentimiento | | acknowledge |
-| Text | Texte | Texto | | text |
-| Note | Note | Nota | | note |
-| Number | Chiffre | Número | | integer |
-| Decimal | Décimale | Decimal | | decimal |
-| Range | Intervalle | Rango | | range |
-| Date | Date | Fecha | | date |
-| Time | Heure | Hora | | time |
-| Date & time | Date et heure | Fecha y hora | | datetime |
-| Point | Position | Punto | | geopoint |
-| Line | Ligne | Línea | | geotrace |
-| Area | Zone | Área | | geoshape |
-| Photo | Photographie | Foto | | image |
-| Audio | Audio | Audio | | audio |
-| Video | Vidéo | Video | | video |
-| File | Fichier | Archivo | | file |
-| Barcode / QR Code | Code-barres | Código de barras / Código QR | | barcode |
-| Rating | Notation | Calificación | | ––– |
-| Ranking | Classement | Clasificación | | rank |
-| Question Matrix | Tableau de questions | Matriz de preguntas | | ––– |
-| Calculate | Calcul | Cálculo | | calculate |
-| Hidden | Caché | Oculto | | hidden |
-| External XML | XML externe | XML externo | | xml-external |
+| English | French | XLSForm Type |
+| --------- | -------- | -------------- |
+| Select one | Choix unique | select_one |
+| Select many | Choix multiple | select_multiple |
+| Acknowledge | Consentement | acknowledge |
+| Text | Texte | text |
+| Note | Note | note |
+| Number | Chiffre | integer |
+| Decimal | Décimale | decimal |
+| Range | Intervalle | range |
+| Date | Date | date |
+| Time | Heure | time |
+| Date & time | Date et heure | datetime |
+| Point | Position | geopoint |
+| Line | Ligne | geotrace |
+| Area | Zone | geoshape |
+| Photo | Photographie | image |
+| Audio | Audio | audio |
+| Video | Vidéo | video |
+| File | Fichier | file |
+| Barcode / QR Code | Code-barres | barcode |
+| Rating | Notation | ––– |
+| Ranking | Classement | rank |
+| Question Matrix | Tableau de questions | ––– |
+| Calculate | Calcul | calculate |
+| Hidden | Caché | hidden |
+| External XML | XML externe | xml-external |
 
 ## Question Appearances
 
@@ -50,29 +51,30 @@ Because appearance names must be used in English in XLSForm standard and Formbui
 
 ### Appearance Translations
 
-|---------|--------|---------|--------|---------------|-------|
-| minimal | Minimal | Mínimo | | Select one, Select many | |
-| likert | Likert | Likert | | Select one | |
-| horizontal | Horizontal | Horizontal | | Select one, Select many | |
-| quick | Rapide | Rápida | | Select one | |
-| quickcompact | Rapide compact | Compacto rápida | | Select one | |
-| thousands-sep | Séparateur milliers | Separador de miles | | Number | |
-| bearing | Relèvement | Rumbo (brújula) | | Decimal | |
-| vertical | Vertical | Vertical | | Range | |
-| picker | Sélecteur | Selector de fechas | | Range | |
-| rating | Notation | Calificación | | Range | |
-| distress | Thermomètre | Termométro | | Range | |
-| multiline | Multiligne | Multiples líneas | | Text | |
-| numbers | Chiffres | Números | | Text | |
-| month-year | Mois année | Mes - año | | Date | |
-| year | Année | Año | | Date | |
-| no-calendar | Sans calendrier | Sin Calendario | | Date | |
-| coptic | Copte | Cóptico | | Date | |
-| ethiopian | Éthiopien | Etiope | | Date | |
-| islamic | Islamique | Islámico | | Date | |
-| bikhram_sambat | Bikhram Sambat | Bikhram Sambat | | Date | |
-| myanmar | Birman | Birman | | Date | |
-| persian | Persan | Pérsico | | Date | |
-| signature | Signature | Firma | | Photo | |
-| draw | Draw | Dibujo | | Photo | |
-| annotate | Annotation | Anotación | | Photo | |
+| English | French |
+| --------- | -------- |
+| minimal | Minimal |
+| likert | Likert |
+| horizontal | Horizontal |
+| quick | Rapide |
+| quickcompact | Rapide compact |
+| thousands-sep | Séparateur milliers |
+| bearing | Relèvement |
+| vertical | Vertical |
+| picker | Sélecteur |
+| rating | Notation |
+| distress | Thermomètre |
+| multiline | Multiligne |
+| numbers | Chiffres |
+| month-year | Mois année |
+| year | Année |
+| no-calendar | Sans calendrier |
+| coptic | Copte |
+| ethiopian | Éthiopien |
+| islamic | Islamique |
+| bikhram_sambat | Bikhram Sambat |
+| myanmar | Birman |
+| persian | Persan |
+| signature | Signature |
+| draw | Draw |
+| annotate | Annotation |

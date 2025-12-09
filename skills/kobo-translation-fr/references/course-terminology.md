@@ -10,38 +10,43 @@ These translations are preferred but can be adapted based on context and localiz
 
 ## Course Assessment Terms
 
-|---------|--------|---------|-------|
-| Pre-training questionnaire | questionnaire préliminaire | Cuestionario preliminar | |
-| Quiz | quiz | Quiz | Thinkific UI uses "questionnaire" not "quiz" - use "questionnaire" when referring specifically to this UI element |
-| Final quiz | évaluation finale | evaluación final | |
-| Practice exercises | exercices pratiques | ejercicio práctico | FR: Only use "fichiers" when referring to files: "fichiers d'exercices pratiques" / "fichiers pratiques" |
-| Official KoboToolbox Essentials certificate | attestation de réussite du Cours d'initiation à KoboToolbox / certificat officiel du Cours d'initiation à KoboToolbox | Certificado oficial del curso de Introducción a KoboToolbox | |
+| English | French |
+| --------- | -------- |
+| Pre-training questionnaire | questionnaire préliminaire |
+| Quiz | quiz |
+| Final quiz | évaluation finale |
+| Practice exercises | exercices pratiques |
+| Official KoboToolbox Essentials certificate | attestation de réussite du Cours d'initiation à KoboToolbox / certificat officiel du Cours d'initiation à KoboToolbox |
 
 ## Platform Navigation
 
-|---------|--------|---------|
-| Course landing page | la page d'accueil du cours | página de inicio |
-| Dashboard (in Thinkific UI) | tableau de bord | portal de estudiante |
+| English | French |
+| --------- | -------- |
+| Course landing page | la page d'accueil du cours |
+| Dashboard (in Thinkific UI) | tableau de bord |
 
 ## Roles and Content Types
 
-|---------|--------|---------|
-| Knowledge transfer specialist | Expert en Transfert de Connaissances | Especialista de transferencia de conocimientos |
-| Tutorials | tutoriels | tutoriales |
-| Support article | article d'aide | artículos de ayuda |
+| English | French |
+| --------- | -------- |
+| Knowledge transfer specialist | Expert en Transfert de Connaissances |
+| Tutorials | tutoriels |
+| Support article | article d'aide |
 
 ## Website and Web Terms
 
-|---------|--------|---------|-------|
-| Website | site web | sitio web | FR: not "site Internet" |
-| Web | web | web | FR: lowercase, e.g., "formulaire web Enketo" |
+| English | French |
+| --------- | -------- |
+| Website | site web |
+| Web | web |
 
 ## Common Course Phrases
 
-|---------|--------|---------|------------------|
-| Getting started with … | *localize / translate for context* (e.g., Se lancer avec) | Iniciar con | FR: should not be "Débuter avec" |
-| Let's go ahead and add the question | ajoutons la question | Comencemos añadiendo la pregunta | FR: Simplify and omit "Let's go ahead". Not "allons-y et ajoutons la question" |
-| Press (e.g., press the Submit button) | appuyer sur | click en | FR: not "presser" |
+| English | French |
+| --------- | -------- |
+| Getting started with … | *localize / translate for context* (e.g., Se lancer avec) |
+| Let's go ahead and add the question | ajoutons la question |
+| Press (e.g., press the Submit button) | appuyer sur |
 
 ## Localization Guidelines for Course Content
 
@@ -66,3 +71,6 @@ These translations are preferred but can be adapted based on context and localiz
 - Double forms: "Les utilisatrices et utilisateurs débutant(e)s"
 - Parenthetical markers: "expérimenté(e)s bénéficieront"
 - Course subtitles: "Vous serez redirigé(e)"
+
+
+**Note:** This approach should be explained in Course Navigation Guide for Spanish courses.

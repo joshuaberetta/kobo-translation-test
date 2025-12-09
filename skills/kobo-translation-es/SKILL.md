@@ -9,6 +9,8 @@ description: "Translation and localization guidelines for KoboToolbox content fr
 
 Translate KoboToolbox content from English to Spanish with consistent terminology, appropriate tone, and cultural adaptation.
 
+**📹 For Video Subtitles/Transcripts:** If you're translating SRT subtitle files, use the **[kobo-translation-srt](../kobo-translation-srt/SKILL.md)** skill extension which includes all base rules plus subtitle-specific guidelines for character limits, spoken language, and chunked translation.
+
 **Translation approach:**
 
 For **NEW FILES** (full translation):
@@ -57,34 +59,38 @@ For **UPDATES** (diff-based translation):
 
 ### ⚠️ Brand Terms - Most Frequent Errors
 
-| ❌ WRONG | ✅ CORRECT | Notes |
-|---------|-----------|-------|
-| **Spanish:** Servidor Global de KoboToolbox | **Servidor Global** | Do NOT add "de KoboToolbox" |
-| **Spanish:** Servidor de la Unión Europea | **Servidor con sede en la Unión Europea** | Use full official name |
-| **Spanish:** la biblioteca de preguntas | **La biblioteca de preguntas** | Capital "L" for brand feature |
+| ❌ WRONG | Notes |
+| --------- | ------- |
+| **Spanish:** Servidor Global de KoboToolbox | Do NOT add "de KoboToolbox" |
+| **Spanish:** Servidor de la Unión Europea | Use full official name |
+| **French:** serveur KoboToolbox mondial | Must include definite article "Le" (capitalized) |
+| **French:** serveur Union européenne | Include article AND "KoboToolbox" |
+| **Spanish:** la biblioteca de preguntas | Capital "L" for brand feature |
+| **French:** la bibliothèque de questions | Capital "L" for brand feature |
 
 ### ⚠️ First Reference Rule - Frequently Missed
 
 **Formbuilder MUST include English on first reference:**
 
-| Language | First Reference | Subsequent Uses |
-|----------|----------------|-----------------|
-| Spanish | editor de formularios de KoboToolbox (Formbuilder) | editor de formularios |
+| Subsequent Uses |
+| ----------------- |
+| editor de formularios |
+| interface de création de formulaires |
 
 ### ⚠️ UI Capitalization - Often Forgotten
 
-| Term | ❌ Wrong | ✅ Correct |
-|------|---------|-----------|
-| Draft (FR) | formulaire brouillon | formulaire Brouillon |
-| Draft (ES) | borrador | Borrador (when in UI context) |
+| ❌ Wrong |
+| --------- |
+| formulaire brouillon |
+| borrador |
 
 ### ⚠️ French Article Usage
 
-| Concept | ❌ Wrong | ✅ Correct | Rule |
-|---------|---------|-----------|------|
-| Data management | gestion de données | gestion de données | NO article for general concept |
-| Managing your data | gérer vos données | gérer vos données | ✓ Correct |
-| Projects and data section title | Gestion de projets et de données | Gestion de projets et données | NO "de" before "données" in compound titles |
+| ❌ Wrong |
+| --------- |
+| gestion de données |
+| gérer vos données |
+| Gestion de projets et de données |
 
 ## Translation Workflow
 
@@ -124,6 +130,16 @@ For **UPDATES** (diff-based translation):
 - Generally use "vous"/"usted" for semi-formal
 - May use "tu"/"tú" for very informal contexts
 
+**Video subtitles/transcripts (SRT files):**
+- **Use the [kobo-translation-srt](../kobo-translation-srt/SKILL.md) skill extension**
+- All base rules apply PLUS subtitle-specific adaptations
+- Key differences:
+  - XLSForm terms: English only (no translations due to character limits)
+  - Character limits: 35-42 characters per line ideal, 50 max
+  - Natural spoken language (more conversational than written)
+  - Chunked translation approach to preserve context
+- Same formality levels as educational content (vous/tú)
+
 ### Step 2: Check Terminology Category
 
 **🚨 Brand and product terms** → See [brand-terminology.md](references/brand-terminology.md)
@@ -158,11 +174,13 @@ For **UPDATES** (diff-based translation):
 
 ### Step 3: Apply Gender-Inclusive Language
 
+
 **Spanish:**
 - **Strongly prefer neutral constructions:** "Se te dirigirá" instead of "serás dirigido/a"
 - **Use double forms for nouns:** "los/as usuarios/as", "las/os participantes"
 - When no neutral option exists, use masculine: "los usuarios"
 - **Apply throughout:** Every mention of users/people should be inclusive
+
 
 ### Step 4: Handle Technical Terms
 
@@ -294,6 +312,12 @@ Always include English + translation approach:
 - French examples: "Pourquoi KoboToolbox est unique", "Soutenir l'impact à échelle mondiale"
 - Spanish examples: "Por qué KoboToolbox es único", "Apoyamos el impacto global"
 - Note natural language variations: ES "Apoyamos" (we support) vs EN "Supporting" (present participle)
+
+
+**Heading levels:**
+- Maintain heading hierarchy (h1, h2, h3)
+- In Arabic translations, the h1 is inside the RTL section
+- Title may be rendered as h2 (##) in some contexts, h1 in others - follow source
 
 ### French-Specific Rules
 
@@ -456,6 +480,7 @@ Before finalizing translation:
 - [ ] No slang or colloquialisms
 - [ ] Natural word order (not forced English structure)
 
+
 **Spanish-Specific:**
 - [ ] "recolectar" for collect (not "recopilar")
 - [ ] "manejo" for data/case management, "gestión" for teams/projects
@@ -472,6 +497,7 @@ Before finalizing translation:
 **Source English:**
 "KoboToolbox makes high quality data accessible to social impact organizations worldwide."
 
+
 **✅ CORRECT Spanish (adapted structure):**
 "KoboToolbox permite que los datos de alta calidad sean accesibles para organizaciones de impacto social a nivel mundial."
 
@@ -483,8 +509,16 @@ Before finalizing translation:
 **Source English:**
 "Designed by data collection practitioners specifically for challenging settings"
 
+
 **✅ CORRECT Spanish:**
 "Fue diseñado por personas profesionales de la recolección de datos específicamente para entornos desafiantes"
+
+
+**Key observations:**
+- Spanish uses gender-inclusive "personas profesionales" instead of literal "practitioners"
+- Spanish adds "Fue" (was) for natural past tense flow
+- Arabic restructures significantly: "designed... for dealing with difficult circumstances especially"
+- All prioritize natural expression over literal translation
 
 ### Example 1: Server Names
 **Source:** "Most users sign up for an account on our Global KoboToolbox Server."
@@ -499,6 +533,12 @@ Before finalizing translation:
 1. Removed "de KoboToolbox" (not in official name)
 2. Added gender inclusivity: "los/as usuarios/as"
 
+
+
+**Errors fixed:**
+1. Added definite article "Le" (capitalized)
+2. Added gender inclusivity: "utilisatrices et utilisateurs"
+
 ### Example 2: Question Library
 **Source:** "Build a form using a template from the question library."
 
@@ -512,6 +552,10 @@ Before finalizing translation:
 
 ### Example 3: Formbuilder First Reference
 **Source:** "Create a new form using the KoboToolbox Formbuilder."
+
+
+
+**Error fixed:** Added English term in parentheses on first reference
 
 ### Example 4: HTML Headings to Markdown
 
@@ -592,6 +636,7 @@ Si utilizas listas en cascada, por favor [sigue las instrucciones](cascading_sel
 ### Example 6: Natural Language Flow
 
 **Source:** "To support our nonprofit users, we provide our tools for free under the Community Plan."
+
 
 **✅ CORRECT Spanish (natural structure):**
 "Para apoyar a nuestros usuarios sin fines de lucro, proporcionamos nuestras herramientas de forma gratuita bajo el plan Community."

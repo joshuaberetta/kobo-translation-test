@@ -10,15 +10,18 @@ These translations are preferred but can be adapted based on context and localiz
 
 ## Core Data Collection Terms
 
-|---------|--------|---------|-------|
-| Insights | résultats | resultados | |
-| Enumerator | enquêteur | encuestador / encuestadora | |
-| Survey project | projet | proyecto de encuesta | FR: not "projet d'enquête" |
+| English | French |
+| --------- | -------- |
+| Insights | résultats |
+| Enumerator | enquêteur |
+| Survey project | projet |
 
 ## Data Collection Concepts
 
-|---------|--------|---------|-------|
-| Data collection | collecte de données | recolección de datos | See French usage note below |
+| English | French |
+| --------- | -------- |
+| Data collection | collecte de données |
+| Mobile data collection / Collecting data on mobile devices | la collecte mobile de données / collecter de données avec un appareil mobile |
 
 ### French "Data Collection" Usage
 
@@ -36,48 +39,41 @@ Use "la collecte de données" not "la collecte de données d'enquête"
 
 ## Management Terms
 
-|---------|--------|---------|--------------|
-
-### Spanish "Management" Usage
-
-**"manejo"** - Preferred for:
-- Data management (manejo de datos)
-- Case management (manejo de casos)
-- Project management (manejo de proyectos)
-
-**"gestión"** - Preferred for:
-- Managing teams (gestión de equipos)
-- Managing projects (gestión de proyectos)
-- Managing surveys (gestión de encuestas)
-
-Both are acceptable depending on context, but follow the patterns above for consistency.
+| English | French |
+| --------- | -------- |
+| Management (data, project, case) | gestion de données, gestion de projet, gestion de cas / gérer |
 
 ## Data Visualization and Analysis
 
-|---------|--------|---------|-------|
-| Disaggregate | désagréger | desagregar | FR: not "ventiler" |
-| Invalid values | valeurs incohérentes | valores inválidos | |
+| English | French |
+| --------- | -------- |
+| Dashboard (Data visualization dashboard) | tableau de bord / rapport interactif |
+| Disaggregate | désagréger |
+| Invalid values | valeurs incohérentes |
 
 ## Media and Recording
 
-|---------|--------|---------|
-| Background audio | audio d'arrière-plan | sonido de fondo / audio de fondo |
+| English | French |
+| --------- | -------- |
+| Background audio | audio d'arrière-plan |
 
 ## Other Data Terms
 
-|---------|--------|---------|-------|
-| Housing unit | logement | unidad de almacenamiento | |
-| Upload (verb) | importer | cargar | FR: not "Télécharger". "Envoyer" acceptable depending on context (e.g., upload a form) |
-| Import (verb) | importer | importar | |
+| English | French |
+| --------- | -------- |
+| Housing unit | logement |
+| Upload (verb) | importer |
+| Import (verb) | importer |
 
 ## Submission and Response Terms
 
 **Context-dependent translations.** The best translation depends on avoiding confusion and achieving clarity.
 
-|---------|---------------|---------|---------|
-| Submission | soumission | envío | FR: See detailed usage below |
-| Record | formulaire | formulario | FR: See detailed usage below |
-| Response | réponse | respuesta | FR: See detailed usage below |
+| English | French Options | Context |
+| --------- | --------------- | --------- |
+| Submission | soumission | FR: See detailed usage below |
+| Record | formulaire | FR: See detailed usage below |
+| Response | réponse | FR: See detailed usage below |
 
 ### French "Submission/Record/Response" Usage Guide
 

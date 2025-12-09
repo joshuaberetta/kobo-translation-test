@@ -20,88 +20,98 @@ Example: "Pour chaque liste d'options, remplissez la colonne list_name (nom de l
 
 ## Core Form Building Concepts
 
-|---------|--------|---------|--------|-------|
-| Form building | création de formulaire / construction de formulaires | elaboración de formularios | | |
-| Form Style | style du formulaire | | | Refers to customization interface with themes. Also the XLSForm column name |
-| Form themes | thèmes du formulaire | | | Different appearance options in style column |
-| Form media | médias au sein du formulaire | datos multimedia del formulario | | |
-| Question type | question de type [type name] | tipo de pregunta | | Example: "question de type texte" / "El tipo de pregunta texto" |
+| English | Arabic |
+| --------- | -------- |
+| Form building |  |
+| Form Style |  |
+| Form themes |  |
+| Form media |  |
+| Question type |  |
 
 ## Groups and Repeats
 
-|---------|--------|---------|-------|
-| Nested groups | sous-groupes | los subgrupos | |
-| Roster | une série | grupo | Use only as specific example of groups, not equivalent to "group" |
+| English |
+| --------- |
+| Nested groups |
+| Roster |
+| Repeat group |
+| Occurrence of a repeat group |
 
 ## Range Question Components
 
-|---------|--------|---------|
-| start | départ / nombre de départ | inicio |
-| end | arrivée / nombre d'arrivée | final |
-| step | écart | intervalo |
+| English |
+| --------- |
+| start |
+| end |
+| step |
 
 ## Question Elements
 
-|---------|--------|---------|-------|
-| Question appearances | | aspectos de las preguntas | |
-| Question hint | indice de question | sugerencia de pregunta | |
-| Guidance hint | instructions supplémentaires | sugerencia adicional | Include English on first reference (not yet in UI) |
-| Regular hint | indication de base | sugerencias comunes | |
+| English |
+| --------- |
+| Question appearances |
+| Question hint |
+| Guidance hint |
+| Regular hint |
 
 ## XLSForm Technical Terms (English + Translation Approach)
 
-|---------|--------|---------|-------|
-| XML values | valeurs XML | valor XML | |
-| XML headers | en-tête XML | encabezados XLM | |
-| Value and header format | format pour les valeurs et l'en-tête | formato de los valores y encabezados | |
-| Cascading select | Sélection en cascade | | In XLSForm called "choice filters" |
+| English |
+| --------- |
+| XML values |
+| XML headers |
+| Value and header format |
+| Cascading select |
 
 ## Cascading Select Components
 
 **MUST use English + translation in parentheses approach.**
 
-|---------|--------|---------|---------|
-| list_name | nom de la liste | nombre de la lista | "remplissez la colonne list_name (nom de la liste)" |
-| label | libellé | etiqueta | Use "le libellé" for both questions and options |
-| name | nom de l'élément | nombre | |
-| Parent list | liste principale | lista principal | |
-| Child list | liste secondaire | lista secundaria | |
+| English | Example |
+| --------- | --------- |
+| list_name | "remplissez la colonne list_name (nom de la liste)" |
+| label | Use "le libellé" for both questions and options |
+| name |  |
+| Parent list |  |
+| Child list |  |
 
 ## Variable and Column Names
 
-|---------|--------|---------|-------|
-| Variable name | nom de la variable | nombre de variable | |
-| ${DataColumnName} | ${NomChamp} | ${Nombre} | |
-| Data column prefix | préfixe du champ | prefijo de columna de datos | |
-| Data column suffix | suffixe du champ | sufijo de columna de datos | |
-
-### French "nom de champ" Usage
-
-- **"Nom du champ"**: When referring to a specific question
-- **"Nom de champ"**: When referring to the concept
-- **"Noms des champs"**: When referring to specific fields (plural, specific data column names)
-- **"Noms de champs"**: When referring to the concept in plural (information about data column names in general)
+| English |
+| --------- |
+| Variable name |
+| Data column name |
+| ${DataColumnName} |
+| Data column prefix |
+| Data column suffix |
 
 ### Additional Technical Terms
 
-|---------|--------|---------|-------|
-| Question referencing format | format de référencement de questions | formato de pregunta de referencia | |
+| English |
+| --------- |
+| Question referencing format |
+| Case sensitive |
 
 ## Logic and Validation
 
-|---------|--------|---------|-------|
-| Single validation criteria | critère de validation simple | criterio simple de validación | |
+| English |
+| --------- |
+| Single validation criteria |
+| Skip logic |
 
 ## Form Actions
 
-|---------|--------|---------|-------|
-| Upload a form | envoyer un formulaire | enviar un formulario | |
-| Form upload | envoi d'un formulaire | envío de un formulario | |
-| Uploaded forms | formulaires envoyés | formularios enviados | |
-| Load a form | ouvrir un formulaire | cargar un formulario | "When/once loaded" = "une fois le formulaire ouvert" |
+| English |
+| --------- |
+| Save |
+| Upload a form |
+| Form upload |
+| Uploaded forms |
+| Load a form |
 
 ## Survey Types
 
-|---------|--------|---------|-------|
-| Primary survey | Questionnaire principal | | Also called "parent" survey. Preferred terms are "primary/secondary" |
-| Secondary survey | Questionnaire secondaire | | Also called "child" survey. Preferred terms are "primary/secondary" |
+| English |
+| --------- |
+| Primary survey |
+| Secondary survey |

@@ -25,9 +25,12 @@ kobo-translation-test/
 │   ├── test_srt_parser.py               # Parser verification test
 │   └── TEST_RESULTS.md                  # Verification results
 ├── skills/
-│   ├── kobo-translation/                # Main translation skill
-│   │   ├── SKILL.md
-│   │   └── references/
+│   ├── kobo-translation/                # Main translation skill (source of truth)
+│   │   ├── SKILL.md                     # ⚠️ EDIT THIS, then run split script
+│   │   └── references/                  # ⚠️ EDIT THESE, then run split script
+│   ├── kobo-translation-es/             # Spanish-only skill (auto-generated)
+│   ├── kobo-translation-fr/             # French-only skill (auto-generated)
+│   ├── kobo-translation-ar/             # Arabic-only skill (auto-generated)
 │   └── kobo-translation-srt/            # SRT subtitle extension skill
 │       ├── SKILL.md
 │       └── references/
@@ -36,6 +39,7 @@ kobo-translation-test/
 │   ├── translation_agent.py             # Main translation agent (docs)
 │   ├── translate_srt.py                 # SRT translation agent (NEW)
 │   ├── srt_helper.py                    # SRT parser & converter (NEW)
+│   ├── split_skill_by_language.py       # Generates language-specific skills
 │   └── requirements.txt                 # Python dependencies
 ├── SRT_WORKFLOW.md                      # SRT translation guide (NEW)
 ├── SRT_IMPLEMENTATION.md                # Implementation details (NEW)
@@ -261,6 +265,64 @@ Then:
 - Add all English documentation files
 - Train reviewers on PR process
 - Set up monitoring and alerts
+
+## Maintaining Translation Skills
+
+### Single Source of Truth
+
+All translation terminology and guidelines are maintained in **one place**:
+```
+skills/kobo-translation/
+├── SKILL.md                    # ⚠️ Edit this file
+└── references/                 # ⚠️ Edit these files
+    ├── brand-terminology.md
+    ├── course-terminology.md
+    ├── data-collection-terms.md
+    ├── form-building-terms.md
+    ├── question-types.md
+    └── ui-terminology.md
+```
+
+**⚠️ IMPORTANT:** These files contain translations for ALL languages (EN, ES, FR, AR) in table columns.
+
+### Regenerating Language-Specific Skills
+
+After editing any files in `skills/kobo-translation/`, run:
+
+```bash
+python3 scripts/split_skill_by_language.py
+```
+
+This automatically generates optimized, language-focused versions:
+- `skills/kobo-translation-es/` - English → Spanish only
+- `skills/kobo-translation-fr/` - English → French only
+- `skills/kobo-translation-ar/` - English → Arabic only
+
+**What the script does:**
+- ✅ Filters table columns (keeps only English + target language)
+- ✅ Removes prose sections for other languages
+- ✅ Filters language-specific usage guides and examples
+- ✅ Preserves technical metadata columns (XLSForm types, etc.)
+- ✅ Reduces context window size for more efficient translations
+
+### Workflow
+
+```
+1. Update terminology in skills/kobo-translation/references/*.md
+   ↓
+2. Run: python3 scripts/split_skill_by_language.py
+   ↓
+3. Commit all changes (source + generated skills)
+   ↓
+4. Translation agent uses optimized language-specific skills
+```
+
+**🚫 DO NOT** manually edit files in:
+- `skills/kobo-translation-es/`
+- `skills/kobo-translation-fr/`
+- `skills/kobo-translation-ar/`
+
+These are **auto-generated** and will be overwritten when you run the script.
 
 ## Files Included
 

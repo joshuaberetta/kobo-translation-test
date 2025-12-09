@@ -16,10 +16,11 @@ All translations in this file are OFFICIAL and must be used exactly as specified
 
 ### Most Commonly Missed Capitalizations
 
-|------|---------|--------|---------|-----------------|
-| Draft | UI element / Form status | **Brouillon** | **Borrador** | ❌ Using lowercase in UI contexts |
-| Form tab | Main navigation | **onglet FORMULAIRE** | **Ventana FORMULARIO** | ❌ Not all caps |
-| Data tab | Main navigation | **onglet DONNÉES** | **Ventana DATOS** | ❌ Not all caps |
+| Context | Spanish | ❌ Common Error |
+| --------- | --------- | ----------------- |
+| UI element / Form status | **Borrador** | ❌ Using lowercase in UI contexts |
+| Main navigation | **Ventana FORMULARIO** | ❌ Not all caps |
+| Main navigation | **Ventana DATOS** | ❌ Not all caps |
 
 **⚠️ RULE:** When referring to UI elements (buttons, tabs, statuses), use the EXACT capitalization from the UI.
 
@@ -27,108 +28,122 @@ All translations in this file are OFFICIAL and must be used exactly as specified
 
 ### API and Core Elements
 
-|---------|--------|---------|-------|
-| The application programming interface (API) / KoboToolbox API | interface de programmation d'application (API) / API KoboToolbox | interfaz de programación de aplicaciones (API) | |
-| Toolbar | barre d'outils | barra de herramientas | |
-| Build from scratch | Création de formulaires (in UI) / Créer un formulaire à partir de zéro (in text) | Crear desde un borrador | |
-| Save Draft (Enketo) | Sauvegarder le brouillon | Guardar borrador | |
+| English | Spanish | Notes |
+| --------- | --------- | ------- |
+| The application programming interface (API) / KoboToolbox API | interfaz de programación de aplicaciones (API) |  |
+| Toolbar | barra de herramientas |  |
+| Build from scratch | Crear desde un borrador |  |
+| **Draft** | **Borrador** | 🚨 FR: not "ébauche" / Capitalize in UI contexts |
+| Save Draft (Enketo) | Guardar borrador |  |
 
 ### Tabs and Views
 
-|---------|--------|---------|-------|
-| FORM tab | **onglet FORMULAIRE** | **Ventana FORMULARIO** | 🚨 ALL CAPS for tab name |
-| Form view / Form page | mode formulaire / tableau de bord du formulaire | visualizar el formulario / página del formulario | |
-| DATA tab | **onglet DONNÉES** | **Ventana DATOS** | 🚨 ALL CAPS for tab name |
-| SUMMARY tab | **onglet SOMMAIRE** | **Ventana RESUMEN** | 🚨 ALL CAPS for tab name |
-| Table view | mode Tableau | vista de Tabla | |
-| Map view | mode Carte | vista de Mapa | |
-| Report view | mode Rapports | vista de Informes | |
+| English | Spanish | Notes |
+| --------- | --------- | ------- |
+| FORM tab | **Ventana FORMULARIO** | 🚨 ALL CAPS for tab name |
+| Form view / Form page | visualizar el formulario / página del formulario |  |
+| DATA tab | **Ventana DATOS** | 🚨 ALL CAPS for tab name |
+| SUMMARY tab | **Ventana RESUMEN** | 🚨 ALL CAPS for tab name |
+| View | Vista | FR: Can be "affichage" or "aperçu" in other contexts, but not for UI elements |
+| Table view | vista de Tabla |  |
+| Map view | vista de Mapa |  |
+| Report view | vista de Informes |  |
 
 ### Pages and Features
 
-|---------|--------|---------|
-| Downloads page | page Téléchargements | página de Descargas |
-| Gallery page | page Galerie Photo | página de Galería |
-| New Export | Nouvel export | Nuevo exportable |
-| Save image as | Enregistrer l'image sous | Guardar la imágen como |
-| Embeddable Web Form Code | Code de formulaire Web | Código de formulario web integrable |
-| Hook / webhook | Hook / webhook | Hook / webhook |
+| English | Spanish |
+| --------- | --------- |
+| Downloads page | página de Descargas |
+| Gallery page | página de Galería |
+| New Export | Nuevo exportable |
+| Save image as | Guardar la imágen como |
+| Embeddable Web Form Code | Código de formulario web integrable |
+| Hook / webhook | Hook / webhook |
 
 ## KoboCollect UI Terminology
 
 ### Main Menu
 
-|---------|--------|---------|-------------------|-------|
-| Start new form | Remplir un formulaire | Iniciar nuevo formulario | | |
-| Drafts | Ébauches | Borradores | | |
-| Ready to send | Prêt à envoyer | Listo para enviar | | |
-| Sent | Envoyé | Enviado | | |
-| Download form | Télécharger formulaire | Descargar formulario | | |
-| Delete form | Supprimer formulaire | Borrar formulario | | |
+| English | Spanish | Recommended Update | Notes |
+| --------- | --------- | ------------------- | ------- |
+| Start new form | Iniciar nuevo formulario |  |  |
+| Drafts | Borradores |  |  |
+| Ready to send | Listo para enviar |  |  |
+| Sent | Enviado |  |  |
+| Download form | Descargar formulario |  |  |
+| Delete form | Borrar formulario |  |  |
 
 ### Download Form Screen
 
-|---------|--------|---------|
-| Select all | Tout sélectionner | Seleccionar todo |
-| Refresh | Rafraîchir | Actualizar |
-| Get Selected | Télécharger la sélection | Obtener los Seleccionados |
+| English | Spanish |
+| --------- | --------- |
+| Select all | Seleccionar todo |
+| Refresh | Actualizar |
+| Get Selected | Obtener los Seleccionados |
 
 ### Settings
 
-|---------|--------|---------|
-| Manually enter project details | Saisir les détails du projet | Entrar los detalles del proyecto manualmente |
-| Settings | Paramètres | Ajustes |
-| Server | Serveur | Servidor |
+| English | Spanish |
+| --------- | --------- |
+| Manually enter project details | Entrar los detalles del proyecto manualmente |
+| Settings | Ajustes |
+| Server | Servidor |
 
 ### GPS Questions
 
-|---------|--------|---------|------------------------|
-| Start GeoPoint | Démarrer le point | Buscar Ubicación | Iniciar Geopunto |
-| Start GeoTrace | Démarrer la ligne | Iniciar GeoLínea | |
-| Placement by tapping | Placement en tapotant | Ubicación con toque | |
-| Manual location recording | Enregistrement manuel de la localisation | Registro de localización manual | |
-| Record a point | Enregistrer un point | Registrando un punto | Registrar un punto |
-| Automatic location recording | Enregistrement automatique de la localisation | Registro de localización automática | Registro de localización automático |
-| Start | Démarrer | Iniciar | |
-| Recording interval | Intervalle d'enregistrement | Intervalo de grabación | |
-| Accuracy requirement | Exigence de précision | Requisito de precisión | |
-| View of Change GeoTrace | Voir ou modifier la ligne | Ver o cambiar GeoLínea | |
-| Start GeoShape | Démarrer le polygone | Iniciar GeoArea | |
+| English | Spanish | Recommended Update (ES) |
+| --------- | --------- | ------------------------ |
+| Start GeoPoint | Buscar Ubicación | Iniciar Geopunto |
+| Start GeoTrace | Iniciar GeoLínea |  |
+| Placement by tapping | Ubicación con toque |  |
+| Manual location recording | Registro de localización manual |  |
+| Record a point | Registrando un punto | Registrar un punto |
+| Automatic location recording | Registro de localización automática | Registro de localización automático |
+| Start | Iniciar |  |
+| Recording interval | Intervalo de grabación |  |
+| Accuracy requirement | Requisito de precisión |  |
+| View of Change GeoTrace | Ver o cambiar GeoLínea |  |
+| Start GeoShape | Iniciar GeoArea |  |
 
 ### Background Audio
 
-|---------|--------|---------|
-| Record audio | Enregistrement audio | Grabar sonido de fondo |
-| Disable recording | Désactiver enregistrement | Desactivar la grabación |
+| English | Spanish |
+| --------- | --------- |
+| Record audio | Grabar sonido de fondo |
+| Disable recording | Desactivar la grabación |
 
 ### Repeat Groups
 
-|---------|--------|---------|
-| Add | Ajouter | Agregar |
-| Do not add | Ne pas ajouter | No agregar |
+| English | Spanish |
+| --------- | --------- |
+| Add | Agregar |
+| Do not add | No agregar |
 
 ### Form Navigation
 
-|---------|--------|---------|-------------------|
-| NEXT | SUIVANT | SIG. | SIGUIENTE (ES) |
-| Save as draft | Enregistrer comme ébauche | Guardar como borrador | Sauvegarder le brouillon (FR) |
-| Finalize | Finaliser | Finalizar | |
+| English | Spanish | Recommended Update |
+| --------- | --------- | ------------------- |
+| NEXT | SIG. | SIGUIENTE (ES) |
+| Save as draft | Guardar como borrador | Sauvegarder le brouillon (FR) |
+| Finalize | Finalizar |  |
 
 ### Sending Forms
 
-|---------|--------|---------|
-| Send Selected | Envoyer éléments sélectionnés | Enviar seleccionado |
+| English | Spanish |
+| --------- | --------- |
+| Send Selected | Enviar seleccionado |
 
 ## Button Names - Capitalization Quick Reference
 
 When translating button or tab names in documentation, match the UI capitalization:
 
-|----------------|---------|--------|---------|
-| Tabs (all caps) | DATA | **DONNÉES** | **DATOS** |
-| Tabs (all caps) | FORM | **FORMULAIRE** | **FORMULARIO** |
-| Buttons | DEPLOY | **DÉPLOYER** | **DESPLEGAR** |
-| Buttons | NEW | **NOUVEAU** | **NUEVO** |
-| Status | Draft | **Brouillon** | **Borrador** |
+| Example | Spanish |
+| --------- | --------- |
+| DATA | **DATOS** |
+| FORM | **FORMULARIO** |
+| DEPLOY | **DESPLEGAR** |
+| NEW | **NUEVO** |
+| Draft | **Borrador** |
 
 **⚠️ IMPORTANT:** When writing support documentation, wrap UI element names in bold to indicate they are UI elements: **DÉPLOYER**, **Brouillon**, **onglet FORMULAIRE**
 
@@ -137,6 +152,10 @@ When translating button or tab names in documentation, match the UI capitalizati
 ### Example 1: Draft Status
 
 **Source:** "To start collecting data, click DEPLOY in the FORM page to deploy your draft form."
+
+
+
+**Error:** Lowercase "brouillon" - should be capitalized "Brouillon" when referring to the UI status.
 
 ### Example 2: Tab Names
 

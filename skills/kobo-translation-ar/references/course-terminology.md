@@ -10,32 +10,43 @@ These translations are preferred but can be adapted based on context and localiz
 
 ## Course Assessment Terms
 
-|---------|--------|---------|-------|
-| Pre-training questionnaire | questionnaire préliminaire | Cuestionario preliminar | |
-| Quiz | quiz | Quiz | Thinkific UI uses "questionnaire" not "quiz" - use "questionnaire" when referring specifically to this UI element |
-| Final quiz | évaluation finale | evaluación final | |
-| Official KoboToolbox Essentials certificate | attestation de réussite du Cours d'initiation à KoboToolbox / certificat officiel du Cours d'initiation à KoboToolbox | Certificado oficial del curso de Introducción a KoboToolbox | |
+| English |
+| --------- |
+| Pre-training questionnaire |
+| Quiz |
+| Final quiz |
+| Practice exercises |
+| Official KoboToolbox Essentials certificate |
 
 ## Platform Navigation
 
-|---------|--------|---------|
-| Course landing page | la page d'accueil du cours | página de inicio |
-| Dashboard (in Thinkific UI) | tableau de bord | portal de estudiante |
+| English |
+| --------- |
+| Course landing page |
+| Dashboard (in Thinkific UI) |
 
 ## Roles and Content Types
 
-|---------|--------|---------|
-| Knowledge transfer specialist | Expert en Transfert de Connaissances | Especialista de transferencia de conocimientos |
-| Tutorials | tutoriels | tutoriales |
-| Support article | article d'aide | artículos de ayuda |
+| English |
+| --------- |
+| Knowledge transfer specialist |
+| Tutorials |
+| Support article |
 
 ## Website and Web Terms
 
-|---------|--------|---------|-------|
+| English |
+| --------- |
+| Website |
+| Web |
 
 ## Common Course Phrases
 
-|---------|--------|---------|------------------|
+| English |
+| --------- |
+| Getting started with … |
+| Let's go ahead and add the question |
+| Press (e.g., press the Submit button) |
 
 ## Localization Guidelines for Course Content
 
@@ -54,3 +65,6 @@ These translations are preferred but can be adapted based on context and localiz
 - Use shortened versions due to character constraints
 
 ### Gender-Inclusive Language in Courses
+
+
+**Note:** This approach should be explained in Course Navigation Guide for Spanish courses.
