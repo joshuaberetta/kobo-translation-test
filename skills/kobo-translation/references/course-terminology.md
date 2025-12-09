@@ -44,7 +44,7 @@ These translations are preferred but can be adapted based on context and localiz
 
 | English | French | Spanish | Translation Notes |
 |---------|--------|---------|------------------|
-| Getting started with … | *localize / translate for context* (e.g., Se lancer avec) | Iniciar con | FR: should not be "Débuter avec" |
+| Getting started with … | *localize / translate for context* (e.g., Découvrir…, Introduction à…) | Iniciar con | FR: should not be "Débuter avec". Use contextually appropriate phrasing like "Découvrir…" or "Introduction à…" |
 | Let's go ahead and add the question | ajoutons la question | Comencemos añadiendo la pregunta | FR: Simplify and omit "Let's go ahead". Not "allons-y et ajoutons la question" |
 | Press (e.g., press the Submit button) | appuyer sur | click en | FR: not "presser" |
 

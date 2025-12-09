@@ -168,6 +168,10 @@ For **UPDATES** (diff-based translation):
 - Preferred translations, adapt for context
 - Special rules for management, submissions, data collection
 
+**Documentation website terms** → See [documentation-terminology.md](references/documentation-terminology.md)
+- Preferred translations for Help Center content
+- Support articles, Getting started patterns, UI element descriptions
+
 **Course and learning platform** → See [course-terminology.md](references/course-terminology.md)
 - Preferred translations
 - Context-specific adaptations allowed
@@ -359,6 +363,20 @@ Context-dependent, see [data-collection-terms.md](references/data-collection-ter
 - French naturally places pronouns before verbs: "les rend" (makes them)
 - Don't force English word order
 
+**"Getting started with…" translation pattern:**
+- DO NOT translate as "Débuter avec" (awkward in French)
+- Instead, adapt for context: "Découvrir…", "Introduction à…", "Pour commencer avec…"
+- Example: "Getting started with KoboToolbox" → "Introduction à KoboToolbox" OR "Découvrir KoboToolbox"
+
+**"Press" (button):**
+- Use "appuyer sur" (not "presser")
+- Example: "appuyer sur le bouton Soumettre"
+
+**"Let's go ahead and…" simplification:**
+- Simplify and omit "Let's go ahead"
+- Example: "Let's go ahead and add the question" → "ajoutons la question"
+- NOT: "allons-y et ajoutons la question"
+
 ### Spanish-Specific Rules
 
 **"Management":**
@@ -381,10 +399,6 @@ Context-dependent, see [data-collection-terms.md](references/data-collection-ter
 **"Disaggregate":**
 - FR: "désagréger" (not "ventiler")
 - ES: "desagregar"
-
-**"Press" (button):**
-- FR: "appuyer sur" (not "presser")
-- ES: "click en"
 
 **"Case sensitive":**
 - FR: "sensibles à l'utilisation de majuscules et de minuscules" (not "sensible à la casse")
@@ -409,6 +423,7 @@ For detailed term-by-term translations, consult these reference files:
 - **[question-types.md](references/question-types.md)** - Question types and appearances (PREFERRED for types, special rules for appearances)
 - **[ui-terminology.md](references/ui-terminology.md)** - Formbuilder and KoboCollect UI (OFFICIAL) - **READ THIS SECOND**
 - **[data-collection-terms.md](references/data-collection-terms.md)** - Data collection concepts (PREFERRED)
+- **[documentation-terminology.md](references/documentation-terminology.md)** - Documentation website and Help Center terms (PREFERRED)
 - **[course-terminology.md](references/course-terminology.md)** - Learning platform and course content (PREFERRED)
 
 ## Translation Decision Tree

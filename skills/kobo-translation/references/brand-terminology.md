@@ -60,6 +60,7 @@
 | Kobo | Kobo / l'organisation Kobo | Kobo / la organización Kobo | Kobo | Gender neutral, no article. Use masculine adjectives. If gendered needed, use compound noun |
 | KoboToolbox | KoboToolbox / la plateforme KoboToolbox / l'outil KoboToolbox | KoboToolbox / la plataforma KoboToolbox | KoboToolbox | Use "dans KoboToolbox" not "sur KoboToolbox" |
 | KoboToolbox features | les fonctionnalités de KoboToolbox | las funcionalidades de KoboToolbox | خصائص KoboToolbox | |
+| KoboToolbox form(s) / data collection forms | formulaires KoboToolbox / formulaires de collecte de données | formularios KoboToolbox | | |
 | KoboToolbox Academy | KoboToolbox Academy | KoboToolbox Academy | KoboToolbox Academy | Always in English (brand term) |
 
 ## Course Terminology
@@ -77,6 +78,7 @@
 | **European Union KoboToolbox Server** | **Le serveur KoboToolbox Union européenne** | **Servidor con sede en la Unión Europea** | 🚨 See red box above for critical usage notes |
 | KoboToolbox private server | serveurs privés Kobotoolbox | servidor privado de KoboToolbox | |
 | **Formbuilder** | **interface de création de formulaires / outil de construction de formulaires KoboToolbox / KoboToolbox Formbuilder** | **editor de formularios / Formbuilder KoboToolbox / Formbuilder de KoboToolbox** | 🚨 Include English "KoboToolbox Formbuilder" + translation on first instance, then use short version |
+| Enketo web forms | formulaires web Enketo | | | |
 
 ## Community and Support
 

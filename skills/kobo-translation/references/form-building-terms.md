@@ -27,6 +27,7 @@ Example: "Pour chaque liste d'options, remplissez la colonne list_name (nom de l
 | Form themes | thèmes du formulaire | | | Different appearance options in style column |
 | Form media | médias au sein du formulaire | datos multimedia del formulario | | |
 | Question type | question de type [type name] | tipo de pregunta | | Example: "question de type texte" / "El tipo de pregunta texto" |
+| Option choice(s) | choix de réponse | | | |
 
 ## Groups and Repeats
 
@@ -49,10 +50,10 @@ Example: "Pour chaque liste d'options, remplissez la colonne list_name (nom de l
 
 | English | French | Spanish | Notes |
 |---------|--------|---------|-------|
-| Question appearances | | aspectos de las preguntas | |
+| Question appearances | apparences de questions | aspectos de las preguntas | |
 | Question hint | indice de question | sugerencia de pregunta | |
-| Guidance hint | instructions supplémentaires | sugerencia adicional | Include English on first reference (not yet in UI) |
-| Regular hint | indication de base | sugerencias comunes | |
+| Guidance hint | instructions supplémentaires (guidance hint) | sugerencia adicional | Include English on first reference (not yet in UI) |
+| Regular hint | indice de question de base (hint) | sugerencias comunes | |
 
 ## XLSForm Technical Terms (English + Translation Approach)
 
@@ -105,6 +106,7 @@ Example: "Pour chaque liste d'options, remplissez la colonne list_name (nom de l
 |---------|--------|---------|-------|
 | Single validation criteria | critère de validation simple | criterio simple de validación | |
 | Skip logic | branchement conditionnel | lógica de omisión | FR: also known as "logique de saut", "logique de branchement". Not "critères de passage" |
+| Validation criteria | critère(s) de validation | | |
 
 ## Form Actions
 

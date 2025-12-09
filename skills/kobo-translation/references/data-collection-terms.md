@@ -67,9 +67,10 @@ Both are acceptable depending on context, but follow the patterns above for cons
 
 ## Media and Recording
 
-| English | French | Spanish |
-|---------|--------|---------|
-| Background audio | audio d'arrière-plan | sonido de fondo / audio de fondo |
+| English | French | Spanish | Notes |
+|---------|--------|---------|-------|
+| Background audio | audio d'arrière-plan | sonido de fondo / audio de fondo | |
+| Background audio recording | enregistrement audio d'arrière-plan | | |
 
 ## Other Data Terms
 
