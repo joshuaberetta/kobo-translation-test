@@ -106,6 +106,44 @@ git push
 3. Enter files and languages
 4. Review the PR
 
+**Bulk retranslation (for testing skill updates):**
+
+*Option 1: GitHub Actions (recommended for team use)*
+1. Go to **Actions → Bulk Retranslate Documentation**
+2. Click **"Run workflow"**
+3. Select mode:
+   - `test` - 2-3 test files only (safe)
+   - `specific` - Specific files you list
+   - `all` - ALL files (requires confirmation)
+4. Enter target languages (e.g., `es,fr,ar`)
+5. Review the PR created by the bot
+
+*Option 2: Local execution (recommended for development)*
+```bash
+# Quick helper script
+./scripts/retranslate.sh test-es        # Test with 2 files → Spanish
+./scripts/retranslate.sh test-all       # Test with 2 files → all languages
+./scripts/retranslate.sh all-es         # All docs → Spanish (with confirmation)
+./scripts/retranslate.sh dry-run        # Preview what would be translated
+
+# Direct Python usage (more options)
+python scripts/bulk_retranslate.py --language es
+
+# Retranslate all docs to all languages
+python scripts/bulk_retranslate.py --language es fr ar
+
+# Retranslate specific files
+python scripts/bulk_retranslate.py --language es --files about_kobotoolbox.md quick_start.md
+
+# Dry run to preview what would be translated
+python scripts/bulk_retranslate.py --language es --dry-run
+
+# See all options
+python scripts/bulk_retranslate.py --help
+```
+
+📖 **Full guide:** See `docs/guides/BULK_RETRANSLATION.md` for detailed workflows and best practices.
+
 ### Translate Video Subtitles
 
 **Local:**
@@ -187,6 +225,35 @@ This automatically generates optimized, language-focused versions:
 4. Translation agent uses optimized language-specific skills
 ```
 
+### Testing Skill Updates with Bulk Retranslation
+
+After updating skills, you can retranslate existing docs to compare quality:
+
+```bash
+# 1. Update skills
+vim skills/kobo-translation/references/brand-terminology.md
+
+# 2. Regenerate language-specific skills
+python3 scripts/split_skill_by_language.py
+
+# 3. Test on a few files first (dry run)
+python scripts/bulk_retranslate.py --language es --files test_simple.md --dry-run
+
+# 4. Retranslate test files
+python scripts/bulk_retranslate.py --language es --files test_simple.md test_complex.md
+
+# 5. Compare old vs new translations to evaluate skill improvements
+git diff docs/es/test_simple.md
+
+# 6. If satisfied, retranslate all docs (be aware of API costs!)
+python scripts/bulk_retranslate.py --language es fr ar
+```
+
+**Cost estimation:** 
+- Test files (2-3 docs): ~$0.50-$1.00
+- All docs (~100 files): ~$15-$30 per run
+- Use `--dry-run` first to preview scope
+
 **🚫 DO NOT** manually edit files in:
 - `skills/kobo-translation-es/`
 - `skills/kobo-translation-fr/`
@@ -221,6 +288,7 @@ When reviewing automated translation PRs, check:
 
 - **Setup Guide:** `docs/guides/SETUP.md` - Complete setup instructions
 - **Quick Start:** `docs/guides/QUICKSTART.md` - Fast setup checklist
+- **Bulk Retranslation:** `docs/guides/BULK_RETRANSLATION.md` - Regenerate translations when skills are updated
 - **SRT Translation:** `docs/guides/SRT_WORKFLOW.md` - Video subtitle translation
 - **GitHub Actions SRT:** `docs/guides/GITHUB_ACTIONS_SRT_GUIDE.md` - Automate SRT translation
 - **Prompt Caching:** `docs/guides/PROMPT_CACHING_IMPLEMENTATION.md` - Cost optimization details

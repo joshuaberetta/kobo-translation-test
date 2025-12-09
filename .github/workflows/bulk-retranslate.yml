@@ -1,0 +1,317 @@
+name: Bulk Retranslate Documentation
+
+on:
+  workflow_dispatch:
+    inputs:
+      languages:
+        description: 'Target language(s) - comma-separated (es, fr, ar)'
+        required: true
+        default: 'es'
+        type: string
+      
+      files:
+        description: 'Files to retranslate (comma-separated filenames, e.g., about_kobotoolbox.md,quick_start.md). Leave empty for ALL files.'
+        required: false
+        type: string
+      
+      mode:
+        description: 'Translation mode'
+        required: true
+        type: choice
+        default: 'test'
+        options:
+          - test       # 2-3 test files only
+          - specific   # Specific files listed above
+          - all        # ALL files (expensive!)
+      
+      confirm_cost:
+        description: '⚠️ I understand the cost implications (required for "all" mode)'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  bulk-retranslate:
+    name: Bulk Retranslate (${{ github.event.inputs.mode }})
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Validate inputs
+        run: |
+          echo "=== Bulk Retranslation Workflow ==="
+          echo "Mode: ${{ github.event.inputs.mode }}"
+          echo "Languages: ${{ github.event.inputs.languages }}"
+          echo "Files: ${{ github.event.inputs.files || '(ALL)' }}"
+          echo "Cost confirmed: ${{ github.event.inputs.confirm_cost }}"
+          
+          # Validate mode=all requires confirmation
+          if [ "${{ github.event.inputs.mode }}" == "all" ] && [ "${{ github.event.inputs.confirm_cost }}" != "true" ]; then
+            echo "❌ ERROR: Mode 'all' requires cost confirmation"
+            echo ""
+            echo "Retranslating ALL files can cost \$15-30 per language."
+            echo "Please check the 'I understand the cost implications' checkbox to proceed."
+            exit 1
+          fi
+          
+          echo "✅ Validation passed"
+      
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r scripts/requirements.txt
+      
+      - name: Verify skill files
+        run: |
+          echo "📚 Checking for skill files..."
+          
+          # Check for language-specific skills
+          LANG_SKILLS_FOUND=0
+          for LANG in $(echo "${{ github.event.inputs.languages }}" | tr ',' ' '); do
+            if [ -d "skills/kobo-translation-${LANG}" ] && [ -f "skills/kobo-translation-${LANG}/SKILL.md" ]; then
+              echo "✅ Language-specific skill found for ${LANG}"
+              LANG_SKILLS_FOUND=$((LANG_SKILLS_FOUND + 1))
+            else
+              echo "⚠️  Language-specific skill not found for ${LANG}"
+            fi
+          done
+          
+          # Check for generic skill (fallback)
+          if [ -d "skills/kobo-translation" ] && [ -f "skills/kobo-translation/SKILL.md" ]; then
+            echo "✅ Generic skill found (fallback)"
+          else
+            echo "⚠️  Generic skill not found"
+          fi
+          
+          # Ensure at least some skills exist
+          if [ $LANG_SKILLS_FOUND -eq 0 ] && [ ! -f "skills/kobo-translation/SKILL.md" ]; then
+            echo "❌ Error: No translation skills found"
+            exit 1
+          fi
+          
+          echo "✅ Skill verification complete ($LANG_SKILLS_FOUND language-specific skills found)"
+      
+      - name: Determine files to translate
+        id: files
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          FILES_INPUT="${{ github.event.inputs.files }}"
+          
+          if [ "$MODE" == "test" ]; then
+            # Test mode: translate 2-3 test files
+            FILES="test_simple.md test_complex.md"
+            echo "📝 Test mode: translating sample files"
+            
+          elif [ "$MODE" == "specific" ]; then
+            # Specific mode: use files from input
+            if [ -z "$FILES_INPUT" ]; then
+              echo "❌ Error: Mode 'specific' requires files to be specified"
+              exit 1
+            fi
+            FILES="$FILES_INPUT"
+            echo "📝 Specific mode: translating specified files"
+            
+          elif [ "$MODE" == "all" ]; then
+            # All mode: find all markdown files
+            echo "📝 All mode: finding all markdown files in docs/en/"
+            ALL_FILES=$(find docs/en -name "*.md" -type f -exec basename {} \; | tr '\n' ' ')
+            FILES="$ALL_FILES"
+            
+            FILE_COUNT=$(echo "$FILES" | wc -w)
+            echo "📊 Found $FILE_COUNT files to translate"
+            
+          else
+            echo "❌ Error: Unknown mode: $MODE"
+            exit 1
+          fi
+          
+          # Clean up files list (remove extra spaces, newlines)
+          FILES=$(echo "$FILES" | tr ',' ' ' | xargs)
+          
+          # Save to output
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+          
+          echo ""
+          echo "=== Files to translate ==="
+          echo "$FILES" | tr ' ' '\n'
+          echo "=========================="
+      
+      - name: Bulk retranslate
+        id: retranslate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          echo "🔄 Starting bulk retranslation..."
+          echo ""
+          
+          FILES="${{ steps.files.outputs.files }}"
+          LANGUAGES="${{ github.event.inputs.languages }}"
+          
+          # Build file arguments
+          FILE_ARGS=""
+          for FILE in $FILES; do
+            FILE_ARGS="$FILE_ARGS --files $FILE"
+          done
+          
+          # Build language arguments
+          LANG_ARGS=""
+          for LANG in $(echo "$LANGUAGES" | tr ',' ' '); do
+            LANG_ARGS="$LANG_ARGS --language $LANG"
+          done
+          
+          echo "Command: python scripts/bulk_retranslate.py $LANG_ARGS $FILE_ARGS --verbose"
+          echo ""
+          
+          # Run bulk retranslation
+          if python scripts/bulk_retranslate.py $LANG_ARGS $FILE_ARGS --verbose; then
+            echo "✅ Bulk retranslation completed successfully"
+            SUCCESS="true"
+          else
+            echo "❌ Bulk retranslation failed"
+            SUCCESS="false"
+          fi
+          
+          echo "success=$SUCCESS" >> $GITHUB_OUTPUT
+      
+      - name: Create Pull Request
+        if: steps.retranslate.outputs.success == 'true'
+        uses: peter-evans/create-pull-request@v6
+        id: pr
+        with:
+          token: ${{ secrets.TRANSLATION_BOT_TOKEN }}
+          commit-message: |
+            🔄 Bulk retranslate: ${{ github.event.inputs.mode }} mode
+            
+            Languages: ${{ github.event.inputs.languages }}
+            Files: ${{ github.event.inputs.mode == 'all' && 'ALL FILES' || steps.files.outputs.files }}
+            
+            Triggered by: @${{ github.actor }}
+          branch: translations/bulk-retranslate-${{ github.run_number }}
+          delete-branch: true
+          title: "🔄 Bulk Retranslation (${{ github.event.inputs.mode }}) #${{ github.run_number }}"
+          body: |
+            ## 🔄 Bulk Retranslation
+            
+            **Mode:** `${{ github.event.inputs.mode }}`
+            **Languages:** `${{ github.event.inputs.languages }}`
+            **Triggered by:** @${{ github.actor }}
+            
+            ### 📋 Purpose
+            
+            This PR contains **bulk retranslated** documentation files. This is typically done when:
+            - ✅ Translation skills have been updated
+            - ✅ Testing quality improvements from skill changes
+            - ✅ Regenerating translations with updated terminology
+            
+            ### 🔄 Translation Mode
+            
+            **⚡ FORCE TRANSLATION MODE**
+            - All specified files were **fully re-translated** from scratch
+            - This ensures latest terminology and style guidelines are applied
+            - Existing translations were completely regenerated
+            
+            ${{ github.event.inputs.mode == 'test' && '**Test Mode:** Only sample files (test_simple.md, test_complex.md) were retranslated for validation.\n' || '' }}
+            ${{ github.event.inputs.mode == 'specific' && format('**Specific Mode:** Only the following files were retranslated:\n```\n{0}\n```\n', steps.files.outputs.files) || '' }}
+            ${{ github.event.inputs.mode == 'all' && '**⚠️ ALL FILES MODE:** The entire documentation corpus was retranslated. This is a major update.\n' || '' }}
+            
+            ### 🎯 Expected Changes
+            
+            Since this is a **bulk retranslation**, you may see:
+            - ✅ Improved terminology consistency (if skills were updated)
+            - ✅ Better style adherence (if guidelines were refined)
+            - ⚠️ Formatting changes (spacing, line breaks)
+            - ⚠️ Rephrased content (even if meaning is identical)
+            
+            ### ✅ Review Checklist
+            
+            **Before merging, verify:**
+            
+            **Brand Terms:**
+            - [ ] Spanish: "Servidor Global" (NOT "Servidor Global de KoboToolbox")
+            - [ ] French: "Le serveur KoboToolbox mondial" (WITH "Le")
+            - [ ] Spanish: "La biblioteca de preguntas" (capital L)
+            - [ ] French: "La bibliothèque de questions" (capital L)
+            - [ ] Formbuilder: English in parentheses on first reference
+            
+            **UI Elements:**
+            - [ ] Draft → Brouillon (FR) / Borrador (ES) - capitalized
+            - [ ] Tabs: FORMULAIRE / FORMULARIO (all caps)
+            - [ ] Buttons match UI translations
+            
+            **Language Quality:**
+            - [ ] Spanish: informal "tú" + gender-inclusive "los/as"
+            - [ ] French: formal "vous" + "utilisatrices et utilisateurs"
+            - [ ] Links and formatting preserved
+            - [ ] No English artifacts or untranslated content
+            
+            **Skill Changes (if applicable):**
+            - [ ] Review key files to confirm skill updates improved quality
+            - [ ] Compare a few files with previous versions to validate improvements
+            - [ ] Verify no regressions in translation quality
+            
+            ### 📊 Comparison Tips
+            
+            To review skill effectiveness:
+            
+            ```bash
+            # Compare specific file changes
+            git diff main...translations/bulk-retranslate-${{ github.run_number }} docs/es/about_kobotoolbox.md
+            
+            # See all changed files
+            git diff --stat main...translations/bulk-retranslate-${{ github.run_number }}
+            
+            # Review a specific language
+            git diff main...translations/bulk-retranslate-${{ github.run_number }} docs/es/
+            ```
+            
+            ### 🔗 Related
+            
+            - Workflow run: #${{ github.run_number }}
+            - Commit: ${{ github.sha }}
+            - Documentation: [Bulk Retranslation Guide](../docs/guides/BULK_RETRANSLATION.md)
+            
+            **Reviewers:** @es-reviewer @fr-reviewer @ar-reviewer
+          labels: |
+            translation
+            bulk-retranslation
+            needs-review
+      
+      - name: Job summary
+        if: always()
+        run: |
+          echo "## 🔄 Bulk Retranslation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.retranslate.outputs.success }}" == "true" ]; then
+            echo "✅ **Retranslation Successful**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            if [ -n "${{ steps.pr.outputs.pull-request-number }}" ]; then
+              echo "- PR #${{ steps.pr.outputs.pull-request-number }}" >> $GITHUB_STEP_SUMMARY
+              echo "- URL: ${{ steps.pr.outputs.pull-request-url }}" >> $GITHUB_STEP_SUMMARY
+            fi
+            
+            echo "- Mode: ${{ github.event.inputs.mode }}" >> $GITHUB_STEP_SUMMARY
+            echo "- Languages: ${{ github.event.inputs.languages }}" >> $GITHUB_STEP_SUMMARY
+            
+          else
+            echo "❌ **Retranslation Failed**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Check the logs above for error details." >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Files" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.files.outputs.files }}" | tr ' ' '\n' >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
