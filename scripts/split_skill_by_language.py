@@ -19,16 +19,18 @@ def is_target_lang_column(column_name: str, target_lang: str) -> bool:
     """Check if a column name matches the target language (handles variants)"""
     column_lower = column_name.lower().strip()
     patterns = LANG_PATTERNS.get(target_lang, [])
-    return any(pattern in column_lower for pattern in patterns)
+    # Use word boundaries to avoid false positives (e.g., 'es' in 'notes')
+    return any(re.search(rf'\b{re.escape(pattern)}\b', column_lower) for pattern in patterns)
 
 def is_other_lang_column(column_name: str, target_lang: str) -> bool:
     """Check if a column is for a different language than target"""
     column_lower = column_name.lower().strip()
     
     # Check all languages except target
+    # Use word boundaries to avoid false positives (e.g., 'es' in 'notes', 'ar' in 'toolbar')
     for lang, patterns in LANG_PATTERNS.items():
         if lang != target_lang:
-            if any(pattern in column_lower for pattern in patterns):
+            if any(re.search(rf'\b{re.escape(pattern)}\b', column_lower) for pattern in patterns):
                 return True
     return False
 
@@ -72,7 +74,6 @@ def extract_table_columns(table_text: str, target_lang: str) -> str:
     
     header = lines[0]
     separator = lines[1]
-    data_rows = lines[2:]
     
     # Parse header to find column positions
     header_parts = [p.strip() for p in header.split('|')]
@@ -80,6 +81,8 @@ def extract_table_columns(table_text: str, target_lang: str) -> str:
     
     if not header_parts:
         return table_text
+    
+    num_columns = len(header_parts)
     
     # Find which columns to keep
     keep_indices = []
@@ -119,10 +122,19 @@ def extract_table_columns(table_text: str, target_lang: str) -> str:
     new_separator_parts = [separator_parts[i] if i < len(separator_parts) else '---' for i in keep_indices]
     new_separator = '| ' + ' | '.join(new_separator_parts) + ' |'
     
-    # Rebuild data rows
+    # Process data rows - handle multi-line cells
+    data_rows = lines[2:]
     new_data_rows = []
+    
     for row in data_rows:
-        # Split and handle empty cells properly
+        # Count pipes to determine if this is a complete row
+        pipe_count = row.count('|')
+        
+        # A proper markdown table row has num_columns + 1 pipes (one at start, one at end, rest between)
+        # But cells can contain content without being properly formatted
+        # We'll be lenient and just parse what we can
+        
+        # Split by pipe but be careful
         row_parts = row.split('|')
         # Remove leading/trailing empty parts from pipe delimiters
         if row_parts and row_parts[0].strip() == '':
@@ -130,7 +142,14 @@ def extract_table_columns(table_text: str, target_lang: str) -> str:
         if row_parts and row_parts[-1].strip() == '':
             row_parts = row_parts[:-1]
         
-        # Strip whitespace but preserve empty cells
+        # Only process rows that have the expected number of columns
+        if len(row_parts) != num_columns:
+            # This is likely a continuation line from a multi-line cell
+            # Keep it as-is to preserve content even if table formatting is imperfect
+            new_data_rows.append(row)
+            continue
+        
+        # Strip whitespace but preserve empty cells and newlines within cells
         row_parts = [p.strip() for p in row_parts]
         
         # Build new row with only kept columns
@@ -167,9 +186,9 @@ def filter_prose_sections(content: str, target_lang: str) -> str:
     while i < len(lines):
         line = lines[i]
         
-        # Check for language-specific section headers (### French "..." Usage, ### Spanish Usage, etc.)
-        # Pattern: ### Language "something" or **Language:**
-        if re.match(r'^#{2,}\s+(' + '|'.join(other_langs) + r')\s+', line, re.IGNORECASE):
+        # Check for language-specific section headers (### French-Specific Rules, ### Spanish Usage, etc.)
+        # Pattern: ### Language "something" or ### Language-Specific or **Language:**
+        if re.match(r'^#{2,}\s+(' + '|'.join(other_langs) + r')(-Specific|\s+)', line, re.IGNORECASE):
             in_excluded_section = True
             section_depth = len(re.match(r'^(#{2,})', line).group(1))
             i += 1
@@ -360,14 +379,14 @@ def process_reference_file(source_path: Path, target_path: Path, target_lang: st
 def main():
     """Main execution"""
     base_dir = Path(__file__).parent.parent
-    source_skill_dir = base_dir / 'skills' / 'kobo-translation'
+    source_skill_dir = base_dir / 'skills' / 'kobo-translation-v2'
     
     languages = ['es', 'fr', 'ar']
     
     for lang in languages:
         print(f"\n📝 Processing {lang.upper()} skill files...")
         
-        target_skill_dir = base_dir / 'skills' / f'kobo-translation-{lang}'
+        target_skill_dir = base_dir / 'skills' / f'kobo-translation-v2-{lang}'
         target_skill_dir.mkdir(parents=True, exist_ok=True)
         
         target_refs_dir = target_skill_dir / 'references'

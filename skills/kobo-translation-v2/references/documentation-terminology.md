@@ -13,8 +13,7 @@ These translations are preferred but can be adapted based on context.
 | Dropdown list | menu déroulant |  |  |
 | Field | champ |  |  |
 | Getting started (support category name) | Pour commencer |  |  |
-| Getting started with … | *localize / translate for context*
-E.g., Découvrir…, Introduction à… | Iniciar con |  |
+| Getting started with … | *localize / translate for context* E.g., Découvrir…, Introduction à… | Iniciar con |  |
 | Icon | icône |  |  |
 | Input | Saisir (v), saisie (n) |  |  |
 | Note | Note |  |  |

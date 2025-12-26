@@ -27,7 +27,7 @@ These translations are preferred but can be adapted based on context.
 | Project history logs | Suivi de l'historique du projet |  |  |
 | Project owner | propriétaire du projet |  |  |
 | Project-level permissions | permissions au niveau du projet |  |  |
-| Pull data | extraction de données |  | If pulldata() is used, keep function name in English. If pull data is mentioned as the concept/fu... |
+| Pull data | extraction de données |  | If pulldata() is used, keep function name in English. If pull data is mentioned as the concept/functionality, use “extraction de données” |
 | Pulling data from an external file | Extraire des données d’un fichier externe |  |  |
 | REST services | services web REST |  |  |
 | Synchronous exports | exports synchronisés |  |  |

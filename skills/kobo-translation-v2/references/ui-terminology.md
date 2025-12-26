@@ -16,8 +16,7 @@
 
 | English | French | Spanish | Notes |
 |---|---|---|---|
-| Build from scratch | Création de formulaires (UI button)
-Créer un formulaire à partir de zéro (in text) | Crear desde un borrador |  |
+| Build from scratch | Création de formulaires (UI button) Créer un formulaire à partir de zéro (in text) | Crear desde un borrador |  |
 | DATA page | page DONNÉES | página DATOS |  |
 | Downloads page | page Téléchargements | página de Descargas |  |
 | Draft | Brouillon | Borrador | French: not “ébauche” |
@@ -34,7 +33,7 @@ Créer un formulaire à partir de zéro (in text) | Crear desde un borrador |  |
 | SUMMARY page | page SOMMAIRE | página RESUMEN |  |
 | Table view | mode Tableau | vista de Tabla |  |
 | Toolbar | barre d’outils | barra de herramientas |  |
-| View | mode | Vista | French: The term “view” can also be translated as “affichage” or “aperçu” in certain contexts but... |
+| View | mode | Vista | French: The term “view” can also be translated as “affichage” or “aperçu” in certain contexts but not in the context of the UI elements |
 | webhook | webhook | webhook |  |
 | DATA tab | onglet DONNÉES | Ventana DATOS | 🚨 ALL CAPS for tab name |
 | SUMMARY tab | onglet SOMMAIRE | Ventana RESUMEN | 🚨 ALL CAPS for tab name |

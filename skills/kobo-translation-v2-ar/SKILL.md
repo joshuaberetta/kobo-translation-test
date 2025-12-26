@@ -1,13 +1,13 @@
 ---
-name: kobo-translation
-description: "Translation and localization guidelines for KoboToolbox content in French, Spanish, and Arabic. Use when translating KoboToolbox materials including: (1) Academy courses and educational content, (2) User interface text and documentation, (3) Support articles, (4) Marketing materials, (5) Form building terminology, or (6) XLSForm technical terms. Covers tone, pronouns (tu/usted, tu/vous), gender-inclusive language, and official translations for brand terms and UI elements."
+name: kobo-translation-ar
+description: "Translation and localization guidelines for KoboToolbox content from English to Arabic. Use when translating KoboToolbox materials including: (1) Academy courses and educational content, (2) User interface text and documentation, (3) Support articles, (4) Marketing materials, (5) Form building terminology, or (6) XLSForm technical terms. Covers tone, pronouns (tu/usted, tu/vous), gender-inclusive language, and official translations for brand terms and UI elements."
 ---
 
 # KoboToolbox Translation & Localization
 
 ## Overview
 
-Translate KoboToolbox content in French, Spanish, and Arabic with consistent terminology, appropriate tone, and cultural adaptation.
+Translate KoboToolbox content from English to Arabic with consistent terminology, appropriate tone, and cultural adaptation.
 
 **For Video Subtitles:** Use the **kobo-translation-srt** skill extension for subtitle-specific guidelines.
 
@@ -43,8 +43,6 @@ Translate KoboToolbox content in French, Spanish, and Arabic with consistent ter
 
 ## Gender-Inclusive Language
 
-**French:** "utilisateur(rice)s", "Les utilisatrices et utilisateurs"
-**Spanish:** "Se te dirigirá" (neutral), "los/as usuarios/as"
 
 ## XLSForm Terms
 

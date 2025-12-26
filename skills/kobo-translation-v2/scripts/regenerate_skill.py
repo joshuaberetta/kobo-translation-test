@@ -42,10 +42,27 @@ def load_markdown_file(filepath):
     return ""
 
 
-def clean_text(text):
+def clean_text(text, preserve_newlines=False):
+    """Clean text for markdown tables.
+    
+    Args:
+        text: Text to clean
+        preserve_newlines: If True, convert newlines to <br>, otherwise to spaces
+    """
     if not text or pd.isna(text):
         return ""
-    return str(text).strip()
+    text = str(text).strip()
+    
+    # Escape pipes to prevent breaking table structure
+    text = text.replace("|", "\\|")
+    
+    # Handle newlines - convert to <br> for markdown or spaces
+    if preserve_newlines:
+        text = text.replace("\n", "<br>")
+    else:
+        text = text.replace("\n", " ")
+    
+    return text
 
 
 def generate_terminology_table(df, include_notes=True):
@@ -67,9 +84,6 @@ def generate_terminology_table(df, include_notes=True):
         values = [clean_text(row.get(col, "")) for col in cols]
         if has_notes:
             note = clean_text(row.get("Notes", ""))
-            if len(note) > 100:
-                note = note[:97] + "..."
-            note = note.replace("|", "\\|").replace("\n", " ")
             values.append(note)
         if not values[0]:
             continue

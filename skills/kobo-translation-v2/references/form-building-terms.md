@@ -16,19 +16,14 @@
 | Child form | formulaire secondaire |  |  |
 | Child list | liste secondaire | lista secundaria |  |
 | Child project | projet secondaire |  |  |
-| Data column name | nom du champ (when referring to a specific question.)
-nom de champ (when referring to the concept.)
-noms des champs (when referring to specific fields, i.e., the data column names of these questions).
-noms de champs (when referring to the concept in the plural form, i.e., information about data column names in general). | nombre de columna de datos | French: not “nom de la colonne de données”. |
+| Data column name | nom du champ (when referring to a specific question.) nom de champ (when referring to the concept.) noms des champs (when referring to specific fields, i.e., the data column names of these questions). noms de champs (when referring to the concept in the plural form, i.e., information about data column names in general). | nombre de columna de datos | French: not “nom de la colonne de données”. |
 | Data column prefix | préfixe du champ | prefijo de columna de datos |  |
 | Data column suffix | suffixe du champ | sufijo de columna de datos |  |
 | Date question type | Question de type date |  |  |
-| Form building | création de formulaire
-
-construction de formulaires | elaboración de formularios |  |
+| Form building | création de formulaire  construction de formulaires | elaboración de formularios |  |
 | Form media | médias au sein du formulaire | datos multimedia del formulario |  |
-| Form Style | style du formulaire |  | Form style refers to the interface for customizing a form with different themes in the Formbuilde... |
-| Form themes | thèmes du formulaire |  | Themes are different appearance options used to customize the style of a form. In XLSForm, themes... |
+| Form Style | style du formulaire |  | Form style refers to the interface for customizing a form with different themes in the Formbuilder (e.g., grid theme). “Style” should also be used when referring to the specific column in XLSForm. |
+| Form themes | thèmes du formulaire |  | Themes are different appearance options used to customize the style of a form. In XLSForm, themes are added to the style column. |
 | Form upload | envoi d’un formulaire | envío de un formulario |  |
 | GPS question types | Questions de type GPS |  |  |
 | Guidance hint | instructions supplémentaires (guidance hint) | sugerencia adicional | Include the English translation in parentheses as much as possible to help distinguish these terms |
@@ -39,12 +34,12 @@ construction de formulaires | elaboración de formularios |  |
 | Media question types | Questions de type média |  |  |
 | Nested groups | sous-groupes | los subgrupos |  |
 | Non-media responses | Réponses (hors fichiers média) |  |  |
-| Occurrence of a repeat group | répétitions d’un groupe répété |  | French: not “occurrences” “Occurrence” in English in this context refers to each instance that th... |
+| Occurrence of a repeat group | répétitions d’un groupe répété |  | French: not “occurrences” “Occurrence” in English in this context refers to each instance that the group of questions is repeated |
 | Option choice(s) | choix de réponse |  |  |
 | Parent form | formulaire principal |  |  |
 | Parent list | liste principale | lista principal |  |
 | Parent project | projet principal |  |  |
-| Primary survey | Questionnaire principal |  | These are also referred to as “Parent” and “child” survey. Preferred terms are “primary” and “sec... |
+| Primary survey | Questionnaire principal |  | These are also referred to as “Parent” and “child” survey. Preferred terms are “primary” and “secondary”. |
 | Question appearances | apparences de questions | aspectos de las preguntas |  |
 | Question hint | indice de question | sugerencia de pregunta |  |
 | Question referencing format | format de référencement de questions | formato de pregunta de referencia |  |
@@ -55,7 +50,7 @@ construction de formulaires | elaboración de formularios |  |
 | Range questions: step | écart | intervalo | French: not “nombre d'écarts” |
 | Regular hint | indice de question de base (hint) | sugerencias comunes |  |
 | Repeat group | groupes répétés | grupo de repetición | French: not “occurrences” |
-| Roster | une série | grupo | Use a roster only as specific example of what you can use groups for. Roster is should not be use... |
+| Roster | une série | grupo | Use a roster only as specific example of what you can use groups for. Roster is should not be used as equivalent to “group” |
 | Save | Enregistrer / Sauvegarder | guardar | French: not “sauver” |
 | Secondary survey | Questionnaire secondaire |  |  |
 | Select question types | Questions à choix multiple |  |  |
@@ -101,8 +96,7 @@ These translations are preferred but can be adapted based on context.
 | Regular expressions (regex) | expression régulière (regex) |  |
 | Relevance conditions |  | If text says “also called Relevance conditions”, do not include that sentence in the translation. |
 | Required logic | logique d’obligation conditionnelle |  |
-| Skip logic | logique de saut
-branchements conditionnels |  |
+| Skip logic | logique de saut branchements conditionnels |  |
 | Spreadsheet | tableur |  |
 | To add … in XLSForm | Pour ajouter … dans un XLSForm |  |
 | Worksheet | feuille de calcul |  |
