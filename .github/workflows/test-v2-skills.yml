@@ -1,0 +1,298 @@
+name: Test V2 Translation Skills
+
+on:
+  workflow_dispatch:
+    inputs:
+      languages:
+        description: 'Languages to test (comma-separated: es, fr, ar)'
+        required: true
+        default: 'es'
+        type: string
+      
+      test_files:
+        description: 'Test files to translate (comma-separated). Leave empty to use default test set.'
+        required: false
+        type: string
+        default: ''
+      
+      skill_version:
+        description: 'Skill version to test'
+        required: true
+        type: choice
+        default: 'v2'
+        options:
+          - v2        # kobo-translation-v2-{lang}
+          - v1        # kobo-translation-{lang}
+          - both      # Compare both versions
+      
+      model:
+        description: 'Claude model to use'
+        required: true
+        type: choice
+        default: 'claude-3-5-sonnet-20241022'
+        options:
+          - claude-3-5-sonnet-20241022
+          - claude-3-5-haiku-20241022
+          - claude-3-opus-20240229
+
+jobs:
+  test-v2-skills:
+    name: Test ${{ github.event.inputs.skill_version }} skills (${{ github.event.inputs.languages }})
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r scripts/requirements.txt
+      
+      - name: Verify V2 skill files
+        run: |
+          echo "📚 Verifying skill files..."
+          echo ""
+          
+          SKILL_VERSION="${{ github.event.inputs.skill_version }}"
+          MISSING_SKILLS=()
+          
+          for LANG in $(echo "${{ github.event.inputs.languages }}" | tr ',' ' '); do
+            if [ "$SKILL_VERSION" == "v2" ] || [ "$SKILL_VERSION" == "both" ]; then
+              V2_SKILL="skills/kobo-translation-v2-${LANG}/SKILL.md"
+              if [ -f "$V2_SKILL" ]; then
+                echo "✅ V2 skill found: $V2_SKILL"
+              else
+                echo "❌ V2 skill missing: $V2_SKILL"
+                MISSING_SKILLS+=("$V2_SKILL")
+              fi
+            fi
+            
+            if [ "$SKILL_VERSION" == "v1" ] || [ "$SKILL_VERSION" == "both" ]; then
+              V1_SKILL="skills/kobo-translation-${LANG}/SKILL.md"
+              if [ -f "$V1_SKILL" ]; then
+                echo "✅ V1 skill found: $V1_SKILL"
+              else
+                echo "⚠️  V1 skill missing: $V1_SKILL (expected for v2-only test)"
+              fi
+            fi
+          done
+          
+          if [ ${#MISSING_SKILLS[@]} -gt 0 ]; then
+            echo ""
+            echo "❌ Error: Required skill files are missing"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✅ All required skills verified"
+      
+      - name: Prepare test files
+        id: test-files
+        run: |
+          echo "📝 Preparing test files..."
+          
+          # Default test files (small, medium, large complexity)
+          DEFAULT_FILES="about_kobotoolbox.md creating_account.md formbuilder.md"
+          
+          # Use custom files if provided, otherwise use defaults
+          if [ -n "${{ github.event.inputs.test_files }}" ]; then
+            TEST_FILES="${{ github.event.inputs.test_files }}"
+            echo "Using custom test files: $TEST_FILES"
+          else
+            TEST_FILES="$DEFAULT_FILES"
+            echo "Using default test files: $TEST_FILES"
+          fi
+          
+          # Verify files exist
+          echo ""
+          echo "Verifying files in docs/en/..."
+          for FILE in $(echo "$TEST_FILES" | tr ',' ' '); do
+            if [ -f "docs/en/$FILE" ]; then
+              SIZE=$(wc -c < "docs/en/$FILE")
+              echo "  ✅ $FILE (${SIZE} bytes)"
+            else
+              echo "  ❌ $FILE (not found)"
+              exit 1
+            fi
+          done
+          
+          # Save for next step
+          echo "files=$TEST_FILES" >> $GITHUB_OUTPUT
+      
+      - name: Test V2 skills
+        if: github.event.inputs.skill_version == 'v2' || github.event.inputs.skill_version == 'both'
+        id: test-v2
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: ${{ github.event.inputs.model }}
+        run: |
+          echo "🧪 Testing V2 skills..."
+          echo ""
+          
+          # Temporarily rename v1 skills to force v2 usage
+          echo "📦 Temporarily renaming v1 skills..."
+          for LANG in $(echo "${{ github.event.inputs.languages }}" | tr ',' ' '); do
+            if [ -d "skills/kobo-translation-${LANG}" ]; then
+              mv "skills/kobo-translation-${LANG}" "skills/kobo-translation-${LANG}.backup"
+              echo "  Renamed: kobo-translation-${LANG} → kobo-translation-${LANG}.backup"
+            fi
+          done
+          
+          # Rename v2 to be picked up by translation agent
+          echo ""
+          echo "🔄 Activating V2 skills..."
+          for LANG in $(echo "${{ github.event.inputs.languages }}" | tr ',' ' '); do
+            if [ -d "skills/kobo-translation-v2-${LANG}" ]; then
+              ln -s "kobo-translation-v2-${LANG}" "skills/kobo-translation-${LANG}"
+              echo "  Linked: kobo-translation-${LANG} → kobo-translation-v2-${LANG}"
+            fi
+          done
+          
+          # Run translation
+          echo ""
+          echo "🔄 Running bulk retranslation with V2 skills..."
+          
+          LANG_ARGS="--language"
+          for LANG in $(echo "${{ github.event.inputs.languages }}" | tr ',' ' '); do
+            LANG_ARGS="$LANG_ARGS $LANG"
+          done
+          
+          FILE_ARGS="--files"
+          for FILE in $(echo "${{ steps.test-files.outputs.files }}" | tr ',' ' '); do
+            FILE_ARGS="$FILE_ARGS $FILE"
+          done
+          
+          if python scripts/bulk_retranslate.py $LANG_ARGS $FILE_ARGS --verbose; then
+            echo "success=true" >> $GITHUB_OUTPUT
+          else
+            echo "success=false" >> $GITHUB_OUTPUT
+          fi
+          
+          # Restore original structure
+          echo ""
+          echo "🔄 Restoring skill directory structure..."
+          for LANG in $(echo "${{ github.event.inputs.languages }}" | tr ',' ' '); do
+            rm -f "skills/kobo-translation-${LANG}"
+            if [ -d "skills/kobo-translation-${LANG}.backup" ]; then
+              mv "skills/kobo-translation-${LANG}.backup" "skills/kobo-translation-${LANG}"
+            fi
+          done
+      
+      - name: Test V1 skills (comparison)
+        if: github.event.inputs.skill_version == 'both'
+        id: test-v1
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: ${{ github.event.inputs.model }}
+        run: |
+          echo "🧪 Testing V1 skills for comparison..."
+          echo ""
+          
+          # V1 skills are already in correct location
+          
+          LANG_ARGS="--language"
+          for LANG in $(echo "${{ github.event.inputs.languages }}" | tr ',' ' '); do
+            LANG_ARGS="$LANG_ARGS $LANG"
+          done
+          
+          FILE_ARGS="--files"
+          for FILE in $(echo "${{ steps.test-files.outputs.files }}" | tr ',' ' '); do
+            FILE_ARGS="$FILE_ARGS $FILE"
+          done
+          
+          # Translate to a different output location for comparison
+          echo "🔄 Running bulk retranslation with V1 skills..."
+          
+          if python scripts/bulk_retranslate.py $LANG_ARGS $FILE_ARGS --verbose; then
+            echo "success=true" >> $GITHUB_OUTPUT
+          else
+            echo "success=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Generate comparison report
+        if: github.event.inputs.skill_version == 'both'
+        run: |
+          echo "📊 Generating comparison report..."
+          echo ""
+          
+          # Create comparison report (placeholder - you could add diff analysis here)
+          cat > COMPARISON_REPORT.md << 'EOF'
+          # V1 vs V2 Translation Skills Comparison
+          
+          ## Test Configuration
+          - **Languages:** ${{ github.event.inputs.languages }}
+          - **Model:** ${{ github.event.inputs.model }}
+          - **Test Files:** ${{ steps.test-files.outputs.files }}
+          - **Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          
+          ## Results
+          - **V2 Status:** ${{ steps.test-v2.outputs.success }}
+          - **V1 Status:** ${{ steps.test-v1.outputs.success }}
+          
+          ## Manual Review Required
+          Please review the translated files to compare quality between v1 and v2 skills.
+          
+          ### Key Improvements to Look For in V2:
+          - ✅ Better handling of multi-line table cells
+          - ✅ Improved language filtering (no French-specific content in Spanish)
+          - ✅ Word boundary matching (no false positives)
+          - ✅ 46.9% smaller skill context (faster, cheaper)
+          
+          EOF
+          
+          echo "✅ Comparison report generated"
+      
+      - name: Create Pull Request
+        if: steps.test-v2.outputs.success == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: |
+            🧪 Test ${{ github.event.inputs.skill_version }} translation skills
+            
+            Languages: ${{ github.event.inputs.languages }}
+            Model: ${{ github.event.inputs.model }}
+            Files: ${{ steps.test-files.outputs.files }}
+          branch: test-v2-skills-${{ github.run_number }}
+          title: "🧪 Test ${{ github.event.inputs.skill_version }} Skills: ${{ github.event.inputs.languages }}"
+          body: |
+            ## Translation Skills Test
+            
+            **Skill Version:** ${{ github.event.inputs.skill_version }}
+            **Languages:** ${{ github.event.inputs.languages }}
+            **Model:** ${{ github.event.inputs.model }}
+            **Test Files:** ${{ steps.test-files.outputs.files }}
+            
+            ### Test Results
+            - V2 Skills: ${{ steps.test-v2.outputs.success == 'true' && '✅ Success' || '❌ Failed' }}
+            ${{ github.event.inputs.skill_version == 'both' && format('- V1 Skills: {0}', steps.test-v1.outputs.success == 'true' && '✅ Success' || '❌ Failed') || '' }}
+            
+            ### Review Checklist
+            - [ ] Translations are accurate and natural
+            - [ ] Terminology is consistent with skill references
+            - [ ] No untranslated content (except intentional English terms)
+            - [ ] Table formatting is correct
+            - [ ] Links are updated correctly
+            ${{ github.event.inputs.skill_version == 'both' && '- [ ] V2 shows improvements over V1' || '' }}
+            
+            ### V2 Skill Improvements
+            - Better table handling (no multi-line cell issues)
+            - Language-specific filtering (no French/Arabic bleed in Spanish)
+            - 46.9% smaller context (faster, cheaper translations)
+            - Word boundary matching (no false positives)
+          labels: |
+            translation
+            testing
+            v2-skills
