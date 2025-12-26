@@ -24,6 +24,16 @@ on:
           - specific   # Specific files listed above
           - all        # ALL files (expensive!)
       
+      skill_version:
+        description: 'Skill version to use'
+        required: true
+        type: choice
+        default: 'v1'
+        options:
+          - v1         # Current production skills (kobo-translation-{lang})
+          - v2         # New v2 skills (kobo-translation-v2-{lang})
+          - both       # Test both versions side-by-side
+      
       confirm_cost:
         description: '⚠️ I understand the cost implications (required for "all" mode)'
         required: false
@@ -49,6 +59,7 @@ jobs:
         run: |
           echo "=== Bulk Retranslation Workflow ==="
           echo "Mode: ${{ github.event.inputs.mode }}"
+          echo "Skill version: ${{ github.event.inputs.skill_version }}"
           echo "Languages: ${{ github.event.inputs.languages }}"
           echo "Files: ${{ github.event.inputs.files || '(ALL)' }}"
           echo "Cost confirmed: ${{ github.event.inputs.confirm_cost }}"
@@ -60,6 +71,12 @@ jobs:
             echo "Retranslating ALL files can cost \$15-30 per language."
             echo "Please check the 'I understand the cost implications' checkbox to proceed."
             exit 1
+          fi
+          
+          # Adjust cost for 'both' skill version (double the cost)
+          if [ "${{ github.event.inputs.skill_version }}" == "both" ] && [ "${{ github.event.inputs.mode }}" == "all" ]; then
+            echo "⚠️  WARNING: 'both' mode will translate with BOTH v1 and v2 skills"
+            echo "This will double the cost: \$30-60 per language"
           fi
           
           echo "✅ Validation passed"
@@ -77,32 +94,69 @@ jobs:
       - name: Verify skill files
         run: |
           echo "📚 Checking for skill files..."
+          SKILL_VERSION="${{ github.event.inputs.skill_version }}"
           
-          # Check for language-specific skills
-          LANG_SKILLS_FOUND=0
-          for LANG in $(echo "${{ github.event.inputs.languages }}" | tr ',' ' '); do
-            if [ -d "skills/kobo-translation-${LANG}" ] && [ -f "skills/kobo-translation-${LANG}/SKILL.md" ]; then
-              echo "✅ Language-specific skill found for ${LANG}"
-              LANG_SKILLS_FOUND=$((LANG_SKILLS_FOUND + 1))
+          # Function to check skills
+          check_skills() {
+            local VERSION=$1
+            local SUFFIX=$2
+            echo ""
+            echo "=== Checking $VERSION skills ==="
+            
+            SKILLS_FOUND=0
+            for LANG in $(echo "${{ github.event.inputs.languages }}" | tr ',' ' '); do
+              SKILL_DIR="skills/kobo-translation${SUFFIX}-${LANG}"
+              if [ -d "$SKILL_DIR" ] && [ -f "$SKILL_DIR/SKILL.md" ]; then
+                echo "✅ $VERSION skill found for ${LANG}: $SKILL_DIR"
+                SKILLS_FOUND=$((SKILLS_FOUND + 1))
+              else
+                echo "⚠️  $VERSION skill not found for ${LANG}: $SKILL_DIR"
+              fi
+            done
+            
+            # Check generic skill (fallback)
+            GENERIC_SKILL="skills/kobo-translation${SUFFIX}"
+            if [ -d "$GENERIC_SKILL" ] && [ -f "$GENERIC_SKILL/SKILL.md" ]; then
+              echo "✅ $VERSION generic skill found: $GENERIC_SKILL"
             else
-              echo "⚠️  Language-specific skill not found for ${LANG}"
+              echo "⚠️  $VERSION generic skill not found: $GENERIC_SKILL"
             fi
-          done
+            
+            if [ $SKILLS_FOUND -eq 0 ] && [ ! -f "$GENERIC_SKILL/SKILL.md" ]; then
+              echo "❌ Error: No $VERSION skills found"
+              return 1
+            fi
+            
+            echo "✅ $VERSION verification complete ($SKILLS_FOUND language-specific skills found)"
+            return 0
+          }
           
-          # Check for generic skill (fallback)
-          if [ -d "skills/kobo-translation" ] && [ -f "skills/kobo-translation/SKILL.md" ]; then
-            echo "✅ Generic skill found (fallback)"
+          # Check based on skill_version input
+          if [ "$SKILL_VERSION" == "v1" ]; then
+            check_skills "v1" "" || exit 1
+            
+          elif [ "$SKILL_VERSION" == "v2" ]; then
+            check_skills "v2" "-v2" || exit 1
+            
+          elif [ "$SKILL_VERSION" == "both" ]; then
+            V1_OK=true
+            V2_OK=true
+            
+            check_skills "v1" "" || V1_OK=false
+            check_skills "v2" "-v2" || V2_OK=false
+            
+            if [ "$V1_OK" == "false" ] || [ "$V2_OK" == "false" ]; then
+              echo ""
+              echo "❌ Error: 'both' mode requires both v1 and v2 skills to exist"
+              exit 1
+            fi
+            
+            echo ""
+            echo "✅ Both v1 and v2 skills verified"
           else
-            echo "⚠️  Generic skill not found"
-          fi
-          
-          # Ensure at least some skills exist
-          if [ $LANG_SKILLS_FOUND -eq 0 ] && [ ! -f "skills/kobo-translation/SKILL.md" ]; then
-            echo "❌ Error: No translation skills found"
+            echo "❌ Error: Unknown skill_version: $SKILL_VERSION"
             exit 1
           fi
-          
-          echo "✅ Skill verification complete ($LANG_SKILLS_FOUND language-specific skills found)"
       
       - name: Determine files to translate
         id: files
@@ -149,6 +203,39 @@ jobs:
           echo "$FILES" | tr ' ' '\n'
           echo "=========================="
       
+      - name: Setup skill symlinks (for v2)
+        if: github.event.inputs.skill_version == 'v2' || github.event.inputs.skill_version == 'both'
+        run: |
+          echo "🔗 Setting up skill symlinks..."
+          
+          # For v2 or both mode, we need to make v2 skills available
+          # Create symlinks so translation_agent.py can find them
+          
+          for LANG in $(echo "${{ github.event.inputs.languages }}" | tr ',' ' '); do
+            V2_SKILL="skills/kobo-translation-v2-${LANG}"
+            
+            if [ -d "$V2_SKILL" ]; then
+              # For 'v2' mode, create symlink to replace v1
+              if [ "${{ github.event.inputs.skill_version }}" == "v2" ]; then
+                V1_SKILL="skills/kobo-translation-${LANG}"
+                
+                # Backup v1 if it exists
+                if [ -d "$V1_SKILL" ] && [ ! -L "$V1_SKILL" ]; then
+                  echo "📦 Backing up v1 skill: $V1_SKILL → ${V1_SKILL}.v1-backup"
+                  mv "$V1_SKILL" "${V1_SKILL}.v1-backup"
+                fi
+                
+                echo "🔗 Symlinking v2 → v1 location: $V2_SKILL → $V1_SKILL"
+                ln -sf "kobo-translation-v2-${LANG}" "$V1_SKILL"
+              fi
+              
+              # For 'both' mode, v2 skills stay in place (we'll run twice)
+              echo "✅ v2 skill ready for ${LANG}"
+            fi
+          done
+          
+          echo "✅ Skill setup complete"
+      
       - name: Bulk retranslate
         id: retranslate
         env:
@@ -159,6 +246,7 @@ jobs:
           
           FILES="${{ steps.files.outputs.files }}"
           LANGUAGES="${{ github.event.inputs.languages }}"
+          SKILL_VERSION="${{ github.event.inputs.skill_version }}"
           
           # Build language arguments (space-separated for single --language flag)
           LANG_ARGS="--language"
@@ -172,17 +260,133 @@ jobs:
             FILE_ARGS="$FILE_ARGS $FILE"
           done
           
-          echo "Command: python scripts/bulk_retranslate.py $LANG_ARGS $FILE_ARGS --verbose"
-          echo ""
+          SUCCESS="true"
           
-          # Run bulk retranslation
-          if python scripts/bulk_retranslate.py $LANG_ARGS $FILE_ARGS --verbose; then
-            echo "✅ Bulk retranslation completed successfully"
-            SUCCESS="true"
-          else
-            echo "❌ Bulk retranslation failed"
-            SUCCESS="false"
+          # Function to run translation
+          run_translation() {
+            local VERSION_LABEL=$1
+            local OUTPUT_SUFFIX=$2
+            
+            echo ""
+            echo "=========================================="
+            echo "🔄 Translating with $VERSION_LABEL skills"
+            echo "=========================================="
+            
+            # For v2 in 'both' mode, temporarily symlink v2 skills
+            if [ "$SKILL_VERSION" == "both" ] && [ "$VERSION_LABEL" == "v2" ]; then
+              echo "🔗 Temporarily activating v2 skills..."
+              for LANG in $(echo "$LANGUAGES" | tr ',' ' '); do
+                V1_SKILL="skills/kobo-translation-${LANG}"
+                V2_SKILL="skills/kobo-translation-v2-${LANG}"
+                
+                if [ -d "$V2_SKILL" ]; then
+                  if [ -d "$V1_SKILL" ] && [ ! -L "$V1_SKILL" ]; then
+                    mv "$V1_SKILL" "${V1_SKILL}.v1-temp"
+                  fi
+                  ln -sf "kobo-translation-v2-${LANG}" "$V1_SKILL"
+                fi
+              done
+            fi
+            
+            echo "Command: python scripts/bulk_retranslate.py $LANG_ARGS $FILE_ARGS --verbose"
+            echo ""
+            
+            if python scripts/bulk_retranslate.py $LANG_ARGS $FILE_ARGS --verbose; then
+              echo "✅ Translation with $VERSION_LABEL completed successfully"
+              
+              # For 'both' mode, move outputs to versioned directories
+              if [ "$SKILL_VERSION" == "both" ]; then
+                echo "📦 Moving outputs to ${OUTPUT_SUFFIX} directories..."
+                for LANG in $(echo "$LANGUAGES" | tr ',' ' '); do
+                  TARGET_DIR="docs/${LANG}${OUTPUT_SUFFIX}"
+                  mkdir -p "$TARGET_DIR"
+                  
+                  # Move translated files
+                  for FILE in $FILES; do
+                    if [ -f "docs/${LANG}/${FILE}" ]; then
+                      mv "docs/${LANG}/${FILE}" "$TARGET_DIR/"
+                      echo "  → docs/${LANG}/${FILE} → $TARGET_DIR/"
+                    fi
+                  done
+                done
+              fi
+              
+            else
+              echo "❌ Translation with $VERSION_LABEL failed"
+              return 1
+            fi
+            
+            # Restore v1 skills if we symlinked v2
+            if [ "$SKILL_VERSION" == "both" ] && [ "$VERSION_LABEL" == "v2" ]; then
+              echo "🔗 Restoring v1 skills..."
+              for LANG in $(echo "$LANGUAGES" | tr ',' ' '); do
+                V1_SKILL="skills/kobo-translation-${LANG}"
+                
+                if [ -L "$V1_SKILL" ]; then
+                  rm "$V1_SKILL"
+                fi
+                
+                if [ -d "${V1_SKILL}.v1-temp" ]; then
+                  mv "${V1_SKILL}.v1-temp" "$V1_SKILL"
+                fi
+              done
+            fi
+            
+            return 0
+          }
+          
+          # Execute based on skill_version
+          if [ "$SKILL_VERSION" == "v1" ]; then
+            run_translation "v1" "" || SUCCESS="false"
+            
+          elif [ "$SKILL_VERSION" == "v2" ]; then
+            run_translation "v2" "" || SUCCESS="false"
+            
+          elif [ "$SKILL_VERSION" == "both" ]; then
+            echo "📊 Running comparison mode: translating with both v1 and v2 skills"
+            echo ""
+            
+            # Translate with v1 first
+            run_translation "v1" "-v1" || SUCCESS="false"
+            
+            # Then translate with v2
+            if [ "$SUCCESS" == "true" ]; then
+              run_translation "v2" "-v2" || SUCCESS="false"
+            fi
+            
+            # Move v1 outputs back to main location for PR
+            if [ "$SUCCESS" == "true" ]; then
+              echo ""
+              echo "📊 Organizing comparison outputs..."
+              for LANG in $(echo "$LANGUAGES" | tr ',' ' '); do
+                # Create comparison directory structure
+                mkdir -p "docs/${LANG}-comparison/v1"
+                mkdir -p "docs/${LANG}-comparison/v2"
+                
+                # Move v1 and v2 outputs to comparison dir
+                if [ -d "docs/${LANG}-v1" ]; then
+                  mv docs/${LANG}-v1/* "docs/${LANG}-comparison/v1/" 2>/dev/null || true
+                  rmdir "docs/${LANG}-v1" 2>/dev/null || true
+                fi
+                
+                if [ -d "docs/${LANG}-v2" ]; then
+                  mv docs/${LANG}-v2/* "docs/${LANG}-comparison/v2/" 2>/dev/null || true
+                  rmdir "docs/${LANG}-v2" 2>/dev/null || true
+                fi
+                
+                echo "✅ Created comparison structure: docs/${LANG}-comparison/{v1,v2}/"
+              done
+            fi
           fi
+          
+          echo ""
+          echo "=========================================="
+          if [ "$SUCCESS" == "true" ]; then
+            echo "✅ All translations completed successfully"
+          else
+            echo "❌ Translation failed"
+          fi
+          echo "=========================================="
           
           echo "success=$SUCCESS" >> $GITHUB_OUTPUT
       
@@ -193,19 +397,21 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: |
-            🔄 Bulk retranslate: ${{ github.event.inputs.mode }} mode
+            🔄 Bulk retranslate: ${{ github.event.inputs.mode }} mode (${{ github.event.inputs.skill_version }})
             
+            Skill version: ${{ github.event.inputs.skill_version }}
             Languages: ${{ github.event.inputs.languages }}
             Files: ${{ github.event.inputs.mode == 'all' && 'ALL FILES' || steps.files.outputs.files }}
             
             Triggered by: @${{ github.actor }}
           branch: translations/bulk-retranslate-${{ github.run_number }}
           delete-branch: true
-          title: "🔄 Bulk Retranslation (${{ github.event.inputs.mode }}) #${{ github.run_number }}"
+          title: "🔄 Bulk Retranslation (${{ github.event.inputs.mode }}) - ${{ github.event.inputs.skill_version }} #${{ github.run_number }}"
           body: |
             ## 🔄 Bulk Retranslation
             
             **Mode:** `${{ github.event.inputs.mode }}`
+            **Skill Version:** `${{ github.event.inputs.skill_version }}`
             **Languages:** `${{ github.event.inputs.languages }}`
             **Triggered by:** @${{ github.actor }}
             
@@ -215,6 +421,8 @@ jobs:
             - ✅ Translation skills have been updated
             - ✅ Testing quality improvements from skill changes
             - ✅ Regenerating translations with updated terminology
+            ${{ github.event.inputs.skill_version == 'v2' && '- ✅ Testing new V2 translation skills\n' || '' }}
+            ${{ github.event.inputs.skill_version == 'both' && '- 🔬 Comparing V1 vs V2 skill quality\n' || '' }}
             
             ### 🔄 Translation Mode
             
@@ -227,6 +435,8 @@ jobs:
             ${{ github.event.inputs.mode == 'specific' && format('**Specific Mode:** Only the following files were retranslated:\n```\n{0}\n```\n', steps.files.outputs.files) || '' }}
             ${{ github.event.inputs.mode == 'all' && '**⚠️ ALL FILES MODE:** The entire documentation corpus was retranslated. This is a major update.\n' || '' }}
             
+            ${{ github.event.inputs.skill_version == 'both' && '### 🔬 V1 vs V2 Comparison\n\nThis PR includes translations from **both** V1 and V2 skills for side-by-side comparison:\n\n- `docs/{lang}-comparison/v1/` - Translations using current V1 skills\n- `docs/{lang}-comparison/v2/` - Translations using new V2 skills\n\n**Review Focus:**\n- Compare translation quality between versions\n- Identify improvements in V2\n- Check for any regressions\n- Validate terminology consistency\n\n**Comparison Commands:**\n```bash\n# Compare specific file between v1 and v2\ndiff docs/es-comparison/v1/about_kobotoolbox.md docs/es-comparison/v2/about_kobotoolbox.md\n\n# View all differences for Spanish\nfor file in docs/es-comparison/v1/*.md; do\n  filename=$(basename "$file")\n  echo "=== $filename ==="\n  diff "$file" "docs/es-comparison/v2/$filename" || true\ndone\n```\n\n' || '' }}
+            
             ### 🎯 Expected Changes
             
             Since this is a **bulk retranslation**, you may see:
@@ -234,6 +444,7 @@ jobs:
             - ✅ Better style adherence (if guidelines were refined)
             - ⚠️ Formatting changes (spacing, line breaks)
             - ⚠️ Rephrased content (even if meaning is identical)
+            ${{ github.event.inputs.skill_version == 'v2' && '- 🆕 V2-specific improvements (smaller context, focused terminology)\n' || '' }}
             
             ### ✅ Review Checklist
             
@@ -257,6 +468,8 @@ jobs:
             - [ ] Links and formatting preserved
             - [ ] No English artifacts or untranslated content
             
+            ${{ github.event.inputs.skill_version == 'v2' && '**V2 Skill Validation:**\n- [ ] Improved terminology consistency (V2 has focused glossaries)\n- [ ] Reduced context preserved translation quality\n- [ ] No regressions compared to V1\n\n' || '' }}
+            ${{ github.event.inputs.skill_version == 'both' && '**V1 vs V2 Comparison:**\n- [ ] Review sample files from both versions\n- [ ] Document quality improvements in V2\n- [ ] Note any regressions or issues with V2\n- [ ] Decide which version to promote to production\n\n' || '' }}
             **Skill Changes (if applicable):**
             - [ ] Review key files to confirm skill updates improved quality
             - [ ] Compare a few files with previous versions to validate improvements
@@ -275,6 +488,7 @@ jobs:
             
             # Review a specific language
             git diff main...translations/bulk-retranslate-${{ github.run_number }} docs/es/
+            ${{ github.event.inputs.skill_version == 'both' && '\n# Compare V1 vs V2 for a specific file\ndiff docs/es-comparison/v1/about_kobotoolbox.md docs/es-comparison/v2/about_kobotoolbox.md\n\n# Generate full comparison report\nfor lang in es fr ar; do\n  echo "=== $lang ==="\n  diff -r "docs/${lang}-comparison/v1" "docs/${lang}-comparison/v2" --brief | wc -l\ndone' || '' }}
             ```
             
             ### 🔗 Related
@@ -282,11 +496,14 @@ jobs:
             - Workflow run: #${{ github.run_number }}
             - Commit: ${{ github.sha }}
             - Documentation: [Bulk Retranslation Guide](../docs/guides/BULK_RETRANSLATION.md)
+            ${{ github.event.inputs.skill_version == 'v2' && '- V2 Skills: `skills/kobo-translation-v2-{lang}/`\n' || '' }}
             
             **Reviewers:** @es-reviewer @fr-reviewer @ar-reviewer
           labels: |
             translation
             bulk-retranslation
+            ${{ github.event.inputs.skill_version == 'v2' && 'v2-skills' || '' }}
+            ${{ github.event.inputs.skill_version == 'both' && 'comparison' || '' }}
             needs-review
       
       - name: Job summary
@@ -305,7 +522,16 @@ jobs:
             fi
             
             echo "- Mode: ${{ github.event.inputs.mode }}" >> $GITHUB_STEP_SUMMARY
+            echo "- Skill version: ${{ github.event.inputs.skill_version }}" >> $GITHUB_STEP_SUMMARY
             echo "- Languages: ${{ github.event.inputs.languages }}" >> $GITHUB_STEP_SUMMARY
+            
+            if [ "${{ github.event.inputs.skill_version }}" == "both" ]; then
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "### 🔬 Comparison Mode" >> $GITHUB_STEP_SUMMARY
+              echo "Translations generated with both V1 and V2 skills for comparison." >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "Check PR for side-by-side comparison in \`docs/{lang}-comparison/\` directories." >> $GITHUB_STEP_SUMMARY
+            fi
             
           else
             echo "❌ **Retranslation Failed**" >> $GITHUB_STEP_SUMMARY
