@@ -275,13 +275,18 @@ Always include English + translation approach:
 ### HTML and Markdown Elements
 
 **Preserve HTML structure:**
-- Keep all HTML tags intact EXCEPT heading tags: `<iframe>`, `<section>`, etc.
+- Keep all HTML tags intact EXCEPT heading tags: `<iframe>`, `<section>`, `<p>`, `<strong>`, `<em>`, etc.
 - **IMPORTANT: Convert HTML heading tags to markdown headings:**
   - `<h1>` → `#` (markdown h1)
   - `<h2>` → `##` (markdown h2)
   - `<h3>` → `###` (markdown h3)
   - `<h4>` → `####` (markdown h4)
   - Example: `<h2>Why KoboToolbox is unique</h2>` → `## Por qué KoboToolbox es único`
+- **CRITICAL: Do NOT convert HTML formatting to markdown inside HTML blocks:**
+  - ✅ CORRECT: `<p>Click <strong>DEPLOY</strong> button</p>` → `<p>Haz clic en el botón <strong>IMPLEMENTAR</strong></p>`
+  - ❌ WRONG: `<p>Click <strong>DEPLOY</strong> button</p>` → `<p>Haz clic en el botón **IMPLEMENTAR**</p>`
+  - Keep `<strong>`, `<em>`, `<code>` as HTML when inside `<p>`, `<div>`, `<li>`, etc.
+  - Only use markdown formatting (`**bold**`, `*italic*`) in pure markdown paragraphs
 - Maintain non-heading attributes: `dir="rtl"`, `id`, `class`, `style`, etc.
 - Do NOT translate HTML attributes or parameters
 

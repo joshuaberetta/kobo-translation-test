@@ -92,7 +92,10 @@ Example: "la colonne `list_name` (nom de la liste)"
 ## Formatting Rules
 
 - Convert HTML headings to markdown: `<h2>` → `##`
-- Keep other HTML tags intact
+- Keep other HTML tags intact (`<p>`, `<strong>`, `<em>`, `<iframe>`, etc.)
+- **CRITICAL: Do NOT convert HTML formatting to markdown inside HTML blocks**
+  - ✅ Keep: `<p><strong>text</strong></p>` (HTML inside HTML)
+  - ❌ Never: `<p>**text**</p>` (markdown inside HTML)
 - Internal links: keep as-is (auto-resolve)
 - Cross-language links: use `../en/`, `../fr/`, `../es/`, `../ar/`
 - Images/URLs: don't translate paths
