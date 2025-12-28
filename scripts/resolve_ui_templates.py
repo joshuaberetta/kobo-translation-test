@@ -135,6 +135,49 @@ class TemplateResolver:
         
         return text
     
+    def _replace_placeholders(self, text: str) -> str:
+        """
+        Replace frontend UI term placeholders (##VAR##) with translated terms.
+        
+        Distinguishes between:
+        - UI terms: ALL_CAPS placeholders (##SELECT_MANY##, ##ASSET_TYPE##) → replaced
+        - Dynamic values: snake_case/lowercase (##count##, ##username##) → kept as-is
+        
+        Args:
+            text: Translated text that may contain ##VAR## placeholders
+            
+        Returns:
+            Text with UI term placeholders replaced, dynamic values preserved
+        """
+        import re
+        
+        # Match ALL placeholders first to analyze them
+        placeholder_pattern = r'##([^#]+)##'
+        
+        def replace_placeholder(match):
+            var_name = match.group(1)
+            
+            # Check if this is an ALL_CAPS placeholder (likely a UI term)
+            # Examples: SELECT_MANY, ASSET_TYPE, QUESTION_TYPE
+            if re.match(r'^[A-Z][A-Z_]*[A-Z]$', var_name):
+                # Convert to lowercase with spaces for lookup
+                lookup_key = var_name.replace('_', ' ').lower()
+                
+                # Try to find translation for the UI term
+                if lookup_key in self.translations:
+                    return self.translations[lookup_key]
+                
+                # If not found, convert to readable text
+                # SELECT_MANY -> Select Many
+                return var_name.replace('_', ' ').title()
+            
+            # For all other cases (snake_case, lowercase, mixed case):
+            # Keep the placeholder as-is for runtime replacement
+            # Examples: ##count##, ##username##, ##fileName##, ##organization name##
+            return match.group(0)  # Return original ##VAR##
+        
+        return re.sub(placeholder_pattern, replace_placeholder, text)
+    
     def resolve_template(self, match: re.Match) -> str:
         """
         Resolve a single template match with case-insensitive lookup.
@@ -154,12 +197,16 @@ class TemplateResolver:
         # Try direct lowercase lookup
         if key_lower in self.translations:
             translated = self.translations[key_lower]
+            # Replace frontend variable placeholders with actual UI terms
+            translated = self._replace_placeholders(translated)
             return self._apply_formatting(translated, formatting)
         
         # Try with spaces instead of underscores
         key_with_spaces = key.replace('_', ' ').lower()
         if key_with_spaces in self.translations:
             translated = self.translations[key_with_spaces]
+            # Replace frontend variable placeholders with actual UI terms
+            translated = self._replace_placeholders(translated)
             return self._apply_formatting(translated, formatting)
         
         # Not found - record and keep template (as specified: leave unresolved)

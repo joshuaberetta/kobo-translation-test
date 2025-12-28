@@ -99,6 +99,47 @@ Multi-word UI strings can use either spaces or underscores:
 
 **Best Practice:** Use the exact text as it appears in the KoboToolbox UI, including spaces. Check the [transifex-ui-strings.md](../skills/kobo-translation/references/transifex-ui-strings.md) reference to find the correct key.
 
+### Variable Placeholders
+
+Some Transifex strings contain variable placeholders like `##VAR##`. The system handles two types:
+
+**1. UI Term Placeholders (ALL_CAPS) - Automatically Replaced:**
+```markdown
+{{ui:Export ##SELECT_MANY## questions as…}}
+→ Spanish: "Exportar preguntas Seleccionar varias como..."
+→ ##SELECT_MANY## is replaced with "Seleccionar varias"
+
+{{ui:cloned ##ASSET_TYPE## created}}
+→ Spanish: "Asset Type clonado creado"
+→ ##ASSET_TYPE## is replaced (or made readable if no translation)
+```
+
+**2. Dynamic Value Placeholders (snake_case/lowercase) - Preserved:**
+```markdown
+{{ui:##field_label## (required)}}
+→ Spanish: "##field_label## (obligatorio)"
+→ ##field_label## is kept for runtime substitution
+
+{{ui:##count## characters left}}
+→ Spanish: "##count## caracteres disponibles"
+→ ##count## is kept for runtime substitution
+```
+
+**How it works:**
+- **ALL_CAPS** patterns (e.g., `##SELECT_MANY##`, `##ASSET_TYPE##`) are UI terms → replaced with translations
+- **snake_case/lowercase** patterns (e.g., `##count##`, `##username##`, `##field_label##`) are dynamic values → preserved for runtime
+
+**Common UI term placeholders:**
+- `##SELECT_MANY##` → Select Many question type
+- `##ASSET_TYPE##` → Asset type name
+- `##QUESTION_TYPE##` → Question type
+
+**Common dynamic placeholders (preserved):**
+- `##count##`, `##number##` → Numeric values
+- `##username##`, `##username_list##` → User information  
+- `##field_label##`, `##fileName##` → Dynamic text
+- `##date##`, `##timestamp##` → Time values
+
 ---
 
 ## Examples
