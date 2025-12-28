@@ -56,22 +56,30 @@ Haz clic en el botón **DESPLEGAR** para publicar tu formulario.
 
 Replaces with the translated string for "Deploy" (e.g., "DESPLEGAR" in Spanish).
 
+**Note:** Template keys are **case-insensitive**. `{{ui:Deploy}}`, `{{ui:deploy}}`, and `{{ui:DEPLOY}}` all work the same.
+
 ### With Formatting
 
-Add `|format` to apply markdown formatting:
+Add `|format` to apply markdown formatting. You can combine multiple formats with commas:
 
 ```markdown
-{{ui:Deploy|bold}}     → **DESPLEGAR**
-{{ui:FORM|code}}       → `FORMULARIO`
-{{ui:Save|italic}}     → *GUARDAR*
+{{ui:Deploy|bold}}         → **DESPLEGAR**
+{{ui:FORM|code}}           → `FORMULARIO`
+{{ui:Save|italic}}         → *GUARDAR*
+{{ui:deploy|upper}}        → IMPLEMENTAR (case-insensitive + uppercase)
+{{ui:data|upper,bold}}     → **DATOS** (uppercase then bold)
 ```
 
 **Supported formats:**
 - `bold` - Wrap in `**text**`
 - `italic` - Wrap in `*text*`
 - `code` - Wrap in `` `text` ``
-- `upper` - Convert to UPPERCASE
-- `lower` - Convert to lowercase
+- `upper` - Convert to UPPERCASE (applied first)
+- `lower` - Convert to lowercase (applied first)
+
+**Multiple formats:** Separate with commas. Case transformations (`upper`/`lower`) are applied before markdown wrapping (`bold`/`italic`/`code`).
+
+**Example:** `{{ui:form|upper,bold}}` → first uppercase "FORMULARIO", then wrap in bold → `**FORMULARIO**`
 
 ### Multi-word Terms
 
@@ -80,6 +88,7 @@ Multi-word UI strings can use either spaces or underscores:
 ```markdown
 {{ui:Save Draft}}          → GUARDAR BORRADOR (spaces work!)
 {{ui:Save_Draft}}          → GUARDAR BORRADOR (underscores also work)
+{{ui:save draft|upper}}    → GUARDAR BORRADOR (case-insensitive!)
 {{ui:Start new form}}      → INICIAR NUEVO FORMULARIO
 {{ui:Question Library}}    → LA BIBLIOTECA DE PREGUNTAS
 {{ui:Cancel transfer}}     → Cancelar transferencia (Spanish)

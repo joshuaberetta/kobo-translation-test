@@ -82,12 +82,13 @@ class TemplateResolver:
         
         for entry in po:
             if entry.msgid and entry.msgstr and not entry.obsolete:
-                # Create lookup by exact msgid
-                translations[entry.msgid] = entry.msgstr
+                # Store with lowercase key for case-insensitive lookup
+                # This allows {{ui:Deploy}}, {{ui:deploy}}, or {{ui:DEPLOY}} to all work
+                translations[entry.msgid.lower()] = entry.msgstr
                 
                 # Also store with underscores for template keys
-                # (e.g., "Save Draft" -> "Save_Draft")
-                key = entry.msgid.replace(' ', '_')
+                # (e.g., "Save Draft" -> "save_draft")
+                key = entry.msgid.replace(' ', '_').lower()
                 translations[key] = entry.msgstr
         
         print(f"✅ Loaded {len(translations)} translations from {po_file.name}")
@@ -96,10 +97,12 @@ class TemplateResolver:
     def _apply_formatting(self, text: str, formatting: Optional[str]) -> str:
         """
         Apply markdown formatting to translated text.
+        Supports comma-separated format specifiers: {{ui:data|upper,bold}}
         
         Args:
             text: The translated text
-            formatting: Format specifier (bold, italic, code, upper, lower)
+            formatting: Format specifier(s) - can be comma-separated
+                       (bold, italic, code, upper, lower)
             
         Returns:
             Formatted text
@@ -107,24 +110,33 @@ class TemplateResolver:
         if not formatting:
             return text
         
-        if formatting == 'bold':
-            return f"**{text}**"
-        elif formatting == 'italic':
-            return f"*{text}*"
-        elif formatting == 'code':
-            return f"`{text}`"
-        elif formatting == 'upper':
-            return text.upper()
-        elif formatting == 'lower':
-            return text.lower()
-        else:
-            # Unknown formatting, skip
-            print(f"⚠️  Warning: Unknown formatting '{formatting}', ignoring")
-            return text
+        # Split by comma to support multiple formats
+        formats = [f.strip() for f in formatting.split(',')]
+        
+        # Apply case transformations first (upper/lower)
+        for fmt in formats:
+            if fmt == 'upper':
+                text = text.upper()
+            elif fmt == 'lower':
+                text = text.lower()
+        
+        # Then apply markdown wrapping (order matters: bold outside italic)
+        for fmt in formats:
+            if fmt == 'bold':
+                text = f"**{text}**"
+            elif fmt == 'italic':
+                text = f"*{text}*"
+            elif fmt == 'code':
+                text = f"`{text}`"
+            elif fmt not in ['upper', 'lower']:
+                # Unknown formatting, warn but continue
+                print(f"⚠️  Warning: Unknown formatting '{fmt}', ignoring")
+        
+        return text
     
     def resolve_template(self, match: re.Match) -> str:
         """
-        Resolve a single template match.
+        Resolve a single template match with case-insensitive lookup.
         
         Args:
             match: Regex match object for template
@@ -135,13 +147,16 @@ class TemplateResolver:
         key = match.group(1)
         formatting = match.group(2)
         
-        # Try exact key lookup
-        if key in self.translations:
-            translated = self.translations[key]
+        # Normalize key to lowercase for case-insensitive lookup
+        key_lower = key.lower()
+        
+        # Try direct lowercase lookup
+        if key_lower in self.translations:
+            translated = self.translations[key_lower]
             return self._apply_formatting(translated, formatting)
         
         # Try with spaces instead of underscores
-        key_with_spaces = key.replace('_', ' ')
+        key_with_spaces = key.replace('_', ' ').lower()
         if key_with_spaces in self.translations:
             translated = self.translations[key_with_spaces]
             return self._apply_formatting(translated, formatting)
