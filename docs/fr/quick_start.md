@@ -1,6 +1,6 @@
 # Guide de démarrage rapide
 
-Cet article fournit un guide rapide pour commencer avec KoboToolbox. Il explique comment créer un compte, construire et déployer un formulaire, et commencer à collecter des données.
+Cet article fournit un guide rapide pour débuter avec KoboToolbox. Il explique comment créer un compte, construire et déployer un formulaire, et commencer à collecter des données.
 
 <iframe src="https://www.youtube.com/embed/CYJ-Ob_7Ql8?si=SDjFjZF4zQBE-thP&cc_lang_pref=fr&hl=fr" style="width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -17,19 +17,20 @@ Activez votre compte en utilisant le lien envoyé par e-mail, puis connectez-vou
 ## Créer votre premier projet
 
 Pour créer votre premier formulaire :
+
 1. Cliquez sur **NOUVEAU**. Vous serez invité(e) à choisir une source de projet.
 
 | Option                    | Description                                                                                                           |
 | :------------------------ | :-------------------------------------------------------------------------------------------------------------------- |
-| Construction du formulaires        | Construisez un formulaire en utilisant l'<a href="formbuilder.html" class="reference">interface de création de formulaires KoboToolbox (KoboToolbox Formbuilder)</a>.                   |
-| Utiliser un modèle            | Construisez un formulaire en utilisant un modèle de <a href="question_library.html" class="reference">La bibliothèque de questions</a>.   |
-| Importer XLSForm            | Importez un fichier <a href="edit_forms_excel.html" class="reference">XLSForm</a> dans lequel vous avez défini vos questions.     |
-| Importer un XLSForm à partir d'une URL | Importez un fichier XLSForm <a href="https://support.kobotoolbox.org/xlsform_with_kobotoolbox.html#importing-an-xlsform-via-url" class="reference">à partir d'une source en ligne</a> telle que Google Drive ou Dropbox. |
+| Construction du formulaires        | Construire un formulaire en utilisant l'interface de création de formulaires KoboToolbox (KoboToolbox Formbuilder).                   |
+| Utiliser un modèle            | Construire un formulaire en utilisant un modèle de La bibliothèque de questions.   |
+| Importer XLSForm            | Importer un fichier XLSForm dans lequel vous avez défini vos questions.     |
+| Importer un XLSForm à partir d'une URL | Importer un fichier XLSForm à partir d'une source en ligne telle que Google Drive ou Dropbox. |
 
 2. Sélectionnez **Construction du formulaires** pour créer un nouveau formulaire en utilisant l'interface de création de formulaires KoboToolbox.
 3. Dans la boîte de dialogue **Détails du projet**, saisissez les informations pertinentes concernant votre projet, puis cliquez sur **Créer le projet**.
 
-## Construire un formulaire en utilisant l'interface de création de formulaires
+## Construire un formulaire avec l'interface de création de formulaires
 
 1. Une fois dans l'interface de création de formulaires, cliquez sur le bouton <i class="k-icon-plus"></i> pour ajouter votre première question. Saisissez le libellé de la question et choisissez un [type de question](question_types.md).
 2. Pour spécifier les paramètres de la question, cliquez sur l'icône <i class="k-icon-settings"></i> **Paramètres**. Par exemple, vous pouvez rendre une question obligatoire, modifier son apparence ou ajouter des conditions de [branchement conditionnel](skip_logic.md).
@@ -37,14 +38,14 @@ Pour créer votre premier formulaire :
 4. Pour enregistrer le formulaire, cliquez sur **Sauvegarder** dans le coin supérieur droit, puis cliquez sur <i class="k-icon-close"></i> pour fermer le formulaire.
 
 <p class="note">
-    Pour en savoir plus sur l'utilisation de l'interface de création de formulaires, consultez <a href="formbuilder.html">Commencer avec l'interface de création de formulaires KoboToolbox</a> et <a href="question_options.html">Utiliser les options de question</a>.
+    Pour en savoir plus sur l'utilisation de l'interface de création de formulaires, consultez <a href="formbuilder.html">Débuter avec l'interface de création de formulaires KoboToolbox</a> et <a href="question_options.html">Utiliser les options de question</a>.
 </p>
 
 ## Déployer votre formulaire pour la collecte de données
 
 1. Pour commencer à collecter des données, cliquez sur **DÉPLOYER** dans la page **FORMULAIRE** pour [déployer votre formulaire Brouillon](deploy_form_new_project.md) en tant que nouveau projet de collecte de données.
-2. Sous **Collection de données**, cliquez sur **copier** pour partager le lien du formulaire pour la saisie de données [à partir d'un navigateur](data_through_webforms.md) sur n'importe quel appareil (ordinateur, iPhone, Android).
-3. Alternativement, téléchargez et configurez l'[application Android KoboCollect](kobocollect_on_android_latest.md) pour la collecte mobile de données.
+2. Sous **Collection de données**, cliquez sur **COPIER** pour partager le lien du formulaire permettant la saisie de données [depuis un navigateur](data_through_webforms.md) sur n'importe quel appareil (ordinateur, iPhone, Android).
+3. Alternativement, téléchargez et configurez l'application Android [KoboCollect](kobocollect_on_android_latest.md) pour la collecte mobile de données.
 
 <p class="note">
     <strong>Remarque :</strong> Pour <a href="project_sharing_settings.html">partager votre formulaire</a> avec toute personne disposant de l'URL du formulaire, activez « Autoriser les soumissions à ce formulaire sans nom d'utilisateur ni mot de passe » dans la page <strong>FORMULAIRE</strong>, sous <strong>Collection de données</strong>.

@@ -25,8 +25,8 @@ To create your first form:
 | :------------------------ | :-------------------------------------------------------------------------------------------------------------------- |
 | {{ui:Build from scratch}}        | Build a form using the KoboToolbox <a href="formbuilder.html" class="reference">Formbuilder</a>.                   |
 | {{ui:Use a template}}            | Build a form using a template from the <a href="question_library.html" class="reference">question library</a>.   |
-| {{ui:Upload}} XLSForm            | {{ui:Upload}} an <a href="edit_forms_excel.html" class="reference">XLSForm</a> file where you have defined your questions.     |
-| {{ui:Import an XLSForm via URL}} | {{ui:Upload}} an XLSForm file <a href="https://support.kobotoolbox.org/xlsform_with_kobotoolbox.html#importing-an-xlsform-via-url" class="reference">from an online source</a> such as Google Drive or Dropbox. |
+| {{ui:Upload}} XLSForm            | Upload an <a href="edit_forms_excel.html" class="reference">XLSForm</a> file where you have defined your questions.     |
+| {{ui:Import an XLSForm via URL}} | Upload an XLSForm file <a href="https://support.kobotoolbox.org/xlsform_with_kobotoolbox.html#importing-an-xlsform-via-url" class="reference">from an online source</a> such as Google Drive or Dropbox. |
 
 
 2. Select **{{ui:Build from scratch}}** to create a new form using the KoboToolbox Formbuilder.
@@ -47,7 +47,7 @@ To create your first form:
 ## Deploying your form for data collection
 
 1. To start collecting data, click **{{ui:deploy|upper}}** in the **{{ui:form|upper}}** page to [deploy your draft form](deploy_form_new_project.md) as a new data collection project.
-2. Under **{{ui:Collect data}}**, click **{{ui:Copy}}** to share the form link for data entry [from a browser](data_through_webforms.md) on any device (computer, iPhone, Android).
+2. Under **{{ui:Collect data}}**, click **{{ui:Copy|upper}}** to share the form link for data entry [from a browser](data_through_webforms.md) on any device (computer, iPhone, Android).
 3. Alternatively, download and set up the [KoboCollect](kobocollect_on_android_latest.md) Android application for mobile data collection.
 
 
