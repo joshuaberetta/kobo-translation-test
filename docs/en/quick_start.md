@@ -26,7 +26,7 @@ To create your first form:
 | {{ui:Build from scratch}}        | Build a form using the KoboToolbox <a href="formbuilder.html" class="reference">Formbuilder</a>.                   |
 | {{ui:Use a template}}            | Build a form using a template from the <a href="question_library.html" class="reference">question library</a>.   |
 | {{ui:Upload}} XLSForm            | {{ui:Upload}} an <a href="edit_forms_excel.html" class="reference">XLSForm</a> file where you have defined your questions.     |
-| Import an XLSForm via URL | {{ui:Upload}} an XLSForm file <a href="https://support.kobotoolbox.org/xlsform_with_kobotoolbox.html#importing-an-xlsform-via-url" class="reference">from an online source</a> such as Google Drive or Dropbox. |
+| {{ui:Import an XLSForm via URL}} | {{ui:Upload}} an XLSForm file <a href="https://support.kobotoolbox.org/xlsform_with_kobotoolbox.html#importing-an-xlsform-via-url" class="reference">from an online source</a> such as Google Drive or Dropbox. |
 
 
 2. Select **{{ui:Build from scratch}}** to create a new form using the KoboToolbox Formbuilder.
