@@ -38,8 +38,9 @@ from typing import Dict, Optional, List, Tuple
 
 
 # Template pattern: {{ui:KEY}} or {{ui:KEY|formatting}}
-# Supports alphanumeric, underscores, spaces, hyphens, and colons in keys
-TEMPLATE_PATTERN = r'\{\{ui:([a-zA-Z0-9_ :-]+)(?:\|([^}]+))?\}\}'
+# Allows any character except: } (template end) and | (format separator before it's parsed)
+# This supports all msgid strings from Transifex including special chars like: ().,/!?'@#&*+$[]°×…→
+TEMPLATE_PATTERN = r'\{\{ui:([^|}]+?)(?:\|([^}]+))?\}\}'
 
 
 class TemplateResolver:

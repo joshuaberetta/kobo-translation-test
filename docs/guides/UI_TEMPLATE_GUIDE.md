@@ -56,7 +56,10 @@ Haz clic en el botón **DESPLEGAR** para publicar tu formulario.
 
 Replaces with the translated string for "Deploy" (e.g., "DESPLEGAR" in Spanish).
 
-**Note:** Template keys are **case-insensitive**. `{{ui:Deploy}}`, `{{ui:deploy}}`, and `{{ui:DEPLOY}}` all work the same.
+**Key characteristics:**
+- **Case-insensitive:** `{{ui:Deploy}}`, `{{ui:deploy}}`, and `{{ui:DEPLOY}}` all work the same
+- **Special characters supported:** Parentheses, slashes, periods, commas, etc. are all allowed
+- **Examples:** `{{ui:Barcode / QR Code}}`, `{{ui:Online-Offline (multiple submission)}}`, `{{ui:Failed to get submission.}}`
 
 ### With Formatting
 
