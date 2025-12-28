@@ -30,16 +30,18 @@ For **UPDATES** (diff-based translation):
 
 ## 🚨 CRITICAL: Pre-Translation Checklist
 
-**BEFORE starting translation, read these reference files:**
+**BEFORE starting translation, read these reference files IN ORDER:**
 
 1. **[brand-terminology.md](references/brand-terminology.md)** - For server names, Question Library, Formbuilder, and ALL brand terms
-2. **[ui-terminology.md](references/ui-terminology.md)** - For button names, tabs, and capitalization rules
+2. **[transifex-ui-strings.md](references/transifex-ui-strings.md)** - For ALL UI elements (buttons, tabs, menus) - **HIGHEST PRIORITY**
+3. **[ui-terminology.md](references/ui-terminology.md)** - For supplementary UI terms not in Transifex
 
 **Common mistakes to avoid:**
 - ❌ Translating server names incorrectly (missing articles or adding extra words)
 - ❌ Not including English term on first reference for Formbuilder
 - ❌ Missing capital article for "Question Library" / "La bibliothèque de questions" / "La biblioteca de preguntas"
 - ❌ Not capitalizing UI terms like "Brouillon" / "Borrador"
+- ❌ Using UI translations that don't match Transifex exactly
 - ❌ Using "de" article when it shouldn't be there in French data management terms
 
 ## Quick Reference
@@ -100,8 +102,30 @@ For **UPDATES** (diff-based translation):
 
 1. Identify all brand terms in the source text (KoboToolbox, servers, Question Library, Formbuilder, etc.)
 2. Open **brand-terminology.md** and verify EXACT translations
-3. Check **ui-terminology.md** for any UI elements (buttons, tabs, page names)
-4. Note any terms requiring "English + translation" on first reference
+3. Check **transifex-ui-strings.md** for any UI elements (buttons, tabs, menus, dialogs)
+4. Check **ui-terminology.md** for supplementary UI terms not in Transifex
+5. Note any terms requiring "English + translation" on first reference
+
+### Step 0.5: UI Element Translation Priority
+
+**When translating ANY UI element (buttons, tabs, menus, dialogs, status messages):**
+
+1. **FIRST:** Check [transifex-ui-strings.md](references/transifex-ui-strings.md)
+   - If found: Use EXACT translation (character-for-character match)
+   - These are pulled directly from Transifex and MUST match the actual UI
+   
+2. **SECOND:** If not in Transifex file, check [ui-terminology.md](references/ui-terminology.md)
+   - Supplementary UI terms and formatting guidance
+   
+3. **NEVER:** Adapt, localize, or modify Transifex UI strings
+   - Even if it sounds better in the target language
+   - Even if capitalization seems wrong
+   - The UI uses these exact strings, documentation must match
+
+**Example:**
+- English doc: "Click the **Deploy** button"
+- Find "Deploy" in transifex-ui-strings.md → Spanish: "DESPLEGAR"
+- Translated doc: "Haz clic en el botón **DESPLEGAR**"
 
 ### Step 1: Identify Content Type
 
@@ -416,20 +440,31 @@ Context-dependent, see [data-collection-terms.md](references/data-collection-ter
 
 ## Terminology References
 
-For detailed term-by-term translations, consult these reference files:
+For detailed term-by-term translations, consult these reference files in priority order:
 
-- **[brand-terminology.md](references/brand-terminology.md)** - Brand terms, product names, user plans (OFFICIAL) - **READ THIS FIRST**
+### HIGHEST PRIORITY - Transifex UI Strings
+- **[transifex-ui-strings.md](references/transifex-ui-strings.md)** - Actual UI translations from Transifex (AUTHORITATIVE) - **CHECK FIRST FOR ANY UI ELEMENT**
+
+### OFFICIAL - Must Use Exactly
+- **[brand-terminology.md](references/brand-terminology.md)** - Brand terms, product names, user plans (OFFICIAL)
+- **[ui-terminology.md](references/ui-terminology.md)** - Supplementary UI terms not in Transifex (OFFICIAL)
 - **[form-building-terms.md](references/form-building-terms.md)** - Form building, XLSForm, cascading selects (OFFICIAL)
-- **[question-types.md](references/question-types.md)** - Question types and appearances (PREFERRED for types, special rules for appearances)
-- **[ui-terminology.md](references/ui-terminology.md)** - Formbuilder and KoboCollect UI (OFFICIAL) - **READ THIS SECOND**
-- **[data-collection-terms.md](references/data-collection-terms.md)** - Data collection concepts (PREFERRED)
-- **[documentation-terminology.md](references/documentation-terminology.md)** - Documentation website and Help Center terms (PREFERRED)
-- **[course-terminology.md](references/course-terminology.md)** - Learning platform and course content (PREFERRED)
+
+### PREFERRED - Can Adapt for Context
+- **[question-types.md](references/question-types.md)** - Question types and appearances
+- **[data-collection-terms.md](references/data-collection-terms.md)** - Data collection concepts
+- **[documentation-terminology.md](references/documentation-terminology.md)** - Documentation website and Help Center terms
+- **[course-terminology.md](references/course-terminology.md)** - Learning platform and course content
 
 ## Translation Decision Tree
 
 ```
 START: Do I see ANY of these terms in the source text?
+├─ UI element (button, tab, menu, dialog)?
+│  └─ 🚨 STOP → Check transifex-ui-strings.md FIRST
+│     ├─ Found? Use EXACT translation from Transifex (never modify)
+│     └─ Not found? Check ui-terminology.md
+│
 ├─ Server names (Global Server, EU Server)?
 │  └─ 🚨 STOP → Open brand-terminology.md → Use EXACT translation with articles
 │
@@ -440,9 +475,6 @@ START: Do I see ANY of these terms in the source text?
 │  └─ 🚨 STOP → First reference must include English in parentheses
 │     ES: "editor de formularios de KoboToolbox (Formbuilder)"
 │     FR: "l'interface de création de formulaires KoboToolbox (KoboToolbox Formbuilder)"
-│
-├─ UI element (button, tab, menu - like DEPLOY, NEW, FORM, DATA)?
-│  └─ Check ui-terminology.md → Use OFFICIAL translation → Match UI capitalization
 │
 ├─ Draft / Brouillon / Borrador?
 │  └─ Capitalize in UI contexts: "Brouillon" / "Borrador"

@@ -17,9 +17,10 @@ Translate KoboToolbox content in French, Spanish, and Arabic with consistent ter
 
 ## CRITICAL: Pre-Translation Checklist
 
-**BEFORE translating, check these reference files:**
-1. **[brand-terminology.md](references/brand-terminology.md)** - Server names, Question Library, Formbuilder
-2. **[ui-terminology.md](references/ui-terminology.md)** - Button names, tabs, capitalization
+**BEFORE translating, check these reference files IN ORDER:**
+1. **[brand-terminology.md](references/brand-terminology.md)** - Server names, Question Library, Formbuilder, and ALL brand terms
+2. **[transifex-ui-strings.md](references/transifex-ui-strings.md)** - For ALL UI elements (buttons, tabs, menus) - **HIGHEST PRIORITY**
+3. **[ui-terminology.md](references/ui-terminology.md)** - For supplementary UI terms not in Transifex
 
 **Common mistakes:**
 - Missing articles in French server names ("Le serveur...")
@@ -27,6 +28,7 @@ Translate KoboToolbox content in French, Spanish, and Arabic with consistent ter
 - Lowercase "La biblioteca" / "La bibliothèque" (must be capital L)
 - Missing English term on first Formbuilder reference
 - Incorrect UI capitalization (Brouillon, Borrador, DONNÉES, DATOS)
+- Using UI translations that don't match Transifex exactly
 
 ## Translation Types
 
@@ -54,6 +56,39 @@ Translate KoboToolbox content in French, Spanish, and Arabic with consistent ter
 
 Example: "la colonne `list_name` (nom de la liste)"
 
+## Translation Process
+
+### Step 0: Pre-Translation Checks
+
+**BEFORE translating anything:**
+
+1. Identify all brand terms in the source text (KoboToolbox, servers, Question Library, Formbuilder)
+2. Open **brand-terminology.md** and verify EXACT translations
+3. Check **transifex-ui-strings.md** for any UI elements (buttons, tabs, menus, dialogs)
+4. Check **ui-terminology.md** for supplementary UI terms not in Transifex
+5. Note any terms requiring "English + translation" on first reference
+
+### Step 0.5: UI Element Translation Priority
+
+**When translating ANY UI element (buttons, tabs, menus, dialogs, status messages):**
+
+1. **FIRST:** Check [transifex-ui-strings.md](references/transifex-ui-strings.md)
+   - If found: Use EXACT translation (character-for-character match)
+   - These are pulled directly from Transifex and MUST match the actual UI
+   
+2. **SECOND:** If not in Transifex file, check [ui-terminology.md](references/ui-terminology.md)
+   - Supplementary UI terms and formatting guidance
+   
+3. **NEVER:** Adapt, localize, or modify Transifex UI strings
+   - Even if it sounds better in the target language
+   - Even if capitalization seems wrong
+   - The UI uses these exact strings, documentation must match
+
+**Example:**
+- English doc: "Click the **Deploy** button"
+- Find "Deploy" in transifex-ui-strings.md → Spanish: "DESPLEGAR"
+- Translated doc: "Haz clic en el botón **DESPLEGAR**"
+
 ## Formatting Rules
 
 - Convert HTML headings to markdown: `<h2>` → `##`
@@ -78,13 +113,43 @@ Example: "la colonne `list_name` (nom de la liste)"
 
 ## Terminology References
 
-- **[brand-terminology.md](references/brand-terminology.md)** - Brand terms (OFFICIAL)
-- **[ui-terminology.md](references/ui-terminology.md)** - UI elements (OFFICIAL)
-- **[form-building-terms.md](references/form-building-terms.md)** - XLSForm terms (OFFICIAL)
-- **[question-types.md](references/question-types.md)** - Question types/appearances
-- **[data-collection-terms.md](references/data-collection-terms.md)** - Data collection
-- **[course-terminology.md](references/course-terminology.md)** - Academy/courses
-- **[documentation-terminology.md](references/documentation-terminology.md)** - Help Center
+For detailed term-by-term translations, consult these reference files in priority order:
+
+### HIGHEST PRIORITY - Transifex UI Strings
+- **[transifex-ui-strings.md](references/transifex-ui-strings.md)** - Actual UI translations from Transifex (AUTHORITATIVE) - **CHECK FIRST FOR ANY UI ELEMENT**
+
+### OFFICIAL - Must Use Exactly
+- **[brand-terminology.md](references/brand-terminology.md)** - Brand terms, product names, user plans (OFFICIAL)
+- **[ui-terminology.md](references/ui-terminology.md)** - Supplementary UI terms not in Transifex (OFFICIAL)
+- **[form-building-terms.md](references/form-building-terms.md)** - Form building, XLSForm, cascading selects (OFFICIAL)
+
+### PREFERRED - Can Adapt for Context
+- **[question-types.md](references/question-types.md)** - Question types and appearances
+- **[data-collection-terms.md](references/data-collection-terms.md)** - Data collection concepts
+- **[documentation-terminology.md](references/documentation-terminology.md)** - Documentation website and Help Center terms
+- **[course-terminology.md](references/course-terminology.md)** - Learning platform and course content
+
+## Translation Decision Tree
+
+```
+START: Do I see ANY of these terms in the source text?
+├─ UI element (button, tab, menu, dialog)?
+│  └─ 🚨 STOP → Check transifex-ui-strings.md FIRST
+│     ├─ Found? Use EXACT translation from Transifex (never modify)
+│     └─ Not found? Check ui-terminology.md
+│
+├─ Server names (Global Server, EU Server)?
+│  └─ 🚨 STOP → Open brand-terminology.md → Use EXACT translation with articles
+│
+├─ Question Library / Formbuilder / user plans?
+│  └─ 🚨 STOP → Open brand-terminology.md → Use OFFICIAL translation
+│
+├─ XLSForm column / type / function name?
+│  └─ 🚨 STOP → Keep in English + add translation in parentheses
+│
+└─ General terminology?
+   └─ Check reference files → Adapt for context if needed
+```
 
 ## Quality Checklist
 

@@ -9,8 +9,9 @@ import sys
 import json
 import hashlib
 import argparse
+import re
 from pathlib import Path
-from typing import Dict, Tuple
+from typing import Dict, Tuple, Optional
 from datetime import datetime
 
 from dotenv import load_dotenv
@@ -23,18 +24,46 @@ except ImportError:
     print("❌ Missing dependencies. Install with: pip install -r requirements.txt")
     sys.exit(1)
 
+# Template resolver import (optional - only needed if using templates)
+try:
+    from resolve_ui_templates import TemplateResolver, TEMPLATE_PATTERN
+    HAS_TEMPLATE_SUPPORT = True
+except ImportError:
+    HAS_TEMPLATE_SUPPORT = False
+
 
 class TranslationAgent:
     """Simplified AI agent for testing automated documentation translation"""
     
-    def __init__(self, test_mode: bool = False):
+    def __init__(self, test_mode: bool = False, use_templates: bool = False, 
+                 po_repo_path: Optional[str] = None):
         """
         Initialize the translation agent
         
         Args:
             test_mode: If True, run locally without GitHub integration
+            use_templates: If True, resolve {{ui:KEY}} templates before translation
+            po_repo_path: Path to form-builder-translations repo (required if use_templates=True)
         """
         self.test_mode = test_mode
+        self.use_templates = use_templates
+        self.po_repo_path = Path(po_repo_path) if po_repo_path else None
+        
+        # Validate template configuration
+        if use_templates:
+            if not HAS_TEMPLATE_SUPPORT:
+                raise ImportError(
+                    "Template support not available. "
+                    "Make sure resolve_ui_templates.py is in the same directory."
+                )
+            if not self.po_repo_path:
+                raise ValueError(
+                    "po_repo_path must be provided when use_templates=True"
+                )
+            if not self.po_repo_path.exists():
+                raise FileNotFoundError(
+                    f"PO repository not found: {self.po_repo_path}"
+                )
         
         # Load API key
         api_key = os.getenv('ANTHROPIC_API_KEY')
@@ -118,6 +147,7 @@ class TranslationAgent:
         if refs_dir.exists():
             ref_files = {
                 'brand': 'brand-terminology.md',
+                'transifex': 'transifex-ui-strings.md',  # NEW: Transifex UI strings
                 'ui': 'ui-terminology.md',
                 'data': 'data-collection-terms.md',
                 'forms': 'form-building-terms.md',
@@ -130,7 +160,9 @@ class TranslationAgent:
                 if file_path.exists():
                     context[key] = file_path.read_text(encoding='utf-8')
                 else:
-                    print(f"⚠️  Reference file not found: {filename}", file=sys.stderr)
+                    # Only warn for non-transifex files (transifex is optional until generated)
+                    if key != 'transifex':
+                        print(f"⚠️  Reference file not found: {filename}", file=sys.stderr)
         
         return context
     
@@ -199,6 +231,9 @@ SURROUNDING CONTEXT (for reference only - DO NOT translate):
 
 ## BRAND TERMINOLOGY REFERENCE
 {skill_context.get('brand', '')}
+
+## TRANSIFEX UI STRINGS (AUTHORITATIVE)
+{skill_context.get('transifex', '')}
 
 ## UI TERMINOLOGY REFERENCE
 {skill_context.get('ui', '')}
@@ -333,6 +368,24 @@ This is critical - translate ONLY what is explicitly marked for translation.""",
         # Read source file
         source_content = Path(source_path).read_text(encoding='utf-8')
         
+        # NEW: Resolve UI templates if enabled
+        if self.use_templates:
+            print(f"  🔄 Resolving UI templates...", file=sys.stderr)
+            template_count = len(re.findall(TEMPLATE_PATTERN, source_content))
+            
+            if template_count > 0:
+                resolver = TemplateResolver(self.po_repo_path, target_lang)
+                source_content = resolver.resolve_file(source_content)
+                
+                if resolver.unresolved:
+                    print(f"  ⚠️  {len(resolver.unresolved)} unresolved templates:", file=sys.stderr)
+                    for key, template in resolver.unresolved:
+                        print(f"      - {template} (key: {key})", file=sys.stderr)
+                else:
+                    print(f"  ✅ All {template_count} templates resolved", file=sys.stderr)
+            else:
+                print(f"  ℹ️  No templates found", file=sys.stderr)
+        
         # Determine complexity if not specified
         if complexity is None:
             complexity = self.determine_complexity(source_path)
@@ -350,6 +403,9 @@ This is critical - translate ONLY what is explicitly marked for translation.""",
 
 ## BRAND TERMINOLOGY REFERENCE
 {skill_context.get('brand', '')}
+
+## TRANSIFEX UI STRINGS (AUTHORITATIVE)
+{skill_context.get('transifex', '')}
 
 ## UI TERMINOLOGY REFERENCE
 {skill_context.get('ui', '')}
@@ -558,6 +614,17 @@ def main():
         type=str,
         help='Old content to replace (used with --update-mode to find where to apply diff)'
     )
+    parser.add_argument(
+        '--use-templates',
+        action='store_true',
+        help='Enable template resolution for {{ui:KEY}} placeholders'
+    )
+    parser.add_argument(
+        '--po-repo',
+        type=str,
+        default='external/form-builder-translations',
+        help='Path to form-builder-translations repository (default: external/form-builder-translations)'
+    )
     
     args = parser.parse_args()
     
@@ -584,7 +651,11 @@ def main():
     
     try:
         # Initialize agent
-        agent = TranslationAgent(test_mode=True)
+        agent = TranslationAgent(
+            test_mode=True,
+            use_templates=args.use_templates,
+            po_repo_path=args.po_repo if args.use_templates else None
+        )
         
         # Translate
         if args.update_mode:
