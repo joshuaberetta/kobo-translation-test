@@ -57,10 +57,3 @@ To create your first form:
 
 
 Once you have collected data, you can view, edit, and download it from the {{ui:data|upper,bold}} page of your project. To learn more about managing your data, see the [Managing Projects & Data](https://support.kobotoolbox.org/managing-projects.html) support section.
-
-
-Here are some more UI elements you will encounter:
-- {{ui:Enter title of project here|bold}}
-- {{ui:Please specify the operational purpose of your project}}
-- {{ui:Unarchive Project|upper}}
-- {{ui:Temporary Access Restriction: Password Update Required}}

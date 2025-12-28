@@ -6,11 +6,11 @@ Advanced options provide greater control and flexibility when downloading and ex
     To learn more about downloading data, including an overview of export types and available formats, see <a href="https://support.kobotoolbox.org/export_download.html?highlight=export">Exporting and downloading your data.</a>
 </p>
 
-## {{ui:Export}} options for multiple select questions
+## Export options for multiple select questions
 
 The **{{ui:Export ##SELECT_MANY## questions as…}}** option allows you to choose how to export data from **{{ui:Select Many}}** (also called `select_multiple`) questions. You can choose to export them as:
 
-| **{{ui:Export}} option**    | **Description**                                |
+| **Export option**    | **Description**                                |
 | :----------------- | :------------------------------------ |
 | Single and separate columns &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;              | This default setting exports one column with all selected options from <strong>{{ui:Select Many}}</strong> questions, plus individual columns for each response, as shown below.<br> ![How to select many columns](images/advanced_export/select_many_columns.png) |
 | Separate columns  | Each response to <strong>{{ui:Select Many}}</strong> questions will be exported into separate columns.|
