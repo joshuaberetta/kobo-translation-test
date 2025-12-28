@@ -38,8 +38,8 @@ from typing import Dict, Optional, List, Tuple
 
 
 # Template pattern: {{ui:KEY}} or {{ui:KEY|formatting}}
-# Supports alphanumeric, underscores, spaces, and hyphens in keys
-TEMPLATE_PATTERN = r'\{\{ui:([a-zA-Z0-9_ -]+)(?:\|([^}]+))?\}\}'
+# Supports alphanumeric, underscores, spaces, hyphens, and colons in keys
+TEMPLATE_PATTERN = r'\{\{ui:([a-zA-Z0-9_ :-]+)(?:\|([^}]+))?\}\}'
 
 
 class TemplateResolver:
