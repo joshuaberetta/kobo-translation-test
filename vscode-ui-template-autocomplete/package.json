@@ -1,0 +1,50 @@
+{
+  "name": "kobo-ui-template-autocomplete",
+  "displayName": "Kobo UI Template Autocomplete",
+  "description": "Autocomplete for {{ui:KEY}} template strings in Kobo documentation",
+  "version": "0.1.0",
+  "publisher": "kobo",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "koboUITemplate.reload",
+        "title": "Reload UI Strings",
+        "category": "Kobo"
+      }
+    ],
+    "configuration": {
+      "title": "Kobo UI Template Autocomplete",
+      "properties": {
+        "koboUITemplate.poFilePath": {
+          "type": "string",
+          "default": "external/form-builder-translations/en/LC_MESSAGES/djangojs.po",
+          "description": "Path to the PO file (relative to workspace root)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
