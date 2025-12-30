@@ -1,0 +1,3 @@
+[submodule "external/form-builder-translations"]
+	path = external/form-builder-translations
+	url = https://github.com/kobotoolbox/form-builder-translations.git
