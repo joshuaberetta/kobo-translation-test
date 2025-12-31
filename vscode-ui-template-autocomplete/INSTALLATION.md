@@ -2,6 +2,17 @@
 
 ## Quick Start
 
+### Prerequisites
+
+Before installing, extract the UI strings:
+
+```bash
+# From the repository root
+python3 scripts/extract_msgids.py
+```
+
+This extracts all UI strings from the English PO file into `external/form-builder-translations/ui-strings.json`.
+
 ### Step 1: Open the Extension in VS Code
 
 From the `kobo-translation-test` repository root:
@@ -10,7 +21,10 @@ From the `kobo-translation-test` repository root:
 code vscode-ui-template-autocomplete
 ```
 
-### Step 2: Press F5 to Launch Extension Development Host
+### Step 2: Launch Extension Development Host
+
+**macOS:** Press `Fn+F5` (or use Run → Start Debugging from the menu)  
+**Windows/Linux:** Press `F5`
 
 This will:
 1. Compile the extension
@@ -90,18 +104,33 @@ For a more permanent, production-like installation:
 To verify the extension is working:
 
 1. Open a markdown file
-2. Look for the message in the bottom right: "Loaded X UI strings"
+2. Look for the message in the bottom right: "Loaded 843 UI strings" (or similar)
 3. Type `{{ui:` and autocomplete should appear
+
+## Updating UI Strings
+
+When the English translations are updated from Transifex:
+
+```bash
+# Re-extract UI strings from the latest PO file
+python3 scripts/extract_msgids.py
+
+# Reload in VS Code (if extension already running)
+# Press Ctrl+Shift+P → "Kobo: Reload UI Strings"
+```
 
 ## Troubleshooting
 
 ### "No UI strings loaded" warning
 
-**Cause:** PO file not found
+**Cause:** JSON file not found or PO file not extracted
 
 **Fix:**
 ```bash
 # From kobo-translation-test root
+python3 scripts/extract_msgids.py
+
+# If PO files are missing, update submodules
 git submodule update --init --recursive
 ```
 

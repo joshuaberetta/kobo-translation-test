@@ -2,8 +2,13 @@
   "name": "kobo-ui-template-autocomplete",
   "displayName": "Kobo UI Template Autocomplete",
   "description": "Autocomplete for {{ui:KEY}} template strings in Kobo documentation",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "publisher": "kobo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kobotoolbox/kobo-translation-test.git",
+    "directory": "vscode-ui-template-autocomplete"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -25,10 +30,10 @@
     "configuration": {
       "title": "Kobo UI Template Autocomplete",
       "properties": {
-        "koboUITemplate.poFilePath": {
+        "koboUITemplate.jsonFilePath": {
           "type": "string",
-          "default": "external/form-builder-translations/en/LC_MESSAGES/djangojs.po",
-          "description": "Path to the PO file (relative to workspace root)"
+          "default": "external/form-builder-translations/ui-strings.json",
+          "description": "Path to the UI strings JSON file (relative to workspace root)"
         }
       }
     }

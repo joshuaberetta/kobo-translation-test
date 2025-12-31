@@ -8,6 +8,8 @@ There are two alternative styles that can be selected and even combined:
 of questions](group_repeat.md) set to display on the same screen. This is the same way
 KoboCollect works.
 
+{{ui:could}}
+
 **Grid Theme** is an alternative display of questions meant to be more compact
 and more like paper forms where space is often a major concern. theme-grid
 allows displaying multiple questions per row and flexibly adapts in case of skip

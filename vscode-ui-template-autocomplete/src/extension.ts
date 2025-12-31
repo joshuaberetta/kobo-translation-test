@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
-import { POParser } from './poParser';
+import { UIStringLoader } from './jsonLoader';
 import { UITemplateCompletionProvider, FormattingCompletionProvider } from './completionProvider';
 
 let uiTemplateProvider: UITemplateCompletionProvider | undefined;
@@ -65,7 +65,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 /**
- * Load UI strings from PO file
+ * Load UI strings from JSON file
  */
 function loadUIStrings() {
     try {
@@ -80,18 +80,18 @@ function loadUIStrings() {
 
         const workspaceRoot = workspaceFolders[0].uri.fsPath;
 
-        // Get PO file path from configuration
+        // Get JSON file path from configuration
         const config = vscode.workspace.getConfiguration('koboUITemplate');
-        const relativePoPath = config.get<string>('poFilePath') ||
-            'external/form-builder-translations/en/LC_MESSAGES/djangojs.po';
+        const relativeJsonPath = config.get<string>('jsonFilePath') ||
+            'external/form-builder-translations/ui-strings.json';
 
-        const poFilePath = path.join(workspaceRoot, relativePoPath);
+        const jsonFilePath = path.join(workspaceRoot, relativeJsonPath);
 
-        // Parse PO file
-        const parser = new POParser();
-        const uiStrings = parser.parse(poFilePath);
+        // Load from JSON file
+        const loader = new UIStringLoader();
+        const uiStrings = loader.loadFromJSON(jsonFilePath);
 
-        console.log(`Loaded ${uiStrings.length} UI strings from ${poFilePath}`);
+        console.log(`Loaded ${uiStrings.length} UI strings from ${jsonFilePath}`);
         return uiStrings;
 
     } catch (error) {

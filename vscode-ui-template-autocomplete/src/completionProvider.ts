@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { UIString } from './poParser';
+import { UIString } from './jsonLoader';
 
 /**
  * Completion provider for {{ui:KEY}} templates in markdown files
@@ -29,17 +29,23 @@ export class UITemplateCompletionProvider implements vscode.CompletionItemProvid
     ): vscode.CompletionItem[] | undefined {
         // Get the text before the cursor on the current line
         const linePrefix = document.lineAt(position).text.substring(0, position.character);
+        
+        console.log('[UI Autocomplete] Line prefix:', linePrefix);
+        console.log('[UI Autocomplete] Total UI strings available:', this.uiStrings.length);
 
         // Check if we're inside a {{ui: template
         const templateMatch = linePrefix.match(/\{\{ui:([^}|]*)$/);
         if (!templateMatch) {
+            console.log('[UI Autocomplete] No template match');
             return undefined;
         }
 
         const searchTerm = templateMatch[1];
+        console.log('[UI Autocomplete] Search term:', searchTerm);
 
         // Fuzzy search UI strings
         const matches = this.searchUIStrings(searchTerm);
+        console.log('[UI Autocomplete] Found matches:', matches.length);
 
         // Create completion items
         return matches.map(uiString => {
@@ -50,6 +56,9 @@ export class UITemplateCompletionProvider implements vscode.CompletionItemProvid
 
             // The text to insert (just the key, without the template syntax)
             item.insertText = uiString.key;
+            
+            // Filter text - what VS Code uses to filter as user types
+            item.filterText = uiString.key;
 
             // Detail shown in the completion list
             item.detail = 'UI Template String';
@@ -62,6 +71,9 @@ export class UITemplateCompletionProvider implements vscode.CompletionItemProvid
 
             // Sort text for ordering
             item.sortText = uiString.key;
+            
+            // Keep the completion list open as user types
+            item.command = { command: 'editor.action.triggerSuggest', title: 'Re-trigger completions' };
 
             return item;
         });
