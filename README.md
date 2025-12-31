@@ -29,10 +29,17 @@ kobo-translation-test/
 ├── examples/                    # Sample files and test results
 ├── skills/
 │   ├── kobo-translation/        # ⚠️ EDIT HERE (source of truth)
+│   │   └── references/
+│   │       ├── collect-strings.json     # Android app UI strings
+│   │       ├── transifex-ui-strings.md  # Web UI strings
+│   │       └── ... (terminology files)
 │   ├── kobo-translation-{es,fr,ar}/  # Auto-generated
 │   └── kobo-translation-srt/    # SRT extension skill
 ├── scripts/
 │   ├── translation_agent.py     # Main doc translation
+│   ├── resolve_ui_templates.py  # Template resolver (UI & collect)
+│   ├── parse_collect_strings.py # Android XML parser
+│   ├── parse_transifex_po.py    # Transifex PO parser
 │   ├── translate_srt.py         # SRT translation
 │   ├── srt_helper.py            # SRT utilities
 │   ├── split_skill_by_language.py  # Skill generator
@@ -40,6 +47,63 @@ kobo-translation-test/
 ├── tests/                       # Test scripts
 └── transcripts/                 # Video subtitle files
 ```
+
+## UI Template System
+
+The repository supports two types of UI string templates for consistent terminology in documentation:
+
+### Web Interface Templates: `{{ui:<key>}}`
+
+For KoboToolbox web interface strings from Transifex:
+
+```markdown
+Click **{{ui:Deploy}}** to publish your form.
+Navigate to the {{ui:Form|upper}} builder.
+```
+
+**Source:** Transifex PO files from `external/form-builder-translations`  
+**Refresh:** Biweekly (1st and 15th of each month)
+
+### Android App Templates: `{{collect:<key>}}`
+
+For KoboCollect Android app strings:
+
+```markdown
+Tap **{{collect:enter_data}}** to start a new form.
+View your {{collect:review_data}} or {{collect:send_data|bold}}.
+```
+
+**Source:** Android XML resources from `kobotoolbox/collect` repository  
+**Refresh:** As needed (run `parse_collect_strings.py`)
+
+### Template Resolution
+
+Both template types support formatting modifiers:
+
+- `bold` → **text**
+- `italic` → *text*
+- `code` → `text`
+- `upper` → TEXT
+- `lower` → text
+
+Combine multiple: `{{collect:finalize|upper,bold}}` → **FINALISER**
+
+**Usage:**
+```bash
+# Resolve both UI and collect templates
+python scripts/resolve_ui_templates.py \
+    -i docs/en/article.md \
+    -l fr \
+    -p external/form-builder-translations
+
+# Output: Templates resolved with French translations
+```
+
+**Workflow:**
+1. Author uses templates in English docs: `{{ui:Deploy}}` or `{{collect:enter_data}}`
+2. Pre-translation: Templates resolved with target language strings
+3. Translation: AI translates remaining narrative content
+4. Result: Consistent UI terminology + quality translations
 
 
 ## Quick Start
@@ -174,7 +238,7 @@ Then:
 - Train reviewers on PR process
 - Set up monitoring and alerts
 
-## Maintaining Translation Skills
+### Maintaining Translation Skills
 
 ### Single Source of Truth
 
@@ -184,14 +248,51 @@ skills/kobo-translation/
 ├── SKILL.md                    # ⚠️ Edit this file
 └── references/                 # ⚠️ Edit these files
     ├── brand-terminology.md
+    ├── collect-strings.json        # Android app strings (auto-generated)
     ├── course-terminology.md
     ├── data-collection-terms.md
     ├── form-building-terms.md
     ├── question-types.md
+    ├── transifex-ui-strings.md     # Web UI strings (auto-generated)
     └── ui-terminology.md
 ```
 
 **⚠️ IMPORTANT:** These files contain translations for ALL languages (EN, ES, FR, AR) in table columns.
+
+### Updating Android App Strings
+
+Android strings are fetched from the kobotoolbox/collect repository:
+
+```bash
+# Update collect strings from GitHub
+python3 scripts/parse_collect_strings.py
+
+# Output: skills/kobo-translation/references/collect-strings.json
+```
+
+This fetches the latest Android XML string resources and generates a consolidated JSON file with translations for all supported languages.
+
+**When to update:**
+- After KoboCollect app releases
+- When new strings are added to the app
+- Before bulk retranslation if app terminology changed
+
+### Updating Web UI Strings
+
+Web interface strings are extracted from Transifex PO files:
+
+```bash
+# Update Transifex strings
+cd external/form-builder-translations
+git pull origin main
+cd ../..
+
+python scripts/parse_transifex_po.py \
+    --repo-path external/form-builder-translations \
+    --output skills/kobo-translation/references/transifex-ui-strings.md
+```
+
+**Update schedule:** Biweekly (1st and 15th of each month)
 
 ### Regenerating Language-Specific Skills
 

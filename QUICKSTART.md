@@ -1,6 +1,6 @@
-# Quick Start: Transifex UI Template System
+# Quick Start: UI Template System
 
-Get started with the hybrid UI template translation system in 5 minutes.
+Get started with the hybrid UI template translation system in 5 minutes. This system supports both web interface strings (from Transifex) and Android app strings (from kobotoolbox/collect).
 
 ## Prerequisites
 
@@ -16,6 +16,7 @@ pip install -r scripts/requirements.txt
 
 This installs:
 - `polib` - For parsing Transifex PO files
+- `requests` - For fetching Android XML files
 - `anthropic` - For Claude API
 - `PyGithub` - For GitHub integration (optional)
 - `python-dotenv` - For environment variables
@@ -33,7 +34,9 @@ git submodule update --init --recursive
 ls external/form-builder-translations/es/LC_MESSAGES/djangojs.po
 ```
 
-## Step 3: Generate Transifex Reference File
+## Step 3: Generate Reference Files
+
+### Web UI Strings (Transifex)
 
 ```bash
 python scripts/parse_transifex_po.py \
@@ -54,64 +57,112 @@ python scripts/parse_transifex_po.py \
 ✅ Generated skills/kobo-translation/references/transifex-ui-strings.md
 ```
 
+### Android App Strings (Collect)
+
+```bash
+python3 scripts/parse_collect_strings.py
+```
+
+**Expected output:**
+```
+Fetching Android string resources from kobotoolbox/collect...
+Branch: master
+
+Fetching en strings from https://raw.githubusercontent.com/...
+  Parsed 766 strings for en
+Fetching fr strings from https://raw.githubusercontent.com/...
+  Parsed 765 strings for fr
+Fetching es strings from https://raw.githubusercontent.com/...
+  Parsed 759 strings for es
+Fetching ar strings from https://raw.githubusercontent.com/...
+  Parsed 545 strings for ar
+
+Merging translations...
+
+Successfully generated skills/kobo-translation/references/collect-strings.json
+Total strings: 766
+  en: 766 strings (100.0% coverage)
+  fr: 765 strings (99.9% coverage)
+  es: 759 strings (99.1% coverage)
+  ar: 545 strings (71.1% coverage)
+
+✓ Done!
+```
+
 ## Step 4: Test Template Resolution
 
-Create a test document:
+Create a test document with both web UI and Android app templates:
 
 ```bash
 cat > test_templates.md << 'EOF'
 # Test Document
 
+## Web Interface
 1. Click the {{ui:Deploy|bold}} button to publish your form.
 2. Navigate to the {{ui:FORM}} tab.
 3. Click {{ui:Save}} to save your changes.
 4. Go to the {{ui:DATA}} tab to view your submissions.
 5. Use {{ui:Cancel transfer}} to abort the transfer.
 
+## Android App
+1. Tap **{{collect:enter_data}}** to start a new form.
+2. View your {{collect:review_data}} (drafts).
+3. Check {{collect:send_data|bold}} to see forms ready to send.
+4. Tap {{collect:finalize|upper}} to complete your form.
+
 This is regular text that doesn't need templates.
 Note: Template keys support spaces, underscores, and hyphens.
 EOF
 ```
 
-Resolve templates for Spanish:
+Resolve templates for French:
 
 ```bash
 python scripts/resolve_ui_templates.py \
     --input test_templates.md \
-    --language es \
+    --language fr \
     --po-repo external/form-builder-translations
 ```
 
 **Expected output:**
 ```
-✅ Loaded 2650 translations from djangojs.po
+📖 Loading translations for fr...
+✅ Loaded 2585 translations from djangojs.po
+✅ Loaded 383 collect strings from collect-strings.json
 📄 Reading test_templates.md...
-🔄 Found 5 templates, resolving...
+🔄 Found 9 templates, resolving...
 
 ✅ Resolved templates written to test_templates_resolved.md
 
 ✅ All templates resolved successfully
 ```
 
-Check the result:
+**Check the output:**
 
 ```bash
 cat test_templates_resolved.md
 ```
 
-**Should show:**
+You should see French translations:
+
 ```markdown
 # Test Document
 
-1. Click the **DESPLEGAR** button to publish your form.
-2. Navigate to the FORMULARIO tab.
-3. Click GUARDAR to save your changes.
-4. Go to the DATOS tab to view your submissions.
-5. Use Cancelar transferencia to abort the transfer.
+## Web Interface
+1. Click the **Déployer** button to publish your form.
+2. Navigate to the Formulaire tab.
+3. Click Sauvegarder to save your changes.
+4. Go to the Données tab to view your submissions.
+5. Use Annuler le transfert to abort the transfer.
+
+## Android App
+1. Tap **Remplir un formulaire** to start a new form.
+2. View your Ébauches (drafts).
+3. Check **Prêt à envoyer** to see forms ready to send.
+4. Tap FINALISER to complete your form.
 
 This is regular text that doesn't need templates.
 Note: Template keys support spaces, underscores, and hyphens.
-```
 ```
 
 ## Step 5: Test with Translation Agent

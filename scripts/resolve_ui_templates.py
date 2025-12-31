@@ -32,31 +32,39 @@ Requirements:
 
 import sys
 import re
+import json
 import polib
 from pathlib import Path
 from typing import Dict, Optional, List, Tuple
 
 
-# Template pattern: {{ui:KEY}} or {{ui:KEY|formatting}}
+# Template patterns
+# UI template: {{ui:KEY}} or {{ui:KEY|formatting}}
+# Collect template: {{collect:KEY}} or {{collect:KEY|formatting}}
 # Allows any character except: } (template end) and | (format separator before it's parsed)
 # This supports all msgid strings from Transifex including special chars like: ().,/!?'@#&*+$[]°×…→
-TEMPLATE_PATTERN = r'\{\{ui:([^|}]+?)(?:\|([^}]+))?\}\}'
+UI_TEMPLATE_PATTERN = r'\{\{ui:([^|}]+?)(?:\|([^}]+))?\}\}'
+COLLECT_TEMPLATE_PATTERN = r'\{\{collect:([^|}]+?)(?:\|([^}]+))?\}\}'
+# Combined pattern for counting all templates
+ALL_TEMPLATES_PATTERN = r'\{\{(?:ui|collect):([^|}]+?)(?:\|([^}]+))?\}\}'
 
 
 class TemplateResolver:
-    """Resolves UI term templates using Transifex PO files"""
+    """Resolves UI term templates using Transifex PO files and Android collect strings"""
     
-    def __init__(self, po_repo_path: Path, language: str):
+    def __init__(self, po_repo_path: Path, language: str, collect_json_path: Optional[Path] = None):
         """
         Initialize the template resolver.
         
         Args:
             po_repo_path: Path to form-builder-translations repository
             language: Target language code (es, fr, or ar)
+            collect_json_path: Path to collect-strings.json file (optional)
         """
         self.po_repo_path = po_repo_path
         self.language = language
         self.translations = self._load_translations()
+        self.collect_strings = self._load_collect_strings(collect_json_path) if collect_json_path else {}
         self.unresolved = []
     
     def _load_translations(self) -> Dict[str, str]:
@@ -94,6 +102,40 @@ class TemplateResolver:
         
         print(f"✅ Loaded {len(translations)} translations from {po_file.name}")
         return translations
+    
+    def _load_collect_strings(self, collect_json_path: Path) -> Dict[str, str]:
+        """
+        Load Android collect string translations from JSON file.
+        
+        Args:
+            collect_json_path: Path to collect-strings.json
+            
+        Returns:
+            Dict mapping string key to translated value for target language
+        """
+        if not collect_json_path or not collect_json_path.exists():
+            print("ℹ️  Collect strings file not found, {{collect:}} templates will not be resolved")
+            return {}
+        
+        try:
+            with open(collect_json_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            # Extract strings for target language
+            strings = {}
+            for key, translations in data.get('strings', {}).items():
+                if self.language in translations:
+                    # Store with original key (case-sensitive)
+                    strings[key] = translations[self.language]
+                    # Also store lowercase version for case-insensitive lookup
+                    strings[key.lower()] = translations[self.language]
+            
+            print(f"✅ Loaded {len(strings) // 2} collect strings from {collect_json_path.name}")
+            return strings
+            
+        except Exception as e:
+            print(f"⚠️  Warning: Failed to load collect strings: {e}")
+            return {}
     
     def _apply_formatting(self, text: str, formatting: Optional[str]) -> str:
         """
@@ -178,12 +220,12 @@ class TemplateResolver:
         
         return re.sub(placeholder_pattern, replace_placeholder, text)
     
-    def resolve_template(self, match: re.Match) -> str:
+    def resolve_ui_template(self, match: re.Match) -> str:
         """
-        Resolve a single template match with case-insensitive lookup.
+        Resolve a single {{ui:}} template match with case-insensitive lookup.
         
         Args:
-            match: Regex match object for template
+            match: Regex match object for UI template
             
         Returns:
             Resolved text or original template if not found
@@ -213,9 +255,37 @@ class TemplateResolver:
         self.unresolved.append((key, match.group(0)))
         return match.group(0)  # Return original template unchanged
     
+    def resolve_collect_template(self, match: re.Match) -> str:
+        """
+        Resolve a single {{collect:}} template match.
+        
+        Args:
+            match: Regex match object for collect template
+            
+        Returns:
+            Resolved text or original template if not found
+        """
+        key = match.group(1)
+        formatting = match.group(2)
+        
+        # Try exact key match (case-sensitive)
+        if key in self.collect_strings:
+            translated = self.collect_strings[key]
+            return self._apply_formatting(translated, formatting)
+        
+        # Try lowercase version (case-insensitive fallback)
+        key_lower = key.lower()
+        if key_lower in self.collect_strings:
+            translated = self.collect_strings[key_lower]
+            return self._apply_formatting(translated, formatting)
+        
+        # Not found - record and keep template
+        self.unresolved.append((key, match.group(0)))
+        return match.group(0)  # Return original template unchanged
+    
     def resolve_file(self, content: str) -> str:
         """
-        Resolve all templates in file content.
+        Resolve all templates in file content (both {{ui:}} and {{collect:}}).
         
         Args:
             content: File content with templates
@@ -224,7 +294,13 @@ class TemplateResolver:
             Content with resolved templates
         """
         self.unresolved = []  # Reset for new file
-        resolved = re.sub(TEMPLATE_PATTERN, self.resolve_template, content)
+        
+        # Resolve UI templates first
+        resolved = re.sub(UI_TEMPLATE_PATTERN, self.resolve_ui_template, content)
+        
+        # Then resolve collect templates
+        resolved = re.sub(COLLECT_TEMPLATE_PATTERN, self.resolve_collect_template, resolved)
+        
         return resolved
     
     def get_template_report(self) -> str:
@@ -253,10 +329,16 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Template Syntax:
-  {{ui:Deploy}}              → DESPLEGAR (Spanish)
-  {{ui:Deploy|bold}}         → **DESPLEGAR**
-  {{ui:FORM|code}}           → `FORMULARIO`
-  {{ui:Save_Draft}}          → GUARDAR BORRADOR
+  UI templates (web interface):
+    {{ui:Deploy}}              → DESPLEGAR (Spanish)
+    {{ui:Deploy|bold}}         → **DESPLEGAR**
+    {{ui:FORM|code}}           → `FORMULARIO`
+    {{ui:Save_Draft}}          → GUARDAR BORRADOR
+  
+  Collect templates (Android app):
+    {{collect:enter_data}}     → Remplir un formulaire (French)
+    {{collect:send_data|bold}} → **Prêt à envoyer**
+    {{collect:finalize|upper}} → FINALISER
 
 Examples:
   # Basic usage
@@ -299,6 +381,12 @@ Examples:
         help='Path to form-builder-translations repository'
     )
     parser.add_argument(
+        '--collect-strings', '-c',
+        type=Path,
+        default=Path('skills/kobo-translation/references/collect-strings.json'),
+        help='Path to collect-strings.json file (default: skills/kobo-translation/references/collect-strings.json)'
+    )
+    parser.add_argument(
         '--in-place',
         action='store_true',
         help='Modify input file in place (overwrite)'
@@ -337,13 +425,13 @@ Examples:
     # Load and resolve templates
     try:
         print(f"📖 Loading translations for {args.language}...")
-        resolver = TemplateResolver(args.po_repo, args.language)
+        resolver = TemplateResolver(args.po_repo, args.language, args.collect_strings)
         
         print(f"📄 Reading {args.input.name}...")
         content = args.input.read_text(encoding='utf-8')
         
         # Count templates before resolution
-        template_matches = re.findall(TEMPLATE_PATTERN, content)
+        template_matches = re.findall(ALL_TEMPLATES_PATTERN, content)
         template_count = len(template_matches)
         
         if template_count == 0:
