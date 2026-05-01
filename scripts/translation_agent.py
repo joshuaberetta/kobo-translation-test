@@ -82,6 +82,17 @@ def _fix_es_worksheet_labels(translation: str) -> tuple[str, bool]:
     return updated, updated != translation
 
 
+def _fix_fr_worksheet_labels(translation: str) -> tuple[str, bool]:
+    """
+    Replace Spanish hoja worksheet labels hallucinated into French output.
+    '**hoja survey**' / '**hoja survey :**' → '**onglet survey**' / '**onglet survey :**' etc.
+    Returns (updated_text, was_changed).
+    """
+    pattern = re.compile(r'\*\*hoja ([\w-]+)( :)?\*\*', re.IGNORECASE)
+    updated = pattern.sub(lambda m: f'**onglet {m.group(1)}{m.group(2) or ""}**', translation)
+    return updated, updated != translation
+
+
 def _apply_official_h1(translation: str, filename: str, target_lang: str,
                         titles: dict) -> tuple[str, bool]:
     """
@@ -777,7 +788,13 @@ Translation:"""
         if target_lang == 'es':
             translation, changed = _fix_es_worksheet_labels(translation)
             if changed:
-                print(f"  📌 Worksheet labels normalised: {source.name}", file=sys.stderr)
+                print(f"  📌 Worksheet labels normalised (ES): {source.name}", file=sys.stderr)
+
+        # Fix FR worksheet label hallucinations: '**hoja survey**' → '**onglet survey**'
+        if target_lang == 'fr':
+            translation, changed = _fix_fr_worksheet_labels(translation)
+            if changed:
+                print(f"  📌 Worksheet labels normalised (FR): {source.name}", file=sys.stderr)
 
         target_path = target_dir / source.name
         target_path.write_text(translation, encoding='utf-8')

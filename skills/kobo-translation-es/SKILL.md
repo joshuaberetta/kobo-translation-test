@@ -22,12 +22,18 @@ Translate KoboToolbox content from English to Spanish with consistent terminolog
 2. **[ui-terminology.md](references/ui-terminology.md)** - Button names, tabs, capitalization
 3. **[article-titles.md](references/article-titles.md)** - Official article titles in all languages (OFFICIAL — verbatim)
 
-**Common mistakes:**
-- Missing articles in French server names ("Le serveur...")
-- Adding "de KoboToolbox" to Spanish server names
-- Lowercase "La biblioteca" / "La bibliothèque" (must be capital L)
-- Missing English term on first Formbuilder reference
-- Incorrect UI capitalization (Brouillon, Borrador, DONNÉES, DATOS)
+## Translation Types
+
+- **OFFICIAL** - Use EXACT translation (brand terms, UI elements, XLSForm)
+- **PREFERRED** - Adapt for context (general terminology, courses)
+
+## XLSForm Terms
+
+- **Never translate**: worksheet names, column names, type values, appearances, functions
+- **Written content**: English + translation in parentheses
+- **Subtitles**: English only
+
+Example: `` `list_name` (nom de la liste / nombre de la lista) ``
 
 ## Spanish Critical Rules
 
@@ -46,53 +52,53 @@ If you find yourself writing "su", "usted", "haga", "vaya a" — stop and rewrit
 
 Also: use **"clic"** (not "click"): "haz clic en el botón".
 
-## Translation Types
+## Spanish Formality
 
-- **OFFICIAL** - Use EXACT translation (brand terms, UI elements, XLSForm)
-- **PREFERRED** - Adapt for context (general terminology, courses)
-
-## Formality Levels
+Use **tú** (informal) throughout all Spanish documentation and UI text.
 
 | Spanish |
-| --------- |
+| --- |
 | tú |
 | tú, ustedes (plural) |
 | usted |
 
-## Gender-Inclusive Language
+## Spanish Gender-Inclusive Language
 
-🚨 **French — every mention of users/people must be inclusive:**
-- "utilisateur(rice)s" — NOT "utilisateurs" or "utilisateur(s)"
-- "Les utilisatrices et utilisateurs" for formal constructions
-- Scan the entire article before submitting: if you find any bare "utilisateur(s)" or "les utilisateurs", replace it.
-- This applies everywhere: body text, bullet lists, tables, and `<p class="note">` callouts.
-
-🚨 **Spanish — every mention of users/people must be inclusive:**
+🚨 Every mention of users or people must use inclusive forms:
 - "los/as usuarios/as" — NOT "los usuarios"
 - "el/la usuario/a" — NOT "el usuario"
 - "los/as participantes" — NOT "los participantes"
-- Scan the entire article before submitting: if you find any bare masculine plural ("los usuarios", "los participantes"), replace it.
-- This applies everywhere: body text, bullet lists, tables, and `<p class="note">` callouts.
 
-## XLSForm Terms
+Scan the entire article before submitting: if you find any bare masculine plural ("los usuarios", "los participantes"), replace it. This applies everywhere: body text, bullet lists, tables, and `<p class="note">` callouts.
 
-- **Never translate**: worksheet names, column names, type values, appearances, functions
-- **Written content**: English + translation in parentheses
-- **Subtitles**: English only
+## Spanish Language Rules
 
-Example: "la colonne `list_name` (nom de la liste)"
+- **ALWAYS tú — NEVER usted** (see critical rule above)
+- "clic" not "click": "haz clic en"
+- "recolectar" (not "recopilar")
+- "manejo" for data/case management
+- "gestión" for teams/projects
 
-## XLSForm Worksheet Tab Labels (ES only)
+## Spanish XLSForm Worksheet Tab Labels
 
 When the source has a bold worksheet label like `**survey worksheet**`, `**choices worksheet**`, or `**settings worksheet**`, translate it using the pattern `**hoja [name]**` — keep the sheet name in English, prefix with the translated word only:
 
-| Spanish |
-| --------- |
-| `**hoja survey**` |
-| `**hoja choices**` |
-| `**hoja settings**` |
+| English | Spanish |
+|---------|---------|
+| `**survey worksheet**` | `**hoja survey**` |
+| `**choices worksheet**` | `**hoja choices**` |
+| `**settings worksheet**` | `**hoja settings**` |
 
 🚨 Do NOT write `**hoja de trabajo survey**` — that is wrong. The sheet name stays in English.
+
+## Spanish Quality Checklist
+
+- [ ] tú throughout — no "su", "usted", "haga" anywhere
+- [ ] "clic" not "click"
+- [ ] gender-inclusive — "los/as usuarios/as" not "los usuarios" — every mention
+- [ ] Worksheet labels use `**hoja survey**` not `**hoja de trabajo survey**`
+- [ ] Article H1 matches article-titles.md Spanish entry exactly
+- [ ] Cross-referenced article titles match article-titles.md Spanish entries exactly
 
 ## Formatting Rules
 
@@ -108,26 +114,7 @@ When the source has a bold worksheet label like `**survey worksheet**`, `**choic
 
 The article's own `# H1` must be a **faithful translation** of the English H1 — do not invent a shorter or restructured variant.
 
-The `article-titles.md` file lists the official titles for each article. The H1 of the article being translated must **match its entry in article-titles.md exactly**.
-
-- English H1: "Activity Logs" → ES must be: "Registros de actividad" (not "Actividad")
-- English H1: "Activity Logs" → FR must be: "Journaux d'activité" (not "Suivi d'activité")
-
-## Language-Specific Rules
-
-### French
-- "collecte de données" (not "des données" unless specific)
-- "importer" for upload (not "télécharger")
-- "appuyer sur" for press (not "presser")
-- "Introduction à..." for "Getting started" (not "Débuter avec")
-- First Formbuilder mention: `interface de création de formulaires KoboToolbox **(KoboToolbox Formbuilder)**`
-
-### Spanish
-- **ALWAYS tú — NEVER usted** (see critical rule above)
-- "clic" not "click": "haz clic en"
-- "recolectar" (not "recopilar")
-- "manejo" for data/case management
-- "gestión" for teams/projects
+The `article-titles.md` file lists the official titles for each article. The H1 of the article being translated must **match its entry in article-titles.md exactly**. If no entry exists, translate faithfully and flag it.
 
 ## Article Title Consistency
 
@@ -157,8 +144,7 @@ This is critical: articles cross-reference each other, and titles must be identi
 
 **Brand & UI:**
 - [ ] Server names with correct articles
-- [ ] "La bibliothèque/biblioteca" with capital L
-- [ ] FR: Formbuilder first reference includes `(KoboToolbox Formbuilder)` parenthetical
+- [ ] Capital L on Question Library (see brand-terminology.md)
 - [ ] UI terms match exact capitalization
 
 **Formatting:**
@@ -168,12 +154,7 @@ This is critical: articles cross-reference each other, and titles must be identi
 - [ ] YouTube language parameters set
 
 **Language:**
-- [ ] ES: tú throughout — no "su", "usted", "haga" anywhere
-- [ ] ES: "clic" not "click"
-- [ ] ES: gender-inclusive — "los/as usuarios/as" not "los usuarios" — every mention
-- [ ] FR: vous throughout
-- [ ] FR: first Formbuilder mention includes `(KoboToolbox Formbuilder)` parenthetical
-- [ ] FR: gender-inclusive — "utilisateur(rice)s" not "utilisateurs" — every mention including notes/callouts
+- [ ] Gender-inclusive language throughout — every mention
 - [ ] XLSForm terms in English + translation
 - [ ] Natural word order
 
