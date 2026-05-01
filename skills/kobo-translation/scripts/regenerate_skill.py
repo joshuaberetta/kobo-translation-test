@@ -390,6 +390,18 @@ Subsequent mentions can use the short form "Formbuilder" or "l'interface de cré
 
 Example: "la colonne `list_name` (nom de la liste)"
 
+## XLSForm Worksheet Tab Labels (ES only)
+
+When the source has a bold worksheet label like `**survey worksheet**`, `**choices worksheet**`, or `**settings worksheet**`, translate it using the pattern `**hoja [name]**` — keep the sheet name in English, prefix with the translated word only:
+
+| Source | Spanish |
+|--------|---------|
+| `**survey worksheet**` | `**hoja survey**` |
+| `**choices worksheet**` | `**hoja choices**` |
+| `**settings worksheet**` | `**hoja settings**` |
+
+🚨 Do NOT write `**hoja de trabajo survey**` — that is wrong. The sheet name stays in English.
+
 ## Formatting Rules
 
 - Convert HTML headings to markdown: `<h1>` → `#`, `<h2>` → `##`, `<h3>` → `###`

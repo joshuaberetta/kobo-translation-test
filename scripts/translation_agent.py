@@ -71,6 +71,17 @@ def _load_article_titles(skill_root: Path) -> dict:
     return titles
 
 
+def _fix_es_worksheet_labels(translation: str) -> tuple[str, bool]:
+    """
+    Replace incorrect ES worksheet label translations.
+    '**hoja de trabajo survey**' → '**hoja survey**' etc.
+    Returns (updated_text, was_changed).
+    """
+    pattern = re.compile(r'\*\*hoja de trabajo (\w+)\*\*', re.IGNORECASE)
+    updated = pattern.sub(r'**hoja \1**', translation)
+    return updated, updated != translation
+
+
 def _apply_official_h1(translation: str, filename: str, target_lang: str,
                         titles: dict) -> tuple[str, bool]:
     """
@@ -761,6 +772,12 @@ Translation:"""
         translation, changed = _apply_official_h1(translation, source.name, target_lang, titles)
         if changed:
             print(f"  📌 H1 corrected from article-titles.md: {source.name}", file=sys.stderr)
+
+        # Fix ES worksheet label translations: '**hoja de trabajo survey**' → '**hoja survey**'
+        if target_lang == 'es':
+            translation, changed = _fix_es_worksheet_labels(translation)
+            if changed:
+                print(f"  📌 Worksheet labels normalised: {source.name}", file=sys.stderr)
 
         target_path = target_dir / source.name
         target_path.write_text(translation, encoding='utf-8')
