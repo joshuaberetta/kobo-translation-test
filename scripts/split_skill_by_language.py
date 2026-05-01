@@ -42,7 +42,12 @@ def is_metadata_column(column_name: str, target_lang: str) -> bool:
     technical_keywords = ['xlsform', 'question type', 'appearance']
     if any(keyword in column_lower for keyword in technical_keywords):
         return True
-    
+
+    # Always keep key/identifier columns used as lookup keys
+    identifier_keywords = ['file name', 'filename', 'file_name', 'key', 'id']
+    if any(keyword in column_lower for keyword in identifier_keywords):
+        return True
+
     # Keep general metadata columns
     metadata_keywords = ['notes', 'note', 'example', 'context']
     has_metadata = any(keyword in column_lower for keyword in metadata_keywords)
@@ -398,9 +403,20 @@ def main():
         process_skill_file(source_skill, target_skill, lang)
         
         # Process reference files
+        # These files are read directly from the base skill by the translation agent
+        # and must NOT be copied into language-specific skills (avoids stale duplicates)
+        BASE_ONLY_FILES = {
+            'transifex-ui-strings.md',  # large; agent reads from base skill
+            'article-titles.md',        # OFFICIAL titles; must always be the single source
+            'sentence-structures.md',   # language-agnostic patterns; no split needed
+        }
+
         source_refs_dir = source_skill_dir / 'references'
         if source_refs_dir.exists():
             for ref_file in source_refs_dir.glob('*.md'):
+                if ref_file.name in BASE_ONLY_FILES:
+                    print(f"  ⏭️  Skipping base-only file: {ref_file.name}")
+                    continue
                 target_ref = target_refs_dir / ref_file.name
                 process_reference_file(ref_file, target_ref, lang)
     
