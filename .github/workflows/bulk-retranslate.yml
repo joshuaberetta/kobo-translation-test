@@ -80,7 +80,7 @@ jobs:
 
           SKILLS_FOUND=0
           for LANG in $(echo "${{ github.event.inputs.languages }}" | tr ',' ' '); do
-            SKILL_DIR="skills/kobo-translation-v2-${LANG}"
+            SKILL_DIR="skills/kobo-translation-${LANG}"
             if [ -d "$SKILL_DIR" ] && [ -f "$SKILL_DIR/SKILL.md" ]; then
               echo "✅ Skill found for ${LANG}: $SKILL_DIR"
               SKILLS_FOUND=$((SKILLS_FOUND + 1))
@@ -90,14 +90,14 @@ jobs:
           done
 
           # Check generic skill (fallback)
-          if [ -d "skills/kobo-translation-v2" ] && [ -f "skills/kobo-translation-v2/SKILL.md" ]; then
-            echo "✅ Generic skill found: skills/kobo-translation-v2"
+          if [ -d "skills/kobo-translation" ] && [ -f "skills/kobo-translation/SKILL.md" ]; then
+            echo "✅ Generic skill found: skills/kobo-translation"
           else
-            echo "⚠️  Generic skill not found: skills/kobo-translation-v2"
+            echo "⚠️  Generic skill not found: skills/kobo-translation"
           fi
 
-          if [ $SKILLS_FOUND -eq 0 ] && [ ! -f "skills/kobo-translation-v2/SKILL.md" ]; then
-            echo "❌ Error: No skills found. Need either language-specific skills (kobo-translation-v2-es, etc.) or generic skill (kobo-translation-v2)"
+          if [ $SKILLS_FOUND -eq 0 ] && [ ! -f "skills/kobo-translation/SKILL.md" ]; then
+            echo "❌ Error: No skills found. Need either language-specific skills (kobo-translation-es, etc.) or generic skill (kobo-translation)"
             exit 1
           fi
 
@@ -276,7 +276,7 @@ jobs:
             - Workflow run: #${{ github.run_number }}
             - Commit: ${{ github.sha }}
             - Documentation: [Bulk Retranslation Guide](../docs/guides/BULK_RETRANSLATION.md)
-            - Skills: `skills/kobo-translation-v2-{lang}/`
+            - Skills: `skills/kobo-translation-{lang}/`
 
             **Reviewers:** @es-reviewer @fr-reviewer @ar-reviewer
           labels: |

@@ -118,14 +118,14 @@ class TranslationAgent:
         """
         # Try to load language-specific skill first if target_lang is provided
         if target_lang:
-            skill_base = Path(f'skills/kobo-translation-v2-{target_lang}')
+            skill_base = Path(f'skills/kobo-translation-{target_lang}')
             if skill_base.exists():
                 print(f"  📚 Loading language-specific skill for {target_lang.upper()}...", file=sys.stderr)
             else:
                 print(f"  ⚠️  Language-specific skill not found for {target_lang}, falling back to generic skill", file=sys.stderr)
-                skill_base = Path('skills/kobo-translation-v2')
+                skill_base = Path('skills/kobo-translation')
         else:
-            skill_base = Path('skills/kobo-translation-v2')
+            skill_base = Path('skills/kobo-translation')
         
         if not skill_base.exists():
             raise FileNotFoundError(

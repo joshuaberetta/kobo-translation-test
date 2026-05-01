@@ -12,7 +12,7 @@ Usage:
 
     python scripts/parse_transifex_po.py \\
         --repo-path external/form-builder-translations \\
-        --output skills/kobo-translation-v2/references/transifex-ui-strings.md
+        --output skills/kobo-translation/references/transifex-ui-strings.md
 
 Requirements:
     - polib: pip install polib
@@ -298,7 +298,7 @@ git pull origin main
 cd ../..
 python scripts/parse_transifex_po.py \\
     --repo-path external/form-builder-translations \\
-    --output skills/kobo-translation-v2/references/transifex-ui-strings.md
+    --output skills/kobo-translation/references/transifex-ui-strings.md
 ```
 """
     
@@ -337,8 +337,8 @@ Examples:
     parser.add_argument(
         '--output', '-o',
         type=Path,
-        default=Path('skills/kobo-translation-v2/references/transifex-ui-strings.md'),
-        help='Output markdown file path (default: skills/kobo-translation-v2/references/transifex-ui-strings.md)'
+        default=Path('skills/kobo-translation/references/transifex-ui-strings.md'),
+        help='Output markdown file path (default: skills/kobo-translation/references/transifex-ui-strings.md)'
     )
     
     args = parser.parse_args()

@@ -78,10 +78,10 @@ class SRTTranslationAgent:
         
         context = {}
         
-        # First, load BASE skill (kobo-translation-v2) for terminology
-        base_skill_path = Path(f'skills/kobo-translation-v2-{target_lang}')
+        # First, load BASE skill (kobo-translation) for terminology
+        base_skill_path = Path(f'skills/kobo-translation-{target_lang}')
         if not base_skill_path.exists():
-            base_skill_path = Path('skills/kobo-translation-v2')
+            base_skill_path = Path('skills/kobo-translation')
         
         if base_skill_path.exists():
             print(f"  📖 Loading base skill: {base_skill_path.name}", file=sys.stderr)

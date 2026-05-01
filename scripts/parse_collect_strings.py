@@ -7,7 +7,7 @@ repository for multiple languages (en, fr, es, ar) and creates a consolidated
 JSON file containing all translations indexed by string key.
 
 Usage:
-    python scripts/parse_collect_strings.py --output skills/kobo-translation-v2/references/collect-strings.json
+    python scripts/parse_collect_strings.py --output skills/kobo-translation/references/collect-strings.json
 """
 
 import argparse
@@ -157,7 +157,7 @@ def main():
     parser.add_argument(
         '--output',
         type=Path,
-        default=Path('skills/kobo-translation-v2/references/collect-strings.json'),
+        default=Path('skills/kobo-translation/references/collect-strings.json'),
         help='Output path for consolidated JSON file'
     )
     parser.add_argument(

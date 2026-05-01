@@ -47,7 +47,7 @@ The workflow uses these files by default (small → large complexity):
 ## What Gets Tested
 
 ### V2 Skills Test (`skill_version=v2`)
-- Uses `skills/kobo-translation-v2-{lang}/` 
+- Uses `skills/kobo-translation-{lang}/` 
 - Tests improvements:
   - ✅ No multi-line table cell issues
   - ✅ Language-specific filtering
@@ -99,7 +99,7 @@ python scripts/split_skill_by_language.py
 ### Translation agent not finding skills
 The workflow temporarily symlinks v2 skills to the expected location:
 ```
-skills/kobo-translation-es → kobo-translation-v2-es
+skills/kobo-translation-es → kobo-translation-es
 ```
 
 ### Want to test locally first?
@@ -107,7 +107,7 @@ skills/kobo-translation-es → kobo-translation-v2-es
 ```bash
 # Activate v2 skills
 cd skills
-ln -s kobo-translation-v2-es kobo-translation-es
+ln -s kobo-translation-es kobo-translation-es
 
 # Run translation
 cd ..
@@ -128,4 +128,4 @@ rm skills/kobo-translation-es
 ## See Also
 
 - [BULK_RETRANSLATION_WORKFLOWS.md](../BULK_RETRANSLATION_WORKFLOWS.md) - General retranslation guide
-- [skills/kobo-translation-v2/README.md](../skills/kobo-translation-v2/README.md) - V2 skill documentation
+- [skills/kobo-translation/README.md](../skills/kobo-translation/README.md) - V2 skill documentation

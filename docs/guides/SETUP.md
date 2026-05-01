@@ -36,7 +36,7 @@ cd kobo-translation-test
 # The skills are included in the repository.
 # Your structure should look like:
 # skills/
-# └── kobo-translation-v2/
+# └── kobo-translation/
 #     ├── SKILL.md
 #     ├── sources/           # Human-maintained inputs
 #     │   ├── glossary.xlsx
@@ -46,9 +46,9 @@ cd kobo-translation-test
 #         ├── brand-terminology.md
 #         ├── ui-terminology.md
 #         └── ...
-# └── kobo-translation-v2-es/   # Auto-generated language variants
-# └── kobo-translation-v2-fr/
-# └── kobo-translation-v2-ar/
+# └── kobo-translation-es/   # Auto-generated language variants
+# └── kobo-translation-fr/
+# └── kobo-translation-ar/
 ```
 
 ### 4. Get Anthropic API Key
@@ -125,7 +125,7 @@ Check that everything is in place:
 # ✅ All files pushed
 # ✅ .github/workflows/ directory with 2 workflow files
 # ✅ docs/en/ with test files
-# ✅ skills/kobo-translation-v2/ with skill files
+# ✅ skills/kobo-translation/ with skill files
 # ✅ scripts/ with translation_agent.py
 # ✅ Two secrets configured (Settings → Secrets)
 
@@ -251,17 +251,17 @@ git push
 ### "Skill files not found"
 ```bash
 # Verify locally:
-ls -R skills/kobo-translation-v2/
+ls -R skills/kobo-translation/
 
 # Should show:
-# skills/kobo-translation-v2/:
+# skills/kobo-translation/:
 # SKILL.md  sources/  references/  scripts/
 # 
-# skills/kobo-translation-v2/references:
+# skills/kobo-translation/references:
 # brand-terminology.md  ui-terminology.md  ...
 
 # If language-specific skills are missing, regenerate them:
-python3 skills/kobo-translation-v2/scripts/regenerate_skill.py
+python3 skills/kobo-translation/scripts/regenerate_skill.py
 python3 scripts/split_skill_by_language.py
 git add skills/
 git commit -m "Regenerate translation skills"
@@ -345,7 +345,7 @@ The SRT translation workflow is specifically designed for translating video subt
 # The SRT translation skill is already included in the repository
 # Structure:
 # skills/
-# ├── kobo-translation-v2/       # Base translation skill
+# ├── kobo-translation/       # Base translation skill
 # └── kobo-translation-srt/      # SRT extension skill
 #     ├── SKILL.md
 #     └── references/

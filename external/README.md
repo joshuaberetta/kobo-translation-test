@@ -48,7 +48,7 @@ git commit -m "Update Transifex translations to latest"
 # Regenerate transifex-ui-strings.md reference
 python scripts/parse_transifex_po.py \
     --repo-path external/form-builder-translations \
-    --output skills/kobo-translation-v2/references/transifex-ui-strings.md
+    --output skills/kobo-translation/references/transifex-ui-strings.md
 ```
 
 ### Troubleshooting

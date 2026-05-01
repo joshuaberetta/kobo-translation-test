@@ -379,14 +379,14 @@ def process_reference_file(source_path: Path, target_path: Path, target_lang: st
 def main():
     """Main execution"""
     base_dir = Path(__file__).parent.parent
-    source_skill_dir = base_dir / 'skills' / 'kobo-translation-v2'
+    source_skill_dir = base_dir / 'skills' / 'kobo-translation'
     
     languages = ['es', 'fr', 'ar']
     
     for lang in languages:
         print(f"\n📝 Processing {lang.upper()} skill files...")
         
-        target_skill_dir = base_dir / 'skills' / f'kobo-translation-v2-{lang}'
+        target_skill_dir = base_dir / 'skills' / f'kobo-translation-{lang}'
         target_skill_dir.mkdir(parents=True, exist_ok=True)
         
         target_refs_dir = target_skill_dir / 'references'

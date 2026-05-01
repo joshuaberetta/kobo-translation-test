@@ -28,7 +28,7 @@ kobo-translation-test/
 │       └── FUTURE_IMPROVEMENTS.md
 ├── examples/                    # Sample files and test results
 ├── skills/
-│   ├── kobo-translation-v2/         # ⚠️ EDIT HERE (source of truth)
+│   ├── kobo-translation/         # ⚠️ EDIT HERE (source of truth)
 │   │   ├── sources/                 # Human-maintained inputs
 │   │   │   ├── glossary.xlsx        # All terminology
 │   │   │   ├── style-guide.md
@@ -39,7 +39,7 @@ kobo-translation-test/
 │   │   │   ├── transifex-ui-strings.md  # Web UI strings
 │   │   │   └── ... (terminology files)
 │   │   └── scripts/                 # Maintenance automation
-│   ├── kobo-translation-v2-{es,fr,ar}/  # Auto-generated language variants
+│   ├── kobo-translation-{es,fr,ar}/  # Auto-generated language variants
 │   └── kobo-translation-srt/        # SRT extension skill
 ├── scripts/
 │   ├── translation_agent.py     # Main doc translation
@@ -250,7 +250,7 @@ Then:
 
 All translation terminology and guidelines are maintained in **one place**:
 ```
-skills/kobo-translation-v2/
+skills/kobo-translation/
 ├── sources/                    # ⚠️ Edit these files
 │   ├── glossary.xlsx           # All terminology (EN/ES/FR/AR columns)
 │   ├── style-guide.md          # Writing style guidelines
@@ -267,7 +267,7 @@ skills/kobo-translation-v2/
     └── ui-terminology.md
 ```
 
-See `skills/kobo-translation-v2/README.md` for the full maintainer guide.
+See `skills/kobo-translation/README.md` for the full maintainer guide.
 
 ### Updating Android App Strings
 
@@ -277,7 +277,7 @@ Android strings are fetched from the kobotoolbox/collect repository:
 # Update collect strings from GitHub
 python3 scripts/parse_collect_strings.py
 
-# Output: skills/kobo-translation-v2/references/collect-strings.json
+# Output: skills/kobo-translation/references/collect-strings.json
 ```
 
 **When to update:**
@@ -297,31 +297,31 @@ cd ../..
 
 python scripts/parse_transifex_po.py \
     --repo-path external/form-builder-translations
-# Output: skills/kobo-translation-v2/references/transifex-ui-strings.md
+# Output: skills/kobo-translation/references/transifex-ui-strings.md
 ```
 
 **Update schedule:** Biweekly (1st and 15th of each month)
 
 ### Regenerating Language-Specific Skills
 
-After editing any files in `skills/kobo-translation-v2/sources/`, run:
+After editing any files in `skills/kobo-translation/sources/`, run:
 
 ```bash
-python3 skills/kobo-translation-v2/scripts/regenerate_skill.py
+python3 skills/kobo-translation/scripts/regenerate_skill.py
 python3 scripts/split_skill_by_language.py
 ```
 
 This generates optimized, language-focused versions:
-- `skills/kobo-translation-v2-es/` - English → Spanish only
-- `skills/kobo-translation-v2-fr/` - English → French only
-- `skills/kobo-translation-v2-ar/` - English → Arabic only
+- `skills/kobo-translation-es/` - English → Spanish only
+- `skills/kobo-translation-fr/` - English → French only
+- `skills/kobo-translation-ar/` - English → Arabic only
 
 ### Workflow
 
 ```
-1. Edit skills/kobo-translation-v2/sources/ (glossary.xlsx or .md files)
+1. Edit skills/kobo-translation/sources/ (glossary.xlsx or .md files)
    ↓
-2. Run: python3 skills/kobo-translation-v2/scripts/regenerate_skill.py
+2. Run: python3 skills/kobo-translation/scripts/regenerate_skill.py
    ↓
 3. Run: python3 scripts/split_skill_by_language.py
    ↓
@@ -336,7 +336,7 @@ After updating skills, you can retranslate existing docs to compare quality:
 
 ```bash
 # 1. Update skills (edit sources, then regenerate)
-python3 skills/kobo-translation-v2/scripts/regenerate_skill.py
+python3 skills/kobo-translation/scripts/regenerate_skill.py
 python3 scripts/split_skill_by_language.py
 
 # 2. Test on a few files first (dry run)
@@ -358,9 +358,9 @@ python scripts/bulk_retranslate.py --language es fr ar
 - Use `--dry-run` first to preview scope
 
 **🚫 DO NOT** manually edit files in:
-- `skills/kobo-translation-v2-es/`
-- `skills/kobo-translation-v2-fr/`
-- `skills/kobo-translation-v2-ar/`
+- `skills/kobo-translation-es/`
+- `skills/kobo-translation-fr/`
+- `skills/kobo-translation-ar/`
 
 These are **auto-generated** and will be overwritten when you run the script.
 
@@ -411,7 +411,7 @@ When reviewing automated translation PRs, check:
 **Translation quality issues:**
 - Ensure latest language-specific skills are generated
 - Check skill files are in correct location
-- Review terminology in `skills/kobo-translation-v2/sources/`
+- Review terminology in `skills/kobo-translation/sources/`
 
 **Local test not working:**
 ```bash

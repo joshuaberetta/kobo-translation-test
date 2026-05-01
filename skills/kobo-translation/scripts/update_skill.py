@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Update kobo-translation-v2 skill from source files.
+Update kobo-translation skill from source files.
 
 Usage:
     python scripts/update_skill.py [--skip-validation]

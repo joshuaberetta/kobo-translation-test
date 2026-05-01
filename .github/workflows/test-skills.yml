@@ -1,0 +1,181 @@
+name: Test Translation Skills
+
+on:
+  workflow_dispatch:
+    inputs:
+      languages:
+        description: 'Languages to test (comma-separated: es, fr, ar)'
+        required: true
+        default: 'es'
+        type: string
+
+      test_files:
+        description: 'Test files to translate (comma-separated). Leave empty to use default test set.'
+        required: false
+        type: string
+        default: ''
+
+      model:
+        description: 'Claude model to use'
+        required: true
+        type: choice
+        default: 'claude-sonnet-4-5'
+        options:
+          - claude-sonnet-4-5
+          - claude-haiku-4-5
+          - claude-opus-4-5
+
+jobs:
+  test-skills:
+    name: Test skills (${{ github.event.inputs.languages }})
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Verify skill files
+        run: |
+          echo "📚 Checking for skill files..."
+          SKILLS_FOUND=0
+          for LANG in $(echo "${{ github.event.inputs.languages }}" | tr ',' ' '); do
+            SKILL_DIR="skills/kobo-translation-${LANG}"
+            if [ -d "$SKILL_DIR" ] && [ -f "$SKILL_DIR/SKILL.md" ]; then
+              echo "✅ Skill found: $SKILL_DIR"
+              SKILLS_FOUND=$((SKILLS_FOUND + 1))
+            else
+              echo "⚠️  Skill not found: $SKILL_DIR (will fall back to generic)"
+            fi
+          done
+
+          if [ -f "skills/kobo-translation/SKILL.md" ]; then
+            echo "✅ Generic skill found: skills/kobo-translation"
+          else
+            echo "❌ Generic skill missing: skills/kobo-translation"
+          fi
+
+          if [ $SKILLS_FOUND -eq 0 ] && [ ! -f "skills/kobo-translation/SKILL.md" ]; then
+            echo "❌ No skills found at all — aborting"
+            exit 1
+          fi
+
+      - name: Determine test files
+        id: files
+        run: |
+          FILES="${{ github.event.inputs.test_files }}"
+          if [ -z "$FILES" ]; then
+            FILES="test_simple.md test_complex.md"
+            echo "📝 Using default test files"
+          fi
+          FILES=$(echo "$FILES" | tr ',' ' ' | xargs)
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+          echo "Test files: $FILES"
+
+      - name: Run translation test
+        id: test
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: ${{ github.event.inputs.model }}
+        run: |
+          FILES="${{ steps.files.outputs.files }}"
+          LANGUAGES="${{ github.event.inputs.languages }}"
+
+          LANG_ARGS="--language"
+          for LANG in $(echo "$LANGUAGES" | tr ',' ' '); do
+            LANG_ARGS="$LANG_ARGS $LANG"
+          done
+
+          FILE_ARGS="--files"
+          for FILE in $FILES; do
+            FILE_ARGS="$FILE_ARGS $FILE"
+          done
+
+          echo "Command: python scripts/bulk_retranslate.py $LANG_ARGS $FILE_ARGS --verbose"
+          echo ""
+
+          if python scripts/bulk_retranslate.py $LANG_ARGS $FILE_ARGS --verbose; then
+            echo "✅ Test translation completed"
+            echo "success=true" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Test translation failed"
+            echo "success=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Create Pull Request
+        if: steps.test.outputs.success == 'true'
+        uses: peter-evans/create-pull-request@v6
+        id: pr
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: |
+            🧪 Test translation: ${{ github.event.inputs.languages }}
+
+            Files: ${{ steps.files.outputs.files }}
+            Model: ${{ github.event.inputs.model }}
+            Triggered by: @${{ github.actor }}
+          branch: translations/test-skills-${{ github.run_number }}
+          delete-branch: true
+          title: "🧪 Test Translation (${{ github.event.inputs.languages }}) #${{ github.run_number }}"
+          body: |
+            ## 🧪 Translation Skill Test
+
+            **Languages:** `${{ github.event.inputs.languages }}`
+            **Files:** `${{ steps.files.outputs.files }}`
+            **Model:** `${{ github.event.inputs.model }}`
+            **Triggered by:** @${{ github.actor }}
+
+            ### ✅ Review Checklist
+
+            **Brand Terms:**
+            - [ ] Spanish: "Servidor Global" (NOT "Servidor Global de KoboToolbox")
+            - [ ] French: "Le serveur KoboToolbox mondial" (WITH "Le")
+            - [ ] Spanish: "La biblioteca de preguntas" (capital L)
+            - [ ] Formbuilder: English in parentheses on first reference
+
+            **Language Quality:**
+            - [ ] Spanish: informal "tú" + gender-inclusive language
+            - [ ] French: formal "vous"
+            - [ ] Links and formatting preserved
+            - [ ] No untranslated English content
+
+            ### 🔗 Related
+
+            - Workflow run: #${{ github.run_number }}
+            - Skills: `skills/kobo-translation-{lang}/`
+          labels: |
+            translation
+            test
+            needs-review
+
+      - name: Job summary
+        if: always()
+        run: |
+          echo "## 🧪 Translation Skill Test" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.test.outputs.success }}" == "true" ]; then
+            echo "✅ **Test passed**" >> $GITHUB_STEP_SUMMARY
+            if [ -n "${{ steps.pr.outputs.pull-request-url }}" ]; then
+              echo "- PR: ${{ steps.pr.outputs.pull-request-url }}" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "❌ **Test failed** — check logs above" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "- Languages: ${{ github.event.inputs.languages }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Files: ${{ steps.files.outputs.files }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Model: ${{ github.event.inputs.model }}" >> $GITHUB_STEP_SUMMARY

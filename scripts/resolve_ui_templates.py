@@ -383,8 +383,8 @@ Examples:
     parser.add_argument(
         '--collect-strings', '-c',
         type=Path,
-        default=Path('skills/kobo-translation-v2/references/collect-strings.json'),
-        help='Path to collect-strings.json file (default: skills/kobo-translation-v2/references/collect-strings.json)'
+        default=Path('skills/kobo-translation/references/collect-strings.json'),
+        help='Path to collect-strings.json file (default: skills/kobo-translation/references/collect-strings.json)'
     )
     parser.add_argument(
         '--in-place',

@@ -29,7 +29,7 @@ Use this checklist to set up your test repository in ~30 minutes.
   kobo-translation-test/
   ├── .github/workflows/           ✓
   ├── docs/en/                    ✓
-  ├── skills/kobo-translation-v2/ ✓
+  ├── skills/kobo-translation/ ✓
   └── scripts/                    ✓
   ```
 
@@ -108,7 +108,7 @@ You're ready to proceed if:
 
 **Skill not found:**
 ```bash
-ls -R skills/kobo-translation-v2/
+ls -R skills/kobo-translation/
 # Should show SKILL.md, sources/, references/, scripts/
 ```
 

@@ -41,7 +41,7 @@ ls external/form-builder-translations/es/LC_MESSAGES/djangojs.po
 ```bash
 python scripts/parse_transifex_po.py \
     --repo-path external/form-builder-translations \
-    --output skills/kobo-translation-v2/references/transifex-ui-strings.md
+    --output skills/kobo-translation/references/transifex-ui-strings.md
 ```
 
 **Expected output:**
@@ -54,7 +54,7 @@ python scripts/parse_transifex_po.py \
 
 📝 Generating markdown reference...
 
-✅ Generated skills/kobo-translation-v2/references/transifex-ui-strings.md
+✅ Generated skills/kobo-translation/references/transifex-ui-strings.md
 ```
 
 ### Android App Strings (Collect)
@@ -79,7 +79,7 @@ Fetching ar strings from https://raw.githubusercontent.com/...
 
 Merging translations...
 
-Successfully generated skills/kobo-translation-v2/references/collect-strings.json
+Successfully generated skills/kobo-translation/references/collect-strings.json
 Total strings: 766
   en: 766 strings (100.0% coverage)
   fr: 765 strings (99.9% coverage)
@@ -281,7 +281,7 @@ python scripts/parse_transifex_po.py \
     --repo-path external/form-builder-translations
 
 # 3. Commit changes
-git add external/form-builder-translations skills/kobo-translation-v2/references/transifex-ui-strings.md
+git add external/form-builder-translations skills/kobo-translation/references/transifex-ui-strings.md
 git commit -m "Update Transifex UI strings - $(date +%Y-%m-%d)"
 
 # 4. Retranslate docs with new terms (optional)
@@ -327,7 +327,7 @@ pip install -r scripts/requirements.txt
 **Checks:**
 1. Is submodule initialized? `ls external/form-builder-translations/`
 2. Is PO file there? `ls external/form-builder-translations/es/LC_MESSAGES/djangojs.po`
-3. Is key spelled correctly? Check `skills/kobo-translation-v2/references/transifex-ui-strings.md`
+3. Is key spelled correctly? Check `skills/kobo-translation/references/transifex-ui-strings.md`
 4. Case-sensitive match: `Deploy` not `deploy`, `FORM` not `form`
 5. Exact text match: Use the exact UI text including spaces, e.g., `Cancel transfer` not `Cancel_transfer`
 
@@ -338,16 +338,16 @@ pip install -r scripts/requirements.txt
 # Regenerate
 python scripts/parse_transifex_po.py \
     --repo-path external/form-builder-translations \
-    --output skills/kobo-translation-v2/references/transifex-ui-strings.md
+    --output skills/kobo-translation/references/transifex-ui-strings.md
 
 # Verify
-cat skills/kobo-translation-v2/references/transifex-ui-strings.md | head -20
+cat skills/kobo-translation/references/transifex-ui-strings.md | head -20
 ```
 
 ## Next Steps
 
 1. **Read the writer guide:** [docs/guides/UI_TEMPLATE_GUIDE.md](docs/guides/UI_TEMPLATE_GUIDE.md)
-2. **Review the reference:** [skills/kobo-translation-v2/references/transifex-ui-strings.md](skills/kobo-translation-v2/references/transifex-ui-strings.md)
+2. **Review the reference:** [skills/kobo-translation/references/transifex-ui-strings.md](skills/kobo-translation/references/transifex-ui-strings.md)
 3. **Add templates to docs:** Start with high-priority getting started guides
 4. **Test translations:** Compare output with actual UI
 5. **Set up monitoring:** Watch form-builder-translations repo on GitHub
