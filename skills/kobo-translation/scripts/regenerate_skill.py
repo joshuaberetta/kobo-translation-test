@@ -105,6 +105,7 @@ def generate_reference_file(sheet_name, df):
         "Formbuilder UI ": "UI Terminology",
         "KoboCollect": "KoboCollect Terminology",
         "XLSForm": "XLSForm Terminology",
+        "Sentence structures": "Sentence Structures",
     }
     
     official_sheets = ["Proper & Kobo specific", "Formbuilder UI ", "Appearances", "Form building"]
@@ -177,6 +178,42 @@ def generate_reference_file(sheet_name, df):
     return "\n".join(lines)
 
 
+def generate_article_titles_file(df):
+    lines = [
+        "# Article Titles (OFFICIAL)",
+        "",
+        "**All titles in this file are OFFICIAL and must be used VERBATIM.**",
+        "",
+        "When translating any article that references another article by title:",
+        "1. Find the target article's filename in the table below",
+        "2. Use the **exact title** for the target language — never translate it yourself",
+        "3. If a title is missing from this file, flag it rather than guessing",
+        "",
+        "This ensures cross-article references stay consistent across all languages.",
+        "",
+        "## Titles",
+        "",
+    ]
+
+    cols = ["File name", "English", "French", "Spanish", "Arabic"]
+    present = [c for c in cols if c in df.columns and df[c].any()]
+    has_notes = "Notes" in df.columns and df["Notes"].any()
+    header_cols = present + (["Notes"] if has_notes else [])
+
+    lines.append("| " + " | ".join(header_cols) + " |")
+    lines.append("|" + "|".join(["---"] * len(header_cols)) + "|")
+
+    for _, row in df.iterrows():
+        values = [clean_text(row.get(col, "")) for col in present]
+        if has_notes:
+            values.append(clean_text(row.get("Notes", "")))
+        if not values[0]:
+            continue
+        lines.append("| " + " | ".join(values) + " |")
+
+    return "\n".join(lines)
+
+
 def generate_reference_files(sheets):
     filename_map = {
         "Proper & Kobo specific": "brand-terminology.md",
@@ -190,18 +227,21 @@ def generate_reference_files(sheets):
         "Formbuilder UI ": "ui-terminology.md",
         "KoboCollect": "ui-terminology.md",
         "XLSForm": "form-building-terms.md",
+        "Sentence structures": "sentence-structures.md",
     }
-    
+
     files = {}
     for sheet_name, df in sheets.items():
-        if sheet_name in filename_map:
+        if sheet_name == "Article titles":
+            files["article-titles.md"] = generate_article_titles_file(df)
+        elif sheet_name in filename_map:
             filename = filename_map[sheet_name]
             content = generate_reference_file(sheet_name, df)
             if filename in files:
                 files[filename] += "\n\n---\n\n" + content
             else:
                 files[filename] = content
-    
+
     return files
 
 
@@ -278,6 +318,7 @@ Translate KoboToolbox content in French, Spanish, and Arabic with consistent ter
 **BEFORE translating, check these reference files:**
 1. **[brand-terminology.md](references/brand-terminology.md)** - Server names, Question Library, Formbuilder
 2. **[ui-terminology.md](references/ui-terminology.md)** - Button names, tabs, capitalization
+3. **[article-titles.md](references/article-titles.md)** - Official article titles in all languages (OFFICIAL — verbatim)
 
 **Common mistakes:**
 - Missing articles in French server names ("Le serveur...")
@@ -334,15 +375,29 @@ Example: "la colonne `list_name` (nom de la liste)"
 - "manejo" for data/case management
 - "gestión" for teams/projects
 
+## Article Title Consistency
+
+When translating any article that references another article by title:
+1. Look up the target article's filename in **[article-titles.md](references/article-titles.md)**
+2. Use the **exact title** listed for the target language — never translate it yourself
+3. If a title is missing from the file, flag it rather than guessing
+
+This is critical: articles cross-reference each other, and titles must be identical across all languages.
+
 ## Terminology References
 
+### OFFICIAL — Must Use Verbatim
+- **[article-titles.md](references/article-titles.md)** - Article titles for all languages (OFFICIAL — verbatim for cross-references)
 - **[brand-terminology.md](references/brand-terminology.md)** - Brand terms (OFFICIAL)
 - **[ui-terminology.md](references/ui-terminology.md)** - UI elements (OFFICIAL)
 - **[form-building-terms.md](references/form-building-terms.md)** - XLSForm terms (OFFICIAL)
+
+### PREFERRED — Can Adapt for Context
 - **[question-types.md](references/question-types.md)** - Question types/appearances
 - **[data-collection-terms.md](references/data-collection-terms.md)** - Data collection
 - **[course-terminology.md](references/course-terminology.md)** - Academy/courses
 - **[documentation-terminology.md](references/documentation-terminology.md)** - Help Center
+- **[sentence-structures.md](references/sentence-structures.md)** - Recurring sentence patterns (e.g. "Set to", "Both … support")
 
 ## Quality Checklist
 
@@ -364,15 +419,27 @@ Example: "la colonne `list_name` (nom de la liste)"
 - [ ] XLSForm terms in English + translation
 - [ ] Natural word order
 
+**Article titles:**
+- [ ] Cross-referenced article titles match article-titles.md exactly
+
 ## Updating This Skill
 
 Source files in `sources/`:
-- `glossary.xlsx` - Terminology
+- `glossary.xlsx` - Cached copy of the Google Sheet (offline fallback)
 - `style-guide.md` - Style guidelines
 - `workflow-rules.md` - Workflow/checklists
 - `language-rules.md` - Language-specific rules
 
-Run: `python scripts/regenerate_skill.py`
+To refresh from the live Google Sheet:
+```
+python scripts/fetch_glossary.py    # pull latest xlsx from Google Sheets
+python scripts/regenerate_skill.py  # rebuild skill from cached copy
+```
+
+Or combined:
+```
+python scripts/sync_and_update.py --fetch
+```
 '''
 
 

@@ -21,7 +21,7 @@ SOURCES_DIR = SKILL_ROOT / "sources"
 
 EXPECTED_SHEETS = [
     "Proper & Kobo specific",
-    "Academy", 
+    "Academy",
     "Documentation",
     "Data collection",
     "Form building",
@@ -31,7 +31,11 @@ EXPECTED_SHEETS = [
     "Formbuilder UI ",
     "KoboCollect",
     "XLSForm",
+    "Sentence structures",
+    "Article titles",
 ]
+
+ARTICLE_TITLES_COLUMNS = ["File name", "English", "French", "Spanish", "Arabic"]
 
 REQUIRED_COLUMNS = ["English", "French", "Spanish"]
 
@@ -72,17 +76,24 @@ def validate_glossary(filepath):
     brand_sheet = "Proper & Kobo specific"
     if brand_sheet in xl.sheet_names:
         df = pd.read_excel(xl, sheet_name=brand_sheet)
-        
+
         missing_cols = set(REQUIRED_COLUMNS) - set(df.columns)
         if missing_cols:
-            errors.append(f"Missing columns: {', '.join(missing_cols)}")
-        
+            errors.append(f"Missing columns in '{brand_sheet}': {', '.join(missing_cols)}")
+
         if "English" in df.columns:
             english_terms = set(df["English"].dropna().tolist())
             missing_terms = set(CRITICAL_TERMS) - english_terms
             if missing_terms:
                 errors.append(f"Missing critical terms: {', '.join(missing_terms)}")
-    
+
+    article_sheet = "Article titles"
+    if article_sheet in xl.sheet_names:
+        df = pd.read_excel(xl, sheet_name=article_sheet)
+        missing_cols = set(ARTICLE_TITLES_COLUMNS) - set(df.columns)
+        if missing_cols:
+            errors.append(f"Missing columns in '{article_sheet}': {', '.join(sorted(missing_cols))}")
+
     return errors
 
 
