@@ -95,11 +95,23 @@ Go to **Settings → Secrets → Actions** and add:
 ### 4. Test locally
 
 ```bash
-# Test documentation translation
+# Test documentation translation (lean context — most articles)
 python scripts/translation_agent.py \
     --file docs/en/about_kobotoolbox.md \
     --language es \
     --test --verbose
+
+# Add Transifex UI strings for articles heavy with button/menu/tab references
+python scripts/translation_agent.py \
+    --file docs/en/about_kobotoolbox.md \
+    --language es \
+    --test --include-transifex
+
+# Add KoboCollect Android strings for KoboCollect-specific content
+python scripts/translation_agent.py \
+    --file docs/en/about_kobotoolbox.md \
+    --language es \
+    --test --include-collect
 
 # Test SRT subtitle translation
 python scripts/translate_srt.py \
@@ -150,7 +162,7 @@ Example: `{{collect:finalize|upper,bold}}` → `**FINALISER**`
 **Web UI strings** — update after Transifex syncs (1st and 15th of month):
 
 ```bash
-cd external/form-builder-translations && git pull origin main && cd ../..
+cd external/form-builder-translations && git pull origin master && cd ../..
 python scripts/parse_transifex_po.py --repo-path external/form-builder-translations
 # Output: skills/kobo-translation/references/transifex-ui-strings.md
 ```
@@ -182,6 +194,31 @@ python scripts/resolve_ui_templates.py \
 ```
 
 To find the correct key for a UI string, check `skills/kobo-translation/references/transifex-ui-strings.md`.
+
+## Translation Context Flags
+
+The agent loads a lean set of reference files by default (~9 terminology files). Two large reference files are opt-in to avoid overloading the context window:
+
+| Flag | File | Size | When to use |
+|------|------|------|-------------|
+| `--include-transifex` | `transifex-ui-strings.md` | ~150k chars | Article has many UI element references (buttons, tabs, menus, dialogs) |
+| `--include-collect` | `collect-strings.json` | ~60–70k chars | Article is specifically about KoboCollect (the Android app) |
+
+Both flags are off by default. Most articles translate well without them — the lean context keeps quality high by avoiding token pressure on the model.
+
+```bash
+# Default — lean context, suitable for most articles
+python scripts/translation_agent.py --file docs/en/article.md --language fr
+
+# UI-heavy article (lots of button/menu references)
+python scripts/translation_agent.py --file docs/en/article.md --language fr --include-transifex
+
+# KoboCollect-specific article
+python scripts/translation_agent.py --file docs/en/article.md --language fr --include-collect
+
+# Both (e.g. a KoboCollect article with many UI references)
+python scripts/translation_agent.py --file docs/en/article.md --language fr --include-transifex --include-collect
+```
 
 ## Common Workflows
 
