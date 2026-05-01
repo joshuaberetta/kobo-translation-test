@@ -32,6 +32,36 @@ except ImportError:
     HAS_TEMPLATE_SUPPORT = False
 
 
+def _format_collect_strings(json_text: str, target_lang: str) -> str:
+    """Convert collect-strings.json to a markdown table for use in the prompt."""
+    try:
+        data = json.loads(json_text)
+        strings = data.get('strings', {})
+    except (json.JSONDecodeError, AttributeError):
+        return ""
+
+    lang_col = target_lang if target_lang in ('fr', 'es', 'ar') else None
+
+    lines = [
+        "KoboCollect Android UI strings — use these exact translations for any KoboCollect UI element.",
+        "",
+        "| Key | English | Translation |" if lang_col else "| Key | English |",
+        "|-----|---------|-------------|" if lang_col else "|-----|---------|",
+    ]
+
+    for key, translations in strings.items():
+        if not isinstance(translations, dict):
+            continue
+        en = str(translations.get('en', '')).replace('|', '\\|')
+        if lang_col:
+            tr = str(translations.get(lang_col, '')).replace('|', '\\|')
+            lines.append(f"| {key} | {en} | {tr} |")
+        else:
+            lines.append(f"| {key} | {en} |")
+
+    return "\n".join(lines)
+
+
 class TranslationAgent:
     """Simplified AI agent for testing automated documentation translation"""
     
@@ -116,54 +146,75 @@ class TranslationAgent:
             target_lang: Target language code (es, fr, ar). If provided, loads language-specific skill.
                         If None, loads the generic multi-language skill.
         """
-        # Try to load language-specific skill first if target_lang is provided
+        # Language-specific skill takes priority; base skill fills in any gaps
+        base_skill = Path('skills/kobo-translation')
         if target_lang:
-            skill_base = Path(f'skills/kobo-translation-{target_lang}')
-            if skill_base.exists():
+            lang_skill = Path(f'skills/kobo-translation-{target_lang}')
+            if lang_skill.exists():
                 print(f"  📚 Loading language-specific skill for {target_lang.upper()}...", file=sys.stderr)
+                skill_base = lang_skill
             else:
-                print(f"  ⚠️  Language-specific skill not found for {target_lang}, falling back to generic skill", file=sys.stderr)
-                skill_base = Path('skills/kobo-translation')
+                print(f"  ⚠️  Language-specific skill not found for {target_lang}, using base skill", file=sys.stderr)
+                skill_base = base_skill
         else:
-            skill_base = Path('skills/kobo-translation')
-        
+            skill_base = base_skill
+
         if not skill_base.exists():
             raise FileNotFoundError(
                 f"Skill directory not found: {skill_base}\n"
                 "Make sure you've copied the kobo-translation skill to skills/"
             )
-        
+
         context = {}
-        
-        # Read main skill file
+
+        # Read main skill file from the selected skill
         main_skill = skill_base / 'SKILL.md'
         if main_skill.exists():
             context['main'] = main_skill.read_text(encoding='utf-8')
         else:
             raise FileNotFoundError(f"SKILL.md not found in {skill_base}")
-        
-        # Read reference files
-        refs_dir = skill_base / 'references'
-        if refs_dir.exists():
-            ref_files = {
-                'brand': 'brand-terminology.md',
-                'transifex': 'transifex-ui-strings.md',  # NEW: Transifex UI strings
-                'ui': 'ui-terminology.md',
-                'data': 'data-collection-terms.md',
-                'forms': 'form-building-terms.md',
-                'questions': 'question-types.md',
-                'course': 'course-terminology.md',
-            }
-            
-            for key, filename in ref_files.items():
-                file_path = refs_dir / filename
-                if file_path.exists():
-                    context[key] = file_path.read_text(encoding='utf-8')
-                else:
-                    # Only warn for non-transifex files (transifex is optional until generated)
-                    if key != 'transifex':
-                        print(f"⚠️  Reference file not found: {filename}", file=sys.stderr)
-        
+
+        # Reference files: prefer language-specific skill, fall back to base skill
+        ref_files = {
+            'brand':          'brand-terminology.md',
+            'transifex':      'transifex-ui-strings.md',
+            'ui':             'ui-terminology.md',
+            'data':           'data-collection-terms.md',
+            'forms':          'form-building-terms.md',
+            'questions':      'question-types.md',
+            'course':         'course-terminology.md',
+            'docs':           'documentation-terminology.md',
+            'data_mgmt':      'data-management-terms.md',
+            'article_titles': 'article-titles.md',
+            'sentences':      'sentence-structures.md',
+        }
+        # Files that live only in the base skill (not split by language)
+        base_only = {'transifex', 'collect', 'article_titles', 'sentences'}
+        # Files that are optional (not yet generated in all environments)
+        optional = {'transifex', 'article_titles', 'sentences'}
+
+        for key, filename in ref_files.items():
+            # For base-only files, skip the language-specific dir entirely
+            candidates = []
+            if key not in base_only and skill_base != base_skill:
+                candidates.append(skill_base / 'references' / filename)
+            candidates.append(base_skill / 'references' / filename)
+
+            for candidate in candidates:
+                if candidate.exists():
+                    context[key] = candidate.read_text(encoding='utf-8')
+                    break
+            else:
+                if key not in optional:
+                    print(f"⚠️  Reference file not found: {filename}", file=sys.stderr)
+
+        # collect-strings.json lives in the base skill; render to markdown for the LLM
+        collect_path = base_skill / 'references' / 'collect-strings.json'
+        if collect_path.exists():
+            context['collect'] = _format_collect_strings(
+                collect_path.read_text(encoding='utf-8'), target_lang
+            )
+
         return context
     
     def determine_complexity(self, file_path: str) -> str:
@@ -232,14 +283,26 @@ SURROUNDING CONTEXT (for reference only - DO NOT translate):
 ## BRAND TERMINOLOGY REFERENCE
 {skill_context.get('brand', '')}
 
-## TRANSIFEX UI STRINGS (AUTHORITATIVE)
+## TRANSIFEX UI STRINGS (AUTHORITATIVE — check here first for any UI element)
 {skill_context.get('transifex', '')}
+
+## KOBOCOLLECT ANDROID UI STRINGS (AUTHORITATIVE)
+{skill_context.get('collect', '')}
 
 ## UI TERMINOLOGY REFERENCE
 {skill_context.get('ui', '')}
 
+## ARTICLE TITLES (OFFICIAL — use verbatim when cross-referencing articles)
+{skill_context.get('article_titles', '')}
+
+## SENTENCE STRUCTURES (PREFERRED)
+{skill_context.get('sentences', '')}
+
 ## DATA COLLECTION TERMS
 {skill_context.get('data', '')}
+
+## DATA MANAGEMENT TERMS
+{skill_context.get('data_mgmt', '')}
 
 ## FORM BUILDING TERMS
 {skill_context.get('forms', '')}
@@ -248,7 +311,10 @@ SURROUNDING CONTEXT (for reference only - DO NOT translate):
 {skill_context.get('questions', '')}
 
 ## COURSE TERMINOLOGY
-{skill_context.get('course', '')}""",
+{skill_context.get('course', '')}
+
+## DOCUMENTATION TERMINOLOGY
+{skill_context.get('docs', '')}""",
                 "cache_control": {"type": "ephemeral"}  # Cache skill content
             },
             {
@@ -404,14 +470,26 @@ This is critical - translate ONLY what is explicitly marked for translation.""",
 ## BRAND TERMINOLOGY REFERENCE
 {skill_context.get('brand', '')}
 
-## TRANSIFEX UI STRINGS (AUTHORITATIVE)
+## TRANSIFEX UI STRINGS (AUTHORITATIVE — check here first for any UI element)
 {skill_context.get('transifex', '')}
+
+## KOBOCOLLECT ANDROID UI STRINGS (AUTHORITATIVE)
+{skill_context.get('collect', '')}
 
 ## UI TERMINOLOGY REFERENCE
 {skill_context.get('ui', '')}
 
+## ARTICLE TITLES (OFFICIAL — use verbatim when cross-referencing articles)
+{skill_context.get('article_titles', '')}
+
+## SENTENCE STRUCTURES (PREFERRED)
+{skill_context.get('sentences', '')}
+
 ## DATA COLLECTION TERMS
 {skill_context.get('data', '')}
+
+## DATA MANAGEMENT TERMS
+{skill_context.get('data_mgmt', '')}
 
 ## FORM BUILDING TERMS
 {skill_context.get('forms', '')}
@@ -420,7 +498,10 @@ This is critical - translate ONLY what is explicitly marked for translation.""",
 {skill_context.get('questions', '')}
 
 ## COURSE TERMINOLOGY
-{skill_context.get('course', '')}""",
+{skill_context.get('course', '')}
+
+## DOCUMENTATION TERMINOLOGY
+{skill_context.get('docs', '')}""",
                 "cache_control": {"type": "ephemeral"}  # Cache skill content
             },
             {
