@@ -28,13 +28,19 @@ kobo-translation-test/
 │       └── FUTURE_IMPROVEMENTS.md
 ├── examples/                    # Sample files and test results
 ├── skills/
-│   ├── kobo-translation/        # ⚠️ EDIT HERE (source of truth)
-│   │   └── references/
-│   │       ├── collect-strings.json     # Android app UI strings
-│   │       ├── transifex-ui-strings.md  # Web UI strings
-│   │       └── ... (terminology files)
-│   ├── kobo-translation-{es,fr,ar}/  # Auto-generated
-│   └── kobo-translation-srt/    # SRT extension skill
+│   ├── kobo-translation-v2/         # ⚠️ EDIT HERE (source of truth)
+│   │   ├── sources/                 # Human-maintained inputs
+│   │   │   ├── glossary.xlsx        # All terminology
+│   │   │   ├── style-guide.md
+│   │   │   ├── workflow-rules.md
+│   │   │   └── language-rules.md
+│   │   ├── references/              # Auto-generated from sources
+│   │   │   ├── collect-strings.json     # Android app UI strings
+│   │   │   ├── transifex-ui-strings.md  # Web UI strings
+│   │   │   └── ... (terminology files)
+│   │   └── scripts/                 # Maintenance automation
+│   ├── kobo-translation-v2-{es,fr,ar}/  # Auto-generated language variants
+│   └── kobo-translation-srt/        # SRT extension skill
 ├── scripts/
 │   ├── translation_agent.py     # Main doc translation
 │   ├── resolve_ui_templates.py  # Template resolver (UI & collect)
@@ -244,9 +250,13 @@ Then:
 
 All translation terminology and guidelines are maintained in **one place**:
 ```
-skills/kobo-translation/
-├── SKILL.md                    # ⚠️ Edit this file
-└── references/                 # ⚠️ Edit these files
+skills/kobo-translation-v2/
+├── sources/                    # ⚠️ Edit these files
+│   ├── glossary.xlsx           # All terminology (EN/ES/FR/AR columns)
+│   ├── style-guide.md          # Writing style guidelines
+│   ├── workflow-rules.md       # Translation workflow rules
+│   └── language-rules.md       # Per-language grammar rules
+└── references/                 # Auto-generated — do not edit directly
     ├── brand-terminology.md
     ├── collect-strings.json        # Android app strings (auto-generated)
     ├── course-terminology.md
@@ -257,7 +267,7 @@ skills/kobo-translation/
     └── ui-terminology.md
 ```
 
-**⚠️ IMPORTANT:** These files contain translations for ALL languages (EN, ES, FR, AR) in table columns.
+See `skills/kobo-translation-v2/README.md` for the full maintainer guide.
 
 ### Updating Android App Strings
 
@@ -267,10 +277,8 @@ Android strings are fetched from the kobotoolbox/collect repository:
 # Update collect strings from GitHub
 python3 scripts/parse_collect_strings.py
 
-# Output: skills/kobo-translation/references/collect-strings.json
+# Output: skills/kobo-translation-v2/references/collect-strings.json
 ```
-
-This fetches the latest Android XML string resources and generates a consolidated JSON file with translations for all supported languages.
 
 **When to update:**
 - After KoboCollect app releases
@@ -288,42 +296,38 @@ git pull origin main
 cd ../..
 
 python scripts/parse_transifex_po.py \
-    --repo-path external/form-builder-translations \
-    --output skills/kobo-translation/references/transifex-ui-strings.md
+    --repo-path external/form-builder-translations
+# Output: skills/kobo-translation-v2/references/transifex-ui-strings.md
 ```
 
 **Update schedule:** Biweekly (1st and 15th of each month)
 
 ### Regenerating Language-Specific Skills
 
-After editing any files in `skills/kobo-translation/`, run:
+After editing any files in `skills/kobo-translation-v2/sources/`, run:
 
 ```bash
+python3 skills/kobo-translation-v2/scripts/regenerate_skill.py
 python3 scripts/split_skill_by_language.py
 ```
 
-This automatically generates optimized, language-focused versions:
-- `skills/kobo-translation-es/` - English → Spanish only
-- `skills/kobo-translation-fr/` - English → French only
-- `skills/kobo-translation-ar/` - English → Arabic only
-
-**What the script does:**
-- ✅ Filters table columns (keeps only English + target language)
-- ✅ Removes prose sections for other languages
-- ✅ Filters language-specific usage guides and examples
-- ✅ Preserves technical metadata columns (XLSForm types, etc.)
-- ✅ Reduces context window size for more efficient translations
+This generates optimized, language-focused versions:
+- `skills/kobo-translation-v2-es/` - English → Spanish only
+- `skills/kobo-translation-v2-fr/` - English → French only
+- `skills/kobo-translation-v2-ar/` - English → Arabic only
 
 ### Workflow
 
 ```
-1. Update terminology in skills/kobo-translation/references/*.md
+1. Edit skills/kobo-translation-v2/sources/ (glossary.xlsx or .md files)
    ↓
-2. Run: python3 scripts/split_skill_by_language.py
+2. Run: python3 skills/kobo-translation-v2/scripts/regenerate_skill.py
    ↓
-3. Commit all changes (source + generated skills)
+3. Run: python3 scripts/split_skill_by_language.py
    ↓
-4. Translation agent uses optimized language-specific skills
+4. Commit all changes (sources + generated skills)
+   ↓
+5. Translation agent uses optimized language-specific skills
 ```
 
 ### Testing Skill Updates with Bulk Retranslation
@@ -331,22 +335,20 @@ This automatically generates optimized, language-focused versions:
 After updating skills, you can retranslate existing docs to compare quality:
 
 ```bash
-# 1. Update skills
-vim skills/kobo-translation/references/brand-terminology.md
-
-# 2. Regenerate language-specific skills
+# 1. Update skills (edit sources, then regenerate)
+python3 skills/kobo-translation-v2/scripts/regenerate_skill.py
 python3 scripts/split_skill_by_language.py
 
-# 3. Test on a few files first (dry run)
+# 2. Test on a few files first (dry run)
 python scripts/bulk_retranslate.py --language es --files test_simple.md --dry-run
 
-# 4. Retranslate test files
+# 3. Retranslate test files
 python scripts/bulk_retranslate.py --language es --files test_simple.md test_complex.md
 
-# 5. Compare old vs new translations to evaluate skill improvements
+# 4. Compare old vs new translations
 git diff docs/es/test_simple.md
 
-# 6. If satisfied, retranslate all docs (be aware of API costs!)
+# 5. If satisfied, retranslate all docs
 python scripts/bulk_retranslate.py --language es fr ar
 ```
 
@@ -356,9 +358,9 @@ python scripts/bulk_retranslate.py --language es fr ar
 - Use `--dry-run` first to preview scope
 
 **🚫 DO NOT** manually edit files in:
-- `skills/kobo-translation-es/`
-- `skills/kobo-translation-fr/`
-- `skills/kobo-translation-ar/`
+- `skills/kobo-translation-v2-es/`
+- `skills/kobo-translation-v2-fr/`
+- `skills/kobo-translation-v2-ar/`
 
 These are **auto-generated** and will be overwritten when you run the script.
 
@@ -409,7 +411,7 @@ When reviewing automated translation PRs, check:
 **Translation quality issues:**
 - Ensure latest language-specific skills are generated
 - Check skill files are in correct location
-- Review terminology in `skills/kobo-translation/references/`
+- Review terminology in `skills/kobo-translation-v2/sources/`
 
 **Local test not working:**
 ```bash

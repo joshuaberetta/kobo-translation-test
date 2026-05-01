@@ -178,31 +178,31 @@ jobs:
         run: |
           echo "📚 Checking for skill files..."
           
-          # Check for language-specific skills (preferred)
+          # Check for language-specific v2 skills (preferred)
           LANG_SKILLS_FOUND=0
           for LANG in es fr ar; do
-            if [ -d "skills/kobo-translation-${LANG}" ] && [ -f "skills/kobo-translation-${LANG}/SKILL.md" ]; then
+            if [ -d "skills/kobo-translation-v2-${LANG}" ] && [ -f "skills/kobo-translation-v2-${LANG}/SKILL.md" ]; then
               echo "✅ Language-specific skill found for ${LANG}"
               LANG_SKILLS_FOUND=$((LANG_SKILLS_FOUND + 1))
             else
               echo "⚠️  Language-specific skill not found for ${LANG}"
             fi
           done
-          
-          # Also check for generic skill (fallback)
-          if [ -d "skills/kobo-translation" ] && [ -f "skills/kobo-translation/SKILL.md" ]; then
+
+          # Also check for generic v2 skill (fallback)
+          if [ -d "skills/kobo-translation-v2" ] && [ -f "skills/kobo-translation-v2/SKILL.md" ]; then
             echo "✅ Generic skill found (fallback)"
           else
             echo "⚠️  Generic skill not found"
           fi
-          
+
           # Ensure at least some skills exist
-          if [ $LANG_SKILLS_FOUND -eq 0 ] && [ ! -f "skills/kobo-translation/SKILL.md" ]; then
+          if [ $LANG_SKILLS_FOUND -eq 0 ] && [ ! -f "skills/kobo-translation-v2/SKILL.md" ]; then
             echo "❌ Error: No translation skills found"
-            echo "❌ Need either language-specific skills (kobo-translation-es, etc.) or generic skill (kobo-translation)"
+            echo "❌ Need either language-specific skills (kobo-translation-v2-es, etc.) or generic skill (kobo-translation-v2)"
             exit 1
           fi
-          
+
           echo "✅ Skill verification complete ($LANG_SKILLS_FOUND language-specific skills found)"
       
       - name: Translate documents

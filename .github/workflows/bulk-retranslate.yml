@@ -28,10 +28,10 @@ on:
         description: 'Skill version to use'
         required: true
         type: choice
-        default: 'v1'
+        default: 'v2'
         options:
-          - v1         # Current production skills (kobo-translation-{lang})
-          - v2         # New v2 skills (kobo-translation-v2-{lang})
+          - v2         # Production skills (kobo-translation-v2-{lang})
+          - v1         # Legacy skills (kobo-translation-{lang})
           - both       # Test both versions side-by-side
       
       confirm_cost:
@@ -132,12 +132,12 @@ jobs:
           }
           
           # Check based on skill_version input
-          if [ "$SKILL_VERSION" == "v1" ]; then
-            check_skills "v1" "" || exit 1
-            
-          elif [ "$SKILL_VERSION" == "v2" ]; then
+          if [ "$SKILL_VERSION" == "v2" ]; then
             check_skills "v2" "-v2" || exit 1
-            
+
+          elif [ "$SKILL_VERSION" == "v1" ]; then
+            check_skills "v1" "" || exit 1
+
           elif [ "$SKILL_VERSION" == "both" ]; then
             V1_OK=true
             V2_OK=true
@@ -203,39 +203,6 @@ jobs:
           echo "$FILES" | tr ' ' '\n'
           echo "=========================="
       
-      - name: Setup skill symlinks (for v2)
-        if: github.event.inputs.skill_version == 'v2' || github.event.inputs.skill_version == 'both'
-        run: |
-          echo "🔗 Setting up skill symlinks..."
-          
-          # For v2 or both mode, we need to make v2 skills available
-          # Create symlinks so translation_agent.py can find them
-          
-          for LANG in $(echo "${{ github.event.inputs.languages }}" | tr ',' ' '); do
-            V2_SKILL="skills/kobo-translation-v2-${LANG}"
-            
-            if [ -d "$V2_SKILL" ]; then
-              # For 'v2' mode, create symlink to replace v1
-              if [ "${{ github.event.inputs.skill_version }}" == "v2" ]; then
-                V1_SKILL="skills/kobo-translation-${LANG}"
-                
-                # Backup v1 if it exists
-                if [ -d "$V1_SKILL" ] && [ ! -L "$V1_SKILL" ]; then
-                  echo "📦 Backing up v1 skill: $V1_SKILL → ${V1_SKILL}.v1-backup"
-                  mv "$V1_SKILL" "${V1_SKILL}.v1-backup"
-                fi
-                
-                echo "🔗 Symlinking v2 → v1 location: $V2_SKILL → $V1_SKILL"
-                ln -sf "kobo-translation-v2-${LANG}" "$V1_SKILL"
-              fi
-              
-              # For 'both' mode, v2 skills stay in place (we'll run twice)
-              echo "✅ v2 skill ready for ${LANG}"
-            fi
-          done
-          
-          echo "✅ Skill setup complete"
-      
       - name: Bulk retranslate
         id: retranslate
         env:
@@ -266,41 +233,25 @@ jobs:
           run_translation() {
             local VERSION_LABEL=$1
             local OUTPUT_SUFFIX=$2
-            
+
             echo ""
             echo "=========================================="
             echo "🔄 Translating with $VERSION_LABEL skills"
             echo "=========================================="
-            
-            # For v2 in 'both' mode, temporarily symlink v2 skills
-            if [ "$SKILL_VERSION" == "both" ] && [ "$VERSION_LABEL" == "v2" ]; then
-              echo "🔗 Temporarily activating v2 skills..."
-              for LANG in $(echo "$LANGUAGES" | tr ',' ' '); do
-                V1_SKILL="skills/kobo-translation-${LANG}"
-                V2_SKILL="skills/kobo-translation-v2-${LANG}"
-                
-                if [ -d "$V2_SKILL" ]; then
-                  if [ -d "$V1_SKILL" ] && [ ! -L "$V1_SKILL" ]; then
-                    mv "$V1_SKILL" "${V1_SKILL}.v1-temp"
-                  fi
-                  ln -sf "kobo-translation-v2-${LANG}" "$V1_SKILL"
-                fi
-              done
-            fi
-            
+
             echo "Command: python scripts/bulk_retranslate.py $LANG_ARGS $FILE_ARGS --verbose"
             echo ""
-            
+
             if python scripts/bulk_retranslate.py $LANG_ARGS $FILE_ARGS --verbose; then
               echo "✅ Translation with $VERSION_LABEL completed successfully"
-              
+
               # For 'both' mode, move outputs to versioned directories
               if [ "$SKILL_VERSION" == "both" ]; then
                 echo "📦 Moving outputs to ${OUTPUT_SUFFIX} directories..."
                 for LANG in $(echo "$LANGUAGES" | tr ',' ' '); do
                   TARGET_DIR="docs/${LANG}${OUTPUT_SUFFIX}"
                   mkdir -p "$TARGET_DIR"
-                  
+
                   # Move translated files
                   for FILE in $FILES; do
                     if [ -f "docs/${LANG}/${FILE}" ]; then
@@ -310,38 +261,22 @@ jobs:
                   done
                 done
               fi
-              
+
             else
               echo "❌ Translation with $VERSION_LABEL failed"
               return 1
             fi
-            
-            # Restore v1 skills if we symlinked v2
-            if [ "$SKILL_VERSION" == "both" ] && [ "$VERSION_LABEL" == "v2" ]; then
-              echo "🔗 Restoring v1 skills..."
-              for LANG in $(echo "$LANGUAGES" | tr ',' ' '); do
-                V1_SKILL="skills/kobo-translation-${LANG}"
-                
-                if [ -L "$V1_SKILL" ]; then
-                  rm "$V1_SKILL"
-                fi
-                
-                if [ -d "${V1_SKILL}.v1-temp" ]; then
-                  mv "${V1_SKILL}.v1-temp" "$V1_SKILL"
-                fi
-              done
-            fi
-            
+
             return 0
           }
-          
+
           # Execute based on skill_version
-          if [ "$SKILL_VERSION" == "v1" ]; then
-            run_translation "v1" "" || SUCCESS="false"
-            
-          elif [ "$SKILL_VERSION" == "v2" ]; then
+          if [ "$SKILL_VERSION" == "v2" ]; then
             run_translation "v2" "" || SUCCESS="false"
-            
+
+          elif [ "$SKILL_VERSION" == "v1" ]; then
+            run_translation "v1" "" || SUCCESS="false"
+
           elif [ "$SKILL_VERSION" == "both" ]; then
             echo "📊 Running comparison mode: translating with both v1 and v2 skills"
             echo ""
