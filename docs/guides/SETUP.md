@@ -33,27 +33,22 @@ cd kobo-translation-test
 ### 3. Add Kobo Translation Skill
 
 ```bash
-# Create skills directory
-mkdir -p skills
-
-# Copy the kobo-translation skill you created earlier
-# Copy all these files:
-# - SKILL.md
-# - references/brand-terminology.md
-# - references/ui-terminology.md
-# - references/data-collection-terms.md
-# - references/form-building-terms.md
-# - references/question-types.md
-# - references/course-terminology.md
-
+# The skills are included in the repository.
 # Your structure should look like:
 # skills/
-# └── kobo-translation/
+# └── kobo-translation-v2/
 #     ├── SKILL.md
-#     └── references/
+#     ├── sources/           # Human-maintained inputs
+#     │   ├── glossary.xlsx
+#     │   ├── style-guide.md
+#     │   └── language-rules.md
+#     └── references/        # Auto-generated
 #         ├── brand-terminology.md
 #         ├── ui-terminology.md
 #         └── ...
+# └── kobo-translation-v2-es/   # Auto-generated language variants
+# └── kobo-translation-v2-fr/
+# └── kobo-translation-v2-ar/
 ```
 
 ### 4. Get Anthropic API Key
@@ -130,7 +125,7 @@ Check that everything is in place:
 # ✅ All files pushed
 # ✅ .github/workflows/ directory with 2 workflow files
 # ✅ docs/en/ with test files
-# ✅ skills/kobo-translation/ with skill files
+# ✅ skills/kobo-translation-v2/ with skill files
 # ✅ scripts/ with translation_agent.py
 # ✅ Two secrets configured (Settings → Secrets)
 
@@ -256,18 +251,20 @@ git push
 ### "Skill files not found"
 ```bash
 # Verify locally:
-ls -R skills/kobo-translation/
+ls -R skills/kobo-translation-v2/
 
 # Should show:
-# skills/kobo-translation/:
-# SKILL.md  references/
+# skills/kobo-translation-v2/:
+# SKILL.md  sources/  references/  scripts/
 # 
-# skills/kobo-translation/references:
+# skills/kobo-translation-v2/references:
 # brand-terminology.md  ui-terminology.md  ...
 
-# If missing, copy them and push:
+# If language-specific skills are missing, regenerate them:
+python3 skills/kobo-translation-v2/scripts/regenerate_skill.py
+python3 scripts/split_skill_by_language.py
 git add skills/
-git commit -m "Add kobo-translation skill files"
+git commit -m "Regenerate translation skills"
 git push
 ```
 
@@ -348,7 +345,7 @@ The SRT translation workflow is specifically designed for translating video subt
 # The SRT translation skill is already included in the repository
 # Structure:
 # skills/
-# ├── kobo-translation/          # Base translation skill
+# ├── kobo-translation-v2/       # Base translation skill
 # └── kobo-translation-srt/      # SRT extension skill
 #     ├── SKILL.md
 #     └── references/

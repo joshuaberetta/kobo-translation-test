@@ -23,14 +23,14 @@ Use this checklist to set up your test repository in ~30 minutes.
 
 ### 3. Prepare Files Locally
 - [ ] Extract the test-repo files
-- [ ] Copy kobo-translation skill to `skills/kobo-translation/`
+- [ ] Verify skill structure is present
 - [ ] Verify structure:
   ```
   kobo-translation-test/
-  ├── .github/workflows/      ✓
-  ├── docs/en/               ✓
-  ├── skills/kobo-translation/ ✓
-  └── scripts/               ✓
+  ├── .github/workflows/           ✓
+  ├── docs/en/                    ✓
+  ├── skills/kobo-translation-v2/ ✓
+  └── scripts/                    ✓
   ```
 
 ### 4. Configure Secrets
@@ -108,8 +108,8 @@ You're ready to proceed if:
 
 **Skill not found:**
 ```bash
-ls -R skills/kobo-translation/
-# Should show SKILL.md and references/
+ls -R skills/kobo-translation-v2/
+# Should show SKILL.md, sources/, references/, scripts/
 ```
 
 **API error:**

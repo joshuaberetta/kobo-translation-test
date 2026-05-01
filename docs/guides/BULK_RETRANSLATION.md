@@ -145,13 +145,14 @@ Shows detailed progress and saves locations.
 #### 1. Update Skills
 
 Edit your translation skills in the repository:
-- Go to `skills/kobo-translation/references/`
-- Edit terminology files (e.g., `brand-terminology.md`)
+- Go to `skills/kobo-translation-v2/sources/`
+- Edit terminology files (e.g., `glossary.xlsx`, `style-guide.md`)
 - Commit and push changes
 
 #### 2. Regenerate Language-Specific Skills
 
 ```bash
+python3 skills/kobo-translation-v2/scripts/regenerate_skill.py
 python3 scripts/split_skill_by_language.py
 git add skills/
 git commit -m "Update translation skills"
@@ -191,7 +192,7 @@ In the PR:
 Edit your translation skills:
 
 ```bash
-vim skills/kobo-translation/references/brand-terminology.md
+vim skills/kobo-translation-v2/sources/glossary.xlsx  # or style-guide.md
 ```
 
 ### 2. Regenerate Language-Specific Skills

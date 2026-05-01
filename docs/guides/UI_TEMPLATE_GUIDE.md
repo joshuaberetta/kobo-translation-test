@@ -97,7 +97,7 @@ Multi-word UI strings can use either spaces or underscores:
 {{ui:Cancel transfer}}     → Cancelar transferencia (Spanish)
 ```
 
-**Best Practice:** Use the exact text as it appears in the KoboToolbox UI, including spaces. Check the [transifex-ui-strings.md](../skills/kobo-translation/references/transifex-ui-strings.md) reference to find the correct key.
+**Best Practice:** Use the exact text as it appears in the KoboToolbox UI, including spaces. Check the [transifex-ui-strings.md](../skills/kobo-translation-v2/references/transifex-ui-strings.md) reference to find the correct key.
 
 ### Variable Placeholders
 
@@ -254,7 +254,7 @@ Click the {{ui:Deploy|bold}} button on the {{ui:FORM}} tab.
 ### How to Find the Correct Key
 
 1. **Check the Transifex reference file:**
-   - `skills/kobo-translation/references/transifex-ui-strings.md`
+   - `skills/kobo-translation-v2/references/transifex-ui-strings.md`
    - Look in the "English UI String" column
    - Use exact spelling and capitalization
 
@@ -436,8 +436,8 @@ A: Yes. The template system is language-agnostic; formatting is handled by markd
 
 ## Related Documentation
 
-- **Transifex UI Strings Reference:** `skills/kobo-translation/references/transifex-ui-strings.md`
-- **Translation Skill:** `skills/kobo-translation/SKILL.md`
+- **Transifex UI Strings Reference:** `skills/kobo-translation-v2/references/transifex-ui-strings.md`
+- **Translation Skill:** `skills/kobo-translation-v2/SKILL.md`
 - **PO Parser Script:** `scripts/parse_transifex_po.py`
 - **Template Resolver:** `scripts/resolve_ui_templates.py`
 - **Translation Agent:** `scripts/translation_agent.py`

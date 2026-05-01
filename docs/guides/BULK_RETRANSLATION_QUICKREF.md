@@ -39,7 +39,7 @@ Retranslate documentation files in bulk when translation skills are updated, all
 ### Test Skill Changes
 ```bash
 # 1. Update skills
-vim skills/kobo-translation/references/brand-terminology.md
+vim skills/kobo-translation-v2/sources/style-guide.md
 
 # 2. Regenerate language-specific skills  
 python3 scripts/split_skill_by_language.py
