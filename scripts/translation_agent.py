@@ -65,19 +65,29 @@ def _format_collect_strings(json_text: str, target_lang: str) -> str:
 class TranslationAgent:
     """Simplified AI agent for testing automated documentation translation"""
     
-    def __init__(self, test_mode: bool = False, use_templates: bool = False, 
-                 po_repo_path: Optional[str] = None):
+    def __init__(self, test_mode: bool = False, use_templates: bool = False,
+                 po_repo_path: Optional[str] = None,
+                 include_transifex: bool = False,
+                 include_collect: bool = False):
         """
         Initialize the translation agent
-        
+
         Args:
             test_mode: If True, run locally without GitHub integration
             use_templates: If True, resolve {{ui:KEY}} templates before translation
             po_repo_path: Path to form-builder-translations repo (required if use_templates=True)
+            include_transifex: Include transifex-ui-strings.md in the prompt (~150k chars).
+                               Useful when the source doc contains many UI element references.
+                               Off by default to avoid overloading the context window.
+            include_collect: Include collect-strings.json (rendered as a table, ~60-70k chars)
+                             in the prompt. Useful when translating KoboCollect-specific content.
+                             Off by default to avoid overloading the context window.
         """
         self.test_mode = test_mode
         self.use_templates = use_templates
         self.po_repo_path = Path(po_repo_path) if po_repo_path else None
+        self.include_transifex = include_transifex
+        self.include_collect = include_collect
         
         # Validate template configuration
         if use_templates:
@@ -192,8 +202,16 @@ class TranslationAgent:
         base_only = {'transifex', 'collect', 'article_titles', 'sentences'}
         # Files that are optional (not yet generated in all environments)
         optional = {'transifex', 'article_titles', 'sentences'}
+        # Large files excluded from the prompt unless explicitly opted in
+        gated = {
+            'transifex': self.include_transifex,
+            'collect':   self.include_collect,
+        }
 
         for key, filename in ref_files.items():
+            if key in gated and not gated[key]:
+                continue
+
             # For base-only files, skip the language-specific dir entirely
             candidates = []
             if key not in base_only and skill_base != base_skill:
@@ -209,11 +227,12 @@ class TranslationAgent:
                     print(f"⚠️  Reference file not found: {filename}", file=sys.stderr)
 
         # collect-strings.json lives in the base skill; render to markdown for the LLM
-        collect_path = base_skill / 'references' / 'collect-strings.json'
-        if collect_path.exists():
-            context['collect'] = _format_collect_strings(
-                collect_path.read_text(encoding='utf-8'), target_lang
-            )
+        if self.include_collect:
+            collect_path = base_skill / 'references' / 'collect-strings.json'
+            if collect_path.exists():
+                context['collect'] = _format_collect_strings(
+                    collect_path.read_text(encoding='utf-8'), target_lang
+                )
 
         return context
     
@@ -706,7 +725,19 @@ def main():
         default='external/form-builder-translations',
         help='Path to form-builder-translations repository (default: external/form-builder-translations)'
     )
-    
+    parser.add_argument(
+        '--include-transifex',
+        action='store_true',
+        help='Include Transifex UI strings in the prompt (~150k chars). '
+             'Use when the source doc has many UI element references.'
+    )
+    parser.add_argument(
+        '--include-collect',
+        action='store_true',
+        help='Include KoboCollect Android UI strings in the prompt (~60-70k chars). '
+             'Use when translating KoboCollect-specific content.'
+    )
+
     args = parser.parse_args()
     
     # Verify source file exists
@@ -735,7 +766,9 @@ def main():
         agent = TranslationAgent(
             test_mode=True,
             use_templates=args.use_templates,
-            po_repo_path=args.po_repo if args.use_templates else None
+            po_repo_path=args.po_repo if args.use_templates else None,
+            include_transifex=args.include_transifex,
+            include_collect=args.include_collect,
         )
         
         # Translate
