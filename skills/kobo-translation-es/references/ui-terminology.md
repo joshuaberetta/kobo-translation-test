@@ -27,20 +27,15 @@
 | Hook | Hook |  |
 | Map view | vista de Mapa |  |
 | New Export | Nuevo exportable |  |
+| Question library | Biblioteca de preguntas |  |
 | Report view | vista de Informes |  |
-| Save Draft (Enketo) | Guardar borrador |  |
+| Save Draft | Guardar borrador |  |
 | Save image as | Guardar la imágen como |  |
 | SUMMARY page | página RESUMEN |  |
 | Table view | vista de Tabla |  |
 | Toolbar | barra de herramientas |  |
 | View | Vista | French: The term “view” can also be translated as “affichage” or “aperçu” in certain contexts but not in the context of the UI elements |
 | webhook | webhook |  |
-| DATA tab | Ventana DATOS | 🚨 ALL CAPS for tab name |
-| SUMMARY tab | Ventana RESUMEN | 🚨 ALL CAPS for tab name |
-| Hook / webhook | Hook / webhook |  |
-| DEPLOY | DESPLEGAR | Button - capitalize |
-| NEW | NUEVO | Button - capitalize |
-| API / KoboToolbox API | interfaz de programación de aplicaciones (API) |  |
 
 ---
 
@@ -67,8 +62,9 @@ These translations are preferred but can be adapted based on context.
 | Manual location recording | Registro de localización manual |
 | Manually enter project details | Entrar los detalles del proyecto manualmente |
 | NEXT | SIG. |
+| Offline | Sin conexión a internet |
 | Placement by tapping | Ubicación con toque |
-| Project |  |
+| Project | Proyecto |
 | Ready to send | Listo para enviar |
 | Record a point | Registrando un punto |
 | Record audio | Grabar sonido de fondo |

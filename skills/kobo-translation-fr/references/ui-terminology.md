@@ -27,20 +27,15 @@
 | Hook | Hook |  |
 | Map view | mode Carte |  |
 | New Export | Nouvel export |  |
+| Question library | bibliothèque de questions |  |
 | Report view | mode Rapports |  |
-| Save Draft (Enketo) | Sauvegarder le brouillon |  |
+| Save Draft | Sauvegarder le brouillon |  |
 | Save image as | Enregistrer l'image sous |  |
 | SUMMARY page | page SOMMAIRE |  |
 | Table view | mode Tableau |  |
 | Toolbar | barre d’outils |  |
 | View | mode | French: The term “view” can also be translated as “affichage” or “aperçu” in certain contexts but not in the context of the UI elements |
 | webhook | webhook |  |
-| DATA tab | onglet DONNÉES | 🚨 ALL CAPS for tab name |
-| SUMMARY tab | onglet SOMMAIRE | 🚨 ALL CAPS for tab name |
-| Hook / webhook | Hook / webhook |  |
-| DEPLOY | DÉPLOYER | Button - capitalize |
-| NEW | NOUVEAU | Button - capitalize |
-| API / KoboToolbox API | interface de programmation d'application (API) / API KoboToolbox |  |
 
 ---
 
@@ -61,12 +56,13 @@ These translations are preferred but can be adapted based on context.
 | Disable recording | Désactiver enregistrement |
 | Do not add | Ne pas ajouter |
 | Download form | Télécharger formulaire |
-| Drafts | Ébauches |
+| Drafts | Brouillons |
 | Finalize | Finaliser |
 | Get Selected | Télécharger la sélection |
 | Manual location recording | Enregistrement manuel de la localisation |
 | Manually enter project details | Saisir les détails du projet |
 | NEXT | SUIVANT |
+| Offline | Sans connection internet |
 | Placement by tapping | Placement en tapotant |
 | Project | Projet |
 | Ready to send | Prêt à envoyer |
@@ -74,14 +70,14 @@ These translations are preferred but can be adapted based on context.
 | Record audio | Enregistrement audio |
 | Recording interval | Intervalle d’enregistrement |
 | Refresh | Rafraîchir |
-| Save as draft | Enregistrer comme ébauche |
+| Save as draft | Enregistrer comme brouillon |
 | Select all | Tout sélectionner |
 | Send Selected | Envoyer éléments sélectionnés |
-| Sent | Envoyé |
+| Sent | Envoyés |
 | Server | Serveur |
 | Settings | Paramètres |
 | Start | Démarrer |
-| Start GeoPoint | Démarrer le point |
+| Start GeoPoint | Créer le point |
 | Start GeoShape | Démarrer le polygone |
 | Start GeoTrace | Démarrer la ligne |
 | Start new form | Remplir un formulaire |

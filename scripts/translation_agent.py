@@ -32,6 +32,69 @@ except ImportError:
     HAS_TEMPLATE_SUPPORT = False
 
 
+def _load_article_titles(skill_root: Path) -> dict:
+    """
+    Parse article-titles.md into {filename: {lang_code: title}}.
+    Returns empty dict if the file is missing or unparseable.
+    """
+    titles_path = skill_root / "references" / "article-titles.md"
+    if not titles_path.exists():
+        return {}
+
+    titles = {}
+    header = None
+    for line in titles_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line.startswith("|"):
+            continue
+        cols = [c.strip() for c in line.strip("|").split("|")]
+        if not cols:
+            continue
+        # Header row: File name | English | French | Spanish | Arabic ...
+        if cols[0].lower() in ("file name", "---"):
+            if cols[0].lower() == "file name":
+                header = [c.lower() for c in cols]
+            continue
+        if header is None:
+            continue
+        filename = cols[0]
+        if not filename:
+            continue
+        entry = {}
+        lang_map = {"english": "en", "french": "fr", "spanish": "es", "arabic": "ar"}
+        for i, col_name in enumerate(header[1:], start=1):
+            lang = lang_map.get(col_name)
+            if lang and i < len(cols) and cols[i]:
+                entry[lang] = cols[i]
+        if entry:
+            titles[filename] = entry
+    return titles
+
+
+def _apply_official_h1(translation: str, filename: str, target_lang: str,
+                        titles: dict) -> tuple[str, bool]:
+    """
+    Replace the H1 line in translation with the official title if one exists.
+    Returns (updated_text, was_changed).
+    """
+    entry = titles.get(filename)
+    if not entry:
+        return translation, False
+    official = entry.get(target_lang)
+    if not official:
+        return translation, False
+
+    lines = translation.split("\n")
+    for i, line in enumerate(lines):
+        if line.startswith("# "):
+            current = line[2:].strip()
+            if current == official:
+                return translation, False
+            lines[i] = f"# {official}"
+            return "\n".join(lines), True
+    return translation, False
+
+
 def _format_collect_strings(json_text: str, target_lang: str) -> str:
     """Convert collect-strings.json to a markdown table for use in the prompt."""
     try:
@@ -236,6 +299,35 @@ class TranslationAgent:
 
         return context
     
+    @staticmethod
+    def needs_transifex(file_path: str) -> bool:
+        """
+        Heuristic: does this article reference enough UI elements to warrant
+        loading the full Transifex string table?
+
+        Scans for patterns that indicate button/menu/tab names that won't
+        translate correctly without the authoritative Transifex strings.
+        """
+        content = Path(file_path).read_text(encoding='utf-8')
+
+        # Quoted UI element names (e.g. 'Export log data', "SETTINGS")
+        quoted_ui = len(re.findall(r"[\"'`‘’“”][A-Z][^\"'`\n]{2,40}[\"'`‘’“”]", content))
+
+        # Bold UI element references: **SETTINGS**, **Deploy**
+        bold_ui = len(re.findall(r'\*\*[A-Z][A-Za-z ]{1,30}\*\*', content))
+
+        # Explicit UI tab/button/menu markers
+        explicit_ui = len(re.findall(
+            r'\b(tab|button|menu|dialog|dropdown|modal|toggle|sidebar|panel|page|section)\b',
+            content, re.IGNORECASE
+        ))
+
+        # All-caps UI strings (DATA, FORM, SETTINGS, DEPLOY…)
+        allcaps_ui = len(re.findall(r'\b[A-Z]{3,}\b', content))
+
+        score = quoted_ui * 3 + bold_ui * 2 + explicit_ui + allcaps_ui
+        return score >= 10
+
     def determine_complexity(self, file_path: str) -> str:
         """
         Determine translation complexity based on file content
@@ -638,10 +730,16 @@ Translation:"""
         if target_lang == 'es':
             checks['uses_informal'] = 'tú' in translation.lower() or 'tu ' in translation.lower()
             checks['gender_inclusive'] = 'los/as' in translation or 'las/os' in translation
+            # Detect usted-form leakage — false positives possible but worth flagging
+            usted_patterns = [' usted', ' su ', ' su\n', 'haga clic', 'vaya a', 'puede usted']
+            usted_hits = [p for p in usted_patterns if p in translation.lower()]
+            checks['no_usted_leakage'] = len(usted_hits) == 0
+            if usted_hits:
+                print(f"  ⚠️  Possible usted-form detected: {usted_hits}", file=sys.stderr)
         elif target_lang == 'fr':
             checks['uses_formal'] = 'vous' in translation.lower()
             checks['gender_inclusive'] = 'utilisatrices' in translation or 'utilisateurs' in translation
-        
+
         checks['passed'] = all(checks.values())
         
         return checks
@@ -649,17 +747,24 @@ Translation:"""
     def save_translation(self, translation: str, source_path: str,
                         target_lang: str) -> Path:
         """
-        Save translation to appropriate location
-        
+        Save translation to appropriate location.
+        Applies official H1 title from article-titles.md if available.
+
         Returns: Path where translation was saved
         """
         source = Path(source_path)
         target_dir = Path('docs') / target_lang
         target_dir.mkdir(parents=True, exist_ok=True)
-        
+
+        # Enforce official H1 title — never rely on LLM for verbatim title matching
+        titles = _load_article_titles(Path('skills/kobo-translation'))
+        translation, changed = _apply_official_h1(translation, source.name, target_lang, titles)
+        if changed:
+            print(f"  📌 H1 corrected from article-titles.md: {source.name}", file=sys.stderr)
+
         target_path = target_dir / source.name
         target_path.write_text(translation, encoding='utf-8')
-        
+
         return target_path
 
 
@@ -732,6 +837,12 @@ def main():
              'Use when the source doc has many UI element references.'
     )
     parser.add_argument(
+        '--auto-transifex',
+        action='store_true',
+        help='Auto-detect whether the source doc needs Transifex UI strings '
+             'and include them if so. Runs the needs_transifex() heuristic.'
+    )
+    parser.add_argument(
         '--include-collect',
         action='store_true',
         help='Include KoboCollect Android UI strings in the prompt (~60-70k chars). '
@@ -739,17 +850,26 @@ def main():
     )
 
     args = parser.parse_args()
-    
+
     # Verify source file exists
     if not Path(args.file).exists():
         print(f"❌ Source file not found: {args.file}")
         sys.exit(1)
-    
+
     # Validate update mode arguments
     if args.update_mode and not args.diff:
         print("❌ --update-mode requires --diff to be provided", file=sys.stderr)
         sys.exit(1)
-    
+
+    # Resolve auto-transifex
+    use_transifex = args.include_transifex
+    if args.auto_transifex and not use_transifex:
+        use_transifex = TranslationAgent.needs_transifex(args.file)
+        if use_transifex:
+            print(f"🔍 Auto-transifex: UI-heavy article detected — including Transifex strings", file=sys.stderr)
+        else:
+            print(f"🔍 Auto-transifex: lean article — skipping Transifex strings", file=sys.stderr)
+
     # Output metadata to stderr so stdout is clean for piping
     print("🚀 KoboToolbox Translation Agent - Test Mode", file=sys.stderr)
     print("=" * 60, file=sys.stderr)
@@ -760,14 +880,14 @@ def main():
     else:
         print(f"📝 Mode: NEW (full file translation)", file=sys.stderr)
     print("=" * 60, file=sys.stderr)
-    
+
     try:
         # Initialize agent
         agent = TranslationAgent(
             test_mode=True,
             use_templates=args.use_templates,
             po_repo_path=args.po_repo if args.use_templates else None,
-            include_transifex=args.include_transifex,
+            include_transifex=use_transifex,
             include_collect=args.include_collect,
         )
         

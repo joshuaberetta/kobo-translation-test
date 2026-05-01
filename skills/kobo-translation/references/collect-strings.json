@@ -1,0 +1,4384 @@
+{
+  "_metadata": {
+    "source": "kobotoolbox/collect Android string resources",
+    "repository": "https://github.com/kobotoolbox/collect",
+    "languages": [
+      "en",
+      "fr",
+      "es",
+      "ar"
+    ],
+    "total_strings": 766,
+    "template_format": "{{collect:<key>}}",
+    "description": "Android app UI strings for use in documentation templates"
+  },
+  "strings": {
+    "about_preferences": {
+      "en": "About",
+      "fr": "À propos",
+      "es": "Acerca de",
+      "ar": "حول التطبيق"
+    },
+    "accept_bearing": {
+      "en": "Record Bearing",
+      "fr": "Enregistrer la Position",
+      "es": "Guardar Orientación",
+      "ar": "تسجيل الاتجاه"
+    },
+    "access_control_section_subtext": {
+      "en": "Limit user interface",
+      "fr": "Limiter l\\'interface utilisateur",
+      "es": "Limitar la interfaz de usuario"
+    },
+    "access_control_section_title": {
+      "en": "Access control",
+      "fr": "Contrôle d\\'accès",
+      "es": "Control de acceso"
+    },
+    "accuracy_m": {
+      "en": "%1$s m",
+      "fr": "%1$s m.",
+      "es": "%1$s m"
+    },
+    "accuracy_requirement": {
+      "en": "Accuracy requirement:",
+      "fr": "Exigence de précision:",
+      "es": "Requisito de precisión",
+      "ar": "متطلبات الدقة:"
+    },
+    "accuracy_status_title": {
+      "en": "Getting Location",
+      "fr": "Localisation en cours.",
+      "es": "Obteniendo ubicación"
+    },
+    "activity_not_found": {
+      "en": "No activity found to handle: %s",
+      "fr": "Aucune activité à gérer: %s",
+      "es": "No se encontró actividad para manejar: %s",
+      "ar": "لا يوجد مهمات للمعالجة: %s"
+    },
+    "add": {
+      "en": "Add",
+      "fr": "Ajouter",
+      "es": "Agregar",
+      "ar": "أضف"
+    },
+    "add_another_menu": {
+      "en": "Add another",
+      "fr": "Ajouter un autre",
+      "es": "Agregar otro",
+      "ar": "إضافة أخرى"
+    },
+    "add_another_question": {
+      "en": "Add another?",
+      "fr": "Ajouter un autre ?",
+      "es": "Agregar otro"
+    },
+    "add_duplicate_project": {
+      "en": "Add duplicate project",
+      "fr": "Ajouté projet répété",
+      "es": "Agregar proyecto duplicado"
+    },
+    "add_layer": {
+      "en": "Add layers",
+      "fr": "Ajouter des couches",
+      "es": "Agregar capas"
+    },
+    "add_project": {
+      "en": "Add project",
+      "fr": "Ajouter un projet",
+      "es": "Agregar proyecto"
+    },
+    "add_repeat": {
+      "en": "Add",
+      "fr": "Ajouter",
+      "es": "Agregar",
+      "ar": "أضف"
+    },
+    "add_repeat_question": {
+      "en": "Add \\\"%s\\\"?",
+      "fr": "Ajouter «%s» ?",
+      "es": "Agregar \\\"%s\\\"?",
+      "ar": "أضف \\\"%s\\\"؟"
+    },
+    "added_on_date_at_time": {
+      "en": "\\'Added on\\' EEE, MMM dd, yyyy \\'at\\' HH:mm",
+      "fr": "\\'Ajouté le\\' EEE MMM dd yyyy \\'à\\' HH\\'h\\'mm",
+      "es": "\\'Agregado:\\' EEE, dd MMM, yyyy \\'a las\\' HH:mm",
+      "ar": "\\'تمت الاضافة ب\\' yyyy, dd MMM, EEE  \\'في الساعة\\' mm:HH"
+    },
+    "admin_password": {
+      "en": "Admin Password",
+      "fr": "Mot de passe de l\\'administrateur",
+      "es": "Contraseña de Administrador",
+      "ar": "كلمة مرور المدير"
+    },
+    "admin_password_changed": {
+      "en": "Admin password successfully changed",
+      "fr": "Mot de passe administrateur modifié avec succès",
+      "es": "Contraseña Administrador cambiada correctamente",
+      "ar": "تمّ تغيير كلمة مرور المدير بنجاح"
+    },
+    "admin_password_disabled": {
+      "en": "Admin password disabled",
+      "fr": "Mot de passe administrateur désactivé",
+      "es": "Contraseña Administrador deshabilitada",
+      "ar": "تعطيل كلمة السر للمدير"
+    },
+    "admin_password_incorrect": {
+      "en": "Sorry, password is incorrect!",
+      "fr": "Désolé, le mot de passe n\\'est pas correct !",
+      "es": "¡Contraseña incorrecta!",
+      "ar": "عذرًا، كلمة المرور غير صحيحة!"
+    },
+    "alert": {
+      "en": "Alert",
+      "fr": "Alerte",
+      "es": "Alerta",
+      "ar": "تحذير"
+    },
+    "all_downloads_succeeded": {
+      "en": "All downloads succeeded!",
+      "fr": "Succès de tous les téléchargements!",
+      "es": "¡Todas las descargas se realizaron correctamente!"
+    },
+    "all_non_mbtiles_files_selected_message": {
+      "en": "The files you selected are not MBTiles. You can only add MBTiles files.",
+      "fr": "Les fichiers que vous avez sélectionnés ne sont pas des fichiers MBTiles. Vous pouvez seulement ajouter des fichiers MBTiles.",
+      "es": "Los archivos seleccionados no son MBTiles. Sólo puede agregar archivos MBTiles."
+    },
+    "all_open_source_licenses": {
+      "en": "Open source libraries/licenses",
+      "fr": "Licences et librairies open source",
+      "es": "Licencias/librerias de Código Abierto",
+      "ar": "مكتبات و تراخيص مفتوحة المصدر"
+    },
+    "all_open_source_licenses_msg": {
+      "en": "We stand on the shoulders of giants!",
+      "fr": "Nous sommes debout sur les épaules de géants.",
+      "es": "Sostenidos a hombros de gigantes!",
+      "ar": "نقف على أكتاف العمالقة!"
+    },
+    "all_projects_option": {
+      "en": "All projects",
+      "fr": "Tous les projets",
+      "es": "Todos los proyectos"
+    },
+    "all_uploads_succeeded": {
+      "en": "All uploads succeeded!",
+      "fr": "Succès de tous les envois !",
+      "es": "¡Todas las cargas se realizaron correctamente!"
+    },
+    "analytics": {
+      "en": "Collect anonymous usage data",
+      "fr": "Collecter des données d\\'utilisation anonymes",
+      "es": "Recolectar datos de uso anónimos",
+      "ar": "جمع بيانات الاستخدام دون تحديد هوية المستخدم"
+    },
+    "analytics_preferences": {
+      "en": "Usage data",
+      "fr": "Données d\\'utilisation",
+      "es": "Datos de uso",
+      "ar": "بيانات الاستخدام"
+    },
+    "analytics_summary": {
+      "en": "Anonymous usage data helps the KoboToolbox team prioritize fixes and features.",
+      "fr": "Les données anonymes d\\'utilisation aident l\\'équipe KoboToolbox à prioriser les correctifs et les fonctionnalités",
+      "es": "Los datos de uso anónimos ayudan al equipo de KoboToolbox a priorizar las correcciones y las funciones."
+    },
+    "annotate_image": {
+      "en": "Annotate Image",
+      "fr": "Annoter l\\'image",
+      "es": "Anotar en Imagen",
+      "ar": "تعليق على الصورة"
+    },
+    "answer_file_copy_failed_message": {
+      "en": "Media could not be attached to form but is available at %1$s",
+      "fr": "Le fichier n\\'a pas pu être attaché au formulaire mais est disponible à %1$s",
+      "es": "Los archivos multimedia no se pudieron adjuntar al formulario, pero están disponibles en %1$s",
+      "ar": "لا يمكن إرفاق الوسائط بالنموذج ولكنها متوفرة على %1$s"
+    },
+    "answer_file_delete_warning": {
+      "en": "You will not be able to recover this file once it is deleted. Are you sure you want to proceed?",
+      "fr": "Vous ne pourrez pas récupérer ce fichier une fois qu\\'il sera supprimé. Êtes-vous sûr de vouloir continuer?",
+      "es": "No podrá recuperar este archivo una vez que se elimine. ¿Estas seguro que deseas continuar?",
+      "ar": "لن تتمكن من استعادة هذا الملف بعد حذفه. هل انت متأكد انك تريد المتابعة؟"
+    },
+    "app_not_configured": {
+      "en": "KoboCollect has not been configured. Try to open KoboCollect and configure it.\\n\\nIf you tapped on a shortcut, you might need to recreate it after configuring KoboCollect.",
+      "fr": "KoboCollect n\\'a pas été configuré. Essayez d\\'ouvrir KoboCollect et configure le.\\n\\nSi vous avez cliqué sur un raccourci, vous devrez le recréer après avoir configuré KoboCollect.",
+      "es": "No se ha configurado la aplicación móvil. Intente abrir la aplicación y configurarla.\\n\\nIfSi tocó un acceso directo, es posible que deba volver a crearlo después de configurarla."
+    },
+    "app_theme": {
+      "en": "Theme",
+      "fr": "Thème",
+      "es": "Tema",
+      "ar": "المظهر"
+    },
+    "automatic_download": {
+      "en": "Automatic download",
+      "fr": "Téléchargement automatique",
+      "es": "Descarga automática",
+      "ar": "تحميل آلي"
+    },
+    "automatic_download_summary": {
+      "en": "Automatically download updated versions of forms",
+      "fr": "Télécharger automatiquement les versions mise à jour des formulaires",
+      "es": "Nuevas versiones de formularios descargadas automáticamente",
+      "ar": "قم بتنزيل الإصدارات المحدّثة من الاستمارات تلقائيًا"
+    },
+    "automatic_mode": {
+      "en": "Automatic location recording",
+      "fr": "Enregistrement automatique de la localisation",
+      "es": "Registro de localización automática",
+      "ar": "تسجيل تلقائي للموقع"
+    },
+    "autosend": {
+      "en": "Auto send",
+      "fr": "Envoi automatique",
+      "es": "Envío Automático",
+      "ar": "الإرسال التلقائي"
+    },
+    "autosend_selector_title": {
+      "en": "Auto send",
+      "fr": "Envoi automatique",
+      "es": "Envío Automático",
+      "ar": "الإرسال التلقائي"
+    },
+    "background_audio_help": {
+      "en": "This form records the audio from your device\\'s microphone.\\n\\nYou can use the volume indicator to make sure the microphone is close enough to the sound you need to record.\\n\\nTo stop the recording please exit this form.\\n\\nFor more information please contact the person who asked you to collect data.",
+      "fr": "Ce formulaire enregistre le son du micro de votre appareil.\\n\\nVous pouvez utiliser l\\'indicateur de volume pour vous assurer que le micro est assez proche de son que vous devez enregistrer.\\n\\nQuittez le formulaire pour arrêter l\\'enregistrement.\\n\\nPour plus d\\'informations contacter la personne responsable de cette collecte de données.",
+      "es": "Este formulario graba el audio del micrófono de su dispositivo.\\n\\nY puede usar el indicador de volumen para asegurarse de que el micrófono esté lo suficientemente cerca del sonido que necesita grabar.\\n\\nPara detener la grabación, salga de este formulario.\\n\\nPara obtener más información, comuníquese con la persona que le pidió que recopilara datos."
+    },
+    "background_audio_permission_explanation": {
+      "en": "This form records audio in the background. You must grant permission to use your microphone. If you do not, you will not be able to open this form.",
+      "fr": "Ce formulaire crée un enregistrement audio en tâche de fond. Vous devez accorder l\\'accès à votre microphone. Si vous ne l\\'accordez pas, vous ne pourrez pas ouvrir ce formulaire.",
+      "es": "Este formulario graba audio en segundo plano. Debe otorgar permiso para usar su micrófono. Si no lo hace, no podrá abrir este formulario.",
+      "ar": "هذا النموذج يسجل الصوت في الخلفية. يجب أن تمنح الإذن لاستخدام الميكروفون الخاص بك. إذا لم تقم بذلك ، فلن تتمكن من فتح هذا النموذج."
+    },
+    "background_audio_recording_enabled_explanation": {
+      "en": "Recording will not begin immediately. You must re-open the form to record.",
+      "fr": "L\\'enregistrement ne recommencera pas tout de suite. Vous devez quitter et réouvrir le formulaire pour enregistrer.",
+      "es": "La grabación no comenzará inmediatamente. Debe volver a abrir el formulario para grabar.",
+      "ar": "التسجيل لن يبدأ على الفور. يجب عليك إعادة فتح النموذج للتسجيل."
+    },
+    "background_location_disabled": {
+      "en": "This form wants to track your location but tracking is disabled. Please enable in the %1$s menu above.",
+      "fr": "Ce formulaire veut suivre votre position mais le suivi est désactivé. S\\'il vous plaît activer dans le %1$s menu ci-dessus.",
+      "es": "Este formulario requiere registrar su localización, pero el rastreo esta deshabilitado. Favor habilitar en el menú de arriba %1$s .",
+      "ar": "تريد هذه الاستمارة تتبع موقعك ولكن تم تعطيل التتبع. يرجى التمكين في القائمة %1$s أعلاه."
+    },
+    "background_location_enabled": {
+      "en": "This form tracks your location. You can disable tracking in the %1$s menu above.",
+      "fr": "Ce formulaire suit votre position. Vous pouvez désactiver le suivi dans le %1$s menu ci-dessus.",
+      "es": "Este formulario registra su localización. Puede deshabilitar el rastreo en el menú de arriba %1$s.",
+      "ar": "هذه الاستمارة تقوم بتتبع موقعك. يمكنك تعطيل التتبع في القائمة %1$s أعلاه."
+    },
+    "bad_uri": {
+      "en": "Bad URI: %s",
+      "fr": "Mauvais URI: %s",
+      "es": "URI erroneo: %s",
+      "ar": "عنوان غير صحيح: %s"
+    },
+    "barcode_scanner_prompt": {
+      "en": "Place the barcode inside the rectangle",
+      "fr": "Mettre le code-barres dans le rectangle",
+      "es": "Coloque el código de barras dentro del rectángulo",
+      "ar": "ضع الباركود داخل المستطيل"
+    },
+    "basemap": {
+      "en": "Basemap",
+      "fr": "Fonds de carte",
+      "es": "Mapa Base",
+      "ar": "الخريطة الأساسية"
+    },
+    "basemap_source": {
+      "en": "Source",
+      "fr": "Source",
+      "es": "Fuente",
+      "ar": "المصدر"
+    },
+    "basemap_source_unavailable": {
+      "en": "Sorry, %s basemaps are not available on this device. Please choose another basemap in Settings > Maps.",
+      "fr": "Désolé, %s carte de base ne sont pas disponibles sur ce terminal. Merci d\\'en choisir une autre dans Paramètres > Cartes.",
+      "es": "Lo sentimos, los mapas base de %s  no están disponibles en este dispositivo. Elija otro mapa base en Configuración > Mapas."
+    },
+    "bearing": {
+      "en": "Bearing: %.3f",
+      "fr": "Palier: %.3f",
+      "es": "Orientación: %.3f",
+      "ar": "تحمل %.3f"
+    },
+    "bearing_lack_of_sensors": {
+      "en": "Bearing cannot be collected: device is missing accelerometer, magnetic field sensor or both.",
+      "fr": "L\\'orientement n\\'est pas disponible: l\\'appareil n\\'a pas d\\'accéléromètre ou de capteur de champ magnétique.",
+      "es": "La Orientación no puede ser registrada: El dispositivo no tiene acelerómetro, o sensor de campo magnético o ambos.",
+      "ar": "لا يمكن جمع المحامل: يفتقد الجهاز إلى مقياس التسارع أو مستشعر المجال المغناطيسي أو كليهما."
+    },
+    "buddhist_month_1": {
+      "en": "มกราคม",
+      "fr": "makara",
+      "es": "Enero"
+    },
+    "buddhist_month_10": {
+      "en": "ตุลาคม",
+      "fr": "tulā",
+      "es": "Octubre"
+    },
+    "buddhist_month_11": {
+      "en": "พฤศจิกายน",
+      "fr": "vṛścika",
+      "es": "Noviembre"
+    },
+    "buddhist_month_12": {
+      "en": "ธันวาคม",
+      "fr": "dhanu",
+      "es": "Diciembre"
+    },
+    "buddhist_month_2": {
+      "en": "กุมภาพันธ์",
+      "fr": "kumbha",
+      "es": "Febrero"
+    },
+    "buddhist_month_3": {
+      "en": "มีนาคม",
+      "fr": "mīna",
+      "es": "Marzo"
+    },
+    "buddhist_month_4": {
+      "en": "เมษายน",
+      "fr": "meṣa",
+      "es": "Abril"
+    },
+    "buddhist_month_5": {
+      "en": "พฤษภาคม",
+      "fr": "vṛṣabha",
+      "es": "Mayo"
+    },
+    "buddhist_month_6": {
+      "en": "มิถุนายน",
+      "fr": "mithuna",
+      "es": "Junio"
+    },
+    "buddhist_month_7": {
+      "en": "กรกฎาคม",
+      "fr": "karkaṭa",
+      "es": "Julio"
+    },
+    "buddhist_month_8": {
+      "en": "สิงหาคม",
+      "fr": "sinha",
+      "es": "Agosto"
+    },
+    "buddhist_month_9": {
+      "en": "กันยายน",
+      "fr": "kanyā",
+      "es": "Septiembre"
+    },
+    "bulk_finalize_explanation": {
+      "en": "Once you finalize all drafts, they will be in \"Ready to send\" and you will not be able to make edits. Any drafts that have errors will not be finalized.\\n\\nYou will not be able to undo this action.",
+      "fr": "Une fois finalisés, les formulaires seront disponibles du menu \\\"Prêt à envoyer\\\" et vous ne pourrez plus les éditer. Tout ébauche comportant des erreurs ne sera pas finalisée.\\n\\nVous ne pourrez pas annuler cette action.",
+      "es": "Una vez que finalice todos los borradores, estarán en \\\"Listo para enviar\\\" y no podrá realizar modificaciones. Los borradores que tengan errores no se finalizarán.\\n\\nNo podrás deshacer esta acción."
+    },
+    "bulk_finalize_partial_success": {
+      "en": "%d drafts finalized. %d drafts have errors that must be addressed before finalizing.",
+      "fr": "%d ébauches finalisées. %d ébauches contiennent des erreurs qui doivent être corrigées avant de finaliser.",
+      "es": "%d  borradores finalizados. %d borradores tienen errores que deben corregirse antes de finalizarlos."
+    },
+    "bulk_finalize_unsupported": {
+      "en": "%d drafts finalized. Drafts that are left need to be finalized manually.",
+      "fr": "%d ébauches finalisées. Les ébauches restantes doivent être finalisées manuellement.",
+      "es": "%d borradores finalizados. Los borradores que quedan deben finalizarse manualmente."
+    },
+    "buttons_navigation": {
+      "en": "Use forward/backward buttons",
+      "fr": "Utiliser les boutons suivant/retour",
+      "es": "Use los botones adelante/atrás",
+      "ar": "استخدم ازرار التنقل للأمام و الخلف"
+    },
+    "camera_error": {
+      "en": "There was an error taking picture",
+      "fr": "Il y a eu un erreur lors de la prise d\\'image",
+      "es": "Hubo un error al tomar la foto",
+      "ar": "حدث خطأ أثناء أخذ صورة"
+    },
+    "camera_failed_to_initialize": {
+      "en": "Couldn\\'t initialize camera!",
+      "fr": "Collect n\\'a pas pu initialiser l\\'appareil photo !",
+      "es": "¡No se pudo inicializar la cámara!",
+      "ar": "فشل في تهيئة الكاميرا!"
+    },
+    "camera_runtime_permission_denied_desc": {
+      "en": "Without this permission Collect can\\'t access the camera. Please try again when you are ready to grant it.",
+      "fr": "Sans cette permission, Collect ne peut pas accéder à la caméra. Veuillez réessayer lorsque vous êtes prêt à l\\'accorder.",
+      "es": "Sin este permiso la aplicación no puede acceder a la cámara. Intente de nuevo cuando esté el permiso.",
+      "ar": "بدون هذا الإذن لا يمكن لبرنامج KoboCollect الوصول إلى الكاميرا. يرجى المحاولة مرة أخرى عندما تكون مستعدًا لمنحه."
+    },
+    "camera_runtime_permission_denied_title": {
+      "en": "Camera permission",
+      "fr": "Autorisation d\\'enregistrement vidéo",
+      "es": "Permiso de Cámara",
+      "ar": "إذن الكاميرا"
+    },
+    "cancel": {
+      "en": "Cancel",
+      "fr": "Annuler",
+      "es": "Cancelar",
+      "ar": "إلغاء"
+    },
+    "cancel_loading_form": {
+      "en": "Cancel",
+      "fr": "Annuler",
+      "es": "Cancelar",
+      "ar": "إلغاء"
+    },
+    "cancel_location": {
+      "en": "Cancel",
+      "fr": "Annuler",
+      "es": "Cancelar",
+      "ar": "إلغاء"
+    },
+    "canceling": {
+      "en": "Canceling",
+      "fr": "En train d\\'annuler",
+      "es": "Cancelando",
+      "ar": "جاري الإلغاء"
+    },
+    "cannot_edit_completed_form": {
+      "en": "This form cannot be edited once it has been marked as finalized. It may be encrypted.",
+      "fr": "Ce formulaire ne peut pas être modifié une fois finalisé. Il est peut-être encrypté.",
+      "es": "Este formulario no puede ser editado una vez que ha sido marcado como finalizado. Puede estar encriptado.",
+      "ar": "يتعذر تعديل هذه الاستمارة عندما يتم وضع علامة على أنها مكتملة. قد تكون مشفرة."
+    },
+    "cannot_open_form_because_of_forms_update": {
+      "en": "This form cannot be opened right now because forms are being updated. Please try again shortly.",
+      "fr": "Ce formulaire ne peut pas être ouvert parce qu\\'une mise à jour de formulaires est en cours",
+      "es": "Este formulario no puede abrirse en este momento porque se están actualizando los formularios. Vuelva a intentarlo en breve."
+    },
+    "cant_start_app": {
+      "en": "Cannot start the app!",
+      "fr": "Impossible de démarrer l\\'application!",
+      "es": "¡No se puede iniciar la aplicación!"
+    },
+    "capture_audio": {
+      "en": "Record Sound",
+      "fr": "Enregistrer de l\\'audio",
+      "es": "Grabar sonido",
+      "ar": "تسجيل الصوت"
+    },
+    "capture_image": {
+      "en": "Take Picture",
+      "fr": "Prendre une photo",
+      "es": "Tomar la Foto",
+      "ar": "التقط صورة"
+    },
+    "capture_osm": {
+      "en": "Launch OpenMapKit",
+      "fr": "Lancer OpenMapKit",
+      "es": "Iniciar OpenMapKit",
+      "ar": "شغل ال OpenMapKit"
+    },
+    "capture_video": {
+      "en": "Record Video",
+      "fr": "Enregistrer une vidéo",
+      "es": "Grabar el Video",
+      "ar": "سجل فيديو"
+    },
+    "carto_map_style_dark_matter": {
+      "en": "Dark Matter",
+      "fr": "Matière Sombre",
+      "es": "Materia oscura",
+      "ar": "المادة المظلمة"
+    },
+    "carto_map_style_positron": {
+      "en": "Positron",
+      "fr": "Positron",
+      "es": "Positrón",
+      "ar": "بوزيترون"
+    },
+    "cellular_autosend": {
+      "en": "Cellular only",
+      "fr": "Seulement Cellulaire",
+      "es": "Solo con Datos Móviles",
+      "ar": "فقط عبر شبكة الاتصال"
+    },
+    "change_admin_password": {
+      "en": "Change Admin Password",
+      "fr": "Modifier le mot de passe de l\\'administrateur",
+      "es": "Cambiar Contraseña de Administrador",
+      "ar": "تغيير كلمة مرور المدير"
+    },
+    "change_font_size": {
+      "en": "Text font size",
+      "fr": "Taille de la Police",
+      "es": "Tamaño del Texto",
+      "ar": "حجم الخط"
+    },
+    "change_language": {
+      "en": "Change Language",
+      "fr": "Changer la langue",
+      "es": "Cambiar el Idioma",
+      "ar": "تغيير اللغة"
+    },
+    "change_password": {
+      "en": "KoboToolbox Password",
+      "fr": "Mot de passe KoboToolbox",
+      "es": "Contraseña",
+      "ar": "KoboToolbox كلمة المرور"
+    },
+    "change_point": {
+      "en": "Change point",
+      "fr": "Modifier le point",
+      "es": "Cambiar punto"
+    },
+    "change_server_url": {
+      "en": "Server URL",
+      "fr": "URL du serveur",
+      "es": "URL del Servidor",
+      "ar": "رابط الخادم"
+    },
+    "change_username": {
+      "en": "KoboToolbox Username",
+      "fr": "Nom d\\'utilisateur KoboToolbox",
+      "es": "Nombre de Usuario",
+      "ar": "إسم المستخدم"
+    },
+    "change_view": {
+      "en": "Change View",
+      "fr": "Changer l\\'aspect de l\\'affichage",
+      "es": "Cambiar Vista",
+      "ar": "تغيير المشهد"
+    },
+    "choices": {
+      "en": "Choices",
+      "fr": "Choix",
+      "es": "Opciones",
+      "ar": "خيارات"
+    },
+    "choose_file": {
+      "en": "Choose File",
+      "fr": "Choisir un fichier",
+      "es": "Escoger Archivo",
+      "ar": "إختر ملف"
+    },
+    "choose_image": {
+      "en": "Choose Image",
+      "fr": "Choisir une Image",
+      "es": "Escoja la Imagen",
+      "ar": "إختر صورة"
+    },
+    "choose_sound": {
+      "en": "Choose Sound",
+      "fr": "Choisir un fichier audio",
+      "es": "Escoja el Sonido",
+      "ar": "إختر تسجيل صوتي"
+    },
+    "choose_video": {
+      "en": "Choose Video",
+      "fr": "Choisir une Vidéo",
+      "es": "Escoja el Video",
+      "ar": "إختر فيديو"
+    },
+    "clear": {
+      "en": "Clear",
+      "fr": "Effacer",
+      "es": "Limpiar",
+      "ar": "إلغاء"
+    },
+    "clear_all": {
+      "en": "Clear All",
+      "fr": "Tout désélectionner",
+      "es": "Limpiar todo",
+      "ar": "إلغاء التحديد"
+    },
+    "clear_answer": {
+      "en": "Remove response",
+      "fr": "Enlever la réponse",
+      "es": "Borrar respuesta",
+      "ar": "حذف الإجابة"
+    },
+    "clear_answer_ask": {
+      "en": "Remove This Response?",
+      "fr": "Enlever cette réponse ?",
+      "es": "¿Borrar esta respuesta?",
+      "ar": "حذف هذه الإجابة؟"
+    },
+    "clear_answer_no": {
+      "en": "Cancel",
+      "fr": "Annuler",
+      "es": "Cancelar",
+      "ar": "إلغاء"
+    },
+    "clearanswer_confirm": {
+      "en": "Remove the response to \\\"%s\\\"?",
+      "fr": "Enlever la réponse à «%s» ?",
+      "es": "¿Borrar la respuesta a \\\"%s\\\"?",
+      "ar": "حذف الإجابة ل \\\"%s\\\"؟"
+    },
+    "client": {
+      "en": "User interface",
+      "fr": "Interface utilisateur",
+      "es": "Interfaz de usuario",
+      "ar": "إعدادات واجهة المستخدم"
+    },
+    "close": {
+      "en": "Close",
+      "fr": "Fermer",
+      "es": "Cerrar",
+      "ar": "أغلق"
+    },
+    "close_snackbar": {
+      "en": "Close snackbar",
+      "fr": "Fermer la barre de message",
+      "es": "Cerrar notificación"
+    },
+    "collection_status_auto_minutes": {
+      "en": "Points entered: %1$d (recording every %2$d min)",
+      "fr": "Points entrés: %1$d (enregistrement chaque %2$d min)",
+      "es": "Puntos ingresados: %1$d (registrando cada %2$d min)",
+      "ar": "النقاط التي تم إدخالها: %1$d (تسجيل كل %2$d دقيقة)"
+    },
+    "collection_status_auto_minutes_accuracy": {
+      "en": "Points entered: %1$d (recording every %2$d min, accuracy %3$d m)",
+      "fr": "Points entrés: %1$d (enregistrement chaque %2$d min, précision%3$d m)",
+      "es": "Puntos ingresados: %1$d (registrando cada %2$d min, precisión %3$d m)",
+      "ar": "النقاط التي تم إدخالها: %1$d (تسجيل كل %2$d دقيقة ، دقة %3$d متر)"
+    },
+    "collection_status_auto_seconds": {
+      "en": "Points entered: %1$d (recording every %2$d sec)",
+      "fr": "Points entrés: %1$d (enregistrement chaque %2$d sec)",
+      "es": "Puntos ingresados: %1$d (registrando cada %2$d seg)",
+      "ar": "النقاط التي تم إدخالها: %1$d (تسجيل كل %2$d ثانية)"
+    },
+    "collection_status_auto_seconds_accuracy": {
+      "en": "Points entered: %1$d (recording every %2$d sec, accuracy %3$d m)",
+      "fr": "Points entrés: %1$d (enregistrement chaque %2$d sec, précision%3$d m)",
+      "es": "Puntos ingresados: %1$d (registrando cada %2$d seg, precisión %3$d m)",
+      "ar": "النقاط التي تم إدخالها: %1$d (تسجيل كل %2$d ثانية ، دقة %3$d متر)"
+    },
+    "collection_status_manual": {
+      "en": "Points entered: %d (manual recording)",
+      "fr": "Points entrés: %d (enregistrement manuel)",
+      "es": "Puntos ingresados: %d (registro manual)",
+      "ar": "النقاط التي تم إدخالها: %d (التسجيل اليدوي)"
+    },
+    "collection_status_paused": {
+      "en": "Points entered: %d",
+      "fr": "Points entrés: %d",
+      "es": "Puntos ingresados: %d",
+      "ar": "النقاط التي تم إدخالها: %d"
+    },
+    "collection_status_placement": {
+      "en": "Points entered: %d (tap to place points)",
+      "fr": "Points entrés: %d (appuyez pour placer des points)",
+      "es": "Puntos ingresados: %d (toque para ubicar puntos)",
+      "ar": "النقاط التي تم إدخالها: %d (انقر لوضع نقاط)"
+    },
+    "configure_manually": {
+      "en": "Manually enter project details",
+      "fr": "Saisir les détails du projet",
+      "es": "Ingrese manualmente los detalles del proyecto"
+    },
+    "configure_with_qr_code": {
+      "en": "Configure with QR code",
+      "fr": "Configurer par QR code",
+      "es": "Configure mediante código QR"
+    },
+    "constraint_behavior": {
+      "en": "Constraint processing behavior",
+      "fr": "Comportement du traitement des contraintes",
+      "es": "Manejo de las restricciones",
+      "ar": "معالجة القيود جارية"
+    },
+    "constraint_behavior_on_finalize": {
+      "en": "Defer validation until finalized",
+      "fr": "Reporter la validation tant que le formulaire n\\'est pas finalisé",
+      "es": "Postponer validación hasta el final",
+      "ar": "تأجيل المصادقة حتى الانتهاء"
+    },
+    "constraint_behavior_on_swipe": {
+      "en": "Validate upon forward swipe",
+      "fr": "Valider lors du glissement du doigt vers la gauche",
+      "es": "Validar al desplazar hacia delante.",
+      "ar": "التدقيق عند السحب باتجاه الامام"
+    },
+    "constraint_behavior_title": {
+      "en": "Constraint processing",
+      "fr": "Traitement de contraintes",
+      "es": "Manejo de restricciones",
+      "ar": "معالجة القيود"
+    },
+    "coptic_month_1": {
+      "en": "Thout",
+      "fr": "Thout",
+      "es": "Thout",
+      "ar": "Thout"
+    },
+    "coptic_month_10": {
+      "en": "Paoni",
+      "fr": "Paoni",
+      "es": "Paoni",
+      "ar": "Paoni"
+    },
+    "coptic_month_11": {
+      "en": "Epip",
+      "fr": "Epip",
+      "es": "Epip",
+      "ar": "Epip"
+    },
+    "coptic_month_12": {
+      "en": "Mesori",
+      "fr": "Mesori",
+      "es": "Mesori",
+      "ar": "Mesori"
+    },
+    "coptic_month_13": {
+      "en": "Pi Kogi Enavot",
+      "fr": "Pi Kogi Enavot",
+      "es": "Pi Kogi Enavot",
+      "ar": "Pi Kogi Enavot"
+    },
+    "coptic_month_2": {
+      "en": "Paopi",
+      "fr": "Paopi",
+      "es": "Paopi",
+      "ar": "Paopi"
+    },
+    "coptic_month_3": {
+      "en": "Hathor",
+      "fr": "Hathor",
+      "es": "Hathor",
+      "ar": "Hathor"
+    },
+    "coptic_month_4": {
+      "en": "Koiak",
+      "fr": "Koiak",
+      "es": "Koiak",
+      "ar": "Koiak"
+    },
+    "coptic_month_5": {
+      "en": "Tobi",
+      "fr": "Tobi",
+      "es": "Tobi",
+      "ar": "Tobi"
+    },
+    "coptic_month_6": {
+      "en": "Meshir",
+      "fr": "Meshir",
+      "es": "Meshir",
+      "ar": "Meshir"
+    },
+    "coptic_month_7": {
+      "en": "Paremhat",
+      "fr": "Paremhat",
+      "es": "Paremhat",
+      "ar": "Paremhat"
+    },
+    "coptic_month_8": {
+      "en": "Parmouti",
+      "fr": "Parmouti",
+      "es": "Parmouti",
+      "ar": "Parmouti"
+    },
+    "coptic_month_9": {
+      "en": "Pashons",
+      "fr": "Pashons",
+      "es": "Pashons",
+      "ar": "Pashons"
+    },
+    "corrupt_imported_preferences_error": {
+      "en": "Current settings are corrupt. From project management settings, reset settings or import working ones.",
+      "fr": "Les paramètres actuels sont corrompus. À partir des paramètres de gestion de projet, réinitialisez les paramètres ou importez-en d\\'autres qui fonctionnent.",
+      "es": "La configuración actual está dañada. Desde la configuración de gestión de proyectos, restablezca la configuración o importe las que funcionan."
+    },
+    "crash_app": {
+      "en": "Crash app",
+      "fr": "Faire planter l\\'application",
+      "es": "Aplicación bloqueada"
+    },
+    "crash_app_summary": {
+      "en": "Force an uncaught exception causing the app to crash",
+      "fr": "Forcer une exception qui fera planter l\\'application",
+      "es": "Se forzó una excepción no detectada que hace que la aplicación se bloquee"
+    },
+    "crash_last_run": {
+      "en": "There was a crash last time the app was running!",
+      "fr": "L\\'application a rencontré un problème durant l\\'usage précédent!",
+      "es": "¡Hubo un colapso la última vez que se ejecutó la aplicación!"
+    },
+    "current_project_option": {
+      "en": "Current project only",
+      "fr": "Projet courant seulement",
+      "es": "Sólo proyecto actual"
+    },
+    "custom_date": {
+      "en": "%1$s (%2$s)",
+      "fr": "%1$s (%2$s)",
+      "es": "%1$s (%2$s)",
+      "ar": "%1$s (%2$s)"
+    },
+    "data": {
+      "en": "Saved Forms",
+      "fr": "Formulaires enregistrés",
+      "es": "F. LLENOS",
+      "ar": "الاستمارات المحفوظة"
+    },
+    "data_saved_error": {
+      "en": "Sorry, form save failed!",
+      "fr": "Désolé, l\\'enregistrement du formulaire a échoué.",
+      "es": "¡Atención, el formulario no se ha guardado correctamente!",
+      "ar": "عذرًا، لم يتمّ حفظ الاستمارة!"
+    },
+    "data_saved_ok": {
+      "en": "Form successfully saved!",
+      "fr": "Le formulaire a été enregistré avec succès.",
+      "es": "Formulario guardado correctamente",
+      "ar": "تمّ حفظ الاستمارة بنجاح!"
+    },
+    "debug_filters": {
+      "en": "Debug filters",
+      "fr": "Filtres de débogage",
+      "es": "Filtros de depuración"
+    },
+    "debug_filters_summary": {
+      "en": "Show debug information for filter expression executions during form entry",
+      "fr": "Afficher des informations de débogage pour les filtres pendant la saisie du formulaire",
+      "es": "Mostrar información de depuración para las ejecuciones de expresiones de filtro durante la entrada del formulario"
+    },
+    "delete_after_send": {
+      "en": "Delete after send",
+      "fr": "Supprimer après l\\'envoi",
+      "es": "Eliminar después de enviar",
+      "ar": "حذف بعد الارسال"
+    },
+    "delete_after_send_summary": {
+      "en": "Deletes finalized forms and media after sending to server",
+      "fr": "Suppression des médias et formulaire finalisés après l\\'envoi au serveur",
+      "es": "Eliminar formularios finalizados y archivos multimedia después de enviar al servidor",
+      "ar": "حذف الاستمارة النهائية والوسائط المتعددة بعد ارسالها الى الخادم"
+    },
+    "delete_answer_file": {
+      "en": "Delete",
+      "fr": "Supprimer",
+      "es": "Eliminar",
+      "ar": "حذف"
+    },
+    "delete_answer_file_question": {
+      "en": "Delete file?",
+      "fr": "Supprimer fichier?",
+      "es": "Borrar archivo?",
+      "ar": "حذف الملف؟"
+    },
+    "delete_confirm": {
+      "en": "Delete %s form(s)?",
+      "fr": "Supprimer %s formulaire(s)?",
+      "es": "¿Borrar %s formulario(s)?",
+      "ar": "حذف %s الاستمارة/ات؟"
+    },
+    "delete_file": {
+      "en": "Delete Selected",
+      "fr": "Supprimer la sélection",
+      "es": "Borrar los Seleccionados",
+      "ar": "إحذف الخيارات المحددة"
+    },
+    "delete_layer": {
+      "en": "Delete layer",
+      "fr": "Supprimer une couche",
+      "es": "Borrar capa"
+    },
+    "delete_layer_confirmation_message": {
+      "en": "Are you sure you want to delete the %1$s offline layer?",
+      "fr": "Voulez-vous vraiment supprimer la couche hors ligne %1$s?",
+      "es": "¿Está seguro de que desea eliminar la capa sin conexión %1$s ?"
+    },
+    "delete_no": {
+      "en": "Do Not Delete",
+      "fr": "Ne pas supprimer",
+      "es": "No Borrar",
+      "ar": "لا تحذف"
+    },
+    "delete_project": {
+      "en": "Delete",
+      "fr": "Supprimer",
+      "es": "Eliminar",
+      "ar": "حذف"
+    },
+    "delete_project_confirm_button_text": {
+      "en": "Delete project",
+      "fr": "Supprimer projet",
+      "es": "Eliminar proyecto"
+    },
+    "delete_project_dialog_title": {
+      "en": "Delete %s",
+      "fr": "Supprimer %s",
+      "es": "Eliminar %s"
+    },
+    "delete_project_instructions": {
+      "en": "Type %1$s to confirm this action.",
+      "fr": "Tapez %1$s pour confirmer cette action.",
+      "es": "Escriba %1$s para confirmar esta acción."
+    },
+    "delete_project_message": {
+      "en": "By deleting this project, you will permanently delete the following",
+      "fr": "En supprimant ce projet, vous supprimerez"
+    },
+    "delete_repeat": {
+      "en": "Remove group",
+      "fr": "Supprimer le groupe",
+      "es": "Borrar grupo",
+      "ar": "حذف المجموعة"
+    },
+    "delete_repeat_ask": {
+      "en": "Remove This Group?",
+      "fr": "Supprimer ce groupe ?",
+      "es": "¿Borrar este grupo?",
+      "ar": "حذف هذه المجموعة؟"
+    },
+    "delete_repeat_confirm": {
+      "en": "Remove group \\\"%s\\\" and all of its sub-groups?",
+      "fr": "Supprimer le groupe \\\"%s\\\" et tous ses sous-groupes ?",
+      "es": "¿Borrar el grupo \\\"%s\\\" y todos sus subgrupos?",
+      "ar": "حذف المجموعة \\\"%s\\\" وجميع المجموعات الفرعية ذات الصلة؟"
+    },
+    "delete_repeat_no": {
+      "en": "Cancel",
+      "fr": "Annuler",
+      "es": "Cancelar",
+      "ar": "إلغاء"
+    },
+    "delete_trigger": {
+      "en": "delete",
+      "fr": "supprimer",
+      "es": "eliminar"
+    },
+    "delete_yes": {
+      "en": "Delete Forms",
+      "fr": "Supprimer ces formulaires",
+      "es": "Borrar los Formularios",
+      "ar": "حذف الاستمارات"
+    },
+    "deleted_form": {
+      "en": "Deleted form",
+      "fr": "Formulaire supprimé",
+      "es": "Formulario borrado",
+      "ar": "استمارة محذوفة"
+    },
+    "deleted_on_date_at_time": {
+      "en": "\\'Deleted on\\' EEE, MMM dd, yyyy \\'at\\' HH:mm",
+      "fr": "\\'Supprimé le\\' EEE dd MMM yyyy \\'à\\' HH\\'h\\'mm",
+      "es": "\\'Borrado el\\' EEE dd \\'de\\' MMM \\'de\\' yyyy \\'a las\\' HH:mm",
+      "ar": "\\'تمت عملية الحذف في\\' yyyy, dd MMM, EEE  \\'الساعة\\' mm:HH"
+    },
+    "dev_tools": {
+      "en": "Developer tools",
+      "fr": "Outils pour développeurs",
+      "es": "Herramientas de desarrollo"
+    },
+    "device_defined": {
+      "en": "Device-defined",
+      "fr": "Défini par l\\'appareil",
+      "es": "Definido por el dispositivo",
+      "ar": "معرف الجهاز"
+    },
+    "device_id": {
+      "en": "Device ID",
+      "fr": "ID du périphérique",
+      "es": "ID de dispositivo",
+      "ar": "رقم معرف الجهاز"
+    },
+    "direction": {
+      "en": "Direction: %s",
+      "fr": "Direction: %s",
+      "es": "Dirección: %s",
+      "ar": "الاتجاه: %s"
+    },
+    "disable_recording": {
+      "en": "Disable recording",
+      "fr": "Désactiver enregistrement",
+      "es": "Desactivar la grabación",
+      "ar": "تعطيل التسجيل"
+    },
+    "discard": {
+      "en": "Discard",
+      "fr": "Abandoner changements",
+      "es": "Descartar",
+      "ar": "تجاهل"
+    },
+    "discard_answer": {
+      "en": "Remove response",
+      "fr": "Enlever la réponse",
+      "es": "Borrar respuesta",
+      "ar": "حذف الإجابة"
+    },
+    "discard_changes": {
+      "en": "Discard Changes",
+      "fr": "Supprimer les modifications",
+      "es": "Descartar los cambios",
+      "ar": "تجاهل التعديلات"
+    },
+    "discard_changes_warning": {
+      "en": "\\'This form was last saved on\\' EEE, MMM dd, yyyy \\'at\\' HH:mm\\'. If you discard changes, you will lose any changes you have made since then.\\'",
+      "fr": "\\'Ce formulaire a été enregistré pour la dernière fois le\\' EEE MMM dd yyyy \\'à\\' HH\\'h\\'mm\\'. Si vous abandonnez les modifications, vous perdrez toutes celles apportées depuis.\\'",
+      "es": "\\'Este formulario se guardó por última vez el\\' EEE, MMM dd, yyyy \\'a las\\' HH:mm\\'. Si descarta los cambios, perderá los cambios que haya realizado desde entonces.\\'"
+    },
+    "discard_form_warning": {
+      "en": "If you discard form, you will lose any changes you have made so far.",
+      "fr": "Si vous fermez le formulaire, vous perdrez toutes les modifications que vous y avez apportées.",
+      "es": "Si descarta el formulario, perderá todos los cambios que haya realizado hasta el momento.",
+      "ar": "إذا قمت بالتخلص من النموذج, فسوف تخسر جميع التعديلات التي قمت بها إلى هذه اللحظة."
+    },
+    "discard_group": {
+      "en": "Remove group",
+      "fr": "Enlever le groupe",
+      "es": "Borrar grupo",
+      "ar": "حذف المجموعة"
+    },
+    "do_not_change": {
+      "en": "Cancel",
+      "fr": "Annuler",
+      "es": "Cancelar",
+      "ar": "إلغاء"
+    },
+    "do_not_exit": {
+      "en": "Cancel",
+      "fr": "Annuler",
+      "es": "Cancelar",
+      "ar": "إلغاء"
+    },
+    "do_not_recover": {
+      "en": "Discard",
+      "fr": "Abandoner changements",
+      "es": "Descartar",
+      "ar": "تجاهل"
+    },
+    "do_not_save": {
+      "en": "Discard Form",
+      "fr": "Supprimer le formulaire",
+      "es": "Descartar formulario",
+      "ar": "التخلص من النموذج"
+    },
+    "dont_have_project": {
+      "en": "Don\\'t have a project yet?",
+      "fr": "Pas encore de projet?",
+      "es": "¿Aún no tienes un proyecto?"
+    },
+    "download": {
+      "en": "Get Selected",
+      "fr": "Télécharger la sélection",
+      "es": "Obtener los Seleccionados",
+      "ar": "الحصول على الاستمارات المحددة"
+    },
+    "downloading_data": {
+      "en": "Connecting to Server",
+      "fr": "Connexion au serveur…",
+      "es": "Conectandose al Servidor",
+      "ar": "الإتصال بالخادم"
+    },
+    "draft_errors": {
+      "en": "Errors",
+      "fr": "Erreurs",
+      "es": "Errores"
+    },
+    "draft_no_errors": {
+      "en": "No errors",
+      "fr": "Pas d\\'erreur",
+      "es": "Sin errores"
+    },
+    "drafts_count": {
+      "en": "Drafts: %1$d",
+      "fr": "Ébauches: %1$d"
+    },
+    "draw_image": {
+      "en": "Sketch Image",
+      "fr": "Dessiner une image",
+      "es": "Boceto",
+      "ar": "تخطيط الصورة"
+    },
+    "duplicate_project": {
+      "en": "Duplicate project",
+      "fr": "Projet existe déjà",
+      "es": "Proyecto duplicado"
+    },
+    "duplicate_project_details": {
+      "en": "You already have a project with these connection settings. Do you want to switch to the existing project or add a new one?",
+      "fr": "Vous avez déjà un projet avec ces paramètres de connexion. Voulez vous basculer sur ce projet existant ou en créer un nouveau ?",
+      "es": "Ya tienes un proyecto con estas configuraciones de conexión. ¿Quieres cambiar al proyecto existente o agregar uno nuevo?"
+    },
+    "east": {
+      "en": "E %1$s%2$s%3$s",
+      "fr": "E %1$s%2$s%3$s",
+      "es": "E %1$s%2$s%3$s",
+      "ar": "شرق %1$s%2$s%3$s"
+    },
+    "edit_data": {
+      "en": "Edit Draft",
+      "fr": "Éditer l\\'ébauche",
+      "es": "Editar borrador"
+    },
+    "edit_finalized_form": {
+      "en": "Edit finalized form",
+      "fr": "Éditer le formulaire finalisé",
+      "es": "Editar formulario completado"
+    },
+    "edit_form": {
+      "en": "Edit",
+      "fr": "Éditer",
+      "es": "Editar"
+    },
+    "edit_prompt": {
+      "en": "Edit Prompt",
+      "fr": "Ligne de modification",
+      "es": "Editar entrada",
+      "ar": "تعديل التوجيه"
+    },
+    "edit_value": {
+      "en": "Edit value",
+      "fr": "Modifier valeur",
+      "es": "Editar valor",
+      "ar": "عدل القيمة"
+    },
+    "edited_osm_file": {
+      "en": "Edited OSM XML File:",
+      "fr": "Fichier OSM XML édité:",
+      "es": "Archivo OSM XML editado:",
+      "ar": "تعديل ملف OSM XML:"
+    },
+    "email": {
+      "en": "Email address",
+      "fr": "Adresse mail",
+      "es": "Dirección de correo electrónico",
+      "ar": "البريد الالكتروني"
+    },
+    "empty_list_of_blank_forms_subtitle": {
+      "en": "Download form to get started",
+      "fr": "Télécharger un formulaire pour démarrer",
+      "es": "Descargue el formulario para comenzar"
+    },
+    "empty_list_of_blank_forms_title": {
+      "en": "No blank forms",
+      "fr": "Aucun Formulaire Vierge",
+      "es": "No hay formularios en blanco"
+    },
+    "empty_list_of_blank_forms_to_delete_subtitle": {
+      "en": "When you have downloaded blank forms, they will appear here",
+      "fr": "Quand vous aurez téléchargé des formulaires vierges, ils apparaîtront ici",
+      "es": "Cuando descargue formularios en blanco, aparecerán aquí"
+    },
+    "empty_list_of_drafts_subtitle": {
+      "en": "When you save as draft, forms will appear here",
+      "fr": "Quand vous enregistrez comme ébauche, les formulaires apparaissent ici",
+      "es": "Cuando guardes como borrador, los formularios aparecerán aquí"
+    },
+    "empty_list_of_drafts_title": {
+      "en": "Nothing in drafts",
+      "fr": "Il n\\'y a rien dans les ébauches",
+      "es": "Nada en borradores"
+    },
+    "empty_list_of_finalized_forms_subtitle": {
+      "en": "When you finalize drafts, they will appear here",
+      "fr": "Quand vous finalisez les ébauches, elles apparaissent ici.",
+      "es": "Cuando finalices los borradores, aparecerán aquí."
+    },
+    "empty_list_of_finalized_forms_title": {
+      "en": "Nothing ready to send",
+      "fr": "Rien qui soit prêt à envoyer",
+      "es": "Nada listo para enviar"
+    },
+    "empty_list_of_forms_to_delete_title": {
+      "en": "No forms to delete",
+      "fr": "Pas de formulaire à supprimer",
+      "es": "no hay formularios para eliminar"
+    },
+    "empty_list_of_forms_to_download_subtitle": {
+      "en": "Download form to get started",
+      "fr": "Télécharger un formulaire pour démarrer",
+      "es": "Descargue el formulario para comenzar"
+    },
+    "empty_list_of_forms_to_download_title": {
+      "en": "No forms to download",
+      "fr": "Pas de formulaire à télécharger",
+      "es": "No hay formularios para descargar"
+    },
+    "empty_list_of_questions": {
+      "en": "Nothing available to display",
+      "fr": "Rien à afficher",
+      "es": "No hay nada disponible para mostrar."
+    },
+    "empty_list_of_saved_forms_to_delete_subtitle": {
+      "en": "When you have saved forms, they will appear here",
+      "fr": "Quand vous aurez enregistré des formulaires, ils apparaîtront ici",
+      "es": "Cuando tenga formularios guardados, aparecerán aquí"
+    },
+    "empty_list_of_sent_forms_subtitle": {
+      "en": "When you send finalized forms, they will appear here",
+      "fr": "Quand vous envoyez des formulaires finalisés, ils apparaissent ici",
+      "es": "Cuando envíe formularios finalizados, aparecerán aquí"
+    },
+    "empty_list_of_sent_forms_title": {
+      "en": "Nothing in sent",
+      "fr": "Rien à envoyer",
+      "es": "No hay nada enviado"
+    },
+    "enable_gps": {
+      "en": "Enable GPS",
+      "fr": "Activer le GPS",
+      "es": "Activar el GPS",
+      "ar": "تفعيل GPS"
+    },
+    "encrypted_form": {
+      "en": "Encrypted form",
+      "fr": "Formulaires encryptés",
+      "es": "Formulario encriptado",
+      "ar": "استمارة مشفرة"
+    },
+    "encryption_error_message": {
+      "en": "%s Form has not been saved as finalized.",
+      "fr": "Le formulaire %s n\\'a pas été enregistré comme finalisé.",
+      "es": "%s del Formulario no ha sido guardada como finalizado.",
+      "ar": "الاستمارة لم يتم حفظها كنهائية %s"
+    },
+    "enter_admin_password": {
+      "en": "Enter Admin Password",
+      "fr": "Saisissez le mot de passe administrateur",
+      "es": "Entrar contraseña de Administrador",
+      "ar": "أدخل كلمة مرور المدير"
+    },
+    "enter_data": {
+      "en": "Start new form",
+      "fr": "Remplir un formulaire",
+      "es": "Llenar nuevo formulario",
+      "ar": "املأ نموذج جديد"
+    },
+    "enter_identity": {
+      "en": "Enter identity",
+      "fr": "Entrez l\\'identité",
+      "es": "Ingrese su Identidad",
+      "ar": "أدخل الهوية"
+    },
+    "enter_identity_description": {
+      "en": "This form requires you to identify yourself",
+      "fr": "Le formulaire requiert votre identification",
+      "es": "Este formulario requiere que te identifiques",
+      "ar": "هذه الاستمارة تتطلب منك تحديد هويتك"
+    },
+    "enter_new_password": {
+      "en": "Enter new password",
+      "fr": "Saisissez un nouveau mot de passe",
+      "es": "Entrar nueva contraseña",
+      "ar": "أدخل كلمة مرور جديدة"
+    },
+    "entities_title": {
+      "en": "Entity lists",
+      "fr": "Listes d\\'entités",
+      "es": "Listas de entidades"
+    },
+    "entity_browser_button": {
+      "en": "View entity lists",
+      "fr": "Voir liste d\\'entités",
+      "es": "Ver listas de entidades"
+    },
+    "error_attaching_binary_file": {
+      "en": "An error occurred while attaching the media: %s",
+      "fr": "Erreur pendant l\\'attachement du média: %s",
+      "es": "Error detectado al conectar medio: %s",
+      "ar": "حدث خطأ أثناء محاولة ارفاق الملف: %s"
+    },
+    "error_front_camera_unavailable": {
+      "en": "Front camera not available on this device",
+      "fr": "Caméra frontale non disponible sur cet appareil",
+      "es": "Este dispositivo no tiene Cámara frontal disponible",
+      "ar": "الكاميرا الأمامية غير متوفرة على هذا الجهاز"
+    },
+    "error_occured": {
+      "en": "Error Occurred",
+      "fr": "Une erreur s\\'est produite",
+      "es": "Se ha producido un error",
+      "ar": "حدث خطأ"
+    },
+    "errors": {
+      "en": "Errors",
+      "fr": "Erreurs",
+      "es": "Errores"
+    },
+    "ethiopian_month_1": {
+      "en": "Meskerem",
+      "fr": "Mäskäräm",
+      "es": "Meskerem",
+      "ar": "Meskerem"
+    },
+    "ethiopian_month_10": {
+      "en": "Senie",
+      "fr": "Säné",
+      "es": "Senie",
+      "ar": "Senie"
+    },
+    "ethiopian_month_11": {
+      "en": "Hamlie",
+      "fr": "Hamlé",
+      "es": "Hamlie",
+      "ar": "Hamlie"
+    },
+    "ethiopian_month_12": {
+      "en": "Nehasie",
+      "fr": "Nähasé",
+      "es": "Nehasie",
+      "ar": "Nehasie"
+    },
+    "ethiopian_month_13": {
+      "en": "Pagumien",
+      "fr": "Pagumén",
+      "es": "Pagumien",
+      "ar": "Pagumien"
+    },
+    "ethiopian_month_2": {
+      "en": "Tikimt",
+      "fr": "Teqemt",
+      "es": "Tikimt",
+      "ar": "Tikimt"
+    },
+    "ethiopian_month_3": {
+      "en": "Hidar",
+      "fr": "Hedar",
+      "es": "Hidar",
+      "ar": "Hidar"
+    },
+    "ethiopian_month_4": {
+      "en": "Tahsas",
+      "fr": "Tahesas",
+      "es": "Tahsas",
+      "ar": "Tahsas"
+    },
+    "ethiopian_month_5": {
+      "en": "Tir",
+      "fr": "Ter",
+      "es": "Tir",
+      "ar": "Tir"
+    },
+    "ethiopian_month_6": {
+      "en": "Yekatit",
+      "fr": "Yäkatit",
+      "es": "Yekatit",
+      "ar": "Yekatit"
+    },
+    "ethiopian_month_7": {
+      "en": "Megabit",
+      "fr": "Mägabit",
+      "es": "Megabit",
+      "ar": "Megabit"
+    },
+    "ethiopian_month_8": {
+      "en": "Miazia",
+      "fr": "Miyazya",
+      "es": "Miazia",
+      "ar": "Miazia"
+    },
+    "ethiopian_month_9": {
+      "en": "Ginbot",
+      "fr": "Guenbot",
+      "es": "Ginbot",
+      "ar": "Ginbot"
+    },
+    "every_24_hours": {
+      "en": "Every 24 hours",
+      "fr": "Toutes les 24 heures",
+      "es": "Cada 24 horas",
+      "ar": "كل 24 ساعة"
+    },
+    "every_fifteen_minutes": {
+      "en": "Every fifteen minutes",
+      "fr": "Toutes les quinze minutes",
+      "es": "Cada 15 minutos",
+      "ar": "كل 15 دقيقة"
+    },
+    "every_one_hour": {
+      "en": "Every hour",
+      "fr": "Toutes les heures",
+      "es": "Cada hora",
+      "ar": "كل ساعة"
+    },
+    "every_six_hours": {
+      "en": "Every six hours",
+      "fr": "Toutes les six heures",
+      "es": "Cada 6 horas",
+      "ar": "كل 6 ساعات"
+    },
+    "exit": {
+      "en": "Exit",
+      "fr": "Sortir",
+      "es": "Salir",
+      "ar": "خروج"
+    },
+    "experimental": {
+      "en": "Experimental",
+      "fr": "Expérimental",
+      "es": "Experimental",
+      "ar": "تجريبي"
+    },
+    "ext_assign_value_error": {
+      "en": "Cannot assign the value at \\'%s\\'.",
+      "fr": "Impossible d\\'attribuer la valeur à \\'%s\\'.",
+      "es": "No puede asignar el valor a \\'%s\\'.",
+      "ar": "لا يمكن تعيين القيمة في   \\'%s\\'."
+    },
+    "ext_conflicting_columns_error": {
+      "en": "Columns %s match!",
+      "fr": "Colonnes %s correspondent !",
+      "es": "¡Columnas %s coinciden!",
+      "ar": "اعمدة  %s متوافقة !"
+    },
+    "ext_file_no_data_error": {
+      "en": "The file contains no data!",
+      "fr": "Le fichier ne contient pas de données !",
+      "es": "¡El archivo no contiene datos!",
+      "ar": "لا يحتوي الملف على بيانات!"
+    },
+    "ext_import_cancelled_message": {
+      "en": "Reading data canceled!",
+      "fr": "Lecture des données annulée!",
+      "es": "Lectura de datos cancelada!",
+      "ar": "إلغاء قراءة البيانات!"
+    },
+    "ext_import_completed_message": {
+      "en": "Reading data completed!",
+      "fr": "Lecture des données terminée !",
+      "es": "¡Lectura de datos completada!",
+      "ar": "اكتملت قراءة البيانات!"
+    },
+    "ext_import_csv_missing_error": {
+      "en": "External data for %1$s has not been imported. Perhaps you forgot to include the %2$s.csv file with your form?",
+      "fr": "Les données externes pour %1$s n\\'ont pas été importées. Vous avez peux-être oublié d\\'inclure le fichier %2$s.csv avec votre formulaire ?",
+      "es": "Los datos externos para %1$s no ha sido importados. ¿Ha olvidado incluir el archivo %2$s.csv con su formulario?",
+      "ar": "لم يتم استيراد البيانات الخارجية %1$s. ربما قد نسيت تضمين ملف  %2$s.csv مع استمارتك؟"
+    },
+    "ext_import_finalizing_message": {
+      "en": "Finalizing pre-loaded data…",
+      "fr": "Finalisation des données pré-chargées…",
+      "es": "Acabando datos precargados…",
+      "ar": "جاري انهاء التحميل المسبق للبيانات."
+    },
+    "ext_import_generic_error": {
+      "en": "Could not import data from %1$s. Reason: %2$s",
+      "fr": "Impossible d\\'importer des données depuis %1$s. Raison: %2$s",
+      "es": "No puede importar datos desde %1$s. Razón: %2$s",
+      "ar": "لم يمكن استيراد البيانات من  %1$s السبب: %2$s"
+    },
+    "ext_import_progress_message": {
+      "en": "Pre-loading data from \\'%1$s\\', please wait… %2$s",
+      "fr": "Pré-chargement des données depuis \\'%1$s\\', merci de patienter… %2$s",
+      "es": "Precarga datos desde \\'%1$s\\'. Por favor espere… %2$s",
+      "ar": "التحميل المسبق للبيانات من \\'%1$s\\'،  يرجى الانتظار…  %2$s"
+    },
+    "ext_not_initialized_error": {
+      "en": "The ExternalDataManager has not been initialized.",
+      "fr": "Le Gestionnaire des données externes n\\'a pas été initialisé.",
+      "es": "El ExternalDataManager no ha sido inicializado.",
+      "ar": "مدير البيانات الخارجية لم يتم تفعيله."
+    },
+    "ext_search_bad_function_error": {
+      "en": "Syntax error in search() function: \\'%s\\' was not evaluated as a function.",
+      "fr": "Erreur de syntaxe dans la fonction search(): \\'%s\\' n\\'a pas été évaluée comme une fonction.",
+      "es": "Error sintáctico en función search(): \\'%s\\' no fue evaluada como una función.",
+      "ar": "خطا في عملية البحث:  \\'%s\\' لم يتم تقييمها كعملية"
+    },
+    "ext_search_generic_error": {
+      "en": "Syntax error in search() function: %s",
+      "fr": "Erreur de syntaxe dans la fonction search(): %s",
+      "es": "Error sintáctico en función search(): %s",
+      "ar": "خطأ في عملية البحث: %s"
+    },
+    "ext_search_return_error": {
+      "en": "The search handler returned a object of type \\'%s\\'.",
+      "fr": "Le gestionnaire de recherche a retourné un objet de type \\'%s\\'.",
+      "es": "El gestor de búsqueda ha devuelto un objeto de tipo \\'%s\\'.",
+      "ar": "معالج البحث استعاد نوع الموضوع  \\'%s\\'."
+    },
+    "ext_search_wrong_arguments_error": {
+      "en": "Syntax error in search() function: The function needs 1, 4 or 6 arguments.",
+      "fr": "Erreur de syntaxe dans la fonction search(): La fonction requiert 1,4 ou 6 arguments:",
+      "es": "Error sintáctico en función search(): La función necesita 1, 4 o 6 argumentos.",
+      "ar": "خطأ في عملية البحث: تحتاج العملية الى ارفاق القيم 1,4,6"
+    },
+    "ext_search_wrong_function_error": {
+      "en": "Syntax error in search() function : Unrecognised function \\'%s\\'.",
+      "fr": "Erreur de syntaxe dans la fonction search() : Fonction non reconnue \\'%s\\'.",
+      "es": "Error sintáctico en función search(): Función \\'%s\\' desconocida.",
+      "ar": "خطأ في عملية البحث: وظيفة: عملية غير معترف بها  \\'%s\\'"
+    },
+    "ext_sortBy_numeric_error": {
+      "en": "Your sortby column should contain only numeric values. Conflicting value was \\'%s\\'.",
+      "fr": "Le trie par colonne ne doit contenir que des caractères numériques. La valeur en conflit était: \\'%s\\'.",
+      "es": "Su columna de clasificación debe contener solo valores numéricos. El valor conflictivo fue \\'%s\\'.",
+      "ar": "العمود الخاص بك يجب ان يحتوي على قيم رقمية فقط.. القيم كانت متضاربة \\'%s\\'"
+    },
+    "external_app_recording": {
+      "en": "Use external app for audio recording",
+      "fr": "Enregistrer l\\'audio avec une appli externe",
+      "es": "Use una aplicación externa para grabación de audio",
+      "ar": "استخدام تطبيق خارجي لتسجيل الصوت"
+    },
+    "fetching_file": {
+      "en": "Getting %1$s.\\n\\nForm %2$s of %3$s form(s).",
+      "fr": "Récupération de %1$s.\\n\\nFormulaire %2$s de %3$s formulaire(s).",
+      "es": "Obteniendo %1$s.\\n\\nFormulario %2$s de %3$s formulario(s).",
+      "ar": "الحصول على %1$s.\\n\\nالنموذج %2$s من %3$s نماذج"
+    },
+    "file_deleted_ok": {
+      "en": "%s form(s) successfully deleted!",
+      "fr": "%s formulaire(s) supprimé(s) avec succès.",
+      "es": "¡%s formulario(s) se borraron correctamente!",
+      "ar": "%s تم حذف الاستمارة /ت!"
+    },
+    "file_invalid": {
+      "en": "File: %s is invalid.",
+      "fr": "Le fichier %s n\\'est pas valide.",
+      "es": "Archivo: %s es invalido.",
+      "ar": "الملف: %s غير صالح"
+    },
+    "file_missing": {
+      "en": "File: %s is missing.",
+      "fr": "Fichier %s manquant",
+      "es": "Archivo: %s falta.",
+      "ar": "الملف: %s مفقود"
+    },
+    "filter_the_list": {
+      "en": "Filter the list",
+      "fr": "Filtrer la liste",
+      "es": "Filtrar la lista",
+      "ar": "فرز القائمة"
+    },
+    "finalize": {
+      "en": "Finalize",
+      "fr": "Finaliser",
+      "es": "Finalizar",
+      "ar": "إنهاء"
+    },
+    "finalize_all_drafts": {
+      "en": "Finalize all drafts",
+      "fr": "Finaliser toutes les ébauches",
+      "es": "Finalizar todos los borradores"
+    },
+    "finalized_form_edit_started": {
+      "en": "You are now editing this form. Tap on a question to start editing.",
+      "fr": "Vous êtes en mode d\\'édition. Appuyez sur une question pour la modifier.",
+      "es": "Estás editando este formulario. Pulsa una pregunta para empezar a editarla."
+    },
+    "finalized_on_date_at_time": {
+      "en": "\\'Finalized on\\' EEE, MMM dd, yyyy \\'at\\' HH:mm",
+      "fr": "\\'Finalisé le\\' EEE MMM dd yyyy \\'à\\' HH\\'h\\'mm",
+      "es": "\\'Finalizado:\\' EEE, dd MMM, yyyy \\'a las\\' HH:mm",
+      "ar": "\\'اكتملت ب\\' yyyy, dd MMM, EEE  \\'في الساعة\\' mm:HH"
+    },
+    "finished_disk_scan": {
+      "en": "Finished scanning. All forms loaded.",
+      "fr": "Le scan est fini. Tous les formulaires sont chargés.",
+      "es": "Exploración finalizada. Todos los formularios cargados.",
+      "ar": "تم انهاء عملية البحث، جميع النماذج تم تحميلها."
+    },
+    "font_size": {
+      "en": "Text font size",
+      "fr": "Taille de la Police",
+      "es": "Tamaño del Texto",
+      "ar": "حجم الخط"
+    },
+    "font_size_extra_large": {
+      "en": "Extra Large",
+      "fr": "Très grand",
+      "es": "Extra Grande",
+      "ar": "كبير جدا"
+    },
+    "font_size_extra_small": {
+      "en": "Extra Small",
+      "fr": "Très petit",
+      "es": "Muy pequeño",
+      "ar": "صغير جدا"
+    },
+    "font_size_large": {
+      "en": "Large",
+      "fr": "Grand",
+      "es": "Grande",
+      "ar": "كبير"
+    },
+    "font_size_medium": {
+      "en": "Medium",
+      "fr": "Normal",
+      "es": "Medio",
+      "ar": "متوسط"
+    },
+    "font_size_small": {
+      "en": "Small",
+      "fr": "Petit",
+      "es": "Pequeño",
+      "ar": "صغير"
+    },
+    "form_backward": {
+      "en": "Back",
+      "fr": "Retour",
+      "es": "Retroceder",
+      "ar": "رجوع"
+    },
+    "form_cannot_be_used": {
+      "en": "Form can\\'t be used",
+      "fr": "Le formulaire ne peut être utilisé",
+      "es": "El formulario no se puede utilizar."
+    },
+    "form_definitions_count": {
+      "en": "Form definitions: %1$d",
+      "fr": "Formulaires vierges: %1$d",
+      "es": "Formularios en blanco: %1$d"
+    },
+    "form_delete_message": {
+      "en": "Deleting selected forms",
+      "fr": "Supprimer les formulaires sélectionnés",
+      "es": "Eliminando formularios seleccionados",
+      "ar": "جاري حذف الاستمارات المحددة"
+    },
+    "form_details": {
+      "en": "ID: %1$s Version: %2$s",
+      "fr": "ID: %1$s Version: %2$s",
+      "es": "ID: %1$s Version: %2$s"
+    },
+    "form_download_progress": {
+      "en": "%1$s. Getting media files: %2$s of %3$s",
+      "fr": "%1$s. Obtention de fichiers multimédia : %2$s de %3$s",
+      "es": "%1$s. Obteniendo los archivos: %2$s de %3$s",
+      "ar": "%1$s. الحصول على ملفات الوسائط المتعددة:  %2$s  من %3$s"
+    },
+    "form_editing_disabled_after_finalizing": {
+      "en": "Edits can\\'t be made after finalizing.",
+      "fr": "Vous ne pourrez pas éditer ce formulaire après sa finalisation.",
+      "es": "No se pueden realizar modificaciones una vez finalizado."
+    },
+    "form_editing_disabled_after_sending": {
+      "en": "Edits can\\'t be made after sending.",
+      "fr": "Vous ne pourrez pas éditer ce formulaire après qu\\'il soit envoyé.",
+      "es": "No se pueden realizar modificaciones después del envío."
+    },
+    "form_editing_disabled_hint": {
+      "en": "If you need to make edits to your form, \\\"Save as draft\\\" until you\\'re ready to send.",
+      "fr": "Si vous devrez modifier ce formulaire prochainement, choisissez \\\"Enregistrer comme ébauche\\\" jusqu\\'à ce que vous soyez prêt à l\\'envoyer.",
+      "es": "Si necesita hacer cambios, \\\"Guardar como borrador\\\" hasta que esté listo para enviar."
+    },
+    "form_editing_enabled_after_finalizing": {
+      "en": "Edits can be made after finalizing.",
+      "fr": "Vous pourrez éditer ce formulaire après qu\\'il soit finalisé.",
+      "es": "Se pueden realizar modificaciones después de finalizar."
+    },
+    "form_editing_enabled_after_finalizing_hint": {
+      "en": "To make changes after finalizing your form, go to \\\"Ready to send\\\", open the form, and tap the edit icon.",
+      "fr": "Pour modifier les données après avoir finalisé votre formulaire, trouvé le dans \\\"Prêt à envoyer\\\" et appuyez sur l\\'icône d\\'édition.",
+      "es": "Para realizar cambios después de finalizar su formulario, vaya a \\\"Listo para enviar\\\", abra el formulario y toque el ícono de edición."
+    },
+    "form_editing_enabled_after_sending": {
+      "en": "Edits can be made after sending.",
+      "fr": "Vous pourrez éditer ce formulaire après qu\\'il soit envoyé.",
+      "es": "No se pueden realizar modificaciones después del envío."
+    },
+    "form_editing_enabled_after_sending_hint": {
+      "en": "To make changes after sending your form, go to \\\"Sent\\\", open the form, and tap the edit icon.",
+      "fr": "Pour modifier les données après avoir envoyé votre formulaire, allez à \\\"Envoyé\\\" et appuyez sur l\\'icône d\\'édition.",
+      "es": "Para realizar cambios después de enviar su formulario, vaya a \\\"Enviados\\\", abra el formulario y toque el ícono de edición."
+    },
+    "form_end": {
+      "en": "Uncheck to hide from Form End",
+      "fr": "Décocher pour cacher depuis la fin du formulaire.",
+      "es": "Desmarque para ocultar del Fin del formulario"
+    },
+    "form_entry": {
+      "en": "Uncheck to hide from Form Entry",
+      "fr": "Décocher pour cacher depuis la saisie du formulaire",
+      "es": "Desmarque para ocultar el formulario",
+      "ar": "خيارات تعبئة الاستمارة"
+    },
+    "form_entry_setting": {
+      "en": "Form Entry Settings",
+      "fr": "Paramètres d\\'entrée du formulaire",
+      "es": "Configuración de entrada de formularios",
+      "ar": "إعدادات تعبئة الاستمارة"
+    },
+    "form_entry_settings_summary": {
+      "en": "Show or hide actions",
+      "fr": "Montrer ou cacher actions",
+      "es": "Mostrar u ocultar acciones"
+    },
+    "form_filling_category": {
+      "en": "Form filling",
+      "fr": "Remplissage de formulaire",
+      "es": "Llenado de Formularios",
+      "ar": "تعبئة الاستمارة"
+    },
+    "form_forward": {
+      "en": "Next",
+      "fr": "Suivant",
+      "es": "Sig.",
+      "ar": "التالي"
+    },
+    "form_import_category": {
+      "en": "Form import",
+      "fr": "Import de formulaire",
+      "es": "Importar formulario",
+      "ar": "استيراد الاستمارات"
+    },
+    "form_management_preferences": {
+      "en": "Form management",
+      "fr": "Gestion des formulaires",
+      "es": "Manejo de formularios",
+      "ar": "إدارة الاستمارة"
+    },
+    "form_management_settings_subtext": {
+      "en": "Auto-update, auto-send, auto-delete",
+      "fr": "Mise à jour, envoi et suppression automatiques",
+      "es": "Actualización automática, autoenvío, autoborrado"
+    },
+    "form_metadata": {
+      "en": "Form metadata",
+      "fr": "Métadonnées du formulaire",
+      "es": "Metadatos del formulario",
+      "ar": "معلومات حول النموذج"
+    },
+    "form_metadata_summary": {
+      "en": "These values will be added to forms that have username, email and/or telephone preloaded fields to identify the person submitting data.",
+      "fr": "Ces valeurs seront ajoutées aux formulaires qui ont des champs pré-chargés d\\'utilisateur, de courrier électronique et / ou de téléphone pour identifier la personne qui soumet des données.",
+      "es": "Estos valores se incluyen en los formularios que tienen precargados los campos de nombre de usuario, email y/o teléfono para identificar a la persona que envía los datos.",
+      "ar": "هذه القيم سيتم إضافتها بشكل افتراضي إلى النماذج التي فيها حقول لتحديد اسم المستخدم، بريده الإلكتروني و/أو رقم الهاتف وذلك لتحديد الشخص الذي يقوم بإرسال البيانات."
+    },
+    "form_metadata_title": {
+      "en": "Form Metadata",
+      "fr": "Métadonnées du formulaire",
+      "es": "Metadatos del formulario",
+      "ar": "معلومات حول النموذج"
+    },
+    "form_parsing_error": {
+      "en": "This form cannot be processed:",
+      "fr": "Ce formulaire ne peut être traité :",
+      "es": "Este formulario no puede ser procesado:"
+    },
+    "form_save_disk_error": {
+      "en": "A disk error occurred on device while downloading this form.",
+      "fr": "Une erreur de disque s\\'est produite en cours du téléchargement de ce formulaire.",
+      "es": "Se produjo un error de disco en el dispositivo al descargar este formulario."
+    },
+    "form_saved": {
+      "en": "Your form was saved.",
+      "fr": "Votre formulaire a été enregistré.",
+      "es": "Su formulario fue guardado."
+    },
+    "form_saved_as_draft": {
+      "en": "Your form was saved as a draft.",
+      "fr": "Votre formulaire a été enregistré comme ébauche",
+      "es": "Su formulario fue guardado como borrador."
+    },
+    "form_sending": {
+      "en": "Sending form…",
+      "fr": "Envoi du formualire en cours…",
+      "es": "Enviando el formulario…"
+    },
+    "form_submission_category": {
+      "en": "Form submission",
+      "fr": "Soumission de formulaire",
+      "es": "Enviar formulario",
+      "ar": "إرسال الاستمارة"
+    },
+    "form_update_category": {
+      "en": "Form update",
+      "fr": "Mise à jour d\\'un fomulaire",
+      "es": "Actualizar Formulario",
+      "ar": "تحديث الاستمارة"
+    },
+    "form_update_error": {
+      "en": "Form update failed",
+      "fr": "Échec de mise à jour des formulaires",
+      "es": "Error al actualizar formulario",
+      "ar": "فشل تحديث الإستمارة"
+    },
+    "form_update_error_massage": {
+      "en": "Open KoboCollect to try again",
+      "fr": "Ouvrez KoboCollect pour réessayer"
+    },
+    "form_update_frequency_title": {
+      "en": "Automatic update frequency",
+      "fr": "Fréquence de Mise à jour automatique",
+      "es": "Frecuencia de actualización automática",
+      "ar": "تكرار التحديث التلقائي"
+    },
+    "form_update_mode_title": {
+      "en": "Blank form update mode",
+      "fr": "Mode de mise à jour des formulaires vierges",
+      "es": "Modo de actualización de formulario en blanco",
+      "ar": "وضع تحديث الإستمارات الفارغة"
+    },
+    "form_update_notification_title": {
+      "en": "Syncing forms",
+      "fr": "Synchronisation des formulaires",
+      "es": "Sincronización de formularios"
+    },
+    "form_update_succeeded": {
+      "en": "Form update succeeded",
+      "fr": "Succès de mise à jour des formulaires",
+      "es": "La actualización del formulario se realizó correctamente",
+      "ar": "نجاح تحديث الإستمارة"
+    },
+    "form_updates_available": {
+      "en": "Form updates available",
+      "fr": "Mise à jour de formulaire disponible",
+      "es": "Formularios actualizados disponibles",
+      "ar": "تحديثات الاستمارة متاحة"
+    },
+    "form_with_invalid_submission_error": {
+      "en": "This form has an invalid submission URL.",
+      "fr": "L\\'URL de soumission de ce formulaire n\\'est pas valide.",
+      "es": "Este formulario tiene una URL de envío inválida."
+    },
+    "form_with_no_hash_error": {
+      "en": "The server did not provide a hash for this form.",
+      "fr": "Le serveur n\\'a pas fourni d\\'identifiant hash pour le formulaire à télécharger.",
+      "es": "El servidor no proporcionó un hash para este formulario."
+    },
+    "forms": {
+      "en": "Blank Forms",
+      "fr": "Formulaires vierges",
+      "es": "F. VACIOS",
+      "ar": "استمارات فارغة"
+    },
+    "forms_download_failed": {
+      "en": "Forms download failed",
+      "fr": "Échec du téléchargement des formulaires.",
+      "es": "Error al descargar formularios"
+    },
+    "forms_download_succeeded": {
+      "en": "Forms download succeeded",
+      "fr": "Succès du téléchargement des formulaires.",
+      "es": "Descarga de formularios exitosa"
+    },
+    "forms_upload_failed": {
+      "en": "Forms upload failed",
+      "fr": "Échec de l\\'envoi des formulaires.",
+      "es": "Error al cargar formularios"
+    },
+    "forms_upload_succeeded": {
+      "en": "Forms upload succeeded",
+      "fr": "Succès de l\\'envoi des formulaires.",
+      "es": "Carga de formularios exitosa"
+    },
+    "found_in_main": {
+      "en": "Uncheck to hide from Main Menu",
+      "fr": "Décocher pour cacher depuis le menu principal",
+      "es": "Desmarque para ocultar del Menú Principal",
+      "ar": "الغاء القفل للاخفاء من القائمة الرئيسية"
+    },
+    "found_in_settings": {
+      "en": "Uncheck to hide from Unprotected Settings",
+      "fr": "Décocher pour cacher depuis les paramètres",
+      "es": "Desmarque para ocultar la configuración desprotegida"
+    },
+    "fs_create_media_folder_error": {
+      "en": "Could not create media folder \\'%s\\'.",
+      "fr": "Impossible de créer le dossier multimédia: %s",
+      "es": "No pudo crear la carpeta de medios \\'%s\\'",
+      "ar": "لا يمكن انشاء ملف وسائط متعددة \\'%s\\'."
+    },
+    "fs_delete_media_path_if_file_error": {
+      "en": "Could not delete \\'%s\\'. Please delete the file manually and re-download the form.",
+      "fr": "Impossible de supprimer \\'%s\\'. Merci de supprimer le fichier manuellement et de re-télécharger le formulaire.",
+      "es": "No puede borrar \\'%s\\'. Por favor, borre manualmente el archivo y recargue el formulario.",
+      "ar": "لا يمكن حذف  \\'%s\\'.  يرجى حذف الملف يدويا وقم باعادة تحميل الاستمارة."
+    },
+    "fs_file_copy_error": {
+      "en": "Could not copy \\'%1$s\\' over \\'%2$s\\'. Reason: %3$s",
+      "fr": "Impossible de copier \\'%1$s\\' sur \\'%2$s\\'. Raison: %3$s",
+      "es": "No ha podido copiar \\'%1$s\\' sobre \\'%2$s\\'. Razón: %3$s",
+      "ar": "لا يمكن النسخ  \\'%1$s\\' فوق  \\'%2$s\\'. السبب: \\'%3$s\\'"
+    },
+    "generate": {
+      "en": "Generate",
+      "fr": "Générer",
+      "es": "Generar",
+      "ar": "توليد"
+    },
+    "geo_clear_warning": {
+      "en": "Feature already created. Would you like to clear the feature?",
+      "fr": "Objet déjà créé. Souhaitez-vous l\\'effacer ?",
+      "es": "Función ya creada. ¿Desea borrar la función?",
+      "ar": "الميزة تم إنشاؤها مسبقاً. هل ترغب في إزالتها؟"
+    },
+    "geo_exit_warning": {
+      "en": "Discard changes and return to KoboToolbox?",
+      "fr": "Abandoner les changements et retourner au formulaire?",
+      "es": "¿Ignorar los cambios y regresar?",
+      "ar": "تجاهل التعديلات والعودة إلى KoboToolbox؟"
+    },
+    "geopoint_instruction": {
+      "en": "Long press to place mark or tap add marker button",
+      "fr": "Appuyez longuement pour placer un marqueur ou utilisez le bouton d\\'ajout de marqueur",
+      "es": "Mantenga pulsado para colocar una marca o toque el botón para agregar marcador"
+    },
+    "geopoint_no_draggable_instruction": {
+      "en": "Tap add marker button.",
+      "fr": "Appuyez sur le bouton \\\"ajouter un marqueur\\\".",
+      "es": "Tap botón de agregar marker",
+      "ar": "انقر على زر مؤشر الإضافة"
+    },
+    "geoshape_title": {
+      "en": "GeoShape",
+      "fr": "Polygone",
+      "es": "GeoArea",
+      "ar": "مضلع"
+    },
+    "geotrace_title": {
+      "en": "GeoTrace",
+      "fr": "Ligne",
+      "es": "GeoLínea",
+      "ar": "تتبع المسار"
+    },
+    "get_barcode": {
+      "en": "Get Barcode",
+      "fr": "Scanner un code-barres",
+      "es": "Escanear Codigo de Barras",
+      "ar": "الحصول على الباركود"
+    },
+    "get_bearing": {
+      "en": "Record Bearing",
+      "fr": "Enregistrer la Position",
+      "es": "Registrar Orientación",
+      "ar": "تسجيل الاتجاه"
+    },
+    "get_forms": {
+      "en": "Download form",
+      "fr": "Télécharger formulaire",
+      "es": "Descargar formulario",
+      "ar": "حمّل نموذج"
+    },
+    "get_help_with_offline_layers": {
+      "en": "Learn more about adding MBTiles.",
+      "fr": "En apprendre plus à propos de l\\'ajout de MBTiles.",
+      "es": "Obtenga más información sobre cómo agregar MBTiles."
+    },
+    "get_line": {
+      "en": "Get line",
+      "fr": "Créer la ligne",
+      "es": "Obtener línea"
+    },
+    "get_point": {
+      "en": "Get point",
+      "fr": "Créer le point",
+      "es": "Obtener punto"
+    },
+    "get_polygon": {
+      "en": "Get polygon",
+      "fr": "Créer le polygone",
+      "es": "Obtener polígono"
+    },
+    "getting_bearing": {
+      "en": "Loading Bearing",
+      "fr": "Chargement de la Position",
+      "es": "Cargando Orientación",
+      "ar": "تحميل الاتجاه"
+    },
+    "gif_not_supported": {
+      "en": "Gif files are not supported",
+      "fr": "Les fichiers GIF ne sont pas supportés",
+      "es": "No se admiten archivos GIF",
+      "ar": "ملفات صيغة الــ GIF غير مدعومة"
+    },
+    "go_to_settings": {
+      "en": "Go to settings",
+      "fr": "Aller aux paramètres",
+      "es": "Ir a ajustes",
+      "ar": "إذهب للاعدادات"
+    },
+    "google_drive_removed_message": {
+      "en": "This project was previously connected to a Google Drive account. Google Drive support has been removed. You can configure a server or pull submissions to a computer.",
+      "fr": "Ce projet était précédemment connecté à un compte Google Drive. Le support de Google Drive a été supprimé. Vous pouvez configurer un serveur ou récupérer les soumissions sur un ordinateur.",
+      "es": "Este proyecto estaba previamente conectado a una cuenta de Google Drive. Se ha eliminado la compatibilidad con Google Drive. Puede configurar un servidor o conectar a una computadora."
+    },
+    "google_play_services_error_occured": {
+      "en": "Unable to access Google Maps. Is Google Play Services installed?",
+      "fr": "Impossible d’accéder à Google Maps. Google Play Services est-il installé ?",
+      "es": "No se puede acceder a Google Maps. ¿Están los servicios de Google Play instalados?",
+      "ar": "غير قادر على الوصول إلى خرائط الجوجل. هل خدمات Google Play مثبتة؟"
+    },
+    "google_play_services_not_available": {
+      "en": "This form wants to track your location but Google Play Services are not available.",
+      "fr": "Ce formulaire souhaite suivre votre localisation, mais les Services de Google Play ne sont pas disponible",
+      "es": "Este formulario quiere rastrear su ubicación, pero los servicios de Google Play no están disponibles.",
+      "ar": "تريد هذه الاستمارة تتبع موقعك ولكن خدمات Google Play غير متوفرة."
+    },
+    "gps_enable_message": {
+      "en": "GPS is disabled on your device. Would you like to enable it?",
+      "fr": "Le GPS est désactivé sur votre appareil. Voulez vous l\\'activer ?",
+      "es": "El GPS está deshabilitado en este dispositivo. Le gustaría habilitarlo?",
+      "ar": "GPS غير مفعلة على جهازك. هل تريد تفعيلها؟"
+    },
+    "gps_result": {
+      "en": "Latitude: %1$s\\nLongitude: %2$s\\nAltitude: %3$s m\\nAccuracy: %4$s m",
+      "fr": "Latitude: %1$s\\nLongitude: %2$s\\nAltitude: %3$s m\\nPrécision: %4$s m",
+      "es": "Latitud: %1$s\\nLongitud: %2$s\\nAltitud: %3$sm\\nPrecisión: %4$sm"
+    },
+    "group_label": {
+      "en": "Group",
+      "fr": "Groupe",
+      "es": "Grupo",
+      "ar": "مجموعة"
+    },
+    "guidance_hint_title": {
+      "en": "Show guidance for questions",
+      "fr": "Montrer des conseils pour les questions",
+      "es": "Mostrar guías de preguntas",
+      "ar": "عرض التوجيه للأسئلة"
+    },
+    "guidance_no": {
+      "en": "No",
+      "fr": "Non",
+      "es": "No",
+      "ar": "لا"
+    },
+    "guidance_yes": {
+      "en": "Yes - always shown",
+      "fr": "Oui - toujours visible",
+      "es": "Si - Mostrar Siempre",
+      "ar": "نعم - يظهر دائما"
+    },
+    "guidance_yes_collapsed": {
+      "en": "Yes - collapsed",
+      "fr": "Oui - Echoué",
+      "es": "Si - Colapsado",
+      "ar": "نعم - مطوية"
+    },
+    "hex_color": {
+      "en": "Hex color",
+      "fr": "Couleur hex",
+      "es": "Color en Hex"
+    },
+    "hide_old_form_versions_setting_summary": {
+      "en": "Only the newest version will appear in Fill Blank Form",
+      "fr": "Seule la version la plus récente apparaîtra dans Remplir un formulaire",
+      "es": "Sólo la versión mas nueva aparecerá en Llenar Nuevo Formulario",
+      "ar": "سيظهر الإصدار الأحدث فقط في ملء استمارة فارغة"
+    },
+    "hide_old_form_versions_setting_title": {
+      "en": "Hide old form versions",
+      "fr": "Cacher les anciennes versions de formulaires",
+      "es": "Ocultar formularios anteriores",
+      "ar": "إخفاء الإصدارات القديمة من الاستمارة"
+    },
+    "high_resolution_summary": {
+      "en": "Enable high-resolution video recordings",
+      "fr": "Activer l\\'option vidéos en haute résolution",
+      "es": "Grabar vídeos en HD",
+      "ar": "تمكين تسجيلات الفيديو عالية الدقة"
+    },
+    "high_resolution_title": {
+      "en": "High res video",
+      "fr": "Vidéo Haute Définition",
+      "es": "Video de alta resolución",
+      "ar": "دقة عالية للفيديو"
+    },
+    "hybrid": {
+      "en": "Hybrid",
+      "fr": "Hybride",
+      "es": "Híbrido",
+      "ar": "الكل"
+    },
+    "id_number": {
+      "en": "ID: %s",
+      "fr": "ID: %s",
+      "es": "ID: %s",
+      "ar": "المعرف : %s"
+    },
+    "identity": {
+      "en": "Identity",
+      "fr": "Identité",
+      "es": "Identidad",
+      "ar": "هوية"
+    },
+    "image_size_dialog_title": {
+      "en": "Maximum pixels of the long edge of the image",
+      "fr": "Nombre de pixels maximum pour le coté de l\\'image le plus long",
+      "es": "Número de pixeles máximo del lado más largo de la imagen",
+      "ar": "أقصى بكسلات للحافة الطويلة للصورة"
+    },
+    "image_size_large": {
+      "en": "Large (3072px)",
+      "fr": "Grande (3072px)",
+      "es": "Grande (3072px)",
+      "ar": "كبيرة (3072 بكسل)"
+    },
+    "image_size_medium": {
+      "en": "Medium (2048px)",
+      "fr": "Moyenne (2048px)",
+      "es": "Mediana (2048px)",
+      "ar": "متوسطة (2048 بكسل)"
+    },
+    "image_size_original": {
+      "en": "Original size from camera (default)",
+      "fr": "Taille originale de la caméra (défaut)",
+      "es": "Tamaño original de la cámara (por defecto)",
+      "ar": "الحجم الأصلي من الكاميرا (افتراضي)"
+    },
+    "image_size_small": {
+      "en": "Small (1024px)",
+      "fr": "Petite (1024px)",
+      "es": "Pequeña (1024px)",
+      "ar": "صغيرة (1024 بكسل)"
+    },
+    "image_size_title": {
+      "en": "Image size",
+      "fr": "Taille des images",
+      "es": "Tamaño de imagen",
+      "ar": "حجم الصورة"
+    },
+    "image_size_very_small": {
+      "en": "Very small (640px)",
+      "fr": "Très petite (640px)",
+      "es": "Muy pequeña (640px)",
+      "ar": "صغيرة جدا (640 بكسل)"
+    },
+    "import_qrcode_sd": {
+      "en": "Import QR code",
+      "fr": "Importer code QR",
+      "es": "Importar código QR",
+      "ar": "استيراد رمز QR"
+    },
+    "improving_accuracy": {
+      "en": "Improving accuracy. Please wait.",
+      "fr": "Amélioration de la précision. Veuillez patienter.",
+      "es": "Mejorando precisión. Espere por favor."
+    },
+    "include_password_dialog": {
+      "en": "Passwords Included in Code",
+      "fr": "Mots de passe inclus dans le Code",
+      "es": "Contraseñas incluidas en el Código",
+      "ar": "تضمين كلمات المرور في الكود"
+    },
+    "input_method": {
+      "en": "Input method",
+      "fr": "Méthode de saisie",
+      "es": "Método de ingreso",
+      "ar": "طريقة الإدخال"
+    },
+    "install_openmapkit": {
+      "en": "Please install OpenMapKit!",
+      "fr": "Veuillez installer OpenMapKit.",
+      "es": "Por favor instalar OpenMapKit!",
+      "ar": "رجاء قم بتنصيب OpenMapKit"
+    },
+    "instance_deleted_message": {
+      "en": "Filled form has been deleted!",
+      "fr": "Ce formulaire rempli ne peut pas être ouvert parce qu\\'il a été supprimé hors de l\\'application.",
+      "es": "Formulario lleno ha sido eliminado!",
+      "ar": "لقد تم حذف نموذج معبأ!"
+    },
+    "instance_scan_count": {
+      "en": "%1$d forms added.",
+      "fr": "%1$d formulaires ajoutés.",
+      "es": "%1$d formularios añadidos.",
+      "ar": "تم إضافة %1$d إستمارة"
+    },
+    "instance_sync": {
+      "en": "Finalize forms on import",
+      "fr": "Importer les formulaires enregistrés comme terminés",
+      "es": "Finalizar formularios en importación",
+      "ar": "حدد الاستمارات كمنتهية عند الاستيراد"
+    },
+    "instance_sync_summary": {
+      "en": "Affects forms added directly to instances folder.",
+      "fr": "Impacte sur les formulaires ajoutés directement au dossier instances.",
+      "es": "Afecta los formularios agregados directamente a la carpeta de instances",
+      "ar": "يؤثر على الاستمارات المضافة مباشرة إلى مجلد النماذج."
+    },
+    "invalid_answer_error": {
+      "en": "Sorry, this response is invalid!",
+      "fr": "Désolé, la réponse n\\'est pas valide.",
+      "es": "¡Respuesta invalida!",
+      "ar": "عذراً، الإجابة غير صالحة."
+    },
+    "invalid_email_address": {
+      "en": "Invalid email address!",
+      "fr": "Adresse mail invalide!",
+      "es": "Email inválido",
+      "ar": "عنوان بريد إلكتروني غير صحيح!"
+    },
+    "invalid_file_type": {
+      "en": "Application returned an invalid file type",
+      "fr": "Le type de fichier fourni par l\\'application n\\'es pas valide",
+      "es": "La aplicación devolvió un tipo de archivo no válido",
+      "ar": "أرجع التطبيق نوع ملف غير صالح"
+    },
+    "invalid_hex_code": {
+      "en": "Invalid hex code",
+      "fr": "Code de couleur hex n\\'est pas valide",
+      "es": "Código hexadecimal no válido"
+    },
+    "invalid_osm_data": {
+      "en": "Something went wrong. We did not get valid OSM data.",
+      "fr": "Une erreur s\\'est produite. Les données OSM valides ne peuvent être obtenues.",
+      "es": "Algo salió mal. No obtuvimos datos válidos de OSM.",
+      "ar": "هناك شيء ما خاطئ. لم نستطع الحصول على بيانات OSM صحيحة"
+    },
+    "invalid_qrcode": {
+      "en": "QR code does not contain valid settings",
+      "fr": "Le QR code ne contient pas de paramètres valides",
+      "es": "El código QR no contiene ajustes válidos",
+      "ar": "كود QR لا يتضمن إعدادات صحيحة"
+    },
+    "invalid_range_widget": {
+      "en": "This widget has invalid parameters!",
+      "fr": "Les paramètres de ce widget sont invalides!",
+      "es": "Esta opción tiene parámetros inválidos",
+      "ar": "هذة الميزة غير موجودة"
+    },
+    "invalid_response": {
+      "en": "The server %s provided an invalid response.",
+      "fr": "Le serveur %s a fourni une réponse invalide.",
+      "es": "El servidor %s proporcionó una respuesta no válida.",
+      "ar": "قدم الخادم %s بإرجاع استجابة غير صالحة."
+    },
+    "invalid_rsa_public_key": {
+      "en": "Invalid RSA public key.",
+      "fr": "Clé publique RSA invalide.",
+      "es": "Clave publica RSA Invalida.",
+      "ar": "مفتاح RSA العام غير صالح"
+    },
+    "invalid_space_in_answer_plural": {
+      "en": "Warning: underlying values %s have spaces",
+      "fr": "Attention: les noms 1%s contiennent des espaces",
+      "es": "Advertencia: valores subyacentes %s contienen espacios",
+      "ar": "تحذير: القيم أدناه %s تحتوي على مسافات"
+    },
+    "invalid_space_in_answer_singular": {
+      "en": "Warning: underlying value %s has spaces",
+      "fr": "Attention: le nom 1%s contient des espaces",
+      "es": "Advertencia: valor subyacente %s contiene espacios",
+      "ar": "تحذير: القيمة أدناه %s تحتوي على مسافات"
+    },
+    "islamic_month_1": {
+      "en": "Muharram",
+      "fr": "Muharram",
+      "es": "Muharram",
+      "ar": "محرم"
+    },
+    "islamic_month_10": {
+      "en": "Shawwal",
+      "fr": "Shawwal",
+      "es": "Shawwal",
+      "ar": "شوال"
+    },
+    "islamic_month_11": {
+      "en": "Dhu al-Qidah",
+      "fr": "Dhu al-Qidah",
+      "es": "Dhu al-Qidah",
+      "ar": "ذو القعدة"
+    },
+    "islamic_month_12": {
+      "en": "Dhu al-Hijjah",
+      "fr": "Dhu al-Hijjah",
+      "es": "Dhu al-Hijjah",
+      "ar": "ذو الحجة"
+    },
+    "islamic_month_2": {
+      "en": "Safar",
+      "fr": "Safar",
+      "es": "Safar",
+      "ar": "صفر"
+    },
+    "islamic_month_3": {
+      "en": "Rabi\\' al-awwal",
+      "fr": "Rabi\\' al-awwal",
+      "es": "Rabi\\' al-awwal",
+      "ar": "ربيع الأول"
+    },
+    "islamic_month_4": {
+      "en": "Rabi\\' al-thani",
+      "fr": "Rabi\\' al-thani",
+      "es": "Rabi\\' al-thani",
+      "ar": "ربيع الثاني"
+    },
+    "islamic_month_5": {
+      "en": "Jumada al-awwal",
+      "fr": "Jumada al-awwal",
+      "es": "Jumada al-awwal",
+      "ar": "جمادى الأولى"
+    },
+    "islamic_month_6": {
+      "en": "Jumada al-thani",
+      "fr": "Jumada al-thani",
+      "es": "Jumada al-thani",
+      "ar": "جمادى الثانية"
+    },
+    "islamic_month_7": {
+      "en": "Rajab",
+      "fr": "Rajab",
+      "es": "Rajab",
+      "ar": "رجب"
+    },
+    "islamic_month_8": {
+      "en": "Sha\\'ban",
+      "fr": "Sha\\'ban",
+      "es": "Sha\\'ban",
+      "ar": "شعبان"
+    },
+    "islamic_month_9": {
+      "en": "Ramadan",
+      "fr": "Ramadan",
+      "es": "Ramadan",
+      "ar": "رمضان"
+    },
+    "jump_to_beginning": {
+      "en": "Go To Start",
+      "fr": "Aller au début",
+      "es": "Ir al Inicio",
+      "ar": "الذهاب إلى البداية"
+    },
+    "jump_to_end": {
+      "en": "Go To End",
+      "fr": "Aller à la fin",
+      "es": "Ir al Final",
+      "ar": "الذهاب إلى النهاية"
+    },
+    "jump_to_previous": {
+      "en": "Go Up",
+      "fr": "Monter",
+      "es": "Subir",
+      "ar": "الذهاب صعودًا"
+    },
+    "keep_changes": {
+      "en": "Save Changes",
+      "fr": "Enregistrer les modifications",
+      "es": "Guardar los cambios",
+      "ar": "حفظ التعديلات"
+    },
+    "keep_editing": {
+      "en": "Keep editing",
+      "fr": "Continuer l\\'édition",
+      "es": "Seguir editando",
+      "ar": "الاستمرار في التعديل"
+    },
+    "language": {
+      "en": "Language",
+      "fr": "Langue",
+      "es": "Idioma",
+      "ar": "اللغة"
+    },
+    "launch_app": {
+      "en": "Launch",
+      "fr": "Démarrer",
+      "es": "Iniciar",
+      "ar": "تشغيل"
+    },
+    "layer_data_file": {
+      "en": "Layer",
+      "fr": "Couche",
+      "es": "Capa"
+    },
+    "layers_list_title": {
+      "en": "Layers",
+      "fr": "Couches",
+      "es": "Capas"
+    },
+    "learn_more_button_text": {
+      "en": "Learn more",
+      "fr": "En savoir plus",
+      "es": "Aprende más"
+    },
+    "leave_a_review": {
+      "en": "Leave a Play Store review",
+      "fr": "Laissez un avis sur Play Store",
+      "es": "Ir a Play Store - Comentar y/o Actualizar",
+      "ar": "اترك تقييم في Play Store"
+    },
+    "leave_a_review_msg": {
+      "en": "Your (hopefully positive) review increases the visibility of the App in the Play Store.",
+      "fr": "Votre avis (ce qu\\'on espère est positif) augmente la visibilité de l\\'application dans le Play Store.",
+      "es": "Su reseña (ojalá positiva) incrementa la visibilidad de la aplicación en Play Store",
+      "ar": "تقييمك (الذي نأمل أن يكون إيجابيا) يزيد من رؤية التطبيق في Play Store."
+    },
+    "load_remote_form_error": {
+      "en": "Form list download failed",
+      "fr": "Échec de téléchargement de la liste des formulaires",
+      "es": "Error al descargar la lista de formularios",
+      "ar": "خطأ في تنزيل قائمة الإستمارة"
+    },
+    "loading": {
+      "en": "Loading…",
+      "fr": "Chargement…",
+      "es": "Cargando…"
+    },
+    "loading_form": {
+      "en": "Loading Form",
+      "fr": "Chargement du formulaire…",
+      "es": "Cargando Formulario",
+      "ar": "تحميل الاستمارة"
+    },
+    "loading_form_failed": {
+      "en": "An error occurred while loading the form. Please try again.",
+      "fr": "Une erreur s\\'est produite lors du chargement du formulaire. Veuillez réessayer.",
+      "es": "Ocurrió un error al cargar el formulario. Por favor intente de nuevo.",
+      "ar": "حدث خطأ أثناء تحميل الاستمارة. الرجاء المحاولة مرة أخرى."
+    },
+    "location_accuracy": {
+      "en": "Accuracy: %1$s",
+      "fr": "Précision : %1$s",
+      "es": "Precisión: %1$s"
+    },
+    "location_accuracy_unacceptable": {
+      "en": "⚠️ Accuracy: %1$s (unacceptable)",
+      "fr": "⚠️ Précision : %1$s (insuffisante)",
+      "es": "Precisión de ubicación: %1$s (inaceptable)"
+    },
+    "location_providers_disabled_dialog_message": {
+      "en": "This form wants to track your location but location providers are disabled. Please enable in Android settings.",
+      "fr": "Ce formulaire souhaite suivre votre localisation, mais les fournisseurs d\\'emplacements sont désactivés. Merci de vérifier les paramétres Android",
+      "es": "Este formulario quiere rastrear su ubicación pero los proveedores de ubicación están deshabilitados Por favor, habilite en la configuración de Android.",
+      "ar": "تريد هذه الاستمارة تتبع موقعك ولكن موفري الموقع معطلين. يرجى التمكين في إعدادات أندرويد."
+    },
+    "location_runtime_permissions_denied_desc": {
+      "en": "Without the Precise Location permission Collect can\\'t record your location. Please try again when you are ready to grant it.",
+      "fr": "Sans la permission de Position Exacte, Collect ne peut pas enregistrer votre localisation. Veuillez réessayer lorsque vous êtes prêt à l\\'accorder.",
+      "es": "Sin el permiso de Localización precisa no puede registrar su ubicación. Intente de nuevo cuando esté el permiso."
+    },
+    "location_runtime_permissions_denied_title": {
+      "en": "Location permissions",
+      "fr": "Autorisations liées à la localisation",
+      "es": "Permisos de Ubicación",
+      "ar": "الأذونات الخاصة بالموقع"
+    },
+    "location_tracking_notification_channel_name": {
+      "en": "Location tracking",
+      "fr": "Suivi de la localisation",
+      "es": "Seguimiento de ubicación"
+    },
+    "location_tracking_notification_title": {
+      "en": "Tracking location…",
+      "fr": "Enregistrement de la localisation…",
+      "es": "Monitoreando ubicación…"
+    },
+    "main_menu_settings": {
+      "en": "Main Menu Settings",
+      "fr": "Paramètres du Menu principal",
+      "es": "Menú principal de ajustes",
+      "ar": "إعدادات القائمة الرئيسة"
+    },
+    "main_menu_settings_summary": {
+      "en": "Show or hide buttons",
+      "fr": "Montrer ou cacher boutons",
+      "es": "Mostrar u ocultar botones"
+    },
+    "manage_files": {
+      "en": "Delete form",
+      "fr": "Supprimer des formulaires",
+      "es": "Borrar formulario",
+      "ar": "امسح نموذج"
+    },
+    "manual": {
+      "en": "Manual",
+      "fr": "Manuel",
+      "es": "Manual",
+      "ar": "يدوي"
+    },
+    "manual_mode": {
+      "en": "Manual location recording",
+      "fr": "Enregistrement manuel de la localisation",
+      "es": "Registro de localización manual",
+      "ar": "تسجيل يدوي للموقع"
+    },
+    "map_style_label": {
+      "en": "%s map style",
+      "fr": "Style de carte %s",
+      "es": "Estilo de Mapa %s",
+      "ar": "%s نمط الخريطة"
+    },
+    "maps": {
+      "en": "Maps",
+      "fr": "Cartes",
+      "es": "Mapas",
+      "ar": "خرائط"
+    },
+    "maps_settings_subtext": {
+      "en": "Basemap, styles, layers",
+      "fr": "Fond de carte, styles, couches",
+      "es": "Mapa base, estilo, capas"
+    },
+    "markup_image": {
+      "en": "Markup Image",
+      "fr": "écrire sur l\\'image",
+      "es": "Anotar en imagen",
+      "ar": "حدد الصورة"
+    },
+    "match_exactly": {
+      "en": "Exactly match server",
+      "fr": "Copie exacte du serveur",
+      "es": "Coincidencia exacta de servidor",
+      "ar": "تتطابق مع السيرفر تمامًا"
+    },
+    "mic_in_use": {
+      "en": "Microphone is already in use.",
+      "fr": "Le microphone est déjà en utilisation.",
+      "es": "El micrófono ya está en uso.",
+      "ar": "الميكرفون قيد الإستخدام"
+    },
+    "modified_on_date_at_time": {
+      "en": "\\'Modified on\\' EEE, MMM dd, yyyy \\'at\\' HH:mm",
+      "fr": "\\'Modifié\\' EEE MMM dd yyyy \\'à\\' HH\\'h\\'mm",
+      "es": "\\'Modificado el\\' EEE, MMM dd, yyyy \\'a las\\' HH:mm",
+      "ar": "\\'تم التعديل ب \\' yyyy, dd MMM, EEE  \\'في الساعة\\' mm:HH"
+    },
+    "moving_backwards_disabled_message": {
+      "en": "Configure the device to prevent users from bypassing this setting?\\n\\nThe changes are:\\n\\u2022 Disable Edit Draft\\n\\u2022 Disable Save as draft\\n\\u2022 Disable Go To Prompt\\n\\u2022 Set Constraint processing to Validate upon forward swipe",
+      "fr": "Configurer l\\'appareil pour empêcher les utilisateurs de contourner ce paramètre ?\\n\\nLes modifications sont les suivantes :\\n\\u2022 Désactiver la modification de l\\'ébauche. \\n\\u2022 Désactiver l\\'enregistrement en tant qu\\'ébauche. \\n\\u2022 Désactiver le passage à l\\'invite. \\n\\u2022 Régler le traitement des contraintes de validation lors du passage à l\\'écran suivant.",
+      "es": "Configure el dispositivo para prevenir que los usuarios se salten esta configuración?\\n\\nLos cambios son:\\n\\u2022 Desactivar Editar Borrador\\n\\u2022 Desactivar Guardar como Borrador\\n\\u2022 Desactivar Ir a Pregunta\\n\\u2022 Establecer Manejo de Restricciones como Validar al desplazar hacia adelante"
+    },
+    "moving_backwards_disabled_title": {
+      "en": "Moving backwards disabled",
+      "fr": "mouvement en recul désactivé",
+      "es": "Retroceder en Preguntas Desactivado",
+      "ar": "تم تعطيل العودة إلى الوراء"
+    },
+    "moving_backwards_enabled_message": {
+      "en": "You may wish to review the following settings:\\n\\n\\u2022 Edit Draft\\n\\u2022 Save as draft\\n\\u2022 Go To Prompt\\n\\u2022 Constraint processing",
+      "fr": "Vous souhaiterez peut-être revoir les paramètres suivants:\\n\\n\\u2022 Modifier l\\'ébauche\\n\\n\\n- Enregistrer comme ébauche\\n\\u2022Aller à l\\'invite\\n\\u2022Traitement des contraintes",
+      "es": "Se recomienda revisar la siguiente configuración:\\n\\n\\u2022 Editar Borrador\\n\\u2022 Guardar como Borrador\\n\\u2022 Ir a la Pregunta\\n\\u2022 Manejo de Restricciones"
+    },
+    "moving_backwards_enabled_title": {
+      "en": "Moving backwards enabled",
+      "fr": "Le recul est activé",
+      "es": "Retroceder en Preguntas Activado",
+      "ar": "تم تمكين التحرك إلى الوراء"
+    },
+    "moving_backwards_title": {
+      "en": "Moving backwards",
+      "fr": "mouvement en recul",
+      "es": "Retroceder en Preguntas",
+      "ar": "العودة إلى الوراء"
+    },
+    "navigation": {
+      "en": "Navigation",
+      "fr": "Navigation",
+      "es": "Navegación",
+      "ar": "التنقل"
+    },
+    "new_item": {
+      "en": "New item",
+      "fr": "Nouvel item",
+      "es": "Nuevo ítem"
+    },
+    "newer_draft_edit_found_dialog_message": {
+      "en": "\\'A draft edit was saved on\\' EEE, MMM dd, yyyy \\'at\\' HH:mm\\'\\n\\nDo you want to resume this edit?\\'",
+      "fr": "\\'Il existe une ébauche de modification en cours sauvegardée le\\' EEE dd MMM yyyy \\'à\\' HH\\'h\\'mm\\'\\n\\nVoulez-vous la reprendre?\\'",
+      "es": "\\'Se guardó un borrador de edición el\\' EEE, MMM dd, aaaa \\'a las\\' HH:mm\\'\\n\\n¿Desea reanudar esta edición?\\'"
+    },
+    "newer_draft_edit_found_dialog_positive_button": {
+      "en": "Resume editing",
+      "fr": "Reprendre l\\'ébauche",
+      "es": "Seguir editando"
+    },
+    "newer_draft_edit_found_dialog_title": {
+      "en": "Continue editing draft?",
+      "fr": "Continuez d\\'éditer l\\'ébauche?",
+      "es": "¿Continuar editando el borrador?"
+    },
+    "newer_finalized_edit_found_dialog_message": {
+      "en": "\\'This submission was previously edited.\\n\\nWould you like to edit the latest version finalized on\\' EEE, MMM dd, yyyy \\'at\\' HH:mm\\'?\\'",
+      "fr": "\\'Cette soumission a déjà été modifiée.\\n\\nAimeriez-vous modifier la dernière version finalisée le\\' EEE dd MMM yyyy \\'à\\' HH\\'h\\'mm\\'?\\'",
+      "es": "\\'Este envío fue editado previamente.\\n\\n¿Desea editar la última versión finalizada el \\'EEE, MMM dd, yyyy\\' a las \\'HH:mm\\'?\\'"
+    },
+    "newer_finalized_edit_found_dialog_positive_button": {
+      "en": "Edit latest form",
+      "fr": "Modifier la dernière version",
+      "es": "Editar último formulario"
+    },
+    "newer_finalized_edit_found_dialog_title": {
+      "en": "Edit latest version?",
+      "fr": "Modifier la dernière version?",
+      "es": "¿Editar la última versión?"
+    },
+    "newer_version_of_a_form_info": {
+      "en": "This is an update to a form you have",
+      "fr": "Ceci est une version mise à jour d\\'un formulaire dont vous disposez déjà !",
+      "es": "Esta es una actualización a un formulario que tiene",
+      "ar": "هذا تحديث للإستمارة التي لديك"
+    },
+    "no": {
+      "en": "No",
+      "fr": "Non",
+      "es": "No",
+      "ar": "لا"
+    },
+    "no_app": {
+      "en": "The requested application is missing. Please manually enter the reading.",
+      "fr": "L\\'application demandée n\\'existe pas. Saisissez les informations manuellement.",
+      "es": "Esta aplicación no está. Por favor ingrese el dato manualmente.",
+      "ar": "التطبيق المطلوب مفقود. يرجى ادخال القراءة يدويا."
+    },
+    "no_connection": {
+      "en": "No network connection available",
+      "fr": "Pas de connexion réseau disponible",
+      "es": "No hay conexión a internet",
+      "ar": "لا يوجد اتصال بالشبكة"
+    },
+    "no_date_selected": {
+      "en": "No date selected",
+      "fr": "Aucune date choisie",
+      "es": "No se ha seleccionado una fecha",
+      "ar": "لم يتم اختيار تاريخ"
+    },
+    "no_form_id_specified": {
+      "en": "No FormId specified???",
+      "fr": "Pas de FormId spécifié ???",
+      "es": "No se especifo el FormID???",
+      "ar": "لم يتم تحديد معرف لنموذج الاستمارة؟؟؟"
+    },
+    "no_forms_uploaded": {
+      "en": "Sorry, no form was uploaded.",
+      "fr": "Désolé, pas de formulaires téléchargés.",
+      "es": "No se ha cargado ningún formulario.",
+      "ar": "عذرا، لا يوجد استمارة للتحميل."
+    },
+    "no_time_selected": {
+      "en": "No time selected",
+      "fr": "Aucune heure choisie",
+      "es": "No se ha seleccionado una hora",
+      "ar": "لم يتم اختيار وقت"
+    },
+    "no_value_selected": {
+      "en": "No value selected",
+      "fr": "Aucune valeur choisie",
+      "es": "Ningún valor seleccionado",
+      "ar": "لم يتم اختيار قيمة"
+    },
+    "none": {
+      "en": "None",
+      "fr": "Aucun",
+      "es": "Ninguno",
+      "ar": "لا شيء"
+    },
+    "north": {
+      "en": "N %1$s%2$s%3$s",
+      "fr": "N %1$s%2$s%3$s",
+      "es": "N %1$s%2$s%3$s",
+      "ar": "شمال %1$s%2$s%3$s"
+    },
+    "noselect_error": {
+      "en": "Sorry, you have not selected any forms!",
+      "fr": "Désolé, vous n\\'avez pas sélectionné un formulaire.",
+      "es": "¡No ha escogido ningún formulario!",
+      "ar": "عذرًا، لم تختَر أيّ استمارة!"
+    },
+    "not_exactly_one_blank_form_for_this_form_id": {
+      "en": "Not exactly one blank form matches this jr_form_id.",
+      "fr": "Aucun formulaire vierge ne correspond à ce jr_form_id.",
+      "es": "No hay exactamente un formulario en blanco que corresponda a este jr_form_id.",
+      "ar": "معرف الاستمارة لا يتطابق مع أي نموذج الفارغ"
+    },
+    "not_exactly_one_record_for_this_instance": {
+      "en": "Not exactly one record for this instance!",
+      "fr": "Pas exactement un enregistrement pour cette instance !",
+      "es": "No hay exactamente un registro para esta instancia!",
+      "ar": "لايوجد سجل مطابق لهذا النموذج"
+    },
+    "not_granted_permission": {
+      "en": "The activity you are trying to start requires a permission which is not granted.",
+      "fr": "Vous n\\'avez pas les permissions requises pour démarrer l\\'activité demandée",
+      "es": "La actividad que está intentando iniciar requiere un permiso que no se ha concedido.",
+      "ar": "النشاط الذي تحاول بدء القيام به يحتاج إلى إذن لم تحصل عليه بعد."
+    },
+    "notification_channel_name": {
+      "en": "General notifications",
+      "fr": "Notifications générales",
+      "es": "Notificaciones generales",
+      "ar": "الإشعارات العامة"
+    },
+    "notifications": {
+      "en": "Notifications",
+      "fr": "Notifications",
+      "es": "Notificaciones"
+    },
+    "null_intent_value": {
+      "en": "The external application did not provide expected information.",
+      "fr": "L\\'application externe n\\'a pas fourni les informations attendues.",
+      "es": "La aplicación externa no suministra la información esperada",
+      "ar": "التطبيق الخارجي لم يرسل البيانات المتوقعة."
+    },
+    "number_picker_title": {
+      "en": "Number Picker",
+      "fr": "Sélecteur de numéro",
+      "es": "Selector de números",
+      "ar": "منتقي الأرقام"
+    },
+    "odk_forum": {
+      "en": "Join the KoboToolbox forum",
+      "fr": "Rejoindre le Forum KoboToolbox",
+      "es": "Unirse al foro de KoboToolbox",
+      "ar": "انضم إلى منتدى KoboToolbox"
+    },
+    "odk_forum_summary": {
+      "en": "Join the forum to get support and connect with other users!",
+      "fr": "Join the forum to get support and connect with other users!",
+      "es": "Join the forum to get support and connect with other users!",
+      "ar": "Join the forum to get support and connect with other users!"
+    },
+    "odk_website": {
+      "en": "Visit the KoboToolbox website",
+      "fr": "Visiter le site web de Open Data Kit",
+      "es": "Visitar el sitio web",
+      "ar": "زيارة موقع KoboToolbox"
+    },
+    "odk_website_summary": {
+      "en": "KoboCollect is part of KoboToolbox and based on ODK Collect.",
+      "fr": "KoboCollect is part of KoboToolbox and based on ODK Collect.",
+      "es": "KoboCollect is part of KoboToolbox and based on ODK Collect.",
+      "ar": "KoboCollect is part of KoboToolbox and based on ODK Collect."
+    },
+    "off": {
+      "en": "Off",
+      "fr": "Off",
+      "es": "Desactivado",
+      "ar": "مغلق"
+    },
+    "offline": {
+      "en": "Offline",
+      "fr": "Hors ligne",
+      "es": "Desconectado"
+    },
+    "offline_layer": {
+      "en": "Offline layers",
+      "fr": "Couches hors ligne",
+      "es": "Capas sin conexión"
+    },
+    "offline_layer_dialog_description": {
+      "en": "Select the offline layer to use for all maps in this project. You can add options to the list by selecting an MBTiles file from your device and also delete existing layers from the list.",
+      "fr": "Choisissez la couche hors ligne à utiliser pour toutes les cartes de ce projet. Vous pouvez ajouter des options à la liste en choisissant un fichier MBTiles de votre appareil. Vous pouvez également supprimer des couches de la liste.",
+      "es": "Seleccione la capa sin conexión para usar en todos los mapas de este proyecto. Puede agregar opciones a la lista seleccionando un archivo MBTiles de su dispositivo y también eliminar capas existentes de la lista."
+    },
+    "offline_layer_dialog_title": {
+      "en": "Select offline layer",
+      "fr": "Choisir la couche hors ligne",
+      "es": "Seleccione capa sin conexión"
+    },
+    "ok": {
+      "en": "OK",
+      "fr": "OK",
+      "es": "De acuerdo",
+      "ar": "حسناً"
+    },
+    "open_file": {
+      "en": "Open file",
+      "fr": "Ouvrir fichier",
+      "es": "Abrir archivo",
+      "ar": "فتح الملف"
+    },
+    "open_form_map": {
+      "en": "Open form map",
+      "fr": "Voir les formulaires remplis sur une carte",
+      "es": "Abrir mapa de formulario",
+      "ar": "فتح من الخريطة"
+    },
+    "open_settings": {
+      "en": "Open Settings",
+      "fr": "Ouvrir les paramètres",
+      "es": "Abrir Configuración"
+    },
+    "open_url": {
+      "en": "Open Url",
+      "fr": "Ouvrir l\\'URL",
+      "es": "Abrir URL",
+      "ar": "فتح الرابط"
+    },
+    "openmap_cartodb_darkmatter": {
+      "en": "CartoDB Dark Matter",
+      "fr": "CartoDB Dark Matter",
+      "es": "Materia Obscura CartoDB",
+      "ar": "خريطة CartoDB"
+    },
+    "openmap_cartodb_positron": {
+      "en": "CartoDB Positron",
+      "fr": "CartoDB Positron",
+      "es": "Positron CartoDB",
+      "ar": "خريطة CartoDB"
+    },
+    "openmap_usgs_img": {
+      "en": "USGS National Map Imagery",
+      "fr": "Les images de la carte nationale USGS",
+      "es": "USGS Mapa Nacional Satélite",
+      "ar": "صور الخريطة الوطنية USGS"
+    },
+    "openmap_usgs_sat": {
+      "en": "USGS National Map Hybrid",
+      "fr": "USGS Carte nationale hybride",
+      "es": "USGS Mapa Nacional Hibrido",
+      "ar": "خريطة وطنية هجين USGS"
+    },
+    "openmap_usgs_topo": {
+      "en": "USGS National Map Topo",
+      "fr": "USGS National Map Topo",
+      "es": "USGS Mapa Topográfico Nacional",
+      "ar": "خرطة البنية"
+    },
+    "or": {
+      "en": "OR",
+      "fr": "OU",
+      "es": "O"
+    },
+    "parent_form_not_present": {
+      "en": "Unable to edit this draft because the corresponding blank form is not present or was deleted.\\n\\nForm ID: %1$s",
+      "fr": "Impossible d\\'éditer cette ébauche car le formulaire vierge correspondant n\\'est pas présent ou a été supprimé. \\n\\\\nFrom ID : %1$s",
+      "es": "No se pudo editar este borrador por que el formulario en blanco que le corresponde no esta o fue borrado.\\n\\nID de Formulario: %1$s"
+    },
+    "parse_error": {
+      "en": "Sorry, unable to parse form.",
+      "fr": "Désolé. Impossible d\\'analyser le formulaire.",
+      "es": "No se pudo interpretar el formulario.",
+      "ar": "عذراً لا يمكن تحليل الاستمارة."
+    },
+    "parser_exception": {
+      "en": "XPathParser Exception: \\\"%s\\\"",
+      "fr": "Exception XPathParser: \\\"%s\\\"",
+      "es": "Excepción XPathParser: \\\"%s\\\"",
+      "ar": "استثناء XPathParser: \\\"%s\\\""
+    },
+    "password": {
+      "en": "Password",
+      "fr": "Mot de passe",
+      "es": "Contraseña",
+      "ar": "كلمة المرور"
+    },
+    "password_error_whitespace": {
+      "en": "Leading or trailing whitespace not allowed in passwords",
+      "fr": "Les espaces ne sont pas permis au début ou à la fin du mot de passe",
+      "es": "Los espacios al inicio o al final no están permitidos en las contraseñas",
+      "ar": "الفراغات في البداية أو النهاية غير مسموح بها في كلمات المرور"
+    },
+    "pause_location_recording": {
+      "en": "Pause",
+      "fr": "Pause",
+      "es": "Pausar",
+      "ar": "إيقاف مؤقت"
+    },
+    "pause_recording": {
+      "en": "Pause",
+      "fr": "Pause",
+      "es": "Pausar",
+      "ar": "إيقاف مؤقت"
+    },
+    "permission_dialog_text": {
+      "en": "You will be asked to allow KoboCollect access to the features below, select “allow” if you want to use them.",
+      "fr": "Il vous sera demandé d\\'autoriser KoboCollect à accéder aux fonctions ci-dessous, sélectionnez \\\"autoriser\\\" si vous souhaitez les utiliser.",
+      "es": "Se le pedirá que permita el acceso de KoboCollect a las siguientes funciones, seleccione \\\"permitir\\\" si desea usarlas."
+    },
+    "permission_dialog_title": {
+      "en": "About permissions",
+      "fr": "A propos des permissions",
+      "es": "Acerca de los permisos"
+    },
+    "persian_month_1": {
+      "en": "Farvardin",
+      "fr": "Farvardin",
+      "es": "Farvardin",
+      "ar": "فروردین"
+    },
+    "persian_month_10": {
+      "en": "Dey",
+      "fr": "Dey",
+      "es": "Dey",
+      "ar": "دى"
+    },
+    "persian_month_11": {
+      "en": "Bahman",
+      "fr": "Bahman",
+      "es": "Bahman",
+      "ar": "بهمن"
+    },
+    "persian_month_12": {
+      "en": "Esfand",
+      "fr": "Esfand",
+      "es": "Esfand",
+      "ar": "اسفند"
+    },
+    "persian_month_2": {
+      "en": "Ordibehesht",
+      "fr": "Ordibehesht",
+      "es": "Ordibehesht",
+      "ar": "اردیبهشت"
+    },
+    "persian_month_3": {
+      "en": "Khordad",
+      "fr": "Khordad",
+      "es": "Khordad",
+      "ar": "خرداد"
+    },
+    "persian_month_4": {
+      "en": "Tir",
+      "fr": "Ter",
+      "es": "Tir",
+      "ar": "تير"
+    },
+    "persian_month_5": {
+      "en": "Mordad",
+      "fr": "Mordad",
+      "es": "Mordad",
+      "ar": "مرداد"
+    },
+    "persian_month_6": {
+      "en": "Shahrivar",
+      "fr": "Shahrivar",
+      "es": "Shahrivar",
+      "ar": "شهریور"
+    },
+    "persian_month_7": {
+      "en": "Mehr",
+      "fr": "Mehr",
+      "es": "Mehr",
+      "ar": "مهر"
+    },
+    "persian_month_8": {
+      "en": "Aban",
+      "fr": "Aban",
+      "es": "Aban",
+      "ar": "آبان"
+    },
+    "persian_month_9": {
+      "en": "Azar",
+      "fr": "Azar",
+      "es": "Azar",
+      "ar": "آذر"
+    },
+    "phone_does_not_support_rsa": {
+      "en": "Phone does not support RSA encryption.",
+      "fr": "Le téléphone ne supporte pas le chiffrement RSA.",
+      "es": "El teléfono no es compatible con el cifrado RSA.",
+      "ar": "الهاتف لايدعم تشفير RSA"
+    },
+    "phone_number": {
+      "en": "Phone number",
+      "fr": "Numéro de téléphone",
+      "es": "Numero de teléfono",
+      "ar": "رقم الهاتف المحمول"
+    },
+    "placement_mode": {
+      "en": "Placement by tapping",
+      "fr": "Placement en tapotant",
+      "es": "Ubicación con toque",
+      "ar": "التنسيب عن طريق النقر"
+    },
+    "play_audio": {
+      "en": "Play audio",
+      "fr": "Jouer audio",
+      "es": "Reproducir audio",
+      "ar": "تشغيل الصوت"
+    },
+    "play_video": {
+      "en": "Play Video",
+      "fr": "Jouer la vidéo",
+      "es": "Reproducir el Video",
+      "ar": "تشغيل تسجيل الفيديو"
+    },
+    "please_wait": {
+      "en": "Please wait a few moments.",
+      "fr": "Veuillez patienter.",
+      "es": "Por favor, espere un momento.",
+      "ar": "الرجاء الانتظار للحظات قليلة."
+    },
+    "please_wait_long": {
+      "en": "Please wait. This could take a few minutes.",
+      "fr": "Veuillez patienter. Cette action peut prendre quelques minutes.",
+      "es": "Por favor espere. Esto podria demorarse unos minutos.",
+      "ar": "الرجاء الانتظار. قد يتطلّب ذلك بضع دقائق."
+    },
+    "point_will_be_saved": {
+      "en": "Point will be saved at %1$s",
+      "fr": "Le point sera enregistré dés que la précision sera supérieure à %1$s",
+      "es": "Punto se guardará en %1$s"
+    },
+    "polygon_validator": {
+      "en": "Must have at least 3 points to create Polygon",
+      "fr": "3 points minimum sont nécessaires pour créer un Polygone",
+      "es": "Debe tener al menos 3 puntos para crear un polígono",
+      "ar": "يجب توفر 3 نقاط لإنشاء مضلع"
+    },
+    "polyline_validator": {
+      "en": "Must have at least 2 points to create Polyline",
+      "fr": "Il faut au moins 2 points pour créer une ligne",
+      "es": "Deben existir al menos 2 puntos para crear una Polilínea",
+      "ar": "يجب توفر نقطتين لإنشاء خط"
+    },
+    "poor_accuracy": {
+      "en": "Poor accuracy. Please wait.",
+      "fr": "Faible précision. Veuillez patienter.",
+      "es": "Mala precisión. Espere por favor.",
+      "ar": "جودة ضعيفة الرجاء الإنتظار."
+    },
+    "preference_not_available": {
+      "en": "Not available",
+      "fr": "Pas disponible",
+      "es": "No disponible",
+      "ar": "غير متوفر"
+    },
+    "preparing_form_edit": {
+      "en": "Preparing the form for editing…",
+      "fr": "Préparation du formulaire pour édition…",
+      "es": "Preparando el formulario para editarlo…"
+    },
+    "previously_downloaded_only": {
+      "en": "Previously downloaded forms only",
+      "fr": "Formulaires antérieurement téléchargés uniquement",
+      "es": "Solo formularios descargados previamente",
+      "ar": "فقط الإستمارات التي تم تنزيلها مسبقًا"
+    },
+    "print": {
+      "en": "Print",
+      "fr": "Imprimer",
+      "es": "Imprimir"
+    },
+    "project_color": {
+      "en": "Project color",
+      "fr": "Couleur du projet",
+      "es": "Color del proyecto"
+    },
+    "project_config_tip": {
+      "en": "After you add your project, you can configure it in Settings",
+      "fr": "Après avoir ajouté un projet, vous pouvez le configurer dans les Paramètres",
+      "es": "Después de agregar su proyecto, puede configurarlo en Configuración"
+    },
+    "project_display_subtext": {
+      "en": "Name, icon, color",
+      "fr": "Nom, icône, couleur",
+      "es": "Nombre, icono, color"
+    },
+    "project_display_title": {
+      "en": "Project display",
+      "fr": "Affichage du projet",
+      "es": "Visualización del proyecto"
+    },
+    "project_icon": {
+      "en": "Project icon",
+      "fr": "Icône du projet",
+      "es": "Icono del proyecto"
+    },
+    "project_management_section_subtext": {
+      "en": "Reconfigure, reset, delete",
+      "fr": "Reconfigurer, réinitialiser, supprimer",
+      "es": "Reconfigurar, restablecer, borrar"
+    },
+    "project_management_section_title": {
+      "en": "Project management",
+      "fr": "Gestion de projet",
+      "es": "Gestión de proyectos"
+    },
+    "project_name": {
+      "en": "Project name",
+      "fr": "Nom du projet",
+      "es": "Nombre del proyecto"
+    },
+    "project_settings": {
+      "en": "Project settings",
+      "fr": "Paramètres de projet",
+      "es": "Ajustes de proyecto"
+    },
+    "projects": {
+      "en": "Projects",
+      "fr": "Projets",
+      "es": "Proyectos"
+    },
+    "protected_settings": {
+      "en": "Protected",
+      "fr": "Protégé",
+      "es": "Protegido"
+    },
+    "provider_disabled_error": {
+      "en": "Sorry, Location providers are disabled!",
+      "fr": "Désolé, le fournisseur de localisation est désactivé.",
+      "es": "¡Los proveedores de ubicación están deshabilitados!",
+      "ar": "عذراً، مزود خدمة الموقع معطّل."
+    },
+    "qr_code": {
+      "en": "QR code configuration",
+      "fr": "Configuration par code QR",
+      "es": "Configuración del Código QR",
+      "ar": "إعدادات رمز QR"
+    },
+    "qr_code_not_found": {
+      "en": "QR Code not found in the selected image",
+      "fr": "Le code QR n\\'a pas été trouvé dans l\\'image sélectionnée.",
+      "es": "Código QR no encontrado en la imagen seleccionada",
+      "ar": "كود QR غير موجود في الصورة المحددة"
+    },
+    "qrcode_with_admin_password": {
+      "en": "Contains sensitive information: admin password",
+      "fr": "Contient de l\\'information sensible: mot de passe administrateur",
+      "es": "Contiene información sensible: contraseña de administrador",
+      "ar": "يحتوي على معلومات حساسة:  كلمة مرور  المدير"
+    },
+    "qrcode_with_both_passwords": {
+      "en": "Contains sensitive information: admin and server passwords",
+      "fr": "Contient des informations sensibles: mots de passe administrateur et serveur",
+      "es": "Contiene información sensible: contraseña de administrador y servidor",
+      "ar": "يحوي معلومات حساسة:  المدير  و  كلمات مرور المخدم"
+    },
+    "qrcode_with_server_password": {
+      "en": "Contains sensitive information: server password",
+      "fr": "Contient de l\\'information sensible: mot de passe serveur",
+      "es": "Contiene información sensible: contraseña de servidor",
+      "ar": "يحوي معلومات حساسة:  سيرفر  كلمة السر"
+    },
+    "qrcode_without_passwords": {
+      "en": "QR code does not contain admin or server passwords. Tap to configure",
+      "fr": "Ce code QR ne contient pas vos mots de passe administrateur ou serveur. Appuyez pour configurer",
+      "es": "Código QR no contiene contraseñas de administrador o servidor. Pulse para configurar",
+      "ar": "رمز الـ QR لا يحوي  المدير  أو  المخدم  كلمات مرور، انقر للقيام بالإعداد"
+    },
+    "quit_application": {
+      "en": "Exit %s",
+      "fr": "Quitter %s",
+      "es": "Salir %s",
+      "ar": "خروج %s"
+    },
+    "quit_form_continue_title": {
+      "en": "Continue editing?",
+      "fr": "Continuer l\\'édition ?",
+      "es": "Seguir editando?",
+      "ar": "الإستمرار في التعديل؟"
+    },
+    "quit_form_title": {
+      "en": "Save form?",
+      "fr": "Enregistrer le formulaire ?",
+      "es": "Guardar formulario?",
+      "ar": "حفظ النموذج؟"
+    },
+    "rank_items": {
+      "en": "Rank items",
+      "fr": "Choisir l\\'ordre des éléments",
+      "es": "Ranking de Items",
+      "ar": "رتب العناصر"
+    },
+    "reason": {
+      "en": "Reason",
+      "fr": "Raison",
+      "es": "Motivo",
+      "ar": "السبب"
+    },
+    "reason_for_changes": {
+      "en": "Reason for changes",
+      "fr": "Raison du changement",
+      "es": "Motivo de los cambios",
+      "ar": "سبب التغيير"
+    },
+    "reason_for_changes_description": {
+      "en": "You need to explain the reason for changes to this form",
+      "fr": "Vous devez expliquer les raisons du changement de ce formulaire",
+      "es": "Favor explicar el motivo de los cambios para este formulario",
+      "ar": "أنت بحاجة إلى توضيح سبب التغييرات في هذه الاستمارة"
+    },
+    "recapture_osm": {
+      "en": "Redo OSM Tagging",
+      "fr": "Refaire le balisage d\\'OSM",
+      "es": "Rehacer OSM Tagging",
+      "ar": "أعادة تعليم ال OSM"
+    },
+    "reconfigure_with_qr_code_settings_subtext": {
+      "en": "Replace all existing settings",
+      "fr": "Remplacer tous les paramètres existants",
+      "es": "Reemplazar todos los ajustes existentes"
+    },
+    "reconfigure_with_qr_code_settings_title": {
+      "en": "Reconfigure with QR code",
+      "fr": "Reconfigurer avec un QR code",
+      "es": "Reconfigurar con código QR"
+    },
+    "record_audio_off": {
+      "en": "Record audio: off",
+      "fr": "Enregistrement audio : désactivé",
+      "es": "Grabar audio: off",
+      "ar": "مسجل الصوت: مقفل"
+    },
+    "record_audio_on": {
+      "en": "Record audio: on",
+      "fr": "Enregistrement audio : activé",
+      "es": "Grabar audio: on",
+      "ar": "مسجل الصوت: يعمل"
+    },
+    "record_audio_runtime_permission_denied_desc": {
+      "en": "Without this permission Collect can\\'t access the microphone. Please try again when you are ready to grant it.",
+      "fr": "Sans cette permission, Collect ne peut pas accéder au microphone. Veuillez réessayer lorsque vous êtes prêt à l\\'accorder.",
+      "es": "Sin este permiso la aplicación no puede acceder al micrófono. Intente de nuevo cuando esté el permiso.",
+      "ar": "بدون هذا الإذن لا يمكن لبرنامج KoboCollect الوصول إلى الميكروفون. يرجى المحاولة مرة أخرى عندما تكون مستعدًا لمنحه."
+    },
+    "record_audio_runtime_permission_denied_title": {
+      "en": "Record audio permission",
+      "fr": "Autorisation d\\'enregistrement audio",
+      "es": "Permiso de Grabación de Audio",
+      "ar": "إذن تسجيل الصوت"
+    },
+    "record_geopoint": {
+      "en": "Record a point",
+      "fr": "Enregistrer un point",
+      "es": "Registrando un punto",
+      "ar": "سجل نقطة"
+    },
+    "recording": {
+      "en": "Recording…",
+      "fr": "Enregistrement en cours…",
+      "es": "Grabando…",
+      "ar": "تسجيل…"
+    },
+    "recording_channel": {
+      "en": "Audio recording",
+      "fr": "Enregistrement audio",
+      "es": "Grabación de audio",
+      "ar": "تسجيل الصوت"
+    },
+    "recording_disabled": {
+      "en": "Recording disabled. Enable in %s",
+      "fr": "Enregistrement désactivé. Activez depuis %s",
+      "es": "Grabación deshabilitada. Habilitar en %s",
+      "ar": "التسجيل معطل. تمكين في %s"
+    },
+    "recording_interval": {
+      "en": "Recording interval:",
+      "fr": "Intervalle d\\'enregistrement:",
+      "es": "Intervalo de registro:",
+      "ar": "فترة التسجيل:"
+    },
+    "recording_warning": {
+      "en": "You must stop recording before leaving this screen.",
+      "fr": "Veuillez arrêter l\\'enregistrement avant de quitter cet écran.",
+      "es": "Debe detener la grabación antes de salir de esta pantalla.",
+      "ar": "عليك ايقاف التسجيل قبل مغادرة الشاشة"
+    },
+    "recover": {
+      "en": "Recover",
+      "fr": "Récupérer ?",
+      "es": "Recuperar"
+    },
+    "refresh": {
+      "en": "Refresh",
+      "fr": "Rafraîchir",
+      "es": "Actualizar",
+      "ar": "تحديث"
+    },
+    "remove_last_point": {
+      "en": "Remove last point",
+      "fr": "Supprimer le dernier point",
+      "es": "Remover el último punto"
+    },
+    "repeatable_group_label": {
+      "en": "Repeatable Group",
+      "fr": "Groupe répétitif",
+      "es": "Grupo Repetible",
+      "ar": "مجموعة متكررة"
+    },
+    "replace_barcode": {
+      "en": "Replace Barcode",
+      "fr": "Remplacer le code-barre",
+      "es": "Reemplazar el Codigo de Barras",
+      "ar": "استبدال الباركود"
+    },
+    "replace_bearing": {
+      "en": "Replace Bearing",
+      "fr": "Remplacer la Position",
+      "es": "Cambiar Orientación",
+      "ar": "استبدال الاتجاه"
+    },
+    "report_to_project_lead": {
+      "en": "If you keep having this problem, report it to the person who asked you to collect data.",
+      "fr": "Si vous continuez à avoir ce problème, avertissez la personne qui vous a demandé de collecter les données.",
+      "es": "Si sigue teniendo este problema, infórmelo a la persona que le pidió que recopile los datos.",
+      "ar": "إذا استمرت هذه المشكلة، فأبلغ عنها الشخص الذي طلب منك جمع البيانات."
+    },
+    "required_answer_error": {
+      "en": "Sorry, this response is required!",
+      "fr": "Réponse obligatoire!",
+      "es": "¡Respuesta obligatoria!",
+      "ar": "عذرًا، يجب الإجابة على هذا السؤال!"
+    },
+    "required_for_notifications": {
+      "en": "Required for showing updates when forms are downloaded, updated and sent.",
+      "fr": "Requis pour afficher les mises à jours quand les formulaires sont téléchargés, mis à jour ou envoyés.",
+      "es": "Requerido para mostrar actualizaciones cuando los formularios se descargan, actualizan y envían."
+    },
+    "reset_app_state_result": {
+      "en": "Reset results",
+      "fr": "Résultats de la réinitialisation",
+      "es": "Reestablecer resultados",
+      "ar": "نتائج عملية إعادة الضبط"
+    },
+    "reset_app_state_warning": {
+      "en": "All selected data will be deleted permanently. There is no undo.",
+      "fr": "Toutes les données sélectionnées seront supprimées. Cette action ne peut pas être annulée.",
+      "es": "Los datos seleccionados serán borrados permanentemente. No se puede deshacer.",
+      "ar": "سيتم حذف البيانات المحددة نهائيا. لا إمكانية للتراجع."
+    },
+    "reset_blank_forms": {
+      "en": "Blank forms (forms folder, forms database, itemsets database)",
+      "fr": "Formulaires vierges (dossier de formulaires, base de données de formulaires, base de données de jeux de données)",
+      "es": "Formularios Vacíos (carpeta forms, base de datos forms, base de datos itemsets)",
+      "ar": "النماذج الفارغة (مجلد النماذج، وقاعدة بيانات النماذج، وقاعدة بيانات مجموعات العناصر)"
+    },
+    "reset_blank_forms_result": {
+      "en": "Blank forms :: %s",
+      "fr": "Formulaires vierges :: %s",
+      "es": "Formularios en blanco :: %s",
+      "ar": "الاستمارات الفارغة  :: %s"
+    },
+    "reset_cache": {
+      "en": "Form load cache (.cache folder)",
+      "fr": "Cache pour chargement de formulaire (dossier .cache)",
+      "es": "Cache de formularios cargados (carpeta .cache)",
+      "ar": "الذاكرة المخبئية المؤقتة للنماذج (مجلد cache.)"
+    },
+    "reset_cache_result": {
+      "en": "Form load cache :: %s",
+      "fr": "Cache pour chargement de formulaire :: %s",
+      "es": "Cache de carga de formularios :: %s",
+      "ar": "التخزين المؤقت للنماذج المحملة  :: %s"
+    },
+    "reset_image": {
+      "en": "Reset",
+      "fr": "Remise à zéro",
+      "es": "Restablecer",
+      "ar": "اعادة تعيين"
+    },
+    "reset_in_progress": {
+      "en": "Resetting…",
+      "fr": "Réinitialisation en cours…",
+      "es": "Restableciendo",
+      "ar": "جاري إعادة الضبط"
+    },
+    "reset_layers": {
+      "en": "Map layers (layers folder)",
+      "fr": "Couches cartographiques (dossier des couches)",
+      "es": "Capas cartográficas (carpeta de las capas)",
+      "ar": "طبقات الخريطة (مجلد الطبقات)"
+    },
+    "reset_layers_result": {
+      "en": "Map layers :: %s",
+      "fr": "Couches cartographiques :: %s",
+      "es": "Capas de mapa :: %s",
+      "ar": "طبقات الخرائط  :: %s"
+    },
+    "reset_project_settings_subtext": {
+      "en": "Choose from settings, forms, data",
+      "fr": "Choisir depuis les paramètres, formulaires et données",
+      "es": "Elija entre configuraciones, formularios, datos"
+    },
+    "reset_project_settings_title": {
+      "en": "Reset",
+      "fr": "Réinitialiser",
+      "es": "Restablecer",
+      "ar": "إعادة ضبط"
+    },
+    "reset_saved_forms": {
+      "en": "Saved forms (instances folder, instances database)",
+      "fr": "Formulaires enregistrés (dossier instances, base de données instances)",
+      "es": "Formularios guardados (carpeta de instancias, base de datos de instancias)",
+      "ar": "الاستمارات المحفوظة (مجلد الاستمارات، وقاعدة بيانات الاستمارات)"
+    },
+    "reset_saved_forms_result": {
+      "en": "Saved forms :: %s",
+      "fr": "Formulaires enregistrés :: %s",
+      "es": "Formularios guardados :: %s",
+      "ar": "الاستمارات المحفوظة  :: %s"
+    },
+    "reset_settings": {
+      "en": "All settings (internal settings, saved settings)",
+      "fr": "Tous les paramètres (configuration interne, paramètres enregistrés)",
+      "es": "Todos los ajustes  (Ajustes internos, ajustes guardados)",
+      "ar": "كافة الإعدادات (الإعدادات الداخلية، والإعدادات المحفوظة)"
+    },
+    "reset_settings_button_reset": {
+      "en": "Reset",
+      "fr": "Réinitialiser",
+      "es": "Restablecer",
+      "ar": "إعادة ضبط"
+    },
+    "reset_settings_dialog_title": {
+      "en": "Select what to reset",
+      "fr": "Sélectionnez ce que vous souhaitez réinitialiser",
+      "es": "Seleccione que restablecer",
+      "ar": "اختر ما تريد إعادته للضبط الافتراضي"
+    },
+    "reset_settings_result": {
+      "en": "All settings :: %s",
+      "fr": "Tous les paramètres :: %s",
+      "es": "Todos los ajustes :: %s",
+      "ar": "كل الإعدادات :: %s"
+    },
+    "resume_recording": {
+      "en": "Resume",
+      "fr": "Reprendre",
+      "es": "Reanudar",
+      "ar": "استئناف"
+    },
+    "review_data": {
+      "en": "Drafts",
+      "fr": "Ébauches",
+      "es": "Borradores",
+      "ar": "مسودّات"
+    },
+    "rotate_device": {
+      "en": "Rotate device"
+    },
+    "satellite": {
+      "en": "Satellite",
+      "fr": "Satellite",
+      "es": "Satélite",
+      "ar": "أقمار صناعية"
+    },
+    "satellites": {
+      "en": "Satellites: %1$s",
+      "fr": "Satellites: %1$s",
+      "es": "Satélites: %1$s"
+    },
+    "save": {
+      "en": "Save",
+      "fr": "Enregistrer",
+      "es": "Guardar",
+      "ar": "حفظ"
+    },
+    "save_all_answers": {
+      "en": "Save as draft",
+      "fr": "Enregistrer comme ébauche",
+      "es": "Guardar como borrador",
+      "ar": "حفظ كمسودة"
+    },
+    "save_and_close": {
+      "en": "Save and Close",
+      "fr": "Enregistrer et fermer",
+      "es": "Guardar y Cerrar",
+      "ar": "الحفظ و الاغلاق"
+    },
+    "save_as_draft": {
+      "en": "Save as draft",
+      "fr": "Enregistrer comme ébauche",
+      "es": "Guardar como borrador",
+      "ar": "حفظ كمسودة"
+    },
+    "save_enter_data_description": {
+      "en": "You are at the end of %s.",
+      "fr": "Vous êtes à la fin de \\\"%s\\\".",
+      "es": "Esta al final de \\\"%s\\\".",
+      "ar": "إنّك في نهاية الـ%s."
+    },
+    "save_explanation": {
+      "en": "You can save this form and access it from your drafts at any time.",
+      "fr": "Vous pouvez enregistrer ce formulaire et y accéder depuis vos ébauches à tout moment.",
+      "es": "Puede guardar este formulario y acceder a él desde sus borradores en cualquier momento.",
+      "ar": "يمكنك حفظ هذا النموذج والوصول إليه من المسودات في أي وقت."
+    },
+    "save_explanation_with_last_saved": {
+      "en": "\\'This form was last saved on\\' EEE, MMM dd, yyyy \\'at\\' HH:mm\\'. Save as draft to keep changes.\\'",
+      "fr": "\\'Ce formulaire a été enregistré pour la dernière fois le\\' EEE MMM dd yyyy \\'à\\' HH\\'h\\'mm\\'. Enregistrer comme ébauche pour conserver les modifications.\\'",
+      "es": "\\'Este formulario se guardó por última vez el\\' EEE, MMM dd, yyyy \\'a las\\' HH:mm\\'. Guardar como borrador para conservar los cambios.\\'"
+    },
+    "save_mid": {
+      "en": "Save as draft",
+      "fr": "Enregistrer comme ébauche",
+      "es": "Guardar como borrador",
+      "ar": "حفظ كمسودة"
+    },
+    "save_mid_summary": {
+      "en": "Save icon in top bar and \\\"Save as draft\\\" button when exiting form",
+      "fr": "Icône d\\'enregistrement dans la barre supérieure et bouton \\\"Enregistrer comme ébauche\\\" en quittant le formulaire",
+      "es": "Icono Guardar en la barra superior y botón \\\"Guardar como borrador\\\" al salir del formulario"
+    },
+    "save_point_error": {
+      "en": "Error saving recovery point: %s",
+      "fr": "Erreur lors de l\\'enregistrement du point de récupération: %s",
+      "es": "Error al guardar punto de recuperación: %s",
+      "ar": "خطأ في حفظ نقطة الاسترداد %s"
+    },
+    "saved_forms": {
+      "en": "Saved forms",
+      "fr": "Formulaires enregistrés",
+      "es": "Formularios guardados",
+      "ar": "نماذج محفوظة"
+    },
+    "saved_on_date_at_time": {
+      "en": "\\'Saved on\\' EEE, MMM dd, yyyy \\'at\\' HH:mm",
+      "fr": "\\'Enregistré le\\' EEE MMM dd yyyy \\'à\\' HH\\'h\\'mm",
+      "es": "\\'Guardado:\\' EEE, dd MMM, yyyy \\'a las\\' HH:mm",
+      "ar": "\\'تم الحفظ ب\\' yyyy, dd MMM, EEE  \\'في الساعة\\' mm:HH"
+    },
+    "savepoint_recovery_dialog_message": {
+      "en": "\\'Collect closed unexpectedly on \\'EEE, MMM dd, yyyy \\'at\\' HH:mm\\' and saved your work.\\n\\nWould you like to recover or discard it?\\'",
+      "fr": "\\'Collect s\\'\\'est arrété de manière inattendue le \\'EEE dd MMM yyyy\\' à \\'HH\\'h\\'mm\\' et a sauvegardé votre travail.\\n\\nVoulez vous le récupérer ou l\\'\\'ignorer ?\\'",
+      "es": "\\'Recolección cerrada inesperadamente el \\'EEE, MMM dd, yyyy \\'a las\\' HH:mm\\' y  se guardó su trabajo. \\n\\n¿Quiere recuperarlo o descartarlo?\\'"
+    },
+    "savepoint_recovery_dialog_title": {
+      "en": "Recover your work?",
+      "fr": "Récupérer votre travail ?",
+      "es": "¿Recuperar tu trabajo?"
+    },
+    "savepoint_used": {
+      "en": "Unsaved changes recovered from savepoint!",
+      "fr": "Les modifications non enregistrées ont été récupérées à partir du point de sauvegarde !",
+      "es": "¡Cambios no guardados recuperados del punto de recuperación!",
+      "ar": "التغييرات غير محفوظة يرجى استعادتها من نقطة الحفظ!"
+    },
+    "saving_file": {
+      "en": "Saving file",
+      "fr": "Sauvegarde du fichier en cours",
+      "es": "Guardando archivo",
+      "ar": "حفظ الملف"
+    },
+    "saving_form": {
+      "en": "Saving Form",
+      "fr": "Sauvegarde du formulaire…",
+      "es": "Guardando el formulario",
+      "ar": "جاري حفظ الاستمارة"
+    },
+    "scan_configuration_qr_code": {
+      "en": "Scan configuration QR code",
+      "fr": "Scanner un QR Code de configuration",
+      "es": "Escanear el código QR de configuración"
+    },
+    "scan_qr_code_fragment_title": {
+      "en": "Scan",
+      "fr": "Lire code",
+      "es": "Escanear",
+      "ar": "مسح"
+    },
+    "search": {
+      "en": "Search",
+      "fr": "Rechercher",
+      "es": "Buscar",
+      "ar": "بحث"
+    },
+    "security_error": {
+      "en": "Collect can\\'t connect securely to the server at %s. Did you enter the URL correctly?",
+      "fr": "Collect n\\'arrive pas à établir une connexion sécurisée avec le serveur à %s. Avez-vous entré l\\'URL correctement ?",
+      "es": "La aplicación no se puede conectar de forma segura al servidor en %s. ¿Ingresaste la URL correctamente?",
+      "ar": "التطبيق لا يمكن أن يصل إلى الخادم في %s بشكل آمن. هل أدخلت عنوان URL بشكل صحيح؟"
+    },
+    "select_all": {
+      "en": "Select All",
+      "fr": "Tout sélectionner",
+      "es": "Seleccionar todo",
+      "ar": "تحديد الكل"
+    },
+    "select_answer": {
+      "en": "Select Answer",
+      "fr": "Sélectionnez la Réponse",
+      "es": "Seleccione una respuesta",
+      "ar": "إختر إجابة"
+    },
+    "select_date": {
+      "en": "Select date",
+      "fr": "Choisir la date",
+      "es": "Seleccione la fecha",
+      "ar": "اختر التاريخ"
+    },
+    "select_item": {
+      "en": "Select",
+      "fr": "Sélectionner",
+      "es": "Seleccionar"
+    },
+    "select_item_count": {
+      "en": "%s: %d (%d shown on map)",
+      "fr": "%s: %d (%d affichés sur la carte)",
+      "es": "%s: %d (%d mostrar en el mapa)"
+    },
+    "select_layer_access_subtitle": {
+      "en": "Do you want the layers available in all projects or your current project only?",
+      "fr": "Voulez vous que les couches soient disponibles dans tous les projets ou seulement dans le projet courant ?",
+      "es": "¿Quiere que las capas estén disponibles en todos los proyectos o solo en su proyecto actual?"
+    },
+    "select_layer_access_title": {
+      "en": "Select layers access",
+      "fr": "Choisir l\\'accès aux couches",
+      "es": "Seleccionar acceso a capas"
+    },
+    "select_odk_shortcut": {
+      "en": "Select KoboToolbox Shortcut",
+      "fr": "Sélectionnez le raccourci KoboToolbox",
+      "es": "Seleccionar acceso directo",
+      "ar": "اختيار اختصار KoboToolbox"
+    },
+    "select_place": {
+      "en": "Select place",
+      "fr": "Sélectionner un emplacement",
+      "es": "Seleccionar lugar",
+      "ar": "أختر مكان"
+    },
+    "select_time": {
+      "en": "Select time",
+      "fr": "Choisir l\\'heure",
+      "es": "Seleccione la hora",
+      "ar": "اختر الوقت"
+    },
+    "select_value": {
+      "en": "Select value",
+      "fr": "Choisir valeur",
+      "es": "Seleccionar valor",
+      "ar": "اختر القيمة"
+    },
+    "selected_invalid_image": {
+      "en": "Selected file is not a valid image",
+      "fr": "Le fichier choisi n\\'est pas une image valide",
+      "es": "El archivo seleccionado no es una imagen válida",
+      "ar": "الملف المحدد ليس صورة بتنسيق مقبول"
+    },
+    "selected_title": {
+      "en": "Selected:",
+      "fr": "Sélectionné:",
+      "es": "Seleccionada:",
+      "ar": "مختارة:"
+    },
+    "send": {
+      "en": "Send",
+      "fr": "Envoyer",
+      "es": "Enviar",
+      "ar": "إرسال"
+    },
+    "send_data": {
+      "en": "Ready to send",
+      "fr": "Prêt à envoyer",
+      "es": "Listo para enviar",
+      "ar": "جاهز للإرسال"
+    },
+    "send_in_progress": {
+      "en": "Background send running, please try again shortly",
+      "fr": "L\\'envoi s\\'exécute en tâche de fond, essayer plus tard.",
+      "es": "Otro envío funcionando, reintentar en breve",
+      "ar": "خلفية الارسال تعمل. يرجى المحاولة مرة أخرى في وقت قريب"
+    },
+    "send_selected_data": {
+      "en": "Send Selected",
+      "fr": "Envoyer éléments sélectionnés",
+      "es": "Enviar seleccionado",
+      "ar": "إرسال الاستمارات المُختارة"
+    },
+    "sending_failed_on_date_at_time": {
+      "en": "\\'Sending failed on\\' EEE, MMM dd, yyyy \\'at\\' HH:mm",
+      "fr": "\\'L\\'\\'envoi a échoué le\\' EEE dd MMM yyyy \\'à\\' HH\\'h\\'mm",
+      "es": "\\'Envio fallado:\\' EEE, dd MMM, yyyy \\'a las\\' HH:mm",
+      "ar": "\\'فشل الارسال ب\\' yyyy, dd MMM, EEE  \\'في الساعة\\' mm:HH"
+    },
+    "sending_items": {
+      "en": "Sending %1$s of %2$s form(s)",
+      "fr": "Envoi de %1$s sur %2$s formulaire(s)",
+      "es": "Enviando %1$s de %2$s formulario(s)",
+      "ar": "إرسال %1$s من أصل %2$s استمارة"
+    },
+    "sent_count": {
+      "en": "Sent: %1$d",
+      "fr": "Envoyés: %1$d"
+    },
+    "sent_on_date_at_time": {
+      "en": "\\'Sent on\\' EEE, MMM dd, yyyy \\'at\\' HH:mm",
+      "fr": "\\'Envoyé le\\' EEE MMM dd yyyy \\'à\\' HH\\'h\\'mm",
+      "es": "\\'Enviado:\\' EEE, dd MMM, yyyy \\'a las\\' HH:mm",
+      "ar": "\\'ارسلت ب\\' yyyy, dd MMM, EEE  \\'في الساعة\\' mm:HH"
+    },
+    "server_auth_credentials": {
+      "en": "Invalid username or password for server: %s",
+      "fr": "Le nom d\\'utilisateur et/ou le mot de passe est incorrect pour le serveur: %s",
+      "es": "Usuario o contraseña inválidos para el servidor: %s",
+      "ar": "اسم المستخدم أو كلمة المرور للمخدم غير صحيحة: %s"
+    },
+    "server_error": {
+      "en": "The server %1$s returned status code %2$s.",
+      "fr": "Le serveur %1$s a retourné le code de réponse %2$s.",
+      "es": "El servidor %1$s devolvió código de estado %2$s.",
+      "ar": "الخادم %1$s ارجع خطأ بكود %2$s"
+    },
+    "server_password": {
+      "en": "Server Password",
+      "fr": "Mot de passe serveur",
+      "es": "Contraseña del servidor",
+      "ar": "كلمة مرور الخادم"
+    },
+    "server_preferences": {
+      "en": "Server Settings",
+      "fr": "Serveur",
+      "es": "Configuración del Servidor",
+      "ar": "إعدادات الخادم"
+    },
+    "server_requires_auth": {
+      "en": "Server Requires Authentication",
+      "fr": "Le serveur requiert une authentification",
+      "es": "El servidor requiere autenticacion",
+      "ar": "المخدم يتطلب المصادقة"
+    },
+    "server_settings_subtext": {
+      "en": "URL, username, password",
+      "fr": "URL, utilisateur, mot de passe",
+      "es": "URL, usuario, contraseña"
+    },
+    "server_settings_title": {
+      "en": "Server",
+      "fr": "Serveur",
+      "es": "Servidor - Usuario",
+      "ar": "الخادم"
+    },
+    "server_url": {
+      "en": "URL",
+      "fr": "URL",
+      "es": "URL",
+      "ar": "الرابط"
+    },
+    "set_admin_password": {
+      "en": "Set admin password",
+      "fr": "Configurer un mot de passe d\\'administration",
+      "es": "Establecer contraseña de administrador"
+    },
+    "set_color": {
+      "en": "Set Color",
+      "fr": "Sélectionner la couleur",
+      "es": "Seleccionar Color",
+      "ar": "تحديد اللون"
+    },
+    "setting_not_available_during_form_entry": {
+      "en": "Setting not available during form entry",
+      "fr": "Paramètre non disponible durant la saisie de formulaire",
+      "es": "Configuración no disponible durante la entrada del formulario"
+    },
+    "settings": {
+      "en": "Settings",
+      "fr": "Paramètres",
+      "es": "Ajustes"
+    },
+    "settings_json": {
+      "en": "Settings JSON",
+      "fr": "JSON de paramètres",
+      "es": "Configuración JSON"
+    },
+    "settings_unlocked": {
+      "en": "Settings unlocked",
+      "fr": "Paramètres déverrouillés",
+      "es": "Ajustes desbloqueados"
+    },
+    "settings_with_gd_protocol": {
+      "en": "Google Drive/Sheets projects can no longer be created",
+      "fr": "Les projets basés sur Google Drive/Sheets ne peuvent plus être créés.",
+      "es": "Ya no se pueden crear proyectos de Google Drive/Sheets"
+    },
+    "share": {
+      "en": "Share",
+      "fr": "Partager",
+      "es": "Compartir",
+      "ar": "مشاركة"
+    },
+    "show_details": {
+      "en": "Show details",
+      "fr": "Montrer détails",
+      "es": "Mostrar detalles"
+    },
+    "show_my_location": {
+      "en": "Show my location",
+      "fr": "Montrer ma position",
+      "es": "Mostrar mi ubicación"
+    },
+    "show_password": {
+      "en": "Show password",
+      "fr": "Afficher le mot de passe",
+      "es": "Mostrar contraseña",
+      "ar": "عرض كلمة المرور"
+    },
+    "show_sent_and_unsent_forms": {
+      "en": "Show Sent and Unsent Forms",
+      "fr": "Formulaires envoyés et non envoyés",
+      "es": "Formularios enviados y no enviados",
+      "ar": "عرض الاستمارات المرسلة وغير المرسلة"
+    },
+    "show_unsent_forms": {
+      "en": "Show Unsent Forms",
+      "fr": "Que des formulaires non envoyés",
+      "es": "Solo formularios no enviados",
+      "ar": "عرض الاستمارات الغير مرسلة"
+    },
+    "sign_button": {
+      "en": "Gather Signature",
+      "fr": "Obtenir une signature",
+      "es": "Adjuntar firma",
+      "ar": "جمع التوقيع"
+    },
+    "signature_capture": {
+      "en": "Signature Capture",
+      "fr": "Capture d\\'une signature",
+      "es": "Firma",
+      "ar": "صورة التوقيع"
+    },
+    "some_downloads_failed": {
+      "en": "%1$s of %2$s downloads failed!",
+      "fr": "%1$s de %2$s téléchargements ont échoués.",
+      "es": "%1$s de %2$s descargas fallidas!"
+    },
+    "some_non_mbtiles_files_selected_message": {
+      "en": "Some of the files you selected are not MBTiles. You can only add MBTiles files.",
+      "fr": "Certains des fichiers que vous avez sélectionnés ne sont pas des fichiers MBTiles. Vous pouvez seulement ajouter des fichiers MBTiles.",
+      "es": "Los archivos seleccionados no son MBTiles. Sólo puede agregar archivos MBTiles."
+    },
+    "some_uploads_failed": {
+      "en": "%1$s of %2$s uploads failed!",
+      "fr": "%1$s des %2$s téléversements ont échoué !",
+      "es": "%1$s de %2$s cargas fallaron"
+    },
+    "sort_by": {
+      "en": "Sort by",
+      "fr": "Trier par",
+      "es": "Ordenar por",
+      "ar": "ترتيب حسب"
+    },
+    "sort_by_date_asc": {
+      "en": "Date, oldest first",
+      "fr": "Date, la plus ancienne en premier",
+      "es": "Fecha, más antiguo de primero",
+      "ar": "ترتيب حسب التاريخ تنازلياً"
+    },
+    "sort_by_date_desc": {
+      "en": "Date, newest first",
+      "fr": "Date, la plus récente en premier",
+      "es": "Fecha, más reciente de primero",
+      "ar": "ترتيب حسب التاريخ تصاعدياً"
+    },
+    "sort_by_last_saved": {
+      "en": "Last saved first",
+      "fr": "Dernière sauvegarde en premier",
+      "es": "Último guardado primero",
+      "ar": "عرض آخر المحفوظات أولا"
+    },
+    "sort_by_name_asc": {
+      "en": "Name, A-Z",
+      "fr": "Nom, A-Z",
+      "es": "Ascendente por Nombre, A-Z",
+      "ar": "ترتيب حسب الاسم تصاعدياً"
+    },
+    "sort_by_name_desc": {
+      "en": "Name, Z-A",
+      "fr": "Nom, Z-A",
+      "es": "Descendente por Nombre, Z-A",
+      "ar": "ترتيب حسب الاسم تنازلياً"
+    },
+    "sort_the_list": {
+      "en": "Sort the list",
+      "fr": "Trier la liste",
+      "es": "Ordenar la lista",
+      "ar": "ترتيب القائمة"
+    },
+    "south": {
+      "en": "S %1$s%2$s%3$s",
+      "fr": "S %1$s%2$s%3$s",
+      "es": "S %1$s%2$s%3$s",
+      "ar": "جنوب %1$s%2$s%3$s"
+    },
+    "start": {
+      "en": "Start",
+      "fr": "Démarrer",
+      "es": "Iniciar",
+      "ar": "إبدأ"
+    },
+    "start_recording_failed": {
+      "en": "Could not start recording.",
+      "fr": "Impossible de commencer l\\'enregistrement.",
+      "es": "No se pudo iniciar la grabación.",
+      "ar": "تعذر بدء التسجيل"
+    },
+    "stop_recording": {
+      "en": "Stop",
+      "fr": "Arrêt",
+      "es": "Parar",
+      "ar": "توقف"
+    },
+    "stop_recording_confirmation": {
+      "en": "This form requests background audio recording. Disabling it will stop recording and discard existing audio. Are you sure you want to proceed?",
+      "fr": "Ce formulaire demande un enregistrement audio en tâche de fond. Si vous désactivez l\\'enregistrement, l\\'enregistrement en cours sera arrêté et l\\'audio déjà enregistré sera supprimé. Êtes-vous sûr de vouloir procéder?",
+      "es": "Este formulario solicita una grabación de audio de fondo. Si lo desactiva, se detendrá la grabación y se descartará el audio existente. ¿Estas seguro que deseas continuar?",
+      "ar": "يطلب هذا النموذج تسجيل صوت في الخلفية. سيؤدي تعطيله إلى إيقاف التسجيل وتجاهل الصوت الموجود. هل انت متأكد انك تريد المتابعة؟"
+    },
+    "storage_runtime_permission_denied_desc": {
+      "en": "Without these permissions Collect can\\'t access your forms or save answers. Reopen the app when you are ready to grant them.",
+      "fr": "Sans ces permissions Collect ne peut pas accéder à vos formulaires ou enregistrer des réponses. Ré-ouvrez l\\'application quand vous êtes prêt à donner les permissions requises.",
+      "es": "Sin estos permisos no se puede accesar los formularios o guardar las respuetas. Abra la aplicación de nuevo cuando esté listo para dar acceso",
+      "ar": "بدون هذه الأذونات لا يمكن لبرنامج KoboCollect الوصول إلى الاستمارات أو حفظ الإجابات. أعد فتح التطبيق عندما تكون مستعدًا لمنحهم."
+    },
+    "storage_runtime_permission_denied_title": {
+      "en": "Storage permissions",
+      "fr": "Autorisations de stockage",
+      "es": "Permisos de Almacenamiento",
+      "ar": "أذونات التخزين"
+    },
+    "streets": {
+      "en": "Streets",
+      "fr": "Streets",
+      "es": "Calles",
+      "ar": "الطرق"
+    },
+    "submission_deleted": {
+      "en": "Submission deleted",
+      "fr": "Soumission supprimée",
+      "es": "Envío borrado",
+      "ar": "تم حذف التقديم"
+    },
+    "success": {
+      "en": "Success",
+      "fr": "Succès",
+      "es": "Correcto",
+      "ar": "نجاح"
+    },
+    "success_form_validation": {
+      "en": "Success! No errors found in your form.",
+      "fr": "Succès! Aucune erreur trouvée.",
+      "es": "¡Éxito! No se encontraron errores en su formulario.",
+      "ar": "تمت العملية بنجاح! لا توجد أخطاء في النموذج."
+    },
+    "successfully_imported_settings": {
+      "en": "Settings imported successfully",
+      "fr": "Paramètres importés avec succès",
+      "es": "Ajustes importados exitosamente",
+      "ar": "تم استيراد الإعدادات بنجاح"
+    },
+    "survey_internal_error": {
+      "en": "Internal error: step to prompt failed.",
+      "fr": "Erreur interne : un ou plusieurs champs de saisie peuvent avoir été ignorés.",
+      "es": "Error interno: Ha fallado la entrada de datos.",
+      "ar": "خطأ داخلي: فشل الخطأ الموجه."
+    },
+    "survey_loading_reading_csv_message": {
+      "en": "Reading CSV files…",
+      "fr": "Lecture des fichiers CSV…",
+      "es": "Leyendo archivos CSV…",
+      "ar": "قراءة ملفات CSV.."
+    },
+    "survey_loading_reading_data_message": {
+      "en": "Reading survey data…",
+      "fr": "Lecture des données du sondage…",
+      "es": "Leyendo datos sondeo…",
+      "ar": "قراءة بيانات الدراسة…"
+    },
+    "survey_loading_reading_form_message": {
+      "en": "Reading form definition…",
+      "fr": "Lecture du formulaire…",
+      "es": "Leyendo definición de formulario…",
+      "ar": "القراءة من التعريف…"
+    },
+    "survey_multiple_forms_error": {
+      "en": "You have downloaded two different forms with the same form ID and version. Maybe they were the same form uploaded at different times or to different servers. In any case, you should delete one.",
+      "fr": "Vous avez téléchargé deux formulaires différents avec le même numéro d\\'identification et la même version. Peut-être que le même formulaire a été téléchargés deux fois ou à deux serveurs différents. Dans tous les cas, vous devez en supprimer un.",
+      "es": "Ha descargado dos formularios distintos con el mismo ID y versión. Puede que los cargara en diferentes momentos o de distintas procedencias. Debe de borrar uno.",
+      "ar": "قمت بتحميل استمارتين مختلفتين بنفس رقم النموذج والاصدار. ربما قد يكون نفس النموذج تم تحميله في اوقات مختلفة او في خودام مختلفة. بأي حال يجب عليك حذف واحدة."
+    },
+    "survey_saving_collecting_message": {
+      "en": "Collecting data…",
+      "fr": "Récupération des données…",
+      "es": "Colectando datos…",
+      "ar": "جمع البيانات"
+    },
+    "survey_saving_encrypting_message": {
+      "en": "Encrypting data…",
+      "fr": "Chiffrement des données…",
+      "es": "Encriptando datos…",
+      "ar": "تشفير البيانات"
+    },
+    "survey_saving_finalizing_message": {
+      "en": "Finalizing to SD card…",
+      "fr": "Finalisation de la carte SD…",
+      "es": "FInalizando en tarjeta SD",
+      "ar": "جاري  انهاء الاستمارات  في بطاقة"
+    },
+    "survey_saving_saving_message": {
+      "en": "Saving to SD card…",
+      "fr": "Enregistrement sur ​​la carte SD…",
+      "es": "Guardando en tarjeta SD",
+      "ar": "جاري الحفظ في بطاقة SD"
+    },
+    "survey_saving_validating_message": {
+      "en": "Validating answers…",
+      "fr": "Validation des réponses…",
+      "es": "Validando respuestas…",
+      "ar": "تدقيق الاجابات…"
+    },
+    "svg_file_does_not_exist": {
+      "en": "SVG file does not exist!",
+      "fr": "Le fichier SVG n\\'existe pas !",
+      "es": "Archivo SVG no existe",
+      "ar": "ملف SVG غير موجود!"
+    },
+    "swipe_buttons_navigation": {
+      "en": "Use swipes and buttons",
+      "fr": "Utiliser le glissement du doigt et les boutons",
+      "es": "Use deslizar y botones",
+      "ar": "استخدم السحب والازرار"
+    },
+    "swipe_navigation": {
+      "en": "Use horizontal swipes",
+      "fr": "Utiliser le glissement du doigt à l\\'horizontal",
+      "es": "Use deslizamiento horizontal",
+      "ar": "استخدم السحب الافقي"
+    },
+    "switch_to_existing": {
+      "en": "Switch to existing project",
+      "fr": "Basculer sur le projet existant",
+      "es": "Cambiar a proyecto existente"
+    },
+    "switch_to_project": {
+      "en": "Switch to %s",
+      "fr": "Changer à %s",
+      "es": "Cambiar a %s"
+    },
+    "switched_project": {
+      "en": "Switched to %s",
+      "fr": "Changé à %s",
+      "es": "Cambiado a %s"
+    },
+    "tagline": {
+      "en": "Collect data\\nanywhere",
+      "fr": "Collecte de données\\nsans frontières",
+      "es": "Capture datos\\nen cualquier lugar"
+    },
+    "take_picture_instruction": {
+      "en": "Tap the screen to take a picture",
+      "fr": "Toucher l\\'écran pour prendre une photo",
+      "es": "Toca la pantalla para tomar una foto",
+      "ar": "انقر على الشاشة لإلتقاط صورة"
+    },
+    "tell_your_friends": {
+      "en": "Share KoboCollect",
+      "fr": "Partager KoboCollect",
+      "es": "Compartir KoboCollect",
+      "ar": "مشاركة رابط KoboCollect"
+    },
+    "tell_your_friends_msg": {
+      "en": "Are your colleagues still collecting data on paper? Share KoboCollect with them.",
+      "fr": "Vos collègues continuent-ils à collecter des données sur papier ? Partagez KoboCollect avec eux.",
+      "es": "¿Sus colegas aún recogen datos en papel? Comparte con ellos la aplicación",
+      "ar": "هل ما زال زملائك يجمعون البيانات على الورق؟ شارك KoboCollect معهم."
+    },
+    "terrain": {
+      "en": "Terrain",
+      "fr": "Terrain",
+      "es": "Terreno",
+      "ar": "التضاريس"
+    },
+    "theme_dark": {
+      "en": "Dark theme",
+      "fr": "Thème sombre",
+      "es": "Tema Oscuro",
+      "ar": "مظهر داكن"
+    },
+    "theme_light": {
+      "en": "Light theme",
+      "fr": "Thème clair",
+      "es": "Tema Claro",
+      "ar": "مظهر فاتح"
+    },
+    "theme_system": {
+      "en": "Use device theme",
+      "fr": "Utiliser le thème de l\\'appareil",
+      "es": "Usar tema del dispositivo"
+    },
+    "time_elapsed": {
+      "en": "Time elapsed: %1$s",
+      "fr": "Temps écoulé : %1$s",
+      "es": "Tiempo transcurrido: %1$s"
+    },
+    "too_complex_form": {
+      "en": "This form is too complex for this device. Try simplifying expressions or ask for help on the forum.",
+      "fr": "Ce formulaire est trop complexe pour cet appareil. Essayez de simplifier les expressions ou demandez de l\\'aide sur le forum.",
+      "es": "Este formulario es muy complejo para este dispositivo. Intente simplificar las expresiones o busque ayuda en el Foro.",
+      "ar": "هذه الاستمارة معقدة جدًا لهذا الجهاز. حاول تبسيط التعبيرات أو طلب المساعدة في المنتدى."
+    },
+    "topographic": {
+      "en": "Topographic",
+      "fr": "Topographique",
+      "es": "Topográfico",
+      "ar": "طبوغرافي"
+    },
+    "track_location_off": {
+      "en": "Track location: off",
+      "fr": "Enregistrement de la localisation : désactivé",
+      "es": "Rastrear ubicación: off",
+      "ar": "تعقب المكان: مقفل"
+    },
+    "track_location_on": {
+      "en": "Track location: on",
+      "fr": "Enregistrement de la localisation : activé",
+      "es": "Rastrear ubicación: on",
+      "ar": "تعقب المكان: يعمل"
+    },
+    "trigger": {
+      "en": "OK. Please continue.",
+      "fr": "OK. Continuer.",
+      "es": "OK. Por favor continúe.",
+      "ar": "حسنًا. الرجاء المواصلة."
+    },
+    "try_demo": {
+      "en": "Try a demo",
+      "fr": "Essayer une démo",
+      "es": "Prueba una demostración"
+    },
+    "turn_off_flashlight": {
+      "en": "Turn off flashlight",
+      "fr": "Eteindre la lampe torche",
+      "es": "Apagar flash",
+      "ar": "إيقاف الإضاءة الخلفية"
+    },
+    "turn_on_flashlight": {
+      "en": "Turn on flashlight",
+      "fr": "Allumer la lampe torche",
+      "es": "Encender flash",
+      "ar": "تشغيل الإضاءة الخلفية"
+    },
+    "unacceptable_accuracy": {
+      "en": "Unacceptable accuracy. Please wait.",
+      "fr": "Précision inacceptable. Veuillez patienter.",
+      "es": "Precisión inaceptable. Espere por favor.",
+      "ar": "جودة غير مقبولة. الرجاء الإنتظار."
+    },
+    "uncheck_to_hide_from_drafts": {
+      "en": "Uncheck to hide from Drafts",
+      "fr": "Décochez pour masquer dans les ébauches.",
+      "es": "Desmarque para ocultarse de los borradores"
+    },
+    "unlock_protected_settings_section_subtext": {
+      "en": "Change password, set access controls",
+      "fr": "Changer de mot de passe, définir les contrôles d\\'accès",
+      "es": "Cambiar contrasela, ajustar controles de acceso"
+    },
+    "unlock_protected_settings_section_title": {
+      "en": "Unlock protected settings",
+      "fr": "Déverrouiller les paramètres du projet",
+      "es": "Desbloquear configuraciones protegidas"
+    },
+    "unlock_settings": {
+      "en": "Unlock settings",
+      "fr": "Déverrouiller les paramètres",
+      "es": "Desbloquear ajustes"
+    },
+    "unreachable_error": {
+      "en": "Collect can\\'t reach the server at %s. Did you enter the URL correctly?",
+      "fr": "Collect n\\'arrive pas à joindre le serveur à %s. Avez-vous entré l\\'URL correctement ?",
+      "es": "La aplicación no se ha podido conectar al servidor %s. ¿Ingresó la URL correctamente?",
+      "ar": "التطبيق لا يمكن أن يصل إلى الخادم في %s. هل أدخلت عنوان URL بشكل صحيح؟"
+    },
+    "unrecognized_entity_version": {
+      "en": "This form is not supported by this version of KoboCollect. Please upgrade Collect. If you keep having this problem, report it to the person who asked you to collect data.\\n\\nForm Entities spec version: %s",
+      "fr": "Ce formulaire n\\'est pas supporté par cette version d\\'KoboToolbox. Merci de mettre à jour Collect. Si vous continuez à avoir ce problème, faites-le savoir à la personne qui vous a demandé de collecter des données.\n\\n\\nVersion de la spécification des Entités de Formulaire : %s",
+      "es": "Este formulario no es compatible con esta versión de KoboCollect. Por favor, actualice Collect. Si sigues teniendo este problema, informa a la persona que te pidió que recopilaras los datos.\\n\\nForm Entities spec version: %s"
+    },
+    "unrecognized_uri": {
+      "en": "Unrecognized URI: %s",
+      "fr": "URI non reconnu: %s",
+      "es": "URI no reconocido: %s",
+      "ar": "عنوان غير معروف: %s"
+    },
+    "unsent_count": {
+      "en": "Unsent: %1$d",
+      "fr": "Prêts à envoyer: %1$d"
+    },
+    "update_widgets_error": {
+      "en": "Failure trying to update values. This is generally because of incorrect usage of calculations in the form design.\\n\\nIf you keep having this problem, report it to the person who asked you to collect data.",
+      "fr": "Échec de mise à jour des données. Ceci est généralement causé par un mauvais usage de \\\"calculates\\\" dans la définition du formulaire.\\n\\nSi vous continuez à avoir ce problème, avertissez la personne qui vous a demandé de collecter les données.",
+      "es": "Error al intentar actualizar los valores. Esto generalmente se debe a un uso incorrecto de los cálculos en el diseño del formulario.\\n\\nSi sigue teniendo este problema, infórmelo a la persona que le pidió que recopilara los datos."
+    },
+    "updated_on_date_at_time": {
+      "en": "\\'Updated on\\' EEE, MMM dd, yyyy \\'at\\' HH:mm",
+      "fr": "\\'Mis à jour le\\' EEE dd MMM yyyy \\'à\\' HH\\'h\\'mm",
+      "es": "\\'Actualizado\\' EEE dd \\'de\\' MMM \\'de\\' yyyy \\'a las\\' HH:mm",
+      "ar": "\\'حدث \\' EEE, MMM dd, yyyy \\'في\\' HH:mm"
+    },
+    "upload_results": {
+      "en": "Upload Results",
+      "fr": "Résultats du Téléchargement",
+      "es": "Resultados de la carga",
+      "ar": "تحميل النتائج"
+    },
+    "uploading_data": {
+      "en": "Sending Form",
+      "fr": "Envoi du formulaire…",
+      "es": "Enviando el formulario",
+      "ar": "جاري ارسال الاستمارة"
+    },
+    "url_error": {
+      "en": "Sorry, invalid URL!",
+      "fr": "URL non valable !",
+      "es": "¡URL invalida!",
+      "ar": "غدراً، الرابط خاطئ!"
+    },
+    "use_device_language": {
+      "en": "Use device language",
+      "fr": "Utiliser la langue de l\\'appareil",
+      "es": "Usar el idioma del dispositivo",
+      "ar": "استخدم لغة الجهاز"
+    },
+    "use_zxing_for_barcode_scanning": {
+      "en": "Revert to older barcode scanner",
+      "fr": "Retourner à l\\'ancien scanner de codes-barres"
+    },
+    "user_and_device_identity_settings_subtext": {
+      "en": "Username, phone number, device ID",
+      "fr": "Nom d\\'utilisateur, numéro de téléphone et ID de l\\'appareil",
+      "es": "Usuario, teléfono, ID dispositivo"
+    },
+    "user_and_device_identity_title": {
+      "en": "User and device identity",
+      "fr": "Identité de l\\'utilisateur et de l\\'appareil",
+      "es": "Metadatos del formulario",
+      "ar": "معرف المستخدم والجهاز"
+    },
+    "user_defined": {
+      "en": "User-defined",
+      "fr": "Défini par l\\'utilisateur",
+      "es": "Definido por el usuario",
+      "ar": "معرف المستخدم"
+    },
+    "user_interface_settings_subtext": {
+      "en": "App language, font size, navigation",
+      "fr": "Langage de l\\'application, taille de la police, naviguation",
+      "es": "Idioma de la aplicación, tamaño de fuente, navegación"
+    },
+    "user_setting_summary": {
+      "en": "Show or hide settings",
+      "fr": "Montrer ou cacher paramètres",
+      "es": "Mostrar u ocultar ajustes"
+    },
+    "user_settings": {
+      "en": "User Settings",
+      "fr": "Paramètres utilisateurs",
+      "es": "Ajustes de usuario",
+      "ar": "إعدادات المستخدم"
+    },
+    "user_visible_instance_name": {
+      "en": "%s (Edit %d)",
+      "fr": "%s (modification %d)",
+      "es": "%s (Editar %d)"
+    },
+    "username": {
+      "en": "Username",
+      "fr": "Nom d\\'utilisateur",
+      "es": "Nombre del Usuario",
+      "ar": "إسم المستخدم"
+    },
+    "username_error_whitespace": {
+      "en": "Leading or trailing whitespace not allowed in usernames",
+      "fr": "Les espaces ne sont pas permis au début ou à la fin du nom d\\'utilisateur",
+      "es": "No se permiten espacios al inicio o al final en el nombre de usuario.",
+      "ar": "الفراغات في البداية أو النهاية غير مسموح بها في اسم المستخدم"
+    },
+    "using_project": {
+      "en": "Using %s",
+      "fr": "Projet %s en utilisation",
+      "es": "Usando %s"
+    },
+    "validate": {
+      "en": "Check for errors",
+      "fr": "Vérifier s\\'il y a des erreurs",
+      "es": "Comprobar si hay errores",
+      "ar": "تحقق من الأخطاء"
+    },
+    "version": {
+      "en": "Version:",
+      "fr": "Version:",
+      "es": "Version:",
+      "ar": "رقم الاصدار:"
+    },
+    "version_number": {
+      "en": "Version: %s",
+      "fr": "Version: %s",
+      "es": "Versión: %s",
+      "ar": "الإصدار: %s"
+    },
+    "view_data": {
+      "en": "View Saved Form",
+      "fr": "Voir Questionnaire Enregistré",
+      "es": "Ver formulario guardado",
+      "ar": "عرض الإستمارات المحفوظة"
+    },
+    "view_form": {
+      "en": "View",
+      "fr": "Voir",
+      "es": "Mirar"
+    },
+    "view_hierarchy": {
+      "en": "Go To Prompt",
+      "fr": "Aller à la ligne de saisie",
+      "es": "Ir a la Pregunta",
+      "ar": "الذهاب الى الموجه"
+    },
+    "view_line": {
+      "en": "View line",
+      "fr": "Voir la ligne",
+      "es": "Ver línea"
+    },
+    "view_or_change_line": {
+      "en": "View or change line",
+      "fr": "Voir ou modifier la ligne",
+      "es": "Ver o cambiar línea"
+    },
+    "view_or_change_point": {
+      "en": "View or change point",
+      "fr": "Voir ou modifier le point",
+      "es": "Ver o cambiar punto"
+    },
+    "view_or_change_polygon": {
+      "en": "View or change polygon",
+      "fr": "Voir ou modifier le polygone",
+      "es": "Ver o cambiar polígono"
+    },
+    "view_point": {
+      "en": "View point",
+      "fr": "Voir le point",
+      "es": "Ver punto"
+    },
+    "view_polygon": {
+      "en": "View polygon",
+      "fr": "Voir le polygone",
+      "es": "Ver polígono"
+    },
+    "view_qr_code_fragment_title": {
+      "en": "QR Code",
+      "fr": "Code QR",
+      "es": "Código QR",
+      "ar": "رمز QR"
+    },
+    "view_sent_forms": {
+      "en": "Sent",
+      "fr": "Envoyé",
+      "es": "Enviado",
+      "ar": "مرسل"
+    },
+    "waiting_for_location": {
+      "en": "Trying to get location. Please wait.",
+      "fr": "Tentative de localisation. Veuillez patienter.",
+      "es": "Tratando de obtener la ubicación. Espere por favor.",
+      "ar": "محاولة الوصول للموقع. الرجاء الإنتظار."
+    },
+    "west": {
+      "en": "W %1$s%2$s%3$s",
+      "fr": "O %1$s%2$s%3$s",
+      "es": "O %1$s%2$s%3$s",
+      "ar": "غرب %1$s%2$s%3$s"
+    },
+    "wifi_autosend": {
+      "en": "Wifi only",
+      "fr": "Seulement Wifi",
+      "es": "Solo con WIFI",
+      "ar": "فقط عبر Wifi"
+    },
+    "wifi_cellular_autosend": {
+      "en": "Wifi or cellular",
+      "fr": "Wifi ou Cellulaire",
+      "es": "Wifi o Datos Móviles",
+      "ar": "عبر أي من Wifi أو شبكة الاتصال"
+    },
+    "wrong_project_selected_for_form": {
+      "en": "To open this form, you must first open KoboCollect and switch to the project that contains it.",
+      "fr": "Pour ouvrir ce formulaire, vous devez d\\'abord ouvrir KoboCollect et basculer sur le projet qui le contient.",
+      "es": "Para abrir este formulario, primero debe abrir la aplicación m´vil y cambiar al proyecto que lo contiene."
+    },
+    "xform_parse_error": {
+      "en": "XForm parse error for %1$s: %2$s is missing or invalid.",
+      "fr": "Erreur d\\'analyse de l\\'XForm %1$s: l\\'élément %2$s manque ou est invalide.",
+      "es": "XForm error de análisis para %1$s: %2$s es inválido o no se encuentra.",
+      "ar": "خطأ في محلل XForm من أجل %1$s: %2$s مفقود أو غير صالح."
+    },
+    "yes": {
+      "en": "Yes",
+      "fr": "Oui",
+      "es": "Si",
+      "ar": "نعم"
+    },
+    "zoom_to_fit_all": {
+      "en": "Zoom to fit all",
+      "fr": "Zoomer pour tout voir",
+      "es": "Zoom para mostrar todo"
+    }
+  }
+}

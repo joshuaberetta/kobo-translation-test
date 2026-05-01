@@ -10,6 +10,7 @@
 | --- | --- | --- |
 | [...] question type | question de type [...] |  |
 | ${DataColumnName} | ${NomChamp} |  |
+| Background geopoint | Position GPS en arrière-plan |  |
 | Barcode question type | Question de type code-barres (barcode) |  |
 | Cascading select | Sélection en cascade |  |
 | Case sensitive | sont sensibles à l’utilisation de majuscules et de minuscules | French: not “sensible à la casse” |
@@ -20,6 +21,7 @@
 | Data column prefix | préfixe du champ |  |
 | Data column suffix | suffixe du champ |  |
 | Date question type | Question de type date |  |
+| Edit | modifier |  |
 | Form building | création de formulaire  construction de formulaires |  |
 | Form media | médias au sein du formulaire |  |
 | Form Style | style du formulaire | Form style refers to the interface for customizing a form with different themes in the Formbuilder (e.g., grid theme). “Style” should also be used when referring to the specific column in XLSForm. |
@@ -34,6 +36,7 @@
 | Media question types | Questions de type média |  |
 | Nested groups | sous-groupes |  |
 | Non-media responses | Réponses (hors fichiers média) |  |
+| Numeric question types | Questions numériques |  |
 | Occurrence of a repeat group | répétitions d’un groupe répété | French: not “occurrences” “Occurrence” in English in this context refers to each instance that the group of questions is repeated |
 | Option choice(s) | choix de réponse |  |
 | Parent form | formulaire principal |  |
@@ -41,6 +44,7 @@
 | Parent project | projet principal |  |
 | Primary survey | Questionnaire principal | These are also referred to as “Parent” and “child” survey. Preferred terms are “primary” and “secondary”. |
 | Question appearances | apparences de questions |  |
+| Question bloc | bloc de questions |  |
 | Question hint | indice de question |  |
 | Question referencing format | format de référencement de questions |  |
 | Question type | Types de question |  |
@@ -66,9 +70,6 @@
 | Variable name | nom de la variable |  |
 | XML headers | en-tête XML |  |
 | XML values | valeurs XML |  |
-| start (range) | départ / nombre de départ | For range question type |
-| end (range) | arrivée / nombre d'arrivée | For range question type |
-| step (range) | écart | For range question type |
 
 ---
 
@@ -81,23 +82,45 @@ These translations are preferred but can be adapted based on context.
 ## Full Terminology
 
 | English | French | Notes |
-|---|---|---|
+| --- | --- | --- |
 | ${filter_column} | ${colonne_filtre} |  |
 | ${question_name} | ${nom_question} |  |
 | Add a …. column | Ajoutez une colonne nommée … |  |
+| Case-sensitive | sensible à l'utilisation correcte de majuscules et minuscules |  |
 | Choice filters | filtres de choix |  |
+| choices worksheet | onglet choices |  |
+| Constraint message | message de contrainte (constraint_message) | Only when used as part of a sentence and in an XLSForm article. |
 | Constraints | contraintes |  |
+| Database | Base de données |  |
+| Dataset | Base de données |  |
+| Download as XLSForm | télécharger en tant que XLSForm |  |
 | Excel or Google Sheets file | fichier Excel or Google Sheets |  |
 | Form logic | logique de formulaire |  |
 | Form settings | paramètres de formulaires |  |
+| Formbuilder equivalent | équivalent Formbuilder |  |
 | Header row | première ligne |  |
+| Hint | Indice (hint) | Only when used as part of a sentence and in an XLSForm article. |
+| IANA language subtag registry | le registre IANA des sous-étiquettes de langue |  |
 | Library locking | verrouillage de formulaires |  |
+| List name | nom de liste de choix (list_name) | Only when used as part of a sentence and in an XLSForm article. |
+| Media files | fichiers média |  |
+| Offline | sans connection internet |  |
 | Question referencing | référencement de questions |  |
 | Regular expressions (regex) | expression régulière (regex) |  |
 | Relevance conditions |  | If text says “also called Relevance conditions”, do not include that sentence in the translation. |
 | Required logic | logique d’obligation conditionnelle |  |
+| Required message | message d'obligation (required_message) | Only when used as part of a sentence and in an XLSForm article. |
+| settings worksheet | onglet settings |  |
+| Sheet | onglet |  |
 | Skip logic | logique de saut branchements conditionnels |  |
 | Spreadsheet | tableur |  |
+| Spreadsheet editor | logiciel de tableur |  |
+| survey worksheet | onglet survey |  |
+| Template (form) | modèle de formulaire |  |
 | To add … in XLSForm | Pour ajouter … dans un XLSForm |  |
-| Worksheet | feuille de calcul |  |
+| Underscore | tiret bas |  |
+| Uploading a file | importer un fichier |  |
+| Uploading an XLSForm | importer un XLSForm |  |
+| Version control | Gestion de versions |  |
+| Worksheet | onglet |  |
 | XLSForm | XLSForm |  |

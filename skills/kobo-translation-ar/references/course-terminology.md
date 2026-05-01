@@ -20,8 +20,8 @@ These translations are preferred but can be adapted based on context.
 | Pre-training questionnaire |  |
 | Press | E.g., press the Submit button. French: do not use “presser” |
 | Quiz | Thinkific UI uses “questionnaire” not “quiz” so “questionnaire” should be used when referring specifically to this element in the UI. |
+| Self-paced online course |  |
 | Support article |  |
 | Tutorials |  |
-| Web | “web” should be lowercase (“formulaire web Enketo”) |
+| Web | “web” should be lowercase (“formulaire web”) |
 | Website | For French, do not use “site Internet”. |
-| Let's go ahead and... | FR: 'ajoutons la question' not 'allons-y et ajoutons' |

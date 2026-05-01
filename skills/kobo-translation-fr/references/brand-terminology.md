@@ -18,25 +18,27 @@
 | **La bibliothèque de questions** |
 
 ### Formbuilder (English required on first reference)
-| Language | First Reference |
-|----------|----------------|
-| French | interface de création de formulaires KoboToolbox **(KoboToolbox Formbuilder)** |
-| Spanish | editor de formularios de KoboToolbox **(Formbuilder)** |
+| Language | First Reference | Subsequent references |
+|----------|-----------------|-----------------------|
+| French | interface de création de formulaires KoboToolbox **(KoboToolbox Formbuilder)** | Formbuilder |
+| Spanish | editor de formularios de KoboToolbox **(Formbuilder)** | Formbuilder |
+
+🚨 **French:** Every article's FIRST mention of the Formbuilder MUST include the English name: `interface de création de formulaires KoboToolbox **(KoboToolbox Formbuilder)**`. If you write `l'interface de création de formulaires` or `le Formbuilder` as the first reference without the parenthetical, that is an error.
 
 ## Full Terminology
 
 | English | French | Notes |
 | --- | --- | --- |
+| Add-ons | Suppléments |  |
 | Chief Operating and Innovation Officer | Directeur des opérations et de l’innovation |  |
 | Community Forum | Forum communautaire | In some contexts, (Community Forum) can be included. In Spanish, always capitalize “Foro”. In French, always capitalize Forum. (sentence case capitalization) |
 | Community Plan | plan Community | In most cases, use English Plan names as a brand term. In contexts where localization is a priority and text length is not an obstacle, include English name first followed by an explanation of the plan in parentheses (e.g., “(pour les grosses entreprises)” or “(pour les professionnels)”). |
 | Data collection forms | formulaires de collecte de données |  |
-| Enketo web forms | formulaires web Enketo |  |
 | Enterprise Plan | plan Enterprise | In most cases, use English Plan names as a brand term. In contexts where localization is a priority and text length is not an obstacle, include English name first followed by an explanation of the plan in parentheses (e.g., “(pour les grosses entreprises)” or “(pour les professionnels)”). |
 | Enterprise Private Server | plan Enterprise Private Server (serveur privé entreprise) | In most cases, use English Plan names as a brand term. In contexts where localization is a priority and text length is not an obstacle, include English name first followed by an explanation of the plan in parentheses (e.g., “(pour les grosses entreprises)” or “(pour les professionnels)”). |
 | European Union KoboToolbox Server | Le serveur KoboToolbox Union européenne |  |
 | Global KoboToolbox Server | Le serveur KoboToolbox mondial |  |
-| Help Center | Centre d'aide | In some contexts, (Help Center) can be included. In Spanish, always capitalize “Centro”. In French, always capitalize Centre. (sentence case capitalization) |
+| Help Center | Centre d'aide | In some contexts, (Help Center) can be included. In Spanish, always capitalize “Centro and Ayuda”. In French, always capitalize Centre. (sentence case capitalization) |
 | Human rights | les droits de l'homme |  |
 | Kobo | Kobo l'organisation Kobo | Treat as gender neutral. No definite article. Use masculine adjectives and forms. If it needs to be gendered, use a compound noun. |
 | KoboCollect Android app | l'application Android KoboCollect |  |
@@ -60,7 +62,9 @@
 | Updates (product-related) | Nouveautés |  |
 | Updates (news/org-related) | Actualités |  |
 | Updates (software updates) | Mises à jour |  |
+| Upgrade plan | passer à une offre supérieure / changer de plan |  |
 | User Plans | Plans pour les utilisateurs |  |
 | User-friendly | Facile à utiliser |  |
+| Web forms | formulaires web |  |
 | XLSForm standard | format standardisé XLSForm format XLSForm |  |
 | XLSForm Fundamentals course | cours XLSForm Fundamentals |  |

@@ -20,8 +20,8 @@ These translations are preferred but can be adapted based on context.
 | Pre-training questionnaire | questionnaire préliminaire |  |
 | Press | appuyer sur | E.g., press the Submit button. French: do not use “presser” |
 | Quiz | quiz | Thinkific UI uses “questionnaire” not “quiz” so “questionnaire” should be used when referring specifically to this element in the UI. |
+| Self-paced online course | cours en ligne en autonomie |  |
 | Support article | article d’aide |  |
 | Tutorials | tutoriels |  |
-| Web | web | “web” should be lowercase (“formulaire web Enketo”) |
+| Web | web | “web” should be lowercase (“formulaire web”) |
 | Website | site web | For French, do not use “site Internet”. |
-| Let's go ahead and... | (simplify - omit 'Let's go ahead') | FR: 'ajoutons la question' not 'allons-y et ajoutons' |

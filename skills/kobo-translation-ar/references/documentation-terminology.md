@@ -6,32 +6,28 @@ These translations are preferred but can be adapted based on context.
 
 ## Full Terminology
 
-| English | Notes |
-| --- | --- |
-| Button (UI) |  |
-| Dialogue box |  |
-| Dropdown list |  |
-| Field |  |
-| Getting started (support category name) |  |
-| Getting started with … |  |
-| Icon |  |
-| Input |  |
-| Note |  |
-| Page (e.g., the DATA page) |  |
-| Pane |  |
-| Projects home page |  |
-| Quickstart guide |  |
-| Sample form |  |
-| Sample XLSForm |  |
-| See [article name] |  |
-| Settings |  |
-| Step |  |
-| Support article |  |
-| Tab (e.g., the Downloads tab) |  |
-| Toggle (v) |  |
-| Topics |  |
-| Troubleshooting |  |
-| Getting started (category) | Support category name |
-| Tab | e.g., l'onglet Téléchargements |
-| Page | e.g., la page DONNÉES |
-| Press (button) | FR: not 'presser' |
+| English |
+| --- |
+| Button (UI) |
+| Dialogue box |
+| Dropdown list |
+| Field |
+| Getting started (support category name) |
+| Getting started with … |
+| Icon |
+| Input |
+| Note |
+| Page (e.g., the DATA page) |
+| Pane |
+| Projects home page |
+| Quickstart guide |
+| Sample form |
+| Sample XLSForm |
+| See [article name] |
+| Settings |
+| Step |
+| Support article |
+| Tab (e.g., the Downloads tab) |
+| Toggle (v) |
+| Topics |
+| Troubleshooting |

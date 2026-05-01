@@ -108,6 +108,29 @@ Don't force English word order.
 
 ## Spanish-Specific Rules
 
+### 🚨 CRITICAL: Always Use Informal Tú
+
+**Spanish documentation and UI content always uses informal tú — NEVER usted.**
+
+| Correct (tú) | Wrong (usted) |
+|---|---|
+| haz clic | haga clic |
+| tu cuenta | su cuenta |
+| tu formulario | su formulario |
+| puedes | puede |
+| tienes | tiene |
+| ve a | vaya a |
+
+If you catch yourself writing "su", "usted", "haga", "vaya a" — stop and rewrite using tú.
+
+This applies to: UI, documentation, support articles, courses. The only exception is formal communications (emails addressed to a specific person).
+
+### Clic (Not Click)
+
+- Use **"clic"** (Spanish spelling): "haz clic en", "haz clic aquí"
+- NOT: "click" (English anglicism)
+- NOT: "cliquea"
+
 ### Management
 
 **"manejo"** - Preferred for:

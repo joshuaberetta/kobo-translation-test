@@ -11,24 +11,30 @@ These translations are preferred but can be adapted based on context.
 | Account access logs | Suivi d'accès au compte |  |
 | Activity logs | Suivi d’activité |  |
 | Application programming interface (API) | interface de programmation d'application (API) |  |
+| API Key | clé API |  |
 | Database | Base de données |  |
 | Dataset | Base de données |  |
 | Dynamic data attachments | liaison dynamique de projets |  |
+| Export | export (n) / exporter (v) |  |
 | External CSV | CSV externe |  |
 | External data source | source de données externe |  |
 | External file | fichier externe |  |
 | General Data Protection Regulation (GDPR) | Règlement général sur la protection des données (RGPD) |  |
 | HIPAA compliance | conformité HIPAA |  |
 | HXL tags (Humanitarian Exchange Language) | balises HXL (langage d’échange humanitaire) |  |
+| ID | identifiant |  |
 | Integrations | intégrations |  |
 | JSON exports | exports JSON |  |
 | KoboToolbox API | API KoboToolbox |  |
-| Logging | Suivi |  |
+| Logging | Suivi | Relates to activity logs, project history logs, audit logging, etc |
+| Logging in | Se connecter |  |
+| Log data | Données de suivi |  |
 | Project history logs | Suivi de l'historique du projet |  |
 | Project owner | propriétaire du projet |  |
-| Project-level permissions | permissions au niveau du projet |  |
-| Pull data | extraction de données | If pulldata() is used, keep function name in English. If pull data is mentioned as the concept/functionality, use “extraction de données” |
+| Project-level permissions | droits d'accès au niveau du projet |  |
+| Pull data | extraction de données | If pulldata() is used, keep function name in English. If pull data is mentioned as the concept/functionality, use “extraction de données”, same in Spanish |
 | Pulling data from an external file | Extraire des données d’un fichier externe |  |
 | REST services | services web REST |  |
 | Synchronous exports | exports synchronisés |  |
-| User-level permissions | permissions au niveau de l’utilisateur |  |
+| Sharing permissions | droits d'accès |  |
+| User-level permissions | droits d'accès au niveau de l’utilisateur |  |

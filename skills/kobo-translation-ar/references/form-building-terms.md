@@ -10,6 +10,7 @@
 | --- | --- |
 | [...] question type |  |
 | ${DataColumnName} |  |
+| Background geopoint |  |
 | Barcode question type |  |
 | Cascading select |  |
 | Case sensitive | French: not “sensible à la casse” |
@@ -20,6 +21,7 @@
 | Data column prefix |  |
 | Data column suffix |  |
 | Date question type |  |
+| Edit |  |
 | Form building |  |
 | Form media |  |
 | Form Style | Form style refers to the interface for customizing a form with different themes in the Formbuilder (e.g., grid theme). “Style” should also be used when referring to the specific column in XLSForm. |
@@ -34,6 +36,7 @@
 | Media question types |  |
 | Nested groups |  |
 | Non-media responses |  |
+| Numeric question types |  |
 | Occurrence of a repeat group | French: not “occurrences” “Occurrence” in English in this context refers to each instance that the group of questions is repeated |
 | Option choice(s) |  |
 | Parent form |  |
@@ -41,6 +44,7 @@
 | Parent project |  |
 | Primary survey | These are also referred to as “Parent” and “child” survey. Preferred terms are “primary” and “secondary”. |
 | Question appearances |  |
+| Question bloc |  |
 | Question hint |  |
 | Question referencing format |  |
 | Question type |  |
@@ -66,9 +70,6 @@
 | Variable name |  |
 | XML headers |  |
 | XML values |  |
-| start (range) | For range question type |
-| end (range) | For range question type |
-| step (range) | For range question type |
 
 ---
 
@@ -85,19 +86,41 @@ These translations are preferred but can be adapted based on context.
 | ${filter_column} |  |
 | ${question_name} |  |
 | Add a …. column |  |
+| Case-sensitive |  |
 | Choice filters |  |
+| choices worksheet |  |
+| Constraint message | Only when used as part of a sentence and in an XLSForm article. |
 | Constraints |  |
+| Database |  |
+| Dataset |  |
+| Download as XLSForm |  |
 | Excel or Google Sheets file |  |
 | Form logic |  |
 | Form settings |  |
+| Formbuilder equivalent |  |
 | Header row |  |
+| Hint | Only when used as part of a sentence and in an XLSForm article. |
+| IANA language subtag registry |  |
 | Library locking |  |
+| List name | Only when used as part of a sentence and in an XLSForm article. |
+| Media files |  |
+| Offline |  |
 | Question referencing |  |
 | Regular expressions (regex) |  |
 | Relevance conditions | If text says “also called Relevance conditions”, do not include that sentence in the translation. |
 | Required logic |  |
+| Required message | Only when used as part of a sentence and in an XLSForm article. |
+| settings worksheet |  |
+| Sheet |  |
 | Skip logic |  |
 | Spreadsheet |  |
+| Spreadsheet editor |  |
+| survey worksheet |  |
+| Template (form) |  |
 | To add … in XLSForm |  |
+| Underscore |  |
+| Uploading a file |  |
+| Uploading an XLSForm |  |
+| Version control |  |
 | Worksheet |  |
 | XLSForm |  |

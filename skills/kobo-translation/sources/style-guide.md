@@ -131,6 +131,8 @@ These elements must remain exactly as they appear in English:
 - `<h3>` → `###`
 - `<h4>` → `####`
 
+**Malformed heading hierarchy:** If the source uses `<h3>` directly under `<h1>` (skipping h2), render as `##` — not `###`. This preserves a consistent two-level structure across all language versions. Example: a source article with `# Title` then `<h3>Section</h3>` → translate as `# Title` then `## Section`.
+
 **Keep all other HTML tags intact:**
 - `<iframe>`, `<section>`, `<div>`, etc.
 - Preserve attributes: `dir="rtl"`, `id`, `class`, `style`
@@ -189,6 +191,11 @@ Update language parameters for target language:
 - Keep short and direct
 - Prioritize idiomatic phrasing over literal translation
 - Do not include parentheses in titles or headers - define terms in article text instead
+
+**H1 heading vs. cross-reference titles are different things:**
+- The article's own `# H1` should be a faithful translation of the English H1 — translate it naturally, do not invent a shorter variant.
+- The `article-titles.md` reference file is for cross-references only (when *another* article links to this one by name). The H1 of the article being translated should match its entry in `article-titles.md` exactly.
+- If the English H1 is "Activity Logs", translate it fully: "Registros de actividad" (ES), "Journaux d'activité" (FR) — not a truncated form like "Actividad" or "Suivi d'activité".
 
 **Example:**
 - Wrong: "Comenzando con el editor de formularios de KoboToolbox (Formbuilder)"

@@ -141,10 +141,12 @@ def generate_reference_file(sheet_name, df):
             "| **La bibliothèque de questions** | **La biblioteca de preguntas** |",
             "",
             "### Formbuilder (English required on first reference)",
-            "| Language | First Reference |",
-            "|----------|----------------|",
-            "| French | interface de création de formulaires KoboToolbox **(KoboToolbox Formbuilder)** |",
-            "| Spanish | editor de formularios de KoboToolbox **(Formbuilder)** |",
+            "| Language | First Reference | Subsequent references |",
+            "|----------|-----------------|-----------------------|",
+            "| French | interface de création de formulaires KoboToolbox **(KoboToolbox Formbuilder)** | Formbuilder |",
+            "| Spanish | editor de formularios de KoboToolbox **(Formbuilder)** | Formbuilder |",
+            "",
+            "🚨 **French:** Every article's FIRST mention of the Formbuilder MUST include the English name: `interface de création de formulaires KoboToolbox **(KoboToolbox Formbuilder)**`. If you write `l'interface de création de formulaires` or `le Formbuilder` as the first reference without the parenthetical, that is an error.",
             "",
         ])
     
@@ -327,6 +329,31 @@ Translate KoboToolbox content in French, Spanish, and Arabic with consistent ter
 - Missing English term on first Formbuilder reference
 - Incorrect UI capitalization (Brouillon, Borrador, DONNÉES, DATOS)
 
+## Spanish Critical Rules
+
+🚨 **ALL Spanish documentation, UI text, and support articles use informal tú. NEVER use usted.**
+
+| ✅ Correct (tú) | ❌ Wrong (usted) |
+|---|---|
+| haz clic | haga clic |
+| tu cuenta | su cuenta |
+| tu formulario | su formulario |
+| puedes | puede |
+| tienes | tiene |
+| ve a Configuraciones | vaya a Configuraciones |
+
+If you find yourself writing "su", "usted", "haga", "vaya a" — stop and rewrite in tú.
+
+Also: use **"clic"** (not "click"): "haz clic en el botón".
+
+## French Critical Rules
+
+🚨 The **first mention** of the Formbuilder in any French article must include the English name in parentheses:
+
+> interface de création de formulaires KoboToolbox **(KoboToolbox Formbuilder)**
+
+Subsequent mentions can use the short form "Formbuilder" or "l'interface de création de formulaires".
+
 ## Translation Types
 
 - **OFFICIAL** - Use EXACT translation (brand terms, UI elements, XLSForm)
@@ -342,8 +369,18 @@ Translate KoboToolbox content in French, Spanish, and Arabic with consistent ter
 
 ## Gender-Inclusive Language
 
-**French:** "utilisateur(rice)s", "Les utilisatrices et utilisateurs"
-**Spanish:** "Se te dirigirá" (neutral), "los/as usuarios/as"
+🚨 **French — every mention of users/people must be inclusive:**
+- "utilisateur(rice)s" — NOT "utilisateurs" or "utilisateur(s)"
+- "Les utilisatrices et utilisateurs" for formal constructions
+- Scan the entire article before submitting: if you find any bare "utilisateur(s)" or "les utilisateurs", replace it.
+- This applies everywhere: body text, bullet lists, tables, and `<p class="note">` callouts.
+
+🚨 **Spanish — every mention of users/people must be inclusive:**
+- "los/as usuarios/as" — NOT "los usuarios"
+- "el/la usuario/a" — NOT "el usuario"
+- "los/as participantes" — NOT "los participantes"
+- Scan the entire article before submitting: if you find any bare masculine plural ("los usuarios", "los participantes"), replace it.
+- This applies everywhere: body text, bullet lists, tables, and `<p class="note">` callouts.
 
 ## XLSForm Terms
 
@@ -355,12 +392,22 @@ Example: "la colonne `list_name` (nom de la liste)"
 
 ## Formatting Rules
 
-- Convert HTML headings to markdown: `<h2>` → `##`
+- Convert HTML headings to markdown: `<h1>` → `#`, `<h2>` → `##`, `<h3>` → `###`
+- **Malformed hierarchy fix:** If the source has `<h3>` directly under `<h1>` with no `<h2>` in between, render it as `##` — not `###`. Example: source is `# Title` then `<h3>Section</h3>` → output must be `# Title` then `## Section`. Do NOT output `### Section` in this case.
 - Keep other HTML tags intact
 - Internal links: keep as-is (auto-resolve)
 - Cross-language links: use `../en/`, `../fr/`, `../es/`, `../ar/`
 - Images/URLs: don't translate paths
 - YouTube embeds: update `cc_lang_pref` and `hl` parameters
+
+## 🚨 CRITICAL: Article H1 Heading
+
+The article's own `# H1` must be a **faithful translation** of the English H1 — do not invent a shorter or restructured variant.
+
+The `article-titles.md` file lists the official titles for each article. The H1 of the article being translated must **match its entry in article-titles.md exactly**.
+
+- English H1: "Activity Logs" → ES must be: "Registros de actividad" (not "Actividad")
+- English H1: "Activity Logs" → FR must be: "Journaux d'activité" (not "Suivi d'activité")
 
 ## Language-Specific Rules
 
@@ -369,8 +416,11 @@ Example: "la colonne `list_name` (nom de la liste)"
 - "importer" for upload (not "télécharger")
 - "appuyer sur" for press (not "presser")
 - "Introduction à..." for "Getting started" (not "Débuter avec")
+- First Formbuilder mention: `interface de création de formulaires KoboToolbox **(KoboToolbox Formbuilder)**`
 
 ### Spanish
+- **ALWAYS tú — NEVER usted** (see critical rule above)
+- "clic" not "click": "haz clic en"
 - "recolectar" (not "recopilar")
 - "manejo" for data/case management
 - "gestión" for teams/projects
@@ -404,22 +454,27 @@ This is critical: articles cross-reference each other, and titles must be identi
 **Brand & UI:**
 - [ ] Server names with correct articles
 - [ ] "La bibliothèque/biblioteca" with capital L
-- [ ] Formbuilder with English on first reference
+- [ ] FR: Formbuilder first reference includes `(KoboToolbox Formbuilder)` parenthetical
 - [ ] UI terms match exact capitalization
 
 **Formatting:**
-- [ ] HTML headings → markdown
+- [ ] HTML headings → markdown (h3 under h1 with no h2 → rendered as ##)
 - [ ] Cross-language links updated
 - [ ] Image paths unchanged
 - [ ] YouTube language parameters set
 
 **Language:**
-- [ ] Correct formality (vous/tú/usted)
-- [ ] Gender-inclusive throughout
+- [ ] ES: tú throughout — no "su", "usted", "haga" anywhere
+- [ ] ES: "clic" not "click"
+- [ ] ES: gender-inclusive — "los/as usuarios/as" not "los usuarios" — every mention
+- [ ] FR: vous throughout
+- [ ] FR: first Formbuilder mention includes `(KoboToolbox Formbuilder)` parenthetical
+- [ ] FR: gender-inclusive — "utilisateur(rice)s" not "utilisateurs" — every mention including notes/callouts
 - [ ] XLSForm terms in English + translation
 - [ ] Natural word order
 
 **Article titles:**
+- [ ] Article H1 matches the article-titles.md entry exactly
 - [ ] Cross-referenced article titles match article-titles.md exactly
 
 ## Updating This Skill

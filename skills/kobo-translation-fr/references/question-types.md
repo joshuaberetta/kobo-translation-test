@@ -11,7 +11,7 @@ These translations are preferred but can be adapted based on context.
 | Acknowledge | Consentement |
 | Area | Zone |
 | Audio | Audio |
-| Barcode / QR Code | Code-barres |
+| Barcode / QR Code | Code-barres / code QR |
 | Calculate | Calcul |
 | Date | Date |
 | Date & time | Date et heure |

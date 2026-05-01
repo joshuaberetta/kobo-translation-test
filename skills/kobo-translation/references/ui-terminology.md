@@ -27,20 +27,15 @@
 | Hook | Hook | Hook |  |
 | Map view | mode Carte | vista de Mapa |  |
 | New Export | Nouvel export | Nuevo exportable |  |
+| Question library | bibliothèque de questions | Biblioteca de preguntas |  |
 | Report view | mode Rapports | vista de Informes |  |
-| Save Draft (Enketo) | Sauvegarder le brouillon | Guardar borrador |  |
+| Save Draft | Sauvegarder le brouillon | Guardar borrador |  |
 | Save image as | Enregistrer l'image sous | Guardar la imágen como |  |
 | SUMMARY page | page SOMMAIRE | página RESUMEN |  |
 | Table view | mode Tableau | vista de Tabla |  |
 | Toolbar | barre d’outils | barra de herramientas |  |
 | View | mode | Vista | French: The term “view” can also be translated as “affichage” or “aperçu” in certain contexts but not in the context of the UI elements |
 | webhook | webhook | webhook |  |
-| DATA tab | onglet DONNÉES | Ventana DATOS | 🚨 ALL CAPS for tab name |
-| SUMMARY tab | onglet SOMMAIRE | Ventana RESUMEN | 🚨 ALL CAPS for tab name |
-| Hook / webhook | Hook / webhook | Hook / webhook |  |
-| DEPLOY | DÉPLOYER | DESPLEGAR | Button - capitalize |
-| NEW | NOUVEAU | NUEVO | Button - capitalize |
-| API / KoboToolbox API | interface de programmation d'application (API) / API KoboToolbox | interfaz de programación de aplicaciones (API) |  |
 
 ---
 
@@ -61,27 +56,28 @@ These translations are preferred but can be adapted based on context.
 | Disable recording | Désactiver enregistrement | Desactivar la grabación |
 | Do not add | Ne pas ajouter | No agregar |
 | Download form | Télécharger formulaire | Descargar formulario |
-| Drafts | Ébauches | Borradores |
+| Drafts | Brouillons | Borradores |
 | Finalize | Finaliser | Finalizar |
 | Get Selected | Télécharger la sélection | Obtener los Seleccionados |
 | Manual location recording | Enregistrement manuel de la localisation | Registro de localización manual |
 | Manually enter project details | Saisir les détails du projet | Entrar los detalles del proyecto manualmente |
 | NEXT | SUIVANT | SIG. |
+| Offline | Sans connection internet | Sin conexión a internet |
 | Placement by tapping | Placement en tapotant | Ubicación con toque |
-| Project | Projet |  |
+| Project | Projet | Proyecto |
 | Ready to send | Prêt à envoyer | Listo para enviar |
 | Record a point | Enregistrer un point | Registrando un punto |
 | Record audio | Enregistrement audio | Grabar sonido de fondo |
 | Recording interval | Intervalle d’enregistrement | Intervalo de grabación |
 | Refresh | Rafraîchir | Actualizar |
-| Save as draft | Enregistrer comme ébauche | Guardar como borrador |
+| Save as draft | Enregistrer comme brouillon | Guardar como borrador |
 | Select all | Tout sélectionner | Seleccionar todo |
 | Send Selected | Envoyer éléments sélectionnés | Enviar seleccionado |
-| Sent | Envoyé | Enviado |
+| Sent | Envoyés | Enviado |
 | Server | Serveur | Servidor |
 | Settings | Paramètres | Ajustes |
 | Start | Démarrer | Iniciar |
-| Start GeoPoint | Démarrer le point | Buscar Ubicación |
+| Start GeoPoint | Créer le point | Buscar Ubicación |
 | Start GeoShape | Démarrer le polygone | Iniciar GeoArea |
 | Start GeoTrace | Démarrer la ligne | Iniciar GeoLínea |
 | Start new form | Remplir un formulaire | Iniciar nuevo formulario |

@@ -45,22 +45,34 @@ except ImportError:
 class BulkRetranslator:
     """Handles bulk retranslation of documentation files"""
     
-    def __init__(self, languages: List[str], dry_run: bool = False, 
-                 verbose: bool = False, delay: float = 0.5):
+    def __init__(self, languages: List[str], dry_run: bool = False,
+                 verbose: bool = False, delay: float = 0.5,
+                 include_transifex: bool = False, auto_transifex: bool = False,
+                 include_collect: bool = False):
         """
         Initialize bulk retranslator
-        
+
         Args:
             languages: List of target languages (e.g., ['es', 'fr', 'ar'])
             dry_run: If True, only show what would be translated without doing it
             verbose: Show detailed output
             delay: Delay in seconds between translations (to avoid rate limits)
+            include_transifex: Always include Transifex UI strings for every file
+            auto_transifex: Per-file heuristic — include Transifex only when needed
+            include_collect: Always include KoboCollect strings
         """
         self.languages = languages
         self.dry_run = dry_run
         self.verbose = verbose
         self.delay = delay
-        self.agent = None if dry_run else TranslationAgent(test_mode=True)
+        self.include_transifex = include_transifex
+        self.auto_transifex = auto_transifex
+        self.include_collect = include_collect
+        self.agent = None if dry_run else TranslationAgent(
+            test_mode=True,
+            include_transifex=include_transifex,
+            include_collect=include_collect,
+        )
         
         # Track statistics
         self.stats = {
@@ -119,17 +131,31 @@ class BulkRetranslator:
         if self.dry_run:
             print(f"  [DRY RUN] Would translate {source_file.name} → {target_lang}")
             return True, 0.0
-        
+
+        # Per-file auto-transifex: rebuild agent if needed
+        agent = self.agent
+        if self.auto_transifex and not self.include_transifex:
+            needs_tx = TranslationAgent.needs_transifex(str(source_file))
+            if needs_tx != agent.include_transifex:
+                if self.verbose:
+                    flag = "ON" if needs_tx else "OFF"
+                    print(f"  🔍 auto-transifex {flag} for {source_file.name}", file=sys.stderr)
+                agent = TranslationAgent(
+                    test_mode=True,
+                    include_transifex=needs_tx,
+                    include_collect=self.include_collect,
+                )
+
         try:
             # Translate the file
-            translation = self.agent.translate_file(
+            translation = agent.translate_file(
                 str(source_file),
                 target_lang,
                 complexity=None  # Auto-detect
             )
             
             # Save translation
-            target_path = self.agent.save_translation(
+            target_path = agent.save_translation(
                 translation,
                 str(source_file),
                 target_lang
@@ -312,24 +338,44 @@ Examples:
         action='store_true',
         help='Disable delay between translations (use with caution)'
     )
-    
+    parser.add_argument(
+        '--include-transifex',
+        action='store_true',
+        help='Include Transifex UI strings for every file (~150k chars per call). '
+             'Use for corpora heavy with UI element references.'
+    )
+    parser.add_argument(
+        '--auto-transifex',
+        action='store_true',
+        help='Per-file heuristic: include Transifex strings only for articles '
+             'that reference enough UI elements to need them.'
+    )
+    parser.add_argument(
+        '--include-collect',
+        action='store_true',
+        help='Include KoboCollect Android strings for every file (~60-70k chars per call).'
+    )
+
     args = parser.parse_args()
-    
+
     # Handle delay
     delay = 0 if args.no_delay else args.delay
-    
+
     # Verify source directory exists
     source_dir = Path(args.source_dir)
     if not source_dir.exists():
         print(f"❌ Source directory not found: {source_dir}", file=sys.stderr)
         sys.exit(1)
-    
+
     # Create retranslator
     retranslator = BulkRetranslator(
         languages=args.language,
         dry_run=args.dry_run,
         verbose=args.verbose,
-        delay=delay
+        delay=delay,
+        include_transifex=args.include_transifex,
+        auto_transifex=args.auto_transifex,
+        include_collect=args.include_collect,
     )
     
     # Run bulk retranslation

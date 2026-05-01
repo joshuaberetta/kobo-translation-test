@@ -27,20 +27,15 @@
 | Hook |  |
 | Map view |  |
 | New Export |  |
+| Question library |  |
 | Report view |  |
-| Save Draft (Enketo) |  |
+| Save Draft |  |
 | Save image as |  |
 | SUMMARY page |  |
 | Table view |  |
 | Toolbar |  |
 | View | French: The term “view” can also be translated as “affichage” or “aperçu” in certain contexts but not in the context of the UI elements |
 | webhook |  |
-| DATA tab | 🚨 ALL CAPS for tab name |
-| SUMMARY tab | 🚨 ALL CAPS for tab name |
-| Hook / webhook |  |
-| DEPLOY | Button - capitalize |
-| NEW | Button - capitalize |
-| API / KoboToolbox API |  |
 
 ---
 
@@ -67,6 +62,7 @@ These translations are preferred but can be adapted based on context.
 | Manual location recording |
 | Manually enter project details |
 | NEXT |
+| Offline |
 | Placement by tapping |
 | Project |
 | Ready to send |
