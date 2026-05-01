@@ -27,12 +27,14 @@ kobo-translation-test/
 ├── skills/
 │   ├── kobo-translation/        # ⚠️ EDIT HERE (source of truth)
 │   │   ├── sources/             # Human-maintained inputs
-│   │   │   ├── glossary.xlsx    # All terminology (EN/ES/FR/AR columns)
+│   │   │   ├── glossary.xlsx    # Cached copy of Google Sheet (offline fallback)
 │   │   │   ├── style-guide.md
 │   │   │   ├── workflow-rules.md
 │   │   │   └── language-rules.md
 │   │   ├── references/          # Auto-generated — do not edit directly
 │   │   │   ├── brand-terminology.md
+│   │   │   ├── article-titles.md        # Official article titles (all languages)
+│   │   │   ├── sentence-structures.md   # Recurring sentence patterns
 │   │   │   ├── transifex-ui-strings.md  # Web UI strings
 │   │   │   ├── collect-strings.json     # Android app strings
 │   │   │   └── ... (terminology files)
@@ -221,14 +223,18 @@ Via GitHub Actions: upload `.srt` to `transcripts/en/`, then **Actions → Trans
 
 ## Maintaining Translation Skills
 
-All terminology is maintained in one place — `skills/kobo-translation/sources/`. The language-specific skills are auto-generated from this.
+All terminology lives in `skills/kobo-translation/sources/`. The glossary comes from a published Google Sheet; `glossary.xlsx` is a committed offline fallback — run `fetch_glossary.py` to refresh it before regenerating.
 
 ### Update workflow
 
 ```
-1. Edit skills/kobo-translation/sources/  (glossary.xlsx or .md files)
+1. Fetch latest glossary from Google Sheets
+   python3 skills/kobo-translation/scripts/fetch_glossary.py
    ↓
-2. python3 skills/kobo-translation/scripts/regenerate_skill.py
+2. Regenerate skill references and SKILL.md
+   python3 skills/kobo-translation/scripts/regenerate_skill.py
+   ↓
+   (or combine steps 1–2: python3 skills/kobo-translation/scripts/sync_and_update.py --fetch)
    ↓
 3. python3 scripts/split_skill_by_language.py
    ↓
@@ -237,13 +243,15 @@ All terminology is maintained in one place — `skills/kobo-translation/sources/
 5. Translation agent picks up updated skills automatically
 ```
 
+To update only the `.md` source files (style guide, workflow rules, language rules) without fetching the glossary, edit them directly in `sources/` then run step 2 onward.
+
 **Do not manually edit** `skills/kobo-translation-{es,fr,ar}/` — these are overwritten by `split_skill_by_language.py`.
 
 ### Testing skill updates
 
 ```bash
-# 1. Update skills
-python3 skills/kobo-translation/scripts/regenerate_skill.py
+# 1. Fetch and regenerate
+python3 skills/kobo-translation/scripts/sync_and_update.py --fetch
 python3 scripts/split_skill_by_language.py
 
 # 2. Test on sample files

@@ -6,19 +6,21 @@ This skill is designed to be **human-maintained** and **AI-executed**. Humans up
 
 ## Quick Start
 
-**To update terminology:**
+**To pull the latest terminology from Google Sheets and regenerate:**
 ```bash
-# 1. Edit sources/glossary.xlsx
-# 2. Run the update script
+python scripts/sync_and_update.py --fetch
+```
+
+**To regenerate from the local cached glossary (offline):**
+```bash
 python scripts/update_skill.py
 ```
 
-**To update guidelines:**
+**To update guidelines only:**
 ```bash
 # 1. Edit the appropriate markdown file in sources/
-# 2. If changes affect SKILL.md, update it manually
-# 3. Run validation
-python scripts/validate_sources.py
+# 2. Run validation and regeneration
+python scripts/update_skill.py
 ```
 
 ---
@@ -31,7 +33,7 @@ kobo-translation/
 ├── README.md                   # This file (for human maintainers)
 │
 ├── sources/                    # ✏️ HUMAN-EDITED SOURCE FILES
-│   ├── glossary.xlsx           # All terminology tables
+│   ├── glossary.xlsx           # Cached copy of Google Sheet (offline fallback)
 │   ├── style-guide.md          # General translation guidelines
 │   ├── workflow-rules.md       # Translation workflow & checklists
 │   └── language-rules.md       # French/Spanish/Arabic specific rules
@@ -44,13 +46,16 @@ kobo-translation/
 │   ├── data-collection-terms.md
 │   ├── course-terminology.md
 │   ├── documentation-terminology.md
-│   └── data-management-terms.md
+│   ├── data-management-terms.md
+│   ├── sentence-structures.md  # Recurring sentence patterns
+│   └── article-titles.md       # Official article titles in all languages
 │
 └── scripts/                    # Automation scripts
+    ├── fetch_glossary.py       # Download latest glossary from Google Sheets
     ├── update_skill.py         # Main update script (validate + regenerate)
     ├── validate_sources.py     # Check source file integrity
     ├── regenerate_skill.py     # Regenerate references from glossary
-    └── sync_and_update.py      # Import external files and update
+    └── sync_and_update.py      # Fetch + update in one step (--fetch flag)
 ```
 
 ---
@@ -59,7 +64,7 @@ kobo-translation/
 
 ### `glossary.xlsx` — Terminology Database
 
-This Excel file contains **all translation terms** organized into sheets. The regeneration script reads this file and generates the `references/*.md` files.
+This is a **cached copy** of the published Google Sheet. Run `python scripts/fetch_glossary.py` to refresh it. The regeneration script reads this file and generates the `references/*.md` files.
 
 **Sheets (do not rename):**
 | Sheet Name | Generates | Contains |
@@ -75,6 +80,10 @@ This Excel file contains **all translation terms** organized into sheets. The re
 | `Formbuilder UI ` | `ui-terminology.md` | Formbuilder UI elements |
 | `KoboCollect` | `ui-terminology.md` | KoboCollect UI elements |
 | `XLSForm` | `form-building-terms.md` | XLSForm-specific terms |
+| `Sentence structures` | `sentence-structures.md` | Recurring sentence patterns |
+| `Article titles` | `article-titles.md` | Official article titles (all languages) |
+
+The `Article titles` sheet has a different column structure: `File name`, `English`, `French`, `Spanish`, `Arabic`, `Notes`. Titles are marked OFFICIAL — the AI must use them verbatim when cross-referencing articles.
 
 ### `style-guide.md` — General Guidelines
 
@@ -240,16 +249,21 @@ When adding new translation rules:
 
 ## Running Updates
 
-### Full Update (Recommended)
+### Fetch + Full Update (Recommended)
+
+```bash
+python scripts/sync_and_update.py --fetch
+```
+
+Fetches the latest glossary from Google Sheets, then validates and regenerates all reference files.
+
+### Full Update from Local Cache
 
 ```bash
 python scripts/update_skill.py
 ```
 
-This will:
-1. Validate all source files
-2. Regenerate all reference files from glossary
-3. Report any errors
+Use this when offline or when you only changed the `.md` source files.
 
 ### Validation Only
 
@@ -259,9 +273,17 @@ python scripts/validate_sources.py
 
 Use this to check your changes before committing.
 
-### Sync External Files
+### Fetch Glossary Only
 
-If you edited the glossary or guides outside this folder:
+```bash
+python scripts/fetch_glossary.py
+```
+
+Downloads the Google Sheet to `sources/glossary.xlsx` without regenerating.
+
+### Sync from Local Files
+
+If you have a locally exported copy of the glossary:
 
 ```bash
 python scripts/sync_and_update.py path/to/glossary.xlsx path/to/style-guide.md
@@ -281,7 +303,7 @@ python scripts/sync_and_update.py ~/Downloads/translation-updates/
 
 **Problem:** The glossary is missing expected sheets.
 
-**Solution:** Check that all 11 sheets exist with exact names (including the trailing space on "Formbuilder UI ").
+**Solution:** Check that all 13 sheets exist with exact names (including the trailing space on "Formbuilder UI ").
 
 ### "Missing columns" Error
 
@@ -362,9 +384,11 @@ git commit -m "Add Spanish rules for 'management' context"
 
 | Task | Command |
 |------|---------|
-| Update everything | `python scripts/update_skill.py` |
+| Fetch latest + update everything | `python scripts/sync_and_update.py --fetch` |
+| Update from local cache | `python scripts/update_skill.py` |
+| Fetch glossary only | `python scripts/fetch_glossary.py` |
 | Validate only | `python scripts/validate_sources.py` |
-| Import external files | `python scripts/sync_and_update.py <files>` |
+| Import local files | `python scripts/sync_and_update.py <files>` |
 
 | Edit This | For This Purpose |
 |-----------|------------------|
