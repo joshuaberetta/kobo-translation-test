@@ -1,0 +1,2 @@
+- Hook up directly with the Google Sheet reference material: https://docs.google.com/spreadsheets/d/e/2PACX-1vTn5JHMRlVqh8z5DTflmRJgDmhyRmFDogzRol7ESs2nY67ROZVbHiFfEmTptcP4seGxZ_WQ72ui-5R_/pub?output=xlsx
+- make sure that the article titles use in the translations come directly from the Google Sheet tab: "Article titles". This is important to ensure consistency, and important that when articles cross reference each other, that the titles are consistent across languages.

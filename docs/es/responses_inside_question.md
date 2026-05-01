@@ -14,7 +14,7 @@ Simplemente incluye la referencia a la otra pregunta entre las otras palabras de
 
 Y también puedes crear una lógica de omisión para esta pregunta de modo que solo se pregunte cuando la respuesta de edad sea menor de 18.
 
-Ten en cuenta que si haces referencia a una pregunta que no existe, se creará un error cuando intentes implementar tu formulario. Asegúrate siempre de hacer referencia a las preguntas con su nombre exacto, que también distingue entre mayúsculas y minúsculas. Por ejemplo, si tu pregunta se llama `age` no puedes usar `${Age}`. Puedes verificar fácilmente tu formulario haciendo clic en Vista previa en cualquier momento.
+Ten en cuenta que si haces referencia a una pregunta que no existe, se creará un error cuando intentes implementar tu formulario. Siempre asegúrate de hacer referencia a las preguntas con su nombre exacto, que también distingue entre mayúsculas y minúsculas. Por ejemplo, si tu pregunta se llama `age` no puedes usar `${Age}`. Puedes verificar fácilmente tu formulario haciendo clic en Vista previa en cualquier momento.
 
 ![image](/images/responses_inside_question/preview.gif)
 
@@ -30,6 +30,6 @@ Si deseas hacer referencia a la respuesta de una pregunta Seleccionar una/Selecc
 
     ![image](/images/responses_inside_question/calculate.gif)
 
-3. Previsualizar y validar el formulario para asegurarte de que todo funcione según lo diseñado.
+3. Previsualizar y validar el formulario para asegurarte de que todo funcione como se diseñó.
 
     ![image](/images/responses_inside_question/preview_calculate.gif)

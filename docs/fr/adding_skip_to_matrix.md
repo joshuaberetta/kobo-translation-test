@@ -1,8 +1,8 @@
 # Ajouter une logique de saut à un tableau de questions
 
-Dans la plupart des situations, vous pouvez ajouter une logique de saut à n'importe quel type de question comme indiqué dans l'article d'aide **[Ajouter une logique de saut dans le Formbuilder](skip_logic.md)**. Cependant, lorsque vous travaillez dans l'interface de création de formulaires KoboToolbox **(KoboToolbox Formbuilder)**, l'ajout d'une logique de saut à un tableau de questions n'est pas encore possible. À la place, un XLSForm peut être utilisé pour mettre en œuvre une logique de saut pour ce type de question. Cet article d'aide illustre comment vous pouvez ajouter une logique de saut à un tableau de questions en utilisant XLSForm.
+Dans la plupart des cas, vous pouvez ajouter une logique de saut à n'importe quel type de question comme indiqué dans l'article d'aide **[Ajouter une logique de saut dans le Formbuilder](skip_logic.md)**. Cependant, lorsque vous travaillez dans l'interface de création de formulaires KoboToolbox **(KoboToolbox Formbuilder)**, l'ajout d'une logique de saut à un tableau de questions n'est pas encore possible. À la place, un XLSForm peut être utilisé pour mettre en œuvre une logique de saut pour ce type de question. Cet article d'aide illustre comment vous pouvez ajouter une logique de saut à un tableau de questions en utilisant XLSForm.
 
-Si vous avez consulté l'article d'aide **[Ajouter une matrice de questions avec le Formbuilder](matrix_response.md)**, vous savez déjà qu'il existe 2 approches pour créer un tableau de questions dans KoboToolbox : l'_approche Formbuilder_ et l'_approche `kobo--matrix_list`_. Cet article d'aide donne un aperçu des étapes nécessaires pour ajouter une logique de saut à un tableau de questions lors de l'utilisation de l'une ou l'autre de ces approches.
+Si vous avez consulté l'article d'aide **[Ajouter une matrice de questions avec le Formbuilder](matrix_response.md)**, vous savez déjà qu'il existe 2 approches pour créer un tableau de questions dans KoboToolbox : l'_approche Formbuilder_ et l'_approche `kobo--matrix_list`_. Cet article d'aide donne un aperçu des étapes nécessaires pour ajouter une logique de saut à un tableau de questions en utilisant l'une ou l'autre de ces approches.
 
 ## L'approche Formbuilder :
 
@@ -16,13 +16,13 @@ La première étape consiste à créer un tableau de questions dans le Formbuild
 
 **Étape 2 :** Télécharger le formulaire en tant que XLSForm :
 
-Une fois que le tableau de questions est prêt, **SAUVEGARDEZ** le formulaire puis [téléchargez-le en tant que XLSForm](getting_started_xlsform.md#downloading-an-xlsform-from-kobotoolbox).
+Une fois le tableau de questions prêt, **SAUVEGARDEZ** le formulaire puis [téléchargez-le en tant que XLSForm](getting_started_xlsform.md#downloading-an-xlsform-from-kobotoolbox).
 
-**Étape 3 :** Ajouter l'en-tête de colonne `relevant` et la logique de saut à votre XLSForm :
+**Étape 3 :** Ajouter l'en-tête de colonne relevant et la logique de saut à votre XLSForm :
 
 Ouvrez maintenant le XLSForm puis ajoutez l'en-tête de colonne `relevant` au XLSForm. Une fois que vous avez l'en-tête de colonne `relevant`, vous pourrez ajouter une logique de saut à toutes les questions selon vos besoins.
 
-Pour améliorer la façon dont les tableaux de questions sont affichés lors de la réponse, il est conseillé d'ajouter une question de type `note` (surlignée en jaune dans l'image ci-dessous) puis d'y inclure une logique de saut selon les besoins. Ceci est entièrement facultatif car cela affectera simplement le formatage du tableau de questions. La différence entre _l'utilisation_ et _la non-utilisation_ de la question de type `note` est illustrée ci-dessous dans **Étape 6 : Collecter des données**.
+Pour améliorer la façon dont les tableaux de questions sont affichés lors de la réponse, il est conseillé d'ajouter une question de type `note` (surlignée en jaune dans l'image ci-dessous) puis d'y inclure une logique de saut selon les besoins. Ceci est entièrement facultatif car cela affectera simplement le formatage du tableau de questions. La différence entre _utiliser_ et _ne pas utiliser_ la question de type `note` est illustrée ci-dessous dans **Étape 6 : Collecter des données**.
 
 ![XLSForm approche Formbuilder](images/adding_skip_to_matrix/formbuilder_xlsform.png)
 
@@ -36,7 +36,7 @@ Une fois que vous avez remplacé le XLSForm (ou importé le XLSForm en tant que 
 
 **Étape 6 :** Collecter des données :
 
-Après avoir déployé le formulaire, vous pouvez aller dans **FORMULAIRE>Collecter des données>OUVRIR** pour commencer à collecter des données avec le formulaire web.
+Après avoir déployé le formulaire, vous pouvez aller dans **onglet FORMULAIRE>Collecte de données>OUVRIR** pour commencer à collecter des données avec le formulaire web.
 
 **Écran de saisie de données tel qu'il apparaît dans Enketo (formulaire web) : _lorsque rien n'est saisi_.**
 
@@ -80,7 +80,7 @@ Créez un tableau de questions dans le XLSForm, comme indiqué dans l'article d'
 
 **Étape 2 :** Ajouter l'en-tête de colonne `relevant` et la logique de saut à votre XLSForm :
 
-Une fois que le tableau de questions est prêt, vous devez ajouter l'en-tête de colonne `relevant`. Vous pouvez maintenant ajouter une logique de saut à toutes les questions sous l'en-tête de colonne `relevant`.
+Une fois le tableau de questions prêt, vous devez ajouter l'en-tête de colonne `relevant`. Vous pouvez maintenant ajouter une logique de saut à toutes les questions sous l'en-tête de colonne `relevant`.
 
 ![XLSForm approche kobo_matrix](images/adding_skip_to_matrix/kobo_matrix_xlsform.png)
 
@@ -94,7 +94,7 @@ Une fois que vous avez importé le XLSForm, vous devrez déployer votre formulai
 
 **Étape 5 :** Collecter des données :
 
-Vous pouvez maintenant aller dans **FORMULAIRE>Collecter des données>OUVRIR** pour commencer à collecter des données.
+Vous pouvez maintenant aller dans **onglet FORMULAIRE>Collecte de données>OUVRIR** pour commencer à collecter des données.
 
 **Écran de saisie de données tel qu'il apparaît dans Enketo (formulaire web) : _lorsque rien n'est saisi_.**
 
@@ -104,7 +104,7 @@ Vous pouvez maintenant aller dans **FORMULAIRE>Collecter des données>OUVRIR** p
 
 ![Formulaire Enketo rempli approche kobo_matrix](images/adding_skip_to_matrix/kobo_matrix_enketo_form_filled.png)
 
-Comme vous pouvez le voir dans la deuxième image, le format du tableau de questions a été déformé. Dans l'approche `kobo--matrix_list`, vous n'avez pas l'espace pour corriger le tableau comme vous l'aviez avec l'approche Formbuilder.
+Comme vous pouvez le voir dans la deuxième image, le format du tableau de questions a été déformé. Dans l'approche `kobo--matrix_list`, vous n'avez pas la possibilité de corriger le tableau comme vous l'aviez avec l'approche Formbuilder.
 
 <p class="note">
   Vous pouvez accéder au XLSForm

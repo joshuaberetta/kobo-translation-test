@@ -1,6 +1,6 @@
 # Créer des numéros de série uniques
 
-Il peut arriver que vous souhaitiez générer un numéro de série unique pour chaque formulaire d'un projet. Cet article présente différentes solutions pour créer des numéros de série uniques en utilisant le type de question `calculate`.
+Il peut arriver que vous souhaitiez générer un numéro de série unique pour chaque formulaire d'un projet. Cet article présente différentes solutions pour créer des numéros de série uniques à l'aide du type de question `calculate`.
 
 ## Approche 1 : Créer des numéros de série uniques séquentiels basés sur la date et l'heure
 
@@ -32,7 +32,7 @@ Cet exemple montre comment créer des numéros de série uniques à partir de va
 | :-------- | :------ | :---------------------------------------------- | :-------------------------------------------------------------------- |
 | text      | Q1      | Nom de la région                                |                                                                       |
 | text      | Q2      | Nom du district                                 |                                                                       |
-| text      | Q3      | Nom du cluster                                  |                                                                       |
+| text      | Q3      | Nom du groupement                               |                                                                       |
 | text      | Q4      | Nom du village                                  |                                                                       |
 | text      | Q5      | Numéro de série du ménage                       |                                                                       |
 | calculate | Q1_C    |                                                 | substr(${Q1}, 0, 3)                                                   |
@@ -41,7 +41,6 @@ Cet exemple montre comment créer des numéros de série uniques à partir de va
 | calculate | Q4_C    |                                                 | substr(${Q4}, 0, 3)                                                   |
 | calculate | ID      |                                                 | concat(${Q1_C}, '-', ${Q2_C}, '-', ${Q3_C}, '-', ${Q4_C}, '-', ${Q5}) |
 | note      | note_id | Votre identifiant unique pour ce formulaire est : ${ID} |                                                                       |
-| survey |
 
 Lorsque vous prévisualisez l'exemple dans les formulaires web **Enketo**, le numéro de série sera présenté dans la question de type note comme indiqué dans l'image ci-dessous :
 

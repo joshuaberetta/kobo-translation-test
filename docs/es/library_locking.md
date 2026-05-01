@@ -1,15 +1,15 @@
 # Bloquear cuestionarios para la biblioteca usando XLSForms
 
-La [Biblioteca de KoboToolbox](https://support.kobotoolbox.org/es/question_library.html) te permite almacenar y gestionar plantillas, preguntas y bloques para reutilizarlos en múltiples proyectos. Las plantillas de formularios en la **Biblioteca** se pueden compartir con miembros del equipo para garantizar un diseño de formulario consistente y reducir la duplicación de esfuerzos.
+La [Biblioteca de KoboToolbox](https://support.kobotoolbox.org/es/question_library.html) te permite almacenar y gestionar plantillas, preguntas y bloques para reutilizarlos en múltiples proyectos. Las plantillas de formularios en la **Biblioteca** se pueden compartir con los/as miembros del equipo para garantizar un diseño de formulario consistente y reducir la duplicación de esfuerzos.
 
-El **bloqueo de biblioteca** amplía esta funcionalidad al permitirte controlar cómo se pueden editar las plantillas una vez que se utilizan para crear nuevos proyectos. Con el bloqueo, puedes especificar qué preguntas, grupos o configuraciones a nivel de formulario se pueden cambiar. Esto es especialmente útil para equipos grandes que trabajan a partir de una plantilla compartida, donde ciertos elementos deben permanecer fijos mientras que otros pueden adaptarse a las necesidades locales.
+El **bloqueo de biblioteca** amplía esto al permitirte controlar cómo se pueden editar las plantillas una vez que se utilizan para crear nuevos proyectos. Con el bloqueo, puedes especificar qué preguntas, grupos o configuraciones a nivel de formulario se pueden cambiar. Esto es especialmente útil para equipos grandes que trabajan desde una plantilla compartida, donde ciertos elementos deben permanecer fijos mientras que otros pueden adaptarse a las necesidades locales.
 
 Este artículo explica cómo funciona el bloqueo de biblioteca, los tipos de restricciones que puedes aplicar, cómo configurarlas en XLSForm y cómo cargar XLSForms bloqueados en KoboToolbox.
 
 <p class="note">
-<strong>Nota:</strong> El bloqueo de biblioteca no está disponible actualmente en el editor de formularios de KoboToolbox <strong>(KoboToolbox Formbuilder)</strong>. Para usar esta funcionalidad, debes implementarla a través de XLSForm y luego cargar tu XLSForm en KoboToolbox.
+<strong>Nota:</strong> El bloqueo de biblioteca no está disponible actualmente en el editor de formularios de KoboToolbox (Formbuilder). Para usar esta función, debes implementarla a través de XLSForm y luego cargar tu XLSForm en KoboToolbox. 
 <br><br>
-Para obtener más información sobre cómo descargar y editar tu formulario como XLSForm, consulta <a href="https://support.kobotoolbox.org/es/xlsform_with_kobotoolbox.html">Usar XLSForm con KoboToolbox</a>.
+Para obtener más información sobre cómo descargar y editar tu formulario como XLSForm, consulta <a href="https://support.kobotoolbox.org/es/xlsform_with_kobotoolbox.html">Usar XLSForm con KoboToolbox</a>.    
 </p>
 
 ## Introducción al bloqueo de biblioteca
@@ -21,18 +21,18 @@ Cuando creas una plantilla bloqueada y la compartes a través de tu Biblioteca:
 - Los elementos bloqueados aparecen **atenuados** en el Formbuilder.
 - Un mensaje encima del formulario indica qué restricciones están activas.
 
-El bloqueo de biblioteca es independiente de los [permisos del proyecto](https://support.kobotoolbox.org/es/managing_permissions.html), que controlan lo que los/as diferentes usuarios/as pueden hacer dentro de un proyecto implementado.
+El bloqueo de biblioteca es independiente de los [permisos del proyecto](https://support.kobotoolbox.org/es/managing_permissions.html), que controlan lo que diferentes usuarios/as pueden hacer dentro de un proyecto implementado.
 
 <p class="note">
-<strong>Nota:</strong> Las restricciones del bloqueo de biblioteca se aplican solo en el <strong>Formbuilder</strong> cuando se crea un proyecto a partir de una plantilla bloqueada. Si se descarga el XLSForm y se edita en una hoja de cálculo, las restricciones no impedirán los cambios. Sin embargo, las configuraciones de bloqueo incorrectas o no válidas pueden causar errores cuando se vuelva a cargar el formulario.
+<strong>Nota:</strong> Las restricciones de bloqueo de biblioteca se aplican solo en el <strong>Formbuilder</strong> cuando se crea un proyecto a partir de una plantilla bloqueada. Si el XLSForm se descarga y se edita en una hoja de cálculo, las restricciones no impedirán los cambios. Sin embargo, las configuraciones de bloqueo incorrectas o no válidas pueden causar errores cuando el formulario se vuelve a cargar.
 </p>
 
 El bloqueo de biblioteca se configura en tres hojas de trabajo de XLSForm:
 - **hoja survey:** Para aplicar restricciones a preguntas y grupos específicos.
 - **hoja settings:** Para aplicar restricciones a nivel de formulario y establecer la opción `kobo--lock_all`.
-- **hoja kobo--locking-profiles:** Para definir perfiles que agrupen restricciones relacionadas.
+- **hoja kobo--locking-profiles:** Para definir perfiles que agrupan restricciones relacionadas. 
 
-En conjunto, estas hojas de trabajo te permiten definir qué partes de un formulario permanecen fijas y qué partes se pueden editar cuando se usa la plantilla para crear nuevos proyectos.
+Juntas, estas hojas de trabajo te permiten definir qué partes de un formulario permanecen fijas y qué partes se pueden editar cuando la plantilla se usa para crear nuevos proyectos.
 
 ## Tipos de restricciones
 
@@ -43,7 +43,6 @@ Además, se puede usar una configuración global (`kobo--lock_all`) para bloquea
 ### Restricciones a nivel de pregunta
 
 Las restricciones a nivel de pregunta se aplican a preguntas individuales. Puedes aplicar las siguientes restricciones a las preguntas en tu XLSForm:
-
 | Restricción              | Descripción                                                                      |
 |:------------------------------|:---------------------------------------------------------------------------------------------------------------|
 | <code>choice_add</code>                 | Impide agregar nuevas opciones a una pregunta de **selección**.                                                             |
@@ -75,7 +74,6 @@ Las restricciones a nivel de grupo se aplican a [grupos de preguntas](https://su
 ### Restricciones a nivel de formulario
 
 Las restricciones a nivel de formulario se aplican a todo el formulario. Puedes aplicar las siguientes restricciones a tu XLSForm:
-
 | Nombre | Descripción |
 |:------|:-------------|
 | <code>form_appearance</code> | Impide cambios en el [tema](https://support.kobotoolbox.org/es/form_style_xls.html) del formulario. |
@@ -100,12 +98,12 @@ La configuración `kobo--lock_all` se puede agregar a la **hoja settings** de tu
 
 ### Definir perfiles de bloqueo
 
-Los perfiles de bloqueo son **conjuntos de restricciones** que se pueden aplicar a preguntas, grupos o todo el formulario. Se definen en la **hoja kobo--locking-profiles** del XLSForm, y luego se aplican en las **hojas survey** y **settings**. Puedes crear tantos perfiles como necesites.
+Los perfiles de bloqueo son **conjuntos de restricciones** que se pueden aplicar a preguntas, grupos o todo el formulario. Se definen en la **hoja kobo--locking-profiles** del XLSForm, y luego se aplican en las hojas **survey** y **settings**. Puedes crear tantos perfiles como necesites.
 
 Para definir perfiles de bloqueo en tu XLSForm:
 1. Crea una nueva hoja de trabajo llamada **kobo--locking-profiles.**
 2. Agrega una **columna restriction**, que puede incluir cualquier restricción de las tablas anteriores.
-3. Crea una columna por **perfil** (por ejemplo, `profile_1`, `profile_2`).
+3. Crea una columna por **perfil** (por ejemplo, `profile_1`, `profile_2`). 
 4. En la celda correspondiente a una **restricción** y un **perfil**, incluye la palabra clave `locked` para asignar una restricción a un perfil.
 
 **hoja kobo--locking-profiles**
@@ -122,7 +120,7 @@ Para definir perfiles de bloqueo en tu XLSForm:
 
 ### Aplicar perfiles en la hoja survey
 
-Una vez que hayas definido perfiles de bloqueo en la **hoja kobo--locking-profiles**, puedes aplicar estos perfiles a preguntas y grupos específicos. Para aplicar perfiles en la **hoja survey**:
+Una vez que hayas definido los perfiles de bloqueo en la **hoja kobo--locking-profiles**, puedes aplicar estos perfiles a preguntas y grupos específicos. Para aplicar perfiles en la **hoja survey**:
 
 1. Crea una columna llamada **kobo--locking-profile** en la **hoja survey**
 2. Para cada pregunta o grupo que desees restringir, define el perfil de bloqueo en la columna `kobo--locking-profile`.
@@ -149,7 +147,7 @@ Para aplicar un perfil a la **hoja settings**:
 | profile_3            |
 
 <p class="note">
-<strong>Nota:</strong> Las restricciones no se pueden aplicar en la <code>hoja choices</code>. Todas las restricciones relacionadas con opciones se definen a nivel de pregunta o grupo en la <code>hoja survey</code>.
+<strong>Nota:</strong> Las restricciones no se pueden aplicar en la <strong>hoja choices</strong>. Todas las restricciones relacionadas con opciones se definen a nivel de pregunta o grupo en la <strong>hoja survey</strong>.
 </p>
 
 ## Usar plantillas bloqueadas en KoboToolbox
@@ -189,10 +187,10 @@ Cuando abras el proyecto en el Formbuilder:
   <summary><strong>Recomendaciones para la solución de problemas</strong></summary>
   Si el bloqueo de biblioteca no funciona como se esperaba, intenta lo siguiente:
     <ul>
-  <li>Asegúrate de que el formulario se haya cargado como una <strong>Plantilla en la Biblioteca.</strong></li>
+  <li>Asegúrate de que el formulario se cargó como una <strong>Plantilla en la Biblioteca.</strong></li>
   <li>Verifica la <strong>hoja settings</strong> en tu XLSForm. Si <code>kobo--lock_all</code> está configurado como <code>true</code>, todo el formulario estará bloqueado.</li>
-  <li>Verifica que todos los nombres de restricción en la <code>hoja kobo--locking-profiles</code> sean válidos. Solo se admiten nombres de restricción predefinidos.</li>
-  <li>Asegúrate de que la columna <code>kobo--locking-profile</code> exista en la <strong>hoja survey</strong> o <strong>settings</strong> y que los nombres de perfil coincidan con los definidos en la <code>hoja kobo--locking-profiles</code>.</li>
+  <li>Verifica que todos los nombres de restricción en la <strong>hoja kobo--locking-profiles</strong> sean válidos. Solo se admiten nombres de restricción predefinidos.</li>
+  <li>Asegúrate de que la columna <code>kobo--locking-profile</code> exista en la <strong>hoja survey</strong> o <strong>settings</strong> y que los nombres de perfil coincidan con los definidos en la <strong>hoja kobo--locking-profiles</strong>.</li>
 </ul>
 </details>
 
@@ -201,10 +199,10 @@ Cuando abras el proyecto en el Formbuilder:
 <details>
   <summary><strong>Advertencias y limitaciones</strong></summary>
   <ul>
-  <li>Las restricciones se aplican solo en el <strong>Formbuilder.</strong> Si se descarga el XLSForm y se edita directamente en una hoja de cálculo, las restricciones no impiden los cambios.</li>
-  <li>Las restricciones se aplican solo a proyectos creados a partir de plantillas bloqueadas. Las plantillas y encuestas en la Biblioteca permanecen editables.</li>
-  <li>Solo las encuestas y plantillas admiten bloqueo. Si cargas un XLSForm bloqueado como una pregunta o bloque, el bloqueo se ignora.</li>
-  <li>Algunos editores de hojas de cálculo convierten automáticamente dos guiones simples <code>--</code> en un guion largo (—). Usa siempre dos guiones simples en nombres como <code>kobo--locking-profiles</code>.</li>
+  <li>Las restricciones se aplican solo en el <strong>Formbuilder.</strong> Si el XLSForm se descarga y se edita directamente en una hoja de cálculo, las restricciones no impiden los cambios.</li>
+  <li>Las restricciones se aplican solo a los proyectos creados a partir de plantillas bloqueadas. Las plantillas y encuestas en la Biblioteca siguen siendo editables.</li>
+  <li>Solo las encuestas y plantillas admiten bloqueo. Si cargas un XLSForm bloqueado como pregunta o bloque, el bloqueo se ignora.</li>
+  <li>Algunos editores de hojas de cálculo convierten automáticamente dos guiones simples <code>--</code> en un guión largo (—). Usa siempre dos guiones simples en nombres como <code>kobo--locking-profiles</code>.</li>
 </ul>
 
 </details>

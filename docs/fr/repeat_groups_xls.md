@@ -11,7 +11,7 @@ Cet article couvre les sujets suivants :
 - Récupérer des valeurs à partir de groupes répétés
 
 <p class="note"> 
-<strong>Note :</strong> Cet article se concentre sur les groupes répétés dans <a href="https://support.kobotoolbox.org/getting_started_xlsform.html">XLSForm</a>. Pour en savoir plus sur les groupes répétés dans l'interface de création de formulaires KoboToolbox et pour prévisualiser les groupes répétés en action, consultez l'article <a href="https://support.kobotoolbox.org/group_repeat.html">Groupes et groupes répétés dans le Formbuilder</a>.
+<strong>Note :</strong> Cet article se concentre sur les groupes répétés dans <a href="https://support.kobotoolbox.org/getting_started_xlsform.html">XLSForm</a>. Pour en savoir plus sur les groupes répétés dans l'interface de création de formulaires KoboToolbox et pour prévisualiser les groupes répétés en action, consultez <a href="https://support.kobotoolbox.org/group_repeat.html">Groupes et groupes répétés dans le Formbuilder</a>.
 </p>
 
 ## Créer un groupe répété
@@ -21,7 +21,7 @@ Pour créer un groupe répété dans XLSForm :
 1. Dans la colonne `type` de l'onglet survey, saisissez **begin_repeat** pour indiquer le début du groupe répété.
 2. Dans la colonne `name` de la ligne **begin_repeat**, saisissez l'identifiant unique du groupe.
 3. Dans la colonne `label`, saisissez le titre du groupe tel que vous souhaitez qu'il apparaisse dans le formulaire. Le libellé est facultatif et peut être laissé vide.
-4. Saisissez chaque question du groupe sur sa propre ligne, comme vous le feriez normalement.
+4. Saisissez chaque question du groupe dans sa propre ligne, comme vous le feriez normalement.
 5. Dans une nouvelle ligne après les questions répétées, saisissez **end_repeat** dans la colonne `type` pour indiquer la fin du groupe répété.
     - Dans la ligne **end_repeat**, laissez les colonnes `name` et `label` vides.
 
@@ -43,7 +43,7 @@ Les groupes répétés fonctionnent de manière similaire aux groupes de questio
 - Créer des groupes répétés **imbriqués**, où un groupe répété est ajouté [à l'intérieur d'un autre](https://support.kobotoolbox.org/grouping_questions_xls.html#nested-groups).
 
 <p class="note">
-  <strong>Note :</strong> L'ajout de groupes répétés à votre formulaire crée une structure de données différente par rapport aux variables ou groupes standard. Lorsque vous téléchargez vos données au format .xlsx, vous trouverez un onglet séparé pour chaque groupe répété. Pour plus d'informations sur l'export et l'utilisation des données de groupes répétés, consultez l'article <a href="https://support.kobotoolbox.org/managing_repeat_groups.html">Gestion des données de groupes répétés</a>.
+  <strong>Note :</strong> L'ajout de groupes répétés à votre formulaire crée une structure de données différente par rapport aux variables ou groupes standard. Lorsque vous téléchargez vos données au format .xlsx, vous trouverez un onglet séparé pour chaque groupe répété. Pour plus d'informations sur l'export et l'utilisation des données de groupes répétés, consultez <a href="https://support.kobotoolbox.org/managing_repeat_groups.html">Gestion des données de groupes répétés</a>.
 </p>
 
 ## Définir le nombre de répétitions
@@ -70,7 +70,7 @@ Pour déterminer dynamiquement le nombre de répétitions en fonction d'une rép
 
 1. Ajoutez une colonne **repeat_count** dans l'onglet `survey`.
 2. Saisissez la référence de la question dans la colonne **repeat_count**.
-    - La question référencée doit être de type `integer`.
+    - La question référencée doit être une question de type `integer`.
 
 **onglet survey**
 
@@ -90,7 +90,7 @@ Pour déterminer dynamiquement le nombre de répétitions en fonction d'une rép
 
 ## Compter le nombre de répétitions à l'intérieur d'un groupe répété
 
-Lorsque vous utilisez des groupes répétés, vous pouvez avoir besoin d'un champ qui compte combien de fois le groupe a été répété. Cela peut être utile pour les calculs ou la logique de formulaire. Par exemple, vous pouvez appliquer une logique de saut après une répétition spécifique ou inclure dynamiquement le numéro de répétition dans un libellé de question (par exemple, Enfant 1, Enfant 2).
+Lorsque vous utilisez des groupes répétés, vous pouvez avoir besoin d'un champ qui compte combien de fois le groupe a été répété. Cela peut être utile pour des calculs ou une logique de formulaire. Par exemple, vous pouvez appliquer une logique de saut après une répétition spécifique ou inclure dynamiquement le numéro de répétition dans le libellé d'une question (par exemple, Enfant 1, Enfant 2).
 
 Pour compter combien de fois un groupe répété a été répété :
 1. Ajoutez une question **calculate** à l'intérieur du groupe répété.
@@ -113,7 +113,7 @@ Cette variable stocke l'index de répétition actuel. Vous pouvez l'utiliser dan
 
 ## Compter le nombre total de répétitions d'un groupe répété
 
-Vous pouvez également ajouter une question distincte en dehors du groupe répété pour compter le nombre total de répétitions. Cela est utile, par exemple, pour confirmer le nombre de participant(e)s ou d'enfants répertorié(e)s dans le groupe répété.
+Vous pouvez également ajouter une question séparée en dehors du groupe répété pour compter le nombre total de répétitions. Cela est utile, par exemple, pour confirmer le nombre de participant(e)s ou d'enfants répertorié(e)s dans le groupe répété.
 
 Pour compter combien de fois un groupe répété a été rempli :
 1. Ajoutez une question **calculate** après le groupe répété.

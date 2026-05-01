@@ -6,7 +6,7 @@ Por ejemplo, si estás recopilando detalles sobre cada miembro de un hogar, pued
 
 Este artículo cubre los siguientes temas:
 - Crear un grupo de repetición
-- Establecer conteos de repetición para limitar el número de repeticiones
+- Configurar conteos de repetición para limitar el número de repeticiones
 - Contar el número de repeticiones dentro de un grupo de repetición
 - Recuperar valores de grupos de repetición
 
@@ -18,7 +18,7 @@ Este artículo cubre los siguientes temas:
 
 Para crear un grupo de repetición en XLSForm:
 
-1. En la columna `type` de la **hoja survey**, ingresa **begin_repeat** para indicar el inicio del grupo de repetición.
+1. En la columna `type` de la hoja survey, ingresa **begin_repeat** para indicar el inicio del grupo de repetición.
 2. En la columna `name` de la fila **begin_repeat**, ingresa el identificador único para el grupo.
 3. En la columna `label`, ingresa el título del grupo como quieres que se muestre en el formulario. La etiqueta es opcional y puede dejarse en blanco.
 4. Ingresa cada pregunta del grupo en su propia fila, como lo harías normalmente.
@@ -43,16 +43,16 @@ Los grupos de repetición funcionan de manera similar a los grupos de preguntas.
 - Crear grupos de repetición **anidados**, donde un grupo de repetición se agrega [dentro de otro](https://support.kobotoolbox.org/grouping_questions_xls.html#nested-groups).
 
 <p class="note">
-  <strong>Nota:</strong> Agregar grupos de repetición a tu formulario crea una estructura de datos diferente en comparación con variables o grupos estándar. Cuando descargues tus datos en formato .xlsx, encontrarás una hoja separada para cada grupo de repetición. Para más información sobre cómo exportar y usar datos de grupos de repetición, consulta <a href="https://support.kobotoolbox.org/managing_repeat_groups.html">Gestión de datos de grupos repetidos</a>.
+  <strong>Nota:</strong> Agregar grupos de repetición a tu formulario crea una estructura de datos diferente en comparación con variables o grupos estándar. Cuando descargas tus datos en formato .xlsx, encontrarás una hoja separada para cada grupo de repetición. Para más información sobre exportar y usar datos de grupos de repetición, consulta <a href="https://support.kobotoolbox.org/managing_repeat_groups.html">Gestión de datos de grupos repetidos</a>.
 </p>
 
-## Establecer conteos de repetición
+## Configurar conteos de repetición
 
-Por defecto, los grupos de repetición pueden repetirse tantas veces como sea necesario. Para limitar el número de veces que un grupo de repetición se repite en el formulario, puedes establecer un conteo de repetición. El **conteo de repetición** puede ser un número fijo o determinarse dinámicamente según una respuesta anterior.
+Por defecto, los grupos de repetición pueden repetirse tantas veces como sea necesario. Para limitar el número de veces que un grupo de repetición se repite en el formulario, puedes configurar un conteo de repetición. El **conteo de repetición** puede ser un número fijo o determinarse dinámicamente basándose en una respuesta anterior.
 
-Para establecer un número fijo de repeticiones:
+Para configurar un número fijo de repeticiones:
 
-1. Añade una columna **repeat_count** en la **hoja survey**.
+1. Añade una columna **repeat_count** en la hoja `survey`.
 2. Ingresa un número en la columna **repeat_count**.
 
 **hoja survey**
@@ -66,9 +66,9 @@ Para establecer un número fijo de repeticiones:
 | end_repeat | | | |
 | survey |
 
-Para determinar dinámicamente el número de repeticiones según una respuesta anterior:
+Para determinar dinámicamente el número de repeticiones basándose en una respuesta anterior:
 
-1. Añade una columna **repeat_count** en la **hoja survey**.
+1. Añade una columna **repeat_count** en la hoja `survey`.
 2. Ingresa la referencia de la pregunta en la columna **repeat_count**.
     - La pregunta referenciada debe ser de tipo `integer`.
 
@@ -76,7 +76,7 @@ Para determinar dinámicamente el número de repeticiones según una respuesta a
 
 | type | name | label | repeat_count |
 | :--- | :--- | :--- | :--- |
-| integer | participants | Número total de participantes en la capacitación | |
+| integer | participants | Número total de participantes de la capacitación | |
 | begin_repeat | participant_profile | Perfil del/de la participante | ${participants} |
 | text | name | Nombre | |
 | select_one gender | gender | Género | |
@@ -90,7 +90,7 @@ Para determinar dinámicamente el número de repeticiones según una respuesta a
 
 ## Contar el número de repeticiones dentro de un grupo de repetición
 
-Cuando usas grupos de repetición, puedes necesitar un campo que cuente cuántas veces se ha repetido el grupo. Esto puede ser útil para cálculos o lógica del formulario. Por ejemplo, puedes aplicar lógica de omisión después de una repetición específica o incluir dinámicamente el número de repetición en una etiqueta de pregunta (ej. Niño/a 1, Niño/a 2).
+Cuando usas grupos de repetición, es posible que necesites un campo que cuente cuántas veces se ha repetido el grupo. Esto puede ser útil para cálculos o lógica del formulario. Por ejemplo, puedes aplicar lógica de omisión después de una repetición específica o incluir dinámicamente el número de repetición en una etiqueta de pregunta (ej. Niño/a 1, Niño/a 2).
 
 Para contar cuántas veces se ha repetido un grupo de repetición:
 1. Añade una pregunta de tipo **calculate** dentro del grupo de repetición.
@@ -125,7 +125,7 @@ Esta variable almacena el número total de repeticiones del grupo. Puedes usarla
 
 | type | name | label | calculation |
 | :--- | :--- | :--- | :--- |
-| begin_repeat | children | Lista de niños/as | |
+| begin_repeat | children | Grupo de niños/as | |
 | text | name | Nombre | |
 | select_one gender | gender | Género | |
 | integer | age | Edad | |
@@ -144,18 +144,18 @@ Dentro de un grupo de repetición, puedes referenciar una respuesta de otra preg
 
 | type | name | label |
 | :--- | :--- | :--- |
-| begin_repeat | children | Lista de niños/as |
+| begin_repeat | children | Grupo de niños/as |
 | text | name | ¿Cuál es el nombre del niño/de la niña? |
 | integer | age | ¿Cuántos años tiene ${name}? |
 | select_one gender | married | ¿Cuál es el género de ${name}? |
 | end_repeat | | |
 | survey |
 
-Fuera de un grupo de repetición, puedes recuperar datos del grupo de repetición para usarlos en la lógica del formulario o en etiquetas de preguntas:
+Fuera de un grupo de repetición, puedes recuperar datos del grupo de repetición para usarlos en la lógica del formulario o etiquetas de preguntas:
 
 1. Añade una pregunta de tipo **calculate** después de tu grupo de repetición.
 2. Incluye una de las fórmulas listadas a continuación en la columna **calculation**.
-3. La pregunta **calculate** almacena el valor recuperado, que luego puedes usar en la lógica del formulario o en etiquetas de preguntas.
+3. La pregunta **calculate** almacena el valor recuperado, que luego puedes usar en la lógica del formulario o etiquetas de preguntas.
 
 **Fórmulas para recuperar datos de grupos de repetición**
 
@@ -165,17 +165,17 @@ Fuera de un grupo de repetición, puedes recuperar datos del grupo de repetició
 | `min(${question-name})` | Recupera el valor mínimo ingresado para una pregunta en el grupo de repetición. |
 | `sum(${question-name})` | Calcula la suma de valores numéricos ingresados para una pregunta en el grupo de repetición. |
 | `join('; ', ${question-name})` | Lista todas las respuestas a una pregunta dada dentro de un grupo de repetición, separadas por punto y coma. |
-| `indexed-repeat(${question-name}, ${repeat-name}, n)` | Recupera el valor para `${question-name}`, en el grupo de repetición llamado `${repeat-name}`, en la n<sup>ava</sup> repetición. |
+| `indexed-repeat(${question-name}, ${repeat-name}, n)` | Recupera el valor para `${question-name}`, en el grupo de repetición llamado `${repeat-name}`, en la n<sup>ésima</sup> repetición. |
 
 **hoja survey**
 
 | type | name | label | calculation |
 | :--- | :--- | :--- | :--- |
-| begin_repeat | children | Lista de niños/as | |
+| begin_repeat | children | Grupo de niños/as | |
 | text | name | Nombre | |
 | select_one gender | gender | Género | |
 | integer | age | Edad | |
 | end_repeat | | | |
 | calculate | max_age | | **max(${age})** |
-| acknowledge | confirm_age | Confirma que el niño/la niña mayor en el hogar tiene **${max_age}** años. | |
+| acknowledge | confirm_age | Confirma que el niño/la niña mayor del hogar tiene **${max_age}** años. | |
 | survey |

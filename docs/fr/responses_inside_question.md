@@ -1,8 +1,8 @@
 # Inclure des réponses dans une autre question
 
-Vous pouvez inclure la réponse d'une question (par exemple, la réponse à la question « Quel âge avez-vous ? ») dans le libellé d'une autre question. Cela peut être utile pour de nombreuses raisons dans les formulaires avancés. Par exemple, vous pourriez vouloir confirmer qu'une réponse est vraiment correcte.
+Vous pouvez inclure la réponse d'une question (par exemple, inclure la réponse à la question « Quel âge avez-vous ? ») dans le libellé d'une autre question. Cela peut être utile pour de nombreuses raisons dans les formulaires avancés. Par exemple, vous pourriez vouloir confirmer qu'une réponse est vraiment correcte.
 
-Le référencement d'autres questions dans une autre question nécessite de leur donner un nom fixe via les paramètres de la question, tel que `age` ou `revenu`. Lorsque vous référencez d'autres questions, utilisez toujours le nom unique de la question dans le style de référencement de questions, tel que
+Référencer d'autres questions dans une autre question nécessite de leur attribuer un nom fixe via les paramètres de la question, tel que `age` ou `revenu`. Lorsque vous référencez d'autres questions, utilisez toujours le nom unique de la question dans le format de référencement de questions, tel que
 
 `${age}` ou `${revenu}`
 
@@ -12,21 +12,21 @@ Incluez simplement la référence à l'autre question parmi les autres mots de v
 
 ![image](/images/responses_inside_question/question_name.gif)
 
-Et vous pouvez également créer une logique de saut pour cette question afin qu'elle ne soit posée que lorsque la réponse concernant l'âge est inférieure à 18.
+Et vous pouvez également créer une logique de saut pour cette question afin qu'elle ne soit posée que lorsque la réponse concernant l'âge est inférieure à 18 ans.
 
 Notez que si vous référencez une question qui n'existe pas, cela créera une erreur lorsque vous essaierez de déployer votre formulaire. Assurez-vous toujours de référencer les questions avec leur nom exact, qui est également sensible à l'utilisation de majuscules et de minuscules. Par exemple, si votre question s'appelle `age`, vous ne pouvez pas utiliser `${Age}`. Vous pouvez facilement vérifier votre formulaire en cliquant sur Aperçu à tout moment.
 
 ![image](/images/responses_inside_question/preview.gif)
 
-**Vous pouvez également référencer la réponse d'une question à choix unique/multiple et afficher la réponse au lieu du code en utilisant des questions de type calcul cachées**
+**Vous pouvez également référencer la réponse d'une question à choix unique ou à choix multiple et afficher la réponse au lieu du code en utilisant des questions de type calcul cachées**
 
-Si vous souhaitez référencer la réponse à une question à choix unique/multiple et afficher la réponse (par exemple, « Tout à fait d'accord ») au lieu de sa valeur codée (par exemple, « tout_a_fait_daccord »), vous pouvez :
+Si vous souhaitez référencer la réponse à une question à choix unique ou à choix multiple et afficher la réponse (par exemple, « Tout à fait d'accord ») au lieu de sa valeur encodée (par exemple, « tout_a_fait_accord »), vous pouvez :
 
-1. Créer une question à choix unique/multiple et donner à la question un nom de référence fixe via les paramètres de la question, tel que `instruction`. Et créer une question de type calcul intermédiaire et saisir : `jr:choice-name(${instruction}, '${instruction}')`.
+1. Créer une question à choix unique ou à choix multiple, et attribuer à la question un nom de référence fixe via les paramètres de la question, tel que `instruction`. Et créer une question de type calcul intermédiaire et saisir : `jr:choice-name(${instruction}, '${instruction}')`.
 
     ![image](/images/responses_inside_question/select_updated.gif)
 
-2. Donner à cette question de type calcul un nom de référence, tel que `instruction_calcul`. Dans votre nouvelle question, référencez cette question de type calcul au lieu du nom donné à la question à choix unique/multiple.
+2. Attribuer à cette question de type calcul un nom de référence, tel que `instruction_calcul`. Dans votre nouvelle question, référencez cette question de type calcul au lieu du nom attribué à la question à choix unique ou à choix multiple.
 
     ![image](/images/responses_inside_question/calculate.gif)
 

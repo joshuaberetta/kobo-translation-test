@@ -2,12 +2,12 @@
 
 <iframe src="https://www.youtube.com/embed/nmPACLvYnUI?si=mkUi9RBLNHObj9ei" style="width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-Agrupar preguntas ayuda a organizar preguntas relacionadas en secciones, añade estructura a tu formulario y facilita la navegación. Por ejemplo, todas las preguntas demográficas pueden agruparse en una sección del formulario.
+Agrupar preguntas ayuda a organizar preguntas relacionadas en secciones, añade estructura a tu formulario y facilita la navegación. Por ejemplo, todas las preguntas demográficas pueden agruparse en una sola sección del formulario.
 
 Los/as usuarios/as pueden necesitar agrupar preguntas por varias razones:
 -   **Estructurar el cuestionario:** Las preguntas con temas o atributos comunes pueden agruparse en una sola sección.
 -   **Mostrar un conjunto de preguntas por página:** Las preguntas agrupadas pueden mostrarse en páginas o pantallas separadas durante la recolección de datos.
--   **Omitir un grupo de preguntas:** La lógica de omisión puede añadirse a todo el grupo en lugar de añadirla a cada pregunta individual.
+-   **Omitir un grupo de preguntas:** Se puede añadir lógica de omisión a todo el grupo en lugar de añadirla a cada pregunta individual.
 -   **Crear un grupo:** Los grupos de preguntas pueden repetirse, por ejemplo para encuestas de hogares o seguimiento de indicadores.
 
 Este artículo explica cómo crear y gestionar grupos de preguntas y [grupos de repetición](#repetir-un-grupo-de-preguntas) en el editor de formularios de KoboToolbox (Formbuilder).
@@ -26,7 +26,7 @@ Para crear un grupo de preguntas, sigue los pasos a continuación:
 
 ![image](/images/group_repeat/grouping_questions.png)
 
-Tu nuevo grupo aparecerá dentro de un cuadro sombreado, distinguiéndolo de las preguntas estándar. También puedes cambiar la etiqueta del grupo, que se mostrará en la parte superior del grupo en el formulario.
+Tu nuevo grupo aparecerá encerrado dentro de un cuadro sombreado, distinguiéndolo de las preguntas estándar. También puedes cambiar la etiqueta del grupo, que se mostrará en la parte superior del grupo en el formulario.
 
 <p class="note">
     <b>Nota:</b> Alternativamente, puedes crear una sola pregunta, seleccionarla y hacer clic en <b>Crear grupo</b>. Luego, puedes añadir más preguntas dentro del grupo, como se describe a continuación.
@@ -37,7 +37,7 @@ Tu nuevo grupo aparecerá dentro de un cuadro sombreado, distinguiéndolo de las
 Coloca el cursor en cualquier lugar dentro del grupo donde deseas añadir una nueva pregunta. Haz clic en el <i class="k-icon-plus"></i> **signo** dentro del grupo para añadir una nueva pregunta.
 
 <p class="note">
-    <b>Nota:</b> Si haces clic en el <i class="k-icon-plus"> </i><b>signo</b> que se encuentra fuera del grupo, estarás añadiendo una pregunta fuera del grupo.
+    <b>Nota:</b> Si haces clic en el <i class="k-icon-plus"> </i><b>signo</b> que está ubicado fuera del grupo, estarás añadiendo una pregunta fuera del grupo.
 </p>
 
 También puedes arrastrar y soltar cualquier pregunta existente dentro de un grupo de preguntas.
@@ -53,7 +53,7 @@ Para eliminar permanentemente una pregunta del formulario, haz clic en <i class=
 Puedes reordenar preguntas dentro de un grupo seleccionando la pregunta y arrastrándola a la posición deseada (arriba o abajo).
 
 ### Eliminar un grupo de preguntas
-Si ya no necesitas un grupo de preguntas, puedes desagruparlas o eliminar todo el grupo. Para hacer esto, haz clic en el botón <i class="k-icon-trash"></i> **Eliminar** del encabezado del grupo.
+Si ya no necesitas un grupo de preguntas, puedes desagruparlas o eliminar todo el grupo. Para hacer esto, haz clic en el botón <i class="k-icon-trash"></i> **Eliminar** desde el encabezado del grupo.
 
 Aparecerá un cuadro de diálogo pidiéndote que confirmes si deseas dividir el grupo o eliminar todo.
 
@@ -66,13 +66,13 @@ Un grupo de preguntas puede crearse o colocarse dentro de otro grupo. Esto se co
 
 ---
 
-## Configuración de grupos de preguntas
+## Configuración del grupo de preguntas
 
 Después de crear un grupo de preguntas, puedes personalizar su comportamiento y apariencia. Por ejemplo, puedes mostrar todas las preguntas del grupo en la misma pantalla, aplicar lógica de omisión a todo el grupo o configurar el grupo para que se repita.
 
 ### Mostrar preguntas agrupadas en la misma pantalla
 
-En KoboCollect, las preguntas aparecen de una en una de forma predeterminada. En los formularios web de Enketo, todas las preguntas aparecen en la misma pantalla.
+En KoboCollect, las preguntas aparecen una a la vez de forma predeterminada. En los formularios web de Enketo, todas las preguntas aparecen en la misma pantalla.
 
 Para mostrar preguntas por grupo en la misma pantalla durante la recolección de datos, haz clic en el ícono <i class="k-icon-settings"></i> **Configuración** a la derecha del nombre del grupo. Luego, en **Aspecto (avanzado)**, selecciona **field-list** (Mostrar todas las preguntas de este grupo en la misma pantalla).
 
@@ -81,7 +81,7 @@ Para mostrar preguntas por grupo en la misma pantalla durante la recolección de
 </p>
 
 ### Omitir un grupo de preguntas
-Para omitir un grupo de preguntas, asegúrate de tener al menos una pregunta de control posicionada antes de las preguntas agrupadas. Haz clic en el ícono <i class="k-icon-settings"></i> **Configuración** del grupo de preguntas, luego selecciona **Lógica de omisión** y configura las condiciones de lógica de omisión como lo harías para una pregunta individual.
+Para omitir un grupo de preguntas, asegúrate de tener al menos una pregunta de control posicionada antes de las preguntas agrupadas. Haz clic en el ícono <i class="k-icon-settings"></i> **Configuración** para la pregunta agrupada, luego selecciona **Lógica de omisión** y configura las condiciones de lógica de omisión como lo harías para una pregunta individual.
 
 <p class="note">
     Para obtener más información sobre cómo añadir condiciones de lógica de omisión, consulta <a href="../es/skip_logic.html">Añadir lógica de salto al Formbuilder</a>.
@@ -99,7 +99,7 @@ Para crear un grupo de preguntas:
 Durante la recolección de datos, los/as encuestadores/as podrán ingresar respuestas para estas preguntas agrupadas tantas veces como sea necesario.
 
 <p class="note">
-    <b>Nota:</b> Añadir grupos de repetición a tu formulario crea una estructura de datos diferente en comparación con variables o grupos estándar. Cuando descargues tus datos en formato .xlsx, encontrarás una hoja separada para cada grupo de repetición. Para más información sobre la exportación y uso de datos de grupos de repetición, consulta <a href="../es/managing_repeat_groups.html">Gestión de datos de grupos repetidos</a>.
+    <b>Nota:</b> Añadir grupos de repetición a tu formulario crea una estructura de datos diferente en comparación con variables o grupos estándar. Cuando descargues tus datos en formato .xlsx, encontrarás una hoja separada para cada grupo de repetición. Para más información sobre exportar y usar datos de grupos de repetición, consulta <a href="../es/managing_repeat_groups.html">Gestión de datos de grupos repetidos</a>.
 </p>
 
 ### Configuración avanzada para grupos de repetición
